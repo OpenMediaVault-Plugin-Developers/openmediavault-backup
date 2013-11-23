@@ -1,0 +1,14 @@
+Source: openmediavault-backup
+Section: net
+Priority: optional
+Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+
+Package: openmediavault-backup
+Architecture: all
+Depends: openmediavault (>= 0.5.14), rsync
+Description: backup plugin for OpenMediaVault.
+ This plugin will backup the entire OpenMediaVault
+ system minus data drives for restoration in emergency
+ situations.

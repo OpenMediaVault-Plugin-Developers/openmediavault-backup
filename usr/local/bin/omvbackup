@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+BACKUP_PATH=$(omv_config_get "//system/backup/path")
+SYSDRIVE_UUID="$(cat /etc/fstab | egrep "UUID.* / " | awk '{print $1}' | sed 's/UUID=//g')"
+SYSDRIVE="$(ls -l /dev/disk/by-uuid/ | grep $SYSDRIVE_UUID | awk '{print $11}' | sed 's/..\/..\///g')"
+
+# clean apt-get cache to save space
+apt-get clean
+
+# clean openmediavault upload cache and recreate Packages file
+rm -f /var/cache/openmediavault/archives/*
+touch /var/cache/openmediavault/Packages
+
+# check to see if backup path exists and backup
+if [ "${BACKUP_PATH}" != "" ]; then
+
+    if [ -d "${BACKUP_PATH}" ]; then
+        mkdir -p ${BACKUP_PATH}
+    fi
+
+    rsync -aAXv /* ${BACKUP_PATH} --delete --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found,/export,/home/ftp}
+    dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub.dd bs=446 count=1
+    dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub_parts.dd bs=512 count=1
+    blkid > ${BACKUP_PATH}/uuids
+fi
