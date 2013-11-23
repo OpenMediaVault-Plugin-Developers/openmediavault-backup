@@ -36,6 +36,7 @@ Ext.define("OMV.module.admin.system.backup.Settings", {
     rpcSetMethod : "setSettings",
 
     getFormItems : function() {
+        var me = this;
         return [{
             xtype    : "fieldset",
             title    : _("Settings"),
@@ -45,7 +46,7 @@ Ext.define("OMV.module.admin.system.backup.Settings", {
             items : [{
                 xtype         : "combo",
                 name          : "mntentref",
-                fieldLabel    : _("Backup Volume"),
+                fieldLabel    : _("Volume"),
                 emptyText     : _("Select a volume ..."),
                 allowBlank    : false,
                 allowNone     : false,
@@ -79,12 +80,12 @@ Ext.define("OMV.module.admin.system.backup.Settings", {
             },{
                 xtype      : "textfield",
                 name       : "path",
-                fieldLabel : _("Backup Path"),
+                fieldLabel : _("Path"),
                 allowNone  : true,
                 readOnly   : true
             },{
                 border : false,
-                html   : _("Backup the operating system drive to a data drive for emergency restoration.") + "<br /><br />"
+                html   : "<br />"
             },{
                 xtype   : "button",
                 name    : "backup",
@@ -93,7 +94,7 @@ Ext.define("OMV.module.admin.system.backup.Settings", {
                 handler : Ext.Function.bind(me.onBackupButton, me, [ me ])
             },{
                 border : false,
-                    html   : "<br />"
+                html   : _("Backup the operating system drive to a data drive for emergency restoration.") + "<br /><br />"
             }]
         }];
     },
