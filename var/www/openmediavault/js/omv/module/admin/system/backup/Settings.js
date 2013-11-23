@@ -94,7 +94,7 @@ Ext.define("OMV.module.admin.system.backup.Settings", {
                 handler : Ext.Function.bind(me.onBackupButton, me, [ me ])
             },{
                 border : false,
-                html   : _("Backup the operating system drive to a data drive for emergency restoration.") + "<br /><br />"
+                html   : "<ul><li>" + _("Backup the operating system drive to a data drive for emergency restoration.") + "</li></ul>"
             }]
         }];
     },
