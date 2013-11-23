@@ -14,7 +14,7 @@ apt-get clean
 
 # clean openmediavault upload cache and recreate Packages file
 rm -f /var/cache/openmediavault/archives/*
-touch /var/cache/openmediavault/Packages
+touch /var/cache/openmediavault/archives/Packages
 
 # check to see if backup path exists and backup
 if [ "${BACKUP_PATH}" != "" ]; then
