@@ -23,7 +23,18 @@ if [ "${BACKUP_PATH}" != "" ]; then
         mkdir -p ${BACKUP_PATH}
     fi
 
-    rsync -aAXv /* ${BACKUP_PATH} --delete --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found,/export,/home/ftp}
+    rsync -aAXv /* ${BACKUP_PATH} --delete \
+        --exclude=/dev \
+        --exclude=/proc \
+        --exclude=/sys \
+        --exclude=/tmp \
+        --exclude=/run \
+        --exclude=/mnt \
+        --exclude=/media \
+        --exclude=/lost+found \
+        --exclude=/export \
+        --exclude=/home/ftp
+
     dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub.dd bs=446 count=1
     dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub_parts.dd bs=512 count=1
     blkid > ${BACKUP_PATH}/uuids
