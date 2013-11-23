@@ -176,6 +176,6 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
 
 // Register the RPC service.
 $rpcServiceMgr = &OMVRpcServiceMgr::getInstance();
-$rpcServiceMgr->registerService(new OMVRpcServiceSnapRaid());
+$rpcServiceMgr->registerService(new OMVRpcServiceBackup());
 
 ?>
