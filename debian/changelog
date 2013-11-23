@@ -1,3 +1,9 @@
+openmediavault-backup (0.5.1) stable; urgency=low
+
+  * Fix bug
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 22 Nov 2013 20:28:27 -0500
+
 openmediavault-backup (0.5) stable; urgency=low
 
   * Initial release
