@@ -9,7 +9,7 @@ case "$1" in
     configure)
         if ! omv_config_exists "/config/system/backup"; then
             echo "Initial configuration."
-            object="<mntentref>0</mntentref>"
+            object="<mntentref></mntentref>"
             omv_config_add_element "/config/system" "backup" "${object}" true
         fi
 
