@@ -27,4 +27,6 @@ if [ "${BACKUP_PATH}" != "" ]; then
     dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub.dd bs=446 count=1
     dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub_parts.dd bs=512 count=1
     blkid > ${BACKUP_PATH}/uuids
+else
+    echo "No backup volume set.  Please choose a backup volume."
 fi

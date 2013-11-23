@@ -64,6 +64,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
             "type"       : "object",
             "properties" : {
                 "mntentref" : { "type" : "string" },
+                "path"      : { "type" : "string" }
             }
         }');
 
