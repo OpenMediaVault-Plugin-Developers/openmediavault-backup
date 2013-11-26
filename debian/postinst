@@ -7,17 +7,23 @@ set -e
 
 case "$1" in
     configure)
-        if ! omv_config_exists "/config/system/backup"; then
-            echo "Initial configuration."
-            object="<mntentref></mntentref>"
-            omv_config_add_element "/config/system" "backup" "${object}" true
-        fi
+
+        omv_config_delete "//system/backup"
+
+        echo "Initial configuration."
+
+        object="<mntentref></mntentref>"
+        omv_config_add_element "/config/system" "backup" "${object}" true
+
+        object="<freespace>1</freespace>"
+        object="${object}<everything>1</everything>"
+        omv_config_add_element "/config/system/backup" "photorec" "${object}" true
 
         ;;
-        
+
     abort-upgrade|abort-remove|abort-deconfigure)
         ;;
-    
+
     *)
         echo "postinst called with unknown argument" >&2
         exit 1

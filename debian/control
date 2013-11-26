@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: openmediavault-backup
 Architecture: all
-Depends: openmediavault (>= 0.5.14), rsync
+Depends: openmediavault (>= 0.5.14), rsync, testdisk
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault
  system minus data drives for restoration in emergency

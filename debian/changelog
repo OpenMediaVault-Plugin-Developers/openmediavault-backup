@@ -1,3 +1,9 @@
+openmediavault-backup (0.5.2) stable; urgency=low
+
+  * Add PhotoRec tab
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 26 Nov 2013 10:08:27 -0500
+
 openmediavault-backup (0.5.1) stable; urgency=low
 
   * Fix bug

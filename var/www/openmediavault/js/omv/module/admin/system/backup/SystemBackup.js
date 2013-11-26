@@ -24,7 +24,7 @@
 // require("js/omv/workspace/window/plugin/ConfigObject.js")
 // require("js/omv/form/field/SharedFolderComboBox.js")
 
-Ext.define("OMV.module.admin.system.backup.Settings", {
+Ext.define("OMV.module.admin.system.backup.SystemBackup", {
     extend : "OMV.workspace.form.Panel",
     uses   : [
         "OMV.data.Model",
@@ -104,7 +104,7 @@ Ext.define("OMV.module.admin.system.backup.Settings", {
         Ext.create("OMV.window.Execute", {
             title      : _("Backup"),
             rpcService : "Backup",
-            rpcMethod  : "executeBackup",
+            rpcMethod  : "doBackup",
             listeners  : {
                 scope     : me,
                 exception : function(wnd, error) {
@@ -116,9 +116,9 @@ Ext.define("OMV.module.admin.system.backup.Settings", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "settings",
+    id        : "systembackup",
     path      : "/system/backup",
-    text      : _("Settings"),
+    text      : _("System Backup"),
     position  : 10,
-    className : "OMV.module.admin.system.backup.Settings"
+    className : "OMV.module.admin.system.backup.SystemBackup"
 });
