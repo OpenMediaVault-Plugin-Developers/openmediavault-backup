@@ -238,6 +238,26 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
             }
         }');
 
+        // Check to see if shared folder is on source drive.
+        // Get shared folder configuration object.
+        $xpath = sprintf("//system/shares/sharedfolder[uuid='%s']", $params['destination']);
+        $sfObject = $xmlConfig->get($xpath);
+        if(is_null($sfObject))
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+
+        // Get the mount point configuration object to build the absolute shared folder path.
+        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $sfObject['mntentref']);
+        $meObject = $xmlConfig->get($xpath);
+        if(is_null($meObject))
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+
+        $cmd = "mount | grep {$params['source']} | grep {$meObject['dir']}";
+        $this->exec($cmd, $output);
+        if ( count($output) > 0 ) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("Shared folder cannot be located on the source drive - {$params['source']}."));
+        }
+        
         // Get the existing configuration object.
         $xpath = "//system/backup/photorec";
         $oldObject = $xmlConfig->get($xpath);
