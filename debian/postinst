@@ -19,6 +19,8 @@ case "$1" in
         object="${object}<everything>1</everything>"
         omv_config_add_element "/config/system/backup" "photorec" "${object}" true
 
+        dpkg-trigger update-fixperms
+        dpkg-trigger update-locale
         ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
@@ -29,7 +31,5 @@ case "$1" in
         exit 1
         ;;
 esac
-
-#DEBHELPER#
 
 exit 0
