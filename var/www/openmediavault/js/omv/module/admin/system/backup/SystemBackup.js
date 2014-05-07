@@ -85,14 +85,12 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
                 allowNone  : true,
                 readOnly   : true
             },{
-                border : false,
-                html   : "<br />"
-            },{
                 xtype   : "button",
                 name    : "backup",
                 text    : _("Backup"),
                 scope   : this,
-                handler : Ext.Function.bind(me.onBackupButton, me, [ me ])
+                handler : Ext.Function.bind(me.onBackupButton, me, [ me ]),
+                margin  : "5 0 0 0"
             },{
                 border : false,
                 html   : "<ul><li>" + _("Backup the operating system drive to a data drive for emergency restoration.") + "</li></ul>"

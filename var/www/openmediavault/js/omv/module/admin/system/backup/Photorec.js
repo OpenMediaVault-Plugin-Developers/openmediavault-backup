@@ -209,28 +209,19 @@ Ext.define("OMV.module.admin.system.backup.PhotoRec", {
                 boxLabel   : _("zip archive including OpenOffice and MSOffice 2007"),
                 checked    : false
             },{
-                border : false,
-                html   : "<br />"
+                xtype   : "button",
+                name    : "recover",
+                text    : _("Recover with output"),
+                scope   : this,
+                handler : Ext.Function.bind(me.onRecoverButton, me, [ me ]),
+                margin  : "5 10 0 0"
             },{
-                xtype      : "compositefield",
-                name       : "recoverbuttons",
-                fieldLabel : _("Recover"),
-                items: [{
-                    xtype   : "button",
-                    name    : "recover",
-                    text    : _("Recover with output"),
-                    scope   : this,
-                    handler : Ext.Function.bind(me.onRecoverButton, me, [ me ])
-                },{
-                    xtype   : "displayfield",
-                    value   : "   "
-                },{
-                    xtype   : "button",
-                    name    : "silent",
-                    text    : _("Silent Recover"),
-                    scope   : this,
-                    handler : Ext.Function.bind(me.onSilentButton, me, [ me ])
-                }]
+                xtype   : "button",
+                name    : "silent",
+                text    : _("Silent Recover"),
+                scope   : this,
+                handler : Ext.Function.bind(me.onSilentButton, me, [ me ]),
+                margin  : "5 0 0 0"
             },{
                 border : false,
                 html   : "<ul><li>" + _("This will attempt recovery of lost files from a damaged drive or accidentally deleted using PhotoRec.") + "</li>" +
