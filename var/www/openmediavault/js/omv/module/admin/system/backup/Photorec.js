@@ -34,6 +34,8 @@ Ext.define("OMV.module.admin.system.backup.PhotoRec", {
     rpcGetMethod : "getPhotorec",
     rpcSetMethod : "setPhotorec",
 
+    hideOkButton : true,
+
     plugins      : [{
         ptype        : "linkedfields",
         correlations : [{
@@ -239,6 +241,7 @@ Ext.define("OMV.module.admin.system.backup.PhotoRec", {
 
     onRecoverButton: function() {
         var me = this;
+        me.doSubmit();
         Ext.create("OMV.window.Execute", {
             title      : _("Recover using Photorec"),
             rpcService : "Backup",
@@ -253,6 +256,8 @@ Ext.define("OMV.module.admin.system.backup.PhotoRec", {
     },
 
     onSilentButton: function() {
+        var me = this;
+        me.doSubmit();
         OMV.Rpc.request({
             scope       : this,
             relayErrors : false,
