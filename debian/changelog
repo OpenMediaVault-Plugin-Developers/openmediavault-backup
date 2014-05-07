@@ -1,3 +1,9 @@
+openmediavault-backup (0.6.0) stable; urgency=low
+
+  * Update for kralizec
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 07 May 2014 06:10:00 -0500
+
 openmediavault-backup (0.5.2) stable; urgency=low
 
   * Add PhotoRec tab
