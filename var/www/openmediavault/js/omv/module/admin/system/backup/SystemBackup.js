@@ -34,6 +34,8 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
 
+    hideOkButton : true,
+
     getFormItems : function() {
         var me = this;
         return [{
@@ -100,6 +102,7 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
 
     onBackupButton: function() {
         var me = this;
+        me.doSubmit();
         Ext.create("OMV.window.Execute", {
             title      : _("Backup"),
             rpcService : "Backup",
