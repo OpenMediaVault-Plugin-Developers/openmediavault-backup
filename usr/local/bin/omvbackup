@@ -33,7 +33,9 @@ if [ "${BACKUP_PATH}" != "" ]; then
         --exclude=/media \
         --exclude=/lost+found \
         --exclude=/export \
-        --exclude=/home/ftp
+        --exclude=/home/ftp \
+        --exclude=/srv/ftp \
+        --exclude=/srv/tftp
 
     dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub.dd bs=446 count=1
     dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub_parts.dd bs=512 count=1
