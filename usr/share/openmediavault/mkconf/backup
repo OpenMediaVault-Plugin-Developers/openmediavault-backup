@@ -1,0 +1,107 @@
+#!/bin/sh
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+ISO_PATH=$(omv_config_get "//system/backup/isopath")
+
+backup()
+{
+    BACKUP_PATH=$(omv_config_get "//system/backup/path")
+    SYSDRIVE_UUID="$(cat /etc/fstab | egrep "UUID.* / " | awk '{print $1}' | sed 's/UUID=//g')"
+    SYSDRIVE="$(ls -l /dev/disk/by-uuid/ | grep $SYSDRIVE_UUID | awk '{print $11}' | sed 's/..\/..\///g')"
+
+    # clean apt-get cache to save space
+    apt-get clean
+
+    # clean openmediavault upload cache and recreate Packages file
+    rm -f /var/cache/openmediavault/archives/*
+    touch /var/cache/openmediavault/archives/Packages
+
+    # check to see if backup path exists and backup
+    if [ "${BACKUP_PATH}" != "" ]; then
+
+        if [ -d "${BACKUP_PATH}" ]; then
+            mkdir -p ${BACKUP_PATH}
+        fi
+
+        rsync -aAXv /* ${BACKUP_PATH} --delete \
+            --exclude=/dev \
+            --exclude=/proc \
+            --exclude=/sys \
+            --exclude=/tmp \
+            --exclude=/run \
+            --exclude=/mnt \
+            --exclude=/media \
+            --exclude=/lost+found \
+            --exclude=/export \
+            --exclude=/home/ftp \
+            --exclude=/srv/ftp \
+            --exclude=/srv/tftp
+
+        dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub.dd bs=446 count=1
+        dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub_parts.dd bs=512 count=1
+        blkid > ${BACKUP_PATH}/uuids
+    else
+        echo "No backup volume set.  Please choose a backup volume."
+    fi
+}
+
+installclonezilla()
+{
+    GRUB_CLONEZILLA="/etc/grub.d/42_clonezilla"
+    CLONEZILLA_VERSION="2.2.3-25"
+    CLONEZILLA_ISO="clonezilla-live-${CLONEZILLA_VERSION}-i686-pae.iso"
+
+    if [ ! -f "${ISO_PATH}/${CLONEZILLA_ISO}" ]; then
+        #wget "https://downloads.sourceforge.net/project/clonezilla/clonezilla_live_stable/${CLONEZILLA_VERSION}/${CLONEZILLA_ISO}" -O ${ISO_PATH}/${CLONEZILLA_ISO}
+        wget "http://intranet:81/${CLONEZILLA_ISO}" -O ${ISO_PATH}/${CLONEZILLA_ISO}
+    fi
+
+    cat <<EOF > ${GRUB_CLONEZILLA}
+#! /bin/sh
+exec tail -n +3 $0
+menuentry "Clonezilla Live" {
+  set isofile="${ISO_PATH}/${CLONEZILLA_ISO}"
+  loopback loop $isofile
+  linux (loop)/live/vmlinuz boot=live live-config noswap nolocales edd=on nomodeset ocs_live_run=\"ocs-live-general\" ocs_live_extra_param=\"\" keyboard-layouts=\"\" ocs_live_batch=\"no\" locales=\"\" ocs_daemonon=\"ssh\" vga=788 nosplash toram=filesystem.squashfs findiso=$isofile
+  initrd (loop)/live/initrd.img
+}
+EOF
+
+    chmod 755 ${GRUB_CLONEZILLA}
+    update-grub
+}
+
+rebootclonezilla()
+{
+    NEW="GRUB_DEFAULT=saved"
+    DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
+    GRUB="/etc/default/grub"
+    TFILE="/tmp/grub"
+    ENTRY=$(($(cat /boot/grub/grub.cfg | grep -c menuentry)-1))
+
+    sed "s/GRUB_DEFAULT=.*/$NEW/g" $GRUB > $TFILE && mv $TFILE $GRUB
+    grub-set-default ${DEFAULT}
+    update-grub
+    grub-reboot ${ENTRY}
+}
+
+case ${args[0]} in
+    backup)
+        backup
+    ;;
+
+    install)
+        installclonezilla
+    ;;
+
+    reboot)
+        rebootclonezilla
+    ;;
+
+esac
+
+exit 0

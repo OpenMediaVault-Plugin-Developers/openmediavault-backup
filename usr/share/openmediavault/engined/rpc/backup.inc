@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C)      2013 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  * Copyright (C) 2009-2013 Volker Theile <volker.theile@openmediavault.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,21 +18,48 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "openmediavault/object.inc";
+
 require_once "openmediavault/config.inc";
 require_once "openmediavault/error.inc";
-require_once "openmediavault/util.inc";
-require_once "openmediavault/rpcservice.inc";
 require_once "openmediavault/notify.inc";
-require_once("openmediavault/system.inc");
+require_once "openmediavault/object.inc";
+require_once "openmediavault/rpcservice.inc";
+require_once "openmediavault/system.inc";
+require_once "openmediavault/util.inc";
 
 class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
 
-    public function getName() {
+    public function getName()
+    {
         return 'Backup';
     }
 
-    public function initialize() {
+    private function getPluginName() {
+        return strtolower( $this->getName() );
+    }
+
+    private function getXPath() {
+        $path = sprintf( "//system/%s", $this->getPluginName() );
+        return $path;
+    }
+
+    private function getXPathPhotorec() {
+        $path = sprintf( "%s/photorec", $this->getXPath() );
+        return $path;
+    }
+
+    private function getEventMessagePath() {
+        $path = sprintf( "org.openmediavault.system.%s", $this->getPluginName() );
+        return $path;
+    }
+
+    private function getEventMessagePathPhotorec() {
+        $path = sprintf( "%s.photorec", $this->getEventMessagePath() );
+        return $path;
+    }
+
+    public function initialize()
+    {
         $this->registerMethod('getSettings');
         $this->registerMethod('setSettings');
         $this->registerMethod('doBackup');
@@ -51,9 +78,9 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
 
         // Get configuration object
-        $object = $xmlConfig->get("//system/backup");
+        $object = $xmlConfig->get( $this->getXPath() );
         if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, "//system/backup");
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath() );
 
         // Remove useless fields from the result object.
         unset($object['photorec']);
@@ -84,10 +111,9 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         $params['path'] = $backupPath;
 
         // Get the existing configuration object.
-        $xpath = "//system/backup";
-        $oldObject = $xmlConfig->get($xpath);
+        $oldObject = $xmlConfig->get( $this->getXPath() );
         if(is_null($oldObject)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath() );
         }
 
         // Prepare configuration data
@@ -98,12 +124,12 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         );
 
         // Set configuration object
-        if (false === $xmlConfig->replace("//system/backup", $object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, "//system/backup");
+        if (false === $xmlConfig->replace($this->getXPath(), $object))
+            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, $this->getXPath() );
 
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
-        $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.system.backup", $object);
+        $dispatcher->notify(OMV_NOTIFY_MODIFY, $this->getEventMessagePath(), $object);
     }
 
     public function doBackup($params, $context) {
@@ -190,10 +216,9 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
 
         // Get configuration object
-        $xpath = "//system/backup/photorec";
-        $object = $xmlConfig->get($xpath);
+        $object = $xmlConfig->get( $this->getXPathPhotorec() );
         if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPathPhotorec() );
 
         // Modify the result object.
         $options = array("freespace", "everything", "bmp", "bz2", "doc", "gz", "mkv", "mov",
@@ -257,10 +282,9 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
                 gettext("Shared folder cannot be located on the source drive - {$params['source']}."));
         }
-        
+
         // Get the existing configuration object.
-        $xpath = "//system/backup/photorec";
-        $oldObject = $xmlConfig->get($xpath);
+        $oldObject = $xmlConfig->get( $this->getXPathPhotorec() );
         if(is_null($oldObject)) {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
         }
@@ -289,12 +313,12 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         );
 
         // Set configuration object
-        if (false === $xmlConfig->replace($xpath, $object))
+        if (false === $xmlConfig->replace($this->getXPathPhotorec(), $object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, $xpath);
 
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
-        $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.system.backup", $object);
+        $dispatcher->notify(OMV_NOTIFY_MODIFY, $this->getEventMessagePathPhotorec(), $object);
     }
 
     public function getDrives($params, $context) {
@@ -331,10 +355,9 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
 
         // Get the configuration object.
-        $xpath = "//system/backup/photorec";
-        $object = $xmlConfig->get($xpath);
+        $object = $xmlConfig->get( $this->getXPathPhotorec() );
         if(is_null($object)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPathPhotorec() );
         }
 
         $options = array("bmp", "bz2", "doc", "gz", "mkv", "mov", "mp3", "mpg",
@@ -389,9 +412,9 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
 
         // Get the configuration object.
         $xpath = "//system/backup/photorec";
-        $object = $xmlConfig->get($xpath);
+        $object = $xmlConfig->get( $this->getXPathPhotorec() );
         if(is_null($object)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPathPhotorec() );
         }
 
         $options = array("bmp", "bz2", "doc", "gz", "mkv", "mov", "mp3", "mpg",
@@ -420,11 +443,8 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
         }
     }
-
 }
 
 // Register the RPC service.
 $rpcServiceMgr = &OMVRpcServiceMgr::getInstance();
 $rpcServiceMgr->registerService(new OMVRpcServiceBackup());
-
-?>
