@@ -159,50 +159,81 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
 
     onInstallButton: function() {
         var me = this;
-        me.doSubmit();
-        Ext.create("OMV.window.Execute", {
-            title      : _("Install Clonezilla"),
-            rpcService : "Backup",
-            rpcMethod  : "doInstall",
-            listeners  : {
+        var wnd = Ext.create("OMV.window.Execute", {
+            title           : _("Install Clonezilla"),
+            rpcService      : "Backup",
+            rpcMethod       : "doInstall",
+            rpcIgnoreErrors : true,
+            hideStartButton : true,
+            hideStopButton  : true,
+            listeners       : {
                 scope     : me,
+                finish    : function(wnd, response) {
+                    wnd.appendValue(_("Done..."));
+                    wnd.setButtonDisabled("close", false);
+                },
                 exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
+                    wnd.setButtonDisabled("close", false);
                 }
             }
-        }).show();
+        });
+        wnd.setButtonDisabled("close", true);
+        wnd.show();
+        wnd.start();
     },
 
     onCzButton: function() {
         var me = this;
-        Ext.create("OMV.window.Execute", {
-            title      : _("Reboot to Clonezilla"),
-            rpcService : "Backup",
-            rpcMethod  : "doRebootClonezilla",
-            listeners  : {
+        var wnd = Ext.create("OMV.window.Execute", {
+            title           : _("Reboot to Clonezilla"),
+            rpcService      : "Backup",
+            rpcMethod       : "doRebootClonezilla",
+            rpcIgnoreErrors : true,
+            hideStartButton : true,
+            hideStopButton  : true,
+            listeners       : {
                 scope     : me,
+                finish    : function(wnd, response) {
+                    wnd.appendValue(_("Done..."));
+                    wnd.setButtonDisabled("close", false);
+                },
                 exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
+                    wnd.setButtonDisabled("close", false);
                 }
             }
-        }).show();
+        });
+        wnd.setButtonDisabled("close", true);
+        wnd.show();
+        wnd.start();
     },
 
     onOmvButton: function() {
         var me = this;
-        Ext.create("OMV.window.Execute", {
-            title      : _("Reboot to OpenMediaVault"),
-            rpcService : "Backup",
-            rpcMethod  : "doRebootOMV",
-            listeners  : {
+        var wnd = Ext.create("OMV.window.Execute", {
+            title           : _("Reboot to OpenMediaVault"),
+            rpcService      : "Backup",
+            rpcMethod       : "doRebootOMV",
+            rpcIgnoreErrors : true,
+            hideStartButton : true,
+            hideStopButton  : true,
+            listeners       : {
                 scope     : me,
+                finish    : function(wnd, response) {
+                    wnd.appendValue(_("Done..."));
+                    wnd.setButtonDisabled("close", false);
+                },
                 exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
+                    wnd.setButtonDisabled("close", false);
                 }
             }
-        }).show();
+        });
+        wnd.setButtonDisabled("close", true);
+        wnd.show();
+        wnd.start();
     }
-
 });
 
 OMV.WorkspaceManager.registerPanel({
