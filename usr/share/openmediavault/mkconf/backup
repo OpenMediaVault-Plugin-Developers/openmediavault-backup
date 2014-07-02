@@ -10,6 +10,10 @@ GRUB_CLONEZILLA="/etc/grub.d/42_clonezilla"
 CLONEZILLA_VERSION="2.2.3-25"
 CLONEZILLA_ISO="clonezilla-live-${CLONEZILLA_VERSION}-i686-pae.iso"
 
+GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
+SYSRESCCD_VERSION="4.2.0"
+SYSRESCCD_ISO="systemrescuecd-x86-${SYSRESCCD_VERSION}.iso"
+
 GRUB="/etc/default/grub"
 GRUB_BACKUP="grub.bak"
 TFILE="/tmp/grub"
@@ -78,6 +82,28 @@ EOF
     update-grub
 }
 
+installsysresccd()
+{
+    if [ ! -f "${ISO_PATH}/${SYSRESCCD_ISO}" ]; then
+        rm -f ${ISO_PATH}/systemrescuecd*.iso
+        wget "https://sourceforge.net/projects/systemrescuecd/files/sysresccd-x86/${SYSRESCCD_VERSION}/${SYSRESCCD_ISO}/download" -O ${ISO_PATH}/${SYSRESCCD_ISO}
+    fi
+
+    cat <<EOF > ${GRUB_SYSRESCCD}
+#!/bin/sh
+exec tail -n +3 \$0
+menuentry "SystemRescueCD" {
+  set isofile="${ISO_PATH}/${SYSRESCCD_ISO}"
+  loopback loop \$isofile
+  linux (loop)/isolinux/rescue32 nomodeset rootpass=openmediavault isoloop=\$isofile
+  initrd (loop)/isolinux/initram.igz
+}
+EOF
+
+    chmod 755 ${GRUB_SYSRESCCD}
+    update-grub
+}
+
 rebootclonezilla()
 {
 
@@ -86,9 +112,28 @@ rebootclonezilla()
     else
         NEW="GRUB_DEFAULT=saved"
         DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
-        ENTRY=$(($(cat /boot/grub/grub.cfg | grep -c menuentry)-1))
+        ENTRY=$(($(cat /boot/grub/grub.cfg | grep menuentry | grep -n Clonezilla | cut -f1 -d:)-1))
 
         echo "Configuring grub to boot once from Clonezilla iso..."
+
+        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
+        grub-set-default ${DEFAULT}
+        update-grub
+        grub-reboot ${ENTRY}
+    fi
+}
+
+rebootsysresccd()
+{
+
+    if [ ! -f "${ISO_PATH}/${SYSRESCCD_ISO}" ]; then
+        echo "Please click on Install button."
+    else
+        NEW="GRUB_DEFAULT=saved"
+        DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
+        ENTRY=$(($(cat /boot/grub/grub.cfg | grep menuentry | grep -n SystemRescueCD | cut -f1 -d:)-1))
+
+        echo "Configuring grub to boot once from SystemRescueCD iso..."
 
         sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
         grub-set-default ${DEFAULT}
@@ -122,8 +167,16 @@ case $2 in
         installclonezilla
     ;;
 
+    installsys)
+        installsysresccd
+    ;;
+
     clonezilla)
         rebootclonezilla
+    ;;
+
+    sysresccd)
+        rebootsysresccd
     ;;
 
     omv)
