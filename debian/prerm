@@ -6,6 +6,7 @@ set -e
 . /usr/share/openmediavault/scripts/helper-functions
 
 GRUB_CLONEZILLA="/etc/grub.d/42_clonezilla"
+ISO_PATH="/boot"
 
 case "$1" in
     remove)

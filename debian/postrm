@@ -5,8 +5,6 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-ISO_PATH="/boot"
-
 case "$1" in
     purge)
         omv_config_delete "//system/backup"
