@@ -1,8 +1,8 @@
-openmediavault-backup (0.6.1) UNRELEASED; urgency=low
+openmediavault-backup (0.6.1) stable; urgency=low
 
   * Add clonezilla boot
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 01 Jul 2014 16:11:14 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 02 Jul 2014 07:46:30 -0500
 
 openmediavault-backup (0.6.0.2) stable; urgency=low
 

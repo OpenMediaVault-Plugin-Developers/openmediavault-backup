@@ -63,6 +63,9 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         $this->registerMethod('getSettings');
         $this->registerMethod('setSettings');
         $this->registerMethod('doBackup');
+        $this->registerMethod('doInstall');
+        $this->registerMethod('doRebootClonezilla');
+        $this->registerMethod('doRebootOMV');
         $this->registerMethod('getCandidates');
         $this->registerMethod('getPhotorec');
         $this->registerMethod('setPhotorec');
@@ -151,7 +154,94 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = "/usr/local/bin/omvbackup 2>&1";
+            $cmd = sprintf("sudo omv-mkconf %s backup 2>&1", $this->getPluginName() );
+            $this->exec($cmd, $output, $bgOutputFilename);
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            exit(0);
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function doInstall($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = sprintf("sudo omv-mkconf %s install 2>&1", $this->getPluginName() );
+            $this->exec($cmd, $output, $bgOutputFilename);
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            exit(0);
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function doRebootClonezilla($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = sprintf("sudo omv-mkconf %s clonezilla 2>&1", $this->getPluginName() );
+            $this->exec($cmd, $output, $bgOutputFilename);
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            exit(0);
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function doRebootOMV($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = sprintf("sudo omv-mkconf %s omv 2>&1", $this->getPluginName() );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);

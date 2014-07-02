@@ -5,19 +5,23 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
+SERVICE_XPATH_NAME="backup"
+SERVICE_XPATH="/config/system/${SERVICE_XPATH_NAME}"
+SERVICE_XPATH_PHOTOREC="/config/system/${SERVICE_XPATH_NAME}/photorec"
+
 case "$1" in
     configure)
 
-        omv_config_delete "//system/backup"
+        if ! omv_config_exists "${SERVICE_XPATH}"; then
+            echo "Initial configuration."
+            omv_config_add_element "/config/system" "${SERVICE_XPATH_NAME}"
+            omv_config_add_element "${SERVICE_XPATH}" "mntentref" ""
+            omv_config_add_element "${SERVICE_XPATH}" "path" ""
 
-        echo "Initial configuration."
-
-        object="<mntentref></mntentref>"
-        omv_config_add_element "/config/system" "backup" "${object}" true
-
-        object="<freespace>1</freespace>"
-        object="${object}<everything>1</everything>"
-        omv_config_add_element "/config/system/backup" "photorec" "${object}" true
+            omv_config_add_element "${SERVICE_XPATH}" "photorec"
+            omv_config_add_element "${SERVICE_XPATH_PHOTOREC}" "freespace" "1"
+            omv_config_add_element "${SERVICE_XPATH_PHOTOREC}" "everything" "1"
+        fi
 
         dpkg-trigger update-fixperms
         dpkg-trigger update-locale
