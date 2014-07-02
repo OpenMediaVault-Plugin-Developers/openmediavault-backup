@@ -106,7 +106,7 @@ Ext.define("OMV.module.admin.system.backup.Sysresccd", {
         wnd.start();
     },
 
-    onCzButton: function() {
+    onSrcButton: function() {
         var me = this;
         var wnd = Ext.create("OMV.window.Execute", {
             title           : _("Reboot to SystemRescueCD"),
