@@ -112,6 +112,9 @@ Ext.define("OMV.module.admin.system.backup.Sysresccd", {
             title           : _("Reboot to SystemRescueCD"),
             rpcService      : "Backup",
             rpcMethod       : "doRebootSysresccd",
+            rpcIgnoreErrors : true,
+            hideStartButton : true,
+            hideStopButton  : true,
             listeners       : {
                 scope     : me,
                 finish    : function(wnd, response) {
