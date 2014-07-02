@@ -1,3 +1,9 @@
+openmediavault-backup (0.6.2) UNRELEASED; urgency=low
+
+  * Add systemrescuecd boot
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 02 Jul 2014 15:01:15 -0500
+
 openmediavault-backup (0.6.1) stable; urgency=low
 
   * Add clonezilla boot

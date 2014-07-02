@@ -95,49 +95,6 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
                 border : false,
                 html   : "<ul><li>" + _("Backup the operating system drive to a data drive for emergency restoration.") + "</li></ul>"
             }]
-        },{
-            xtype    : "fieldset",
-            title    : _("Clonezilla"),
-            defaults : {
-                labelSeparator : ""
-            },
-            items : [{
-                xtype   : "button",
-                name    : "install",
-                text    : _("Install"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onInstallButton, me, [ me ]),
-                margin  : "5 0 0 0"
-            },{
-                border : false,
-                html   : "<ul>" +
-                         "<li>" + _("Downloads Clonezilla ISO and configures grub bootloader to allow booting from ISO.") + "</li>" +
-                         "<li>" + _("SSH server is enabled by default.  Login with username: <b>user</b> and password: <b>live</b>") + "</li>" +
-                         "<li>" + _("IP Address will be set by DHCP.  Using static DHCP is recommended for headless servers.") + "</li>" +
-                         "<li>" + _("When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>") + "</li>" +
-                         "<li>" + _("ISO uses approximately 139 Mb in /boot directory on OS drive.") + "</li>" +
-                         "</ul>"
-            },{
-                xtype   : "button",
-                name    : "rebootcz",
-                text    : _("Clonezilla"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onCzButton, me, [ me ]),
-                margin  : "5 0 0 0"
-            },{
-                border : false,
-                html   : "<ul><li>" + _("Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time.") + "</li></ul>"
-            },{
-                xtype   : "button",
-                name    : "rebootomv",
-                text    : _("OMV"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onOmvButton, me, [ me ]),
-                margin  : "5 0 0 0"
-            },{
-                border : false,
-                html   : "<ul><li>" + _("Sets grub bootloader to boot normally from OpenMediaVault.") + "</li></ul>"
-            }]
         }];
     },
 
@@ -155,84 +112,6 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
                 }
             }
         }).show();
-    },
-
-    onInstallButton: function() {
-        var me = this;
-        var wnd = Ext.create("OMV.window.Execute", {
-            title           : _("Install Clonezilla"),
-            rpcService      : "Backup",
-            rpcMethod       : "doInstall",
-            rpcIgnoreErrors : true,
-            hideStartButton : true,
-            hideStopButton  : true,
-            listeners       : {
-                scope     : me,
-                finish    : function(wnd, response) {
-                    wnd.appendValue(_("Done..."));
-                    wnd.setButtonDisabled("close", false);
-                },
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                    wnd.setButtonDisabled("close", false);
-                }
-            }
-        });
-        wnd.setButtonDisabled("close", true);
-        wnd.show();
-        wnd.start();
-    },
-
-    onCzButton: function() {
-        var me = this;
-        var wnd = Ext.create("OMV.window.Execute", {
-            title           : _("Reboot to Clonezilla"),
-            rpcService      : "Backup",
-            rpcMethod       : "doRebootClonezilla",
-            rpcIgnoreErrors : true,
-            hideStartButton : true,
-            hideStopButton  : true,
-            listeners       : {
-                scope     : me,
-                finish    : function(wnd, response) {
-                    wnd.appendValue(_("Done..."));
-                    wnd.setButtonDisabled("close", false);
-                },
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                    wnd.setButtonDisabled("close", false);
-                }
-            }
-        });
-        wnd.setButtonDisabled("close", true);
-        wnd.show();
-        wnd.start();
-    },
-
-    onOmvButton: function() {
-        var me = this;
-        var wnd = Ext.create("OMV.window.Execute", {
-            title           : _("Reboot to OpenMediaVault"),
-            rpcService      : "Backup",
-            rpcMethod       : "doRebootOMV",
-            rpcIgnoreErrors : true,
-            hideStartButton : true,
-            hideStopButton  : true,
-            listeners       : {
-                scope     : me,
-                finish    : function(wnd, response) {
-                    wnd.appendValue(_("Done..."));
-                    wnd.setButtonDisabled("close", false);
-                },
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                    wnd.setButtonDisabled("close", false);
-                }
-            }
-        });
-        wnd.setButtonDisabled("close", true);
-        wnd.show();
-        wnd.start();
     }
 });
 

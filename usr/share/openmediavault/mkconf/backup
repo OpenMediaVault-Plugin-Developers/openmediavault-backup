@@ -95,7 +95,7 @@ exec tail -n +3 \$0
 menuentry "SystemRescueCD" {
   set isofile="${ISO_PATH}/${SYSRESCCD_ISO}"
   loopback loop \$isofile
-  linux (loop)/isolinux/rescue32 nomodeset rootpass=openmediavault isoloop=\$isofile
+  linux (loop)/isolinux/rescue32 nomodeset setkmap=us rootpass=openmediavault isoloop=\$isofile
   initrd (loop)/isolinux/initram.igz
 }
 EOF

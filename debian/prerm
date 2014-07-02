@@ -12,6 +12,7 @@ case "$1" in
     remove)
         rm -f ${GRUB_CLONEZILLA}
         rm -f ${ISO_PATH}/clonezilla*.iso
+        rm -f ${ISO_PATH}/systemrescue*.iso
         omv-mkconf backup omv
     ;;
 
