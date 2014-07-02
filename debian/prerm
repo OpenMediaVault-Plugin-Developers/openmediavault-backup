@@ -5,15 +5,13 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-ISO_PATH="/boot"
+GRUB_CLONEZILLA="/etc/grub.d/42_clonezilla"
 
 case "$1" in
-    purge)
-        omv_config_delete "//system/backup"
-    ;;
-
     remove)
-
+        rm -f ${GRUB_CLONEZILLA}
+        rm -f ${ISO_PATH}/clonezilla*.iso
+        omv-mkconf backup omv
     ;;
 
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)

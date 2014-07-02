@@ -59,7 +59,7 @@ backup()
 installclonezilla()
 {
     if [ ! -f "${ISO_PATH}/${CLONEZILLA_ISO}" ]; then
-        rm -f clonezilla*.iso
+        rm -f ${ISO_PATH}/clonezilla*.iso
         wget "https://downloads.sourceforge.net/project/clonezilla/clonezilla_live_stable/${CLONEZILLA_VERSION}/${CLONEZILLA_ISO}" -O ${ISO_PATH}/${CLONEZILLA_ISO}
     fi
 
@@ -88,6 +88,8 @@ rebootclonezilla()
         DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
         ENTRY=$(($(cat /boot/grub/grub.cfg | grep -c menuentry)-1))
 
+        echo "Configuring grub to boot once from Clonezilla iso..."
+
         sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
         grub-set-default ${DEFAULT}
         update-grub
@@ -101,6 +103,8 @@ rebootomv()
         echo "Please click on Install button."
     else
         NEW="GRUB_DEFAULT=0"
+
+        echo "Configuring grub to boot OpenMediaVault by default..."
 
         sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
         grub-set-default 0
