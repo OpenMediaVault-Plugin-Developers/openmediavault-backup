@@ -113,7 +113,7 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
                 html   : "<ul>" +
                          "<li>" + _("Downloads Clonezilla ISO and configures grub bootloader to allow booting from ISO.") + "</li>" +
                          "<li>" + _("SSH server is enabled by default.  Login with username: <b>user</b> and password: <b>live</b>") + "</li>" +
-                         "<li>" + _("IP Address will be set by DHCP.") + "</li>" +
+                         "<li>" + _("IP Address will be set by DHCP.  Using static DHCP is recommended for headless servers.") + "</li>" +
                          "<li>" + _("When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>") + "</li>" +
                          "<li>" + _("ISO uses approximately 139 Mb in /boot directory on OS drive.") + "</li>" +
                          "</ul>"
