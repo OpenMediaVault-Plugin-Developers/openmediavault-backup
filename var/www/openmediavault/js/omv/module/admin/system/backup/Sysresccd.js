@@ -53,6 +53,7 @@ Ext.define("OMV.module.admin.system.backup.Sysresccd", {
                 html   : "<ul>" +
                          "<li>" + _("Downloads SystemRescuecd ISO and configures grub bootloader to allow booting from ISO.") + "</li>" +
                          "<li>" + _("SSH server is enabled by default.  Login with username: <b>root</b> and password: <b>openmediavault</b>") + "</li>" +
+                         "<li>" + _("When connecting via ssh, the ssh key will be different than the OpenMediaVault ssh key and need to be updated on the client system.") + "</li>" +
                          "<li>" + _("IP Address will be set by DHCP.  Using static DHCP is recommended for headless servers.") + "</li>" +
                          "<li>" + _("ISO uses approximately 381 Mb in /boot directory on OS drive.") + "</li>" +
                          "</ul>"
