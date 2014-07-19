@@ -1,0 +1,298 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-backup\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-19 12:33-0500\n"
+"PO-Revision-Date: 2014-07-19 17:36+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Polish (Poland) (http://www.transifex.com/projects/p/openmediavault-backup/language/pl_PL/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pl_PL\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "%s (%s available)"
+msgstr ""
+
+msgid "All file types known to PhotoRec will attempted to be recovered."
+msgstr ""
+
+msgid "BMP bitmap image"
+msgstr ""
+
+msgid "Backup"
+msgstr ""
+
+msgid ""
+"Backup the operating system drive to a data drive for emergency restoration."
+msgstr ""
+
+msgid "Clonezilla"
+msgstr ""
+
+msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
+msgstr ""
+
+msgid "Contax picture, Panasonic/Leica RAW"
+msgstr ""
+
+msgid ""
+"Copies Parted Magic ISO file from shared folder selected above to /boot/"
+msgstr ""
+
+msgid "Destination"
+msgstr ""
+
+msgid "Done..."
+msgstr ""
+
+msgid ""
+"Downloads Clonezilla ISO and configures grub bootloader to allow booting "
+"from ISO."
+msgstr ""
+
+msgid ""
+"Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
+" from ISO."
+msgstr ""
+
+msgid "Drive with missing or lost files."
+msgstr ""
+
+msgid "Everything"
+msgstr ""
+
+msgid "Files will be recovered only from the free space."
+msgstr ""
+
+msgid "For more information, see PhotoRec wiki"
+msgstr ""
+
+msgid "Freespace"
+msgstr ""
+
+msgid ""
+"IP Address will be set by DHCP.  Using static DHCP is recommended for "
+"headless servers."
+msgstr ""
+
+msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
+msgstr ""
+
+msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+msgid "Install Clonezilla"
+msgstr ""
+
+msgid "Install Parted Magic"
+msgstr ""
+
+msgid "Install SystemRescueCD"
+msgstr ""
+
+msgid "MP3 audio (MPEG ADTS, layer III, v1)"
+msgstr ""
+
+msgid "Matroska video file"
+msgstr ""
+
+msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
+msgstr ""
+
+msgid "Moving Picture Experts Group video"
+msgstr ""
+
+msgid "OMV"
+msgstr ""
+
+msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
+msgstr ""
+
+msgid "Parted Magic"
+msgstr ""
+
+msgid ""
+"Parted Magic ISO file named partedmagic.iso should be located in this shared"
+" folder."
+msgstr ""
+
+msgid "Path"
+msgstr ""
+
+msgid "PhotoRec"
+msgstr ""
+
+msgid "Portable Document Format, Adobe Illustrator"
+msgstr ""
+
+msgid "Portable/JPEG/Multiple-Image Network Graphics"
+msgstr ""
+
+msgid "Reboot to Clonezilla"
+msgstr ""
+
+msgid "Reboot to OpenMediaVault"
+msgstr ""
+
+msgid "Reboot to Parted Magic"
+msgstr ""
+
+msgid "Reboot to SystemRescueCD"
+msgstr ""
+
+msgid "Recover using Photorec"
+msgstr ""
+
+msgid "Recover with output"
+msgstr ""
+
+msgid ""
+"SSH server is enabled by default.  Login with username: <b>root</b> and "
+"password: <b>openmediavault</b>"
+msgstr ""
+
+msgid ""
+"SSH server is enabled by default.  Login with username: <b>root</b> and "
+"password: <b>partedmagic</b>"
+msgstr ""
+
+msgid ""
+"SSH server is enabled by default.  Login with username: <b>user</b> and "
+"password: <b>live</b>"
+msgstr ""
+
+msgid "Select a drive ..."
+msgstr ""
+
+msgid "Select a volume ..."
+msgstr ""
+
+msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
+msgstr ""
+
+msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
+msgstr ""
+
+msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
+msgstr ""
+
+msgid "Sets grub bootloader to boot normally from OpenMediaVault."
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Shared Folder"
+msgstr ""
+
+msgid ""
+"Shared folder cannot be located on the source drive - {$params['source']}."
+msgstr ""
+
+msgid "Shared folder where recovered files will be placed."
+msgstr ""
+
+msgid "Silent Recover"
+msgstr ""
+
+msgid "Source"
+msgstr ""
+
+msgid "System Backup"
+msgstr ""
+
+msgid "SystemRescueCD"
+msgstr ""
+
+msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
+msgstr ""
+
+msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
+msgstr ""
+
+msgid ""
+"This will attempt recovery of lost files from a damaged drive or "
+"accidentally deleted using PhotoRec."
+msgstr ""
+
+msgid "Volume"
+msgstr ""
+
+msgid ""
+"When connecting via ssh, the ssh key will be different than the "
+"OpenMediaVault ssh key and need to be updated on the client system."
+msgstr ""
+
+msgid ""
+"When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
+msgstr ""
+
+msgid "bmp"
+msgstr ""
+
+msgid "bz2"
+msgstr ""
+
+msgid "bzip2 compressed data"
+msgstr ""
+
+msgid "doc"
+msgstr ""
+
+msgid "gz"
+msgstr ""
+
+msgid "gzip compressed data"
+msgstr ""
+
+msgid "link"
+msgstr ""
+
+msgid "mkv"
+msgstr ""
+
+msgid "mov"
+msgstr ""
+
+msgid "mov/mp4/3gp/3g2/jp2"
+msgstr ""
+
+msgid "mp3"
+msgstr ""
+
+msgid "mpg"
+msgstr ""
+
+msgid "pdf"
+msgstr ""
+
+msgid "png"
+msgstr ""
+
+msgid "raw"
+msgstr ""
+
+msgid "tif"
+msgstr ""
+
+msgid "tx?"
+msgstr ""
+
+msgid "txt"
+msgstr ""
+
+msgid "zip"
+msgstr ""
+
+msgid "zip archive including OpenOffice and MSOffice 2007"
+msgstr ""
