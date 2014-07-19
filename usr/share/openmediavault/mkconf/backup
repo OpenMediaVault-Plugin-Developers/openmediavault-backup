@@ -14,6 +14,9 @@ GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
 SYSRESCCD_VERSION="4.2.0"
 SYSRESCCD_ISO="systemrescuecd-x86-${SYSRESCCD_VERSION}.iso"
 
+GRUB_PARTEDMAGIC="/etc/grub.d/42_partedmagic"
+PARTEDMAGIC_ISO="partedmagic.iso"
+
 GRUB="/etc/default/grub"
 GRUB_BACKUP="grub.bak"
 TFILE="/tmp/grub"
@@ -104,9 +107,35 @@ EOF
     update-grub
 }
 
+installpartedmagic()
+{
+    sfref=$(omv_config_get "//system/backup/partedmagic/pmref")
+    sfpath=$(omv_get_sharedfolder_path "${sfref}")
+
+    if [ ! -f "${sfpath}/${PARTEDMAGIC_ISO}" ]; then
+        cp ${sfpath}/${PARTEDMAGIC_ISO) ${ISO_PATH}
+    else
+        echo "Parted Magic ISO file not found."
+        exit 1
+    fi
+
+    cat <<EOF > ${GRUB_PARTEDMAGIC}
+#!/bin/sh
+exec tail -n +3 \$0
+menuentry "Parted Magic" {
+  set isofile="${ISO_PATH}/${PARTEDMAGIC_ISO}"
+  loopback loop \$isofile
+  linux (loop)/pmagic/bzimage iso_filename=\$isofile boot=live
+  initrd (loop)/pmagic/initrd.img
+}
+EOF
+
+    chmod 755 ${GRUB_PARTEDMAGIC}
+    update-grub
+}
+
 rebootclonezilla()
 {
-
     if [ ! -f "${ISO_PATH}/${CLONEZILLA_ISO}" ]; then
         echo "Please click on Install button."
     else
@@ -125,7 +154,6 @@ rebootclonezilla()
 
 rebootsysresccd()
 {
-
     if [ ! -f "${ISO_PATH}/${SYSRESCCD_ISO}" ]; then
         echo "Please click on Install button."
     else
@@ -134,6 +162,24 @@ rebootsysresccd()
         ENTRY=$(($(cat /boot/grub/grub.cfg | grep menuentry | grep -n SystemRescueCD | cut -f1 -d:)-1))
 
         echo "Configuring grub to boot once from SystemRescueCD iso..."
+
+        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
+        grub-set-default ${DEFAULT}
+        update-grub
+        grub-reboot ${ENTRY}
+    fi
+}
+
+rebootpartedmagic()
+{
+    if [ ! -f "${ISO_PATH}/${PARTEDMAGIC_ISO}" ]; then
+        echo "Please click on Install button."
+    else
+        NEW="GRUB_DEFAULT=saved"
+        DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
+        ENTRY=$(($(cat /boot/grub/grub.cfg | grep menuentry | grep -n 'Parted Magic' | cut -f1 -d:)-1))
+
+        echo "Configuring grub to boot once from Parted Magic iso..."
 
         sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
         grub-set-default ${DEFAULT}
@@ -171,12 +217,20 @@ case $2 in
         installsysresccd
     ;;
 
+    installpm)
+        installpartedmagic
+    ;;
+
     clonezilla)
         rebootclonezilla
     ;;
 
     sysresccd)
         rebootsysresccd
+    ;;
+
+    partedmagic)
+        rebootpartedmagic
     ;;
 
     omv)

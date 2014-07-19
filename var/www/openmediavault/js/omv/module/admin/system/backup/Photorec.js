@@ -265,6 +265,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "photorec",
     path      : "/system/backup",
     text      : _("PhotoRec"),
-    position  : 40,
+    position  : 50,
     className : "OMV.module.admin.system.backup.PhotoRec"
 });

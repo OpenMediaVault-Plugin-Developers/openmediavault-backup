@@ -23,17 +23,21 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH_PHOTOREC}" "everything" "1"
         fi
 
+        if ! omv_config_exists "${SERVICE_XPATH}/partedmagic"; then
+            omv_config_add_element "${SERVICE_XPATH}" "partedmagic" ""
+        fi
+
         dpkg-trigger update-fixperms
         dpkg-trigger update-locale
-        ;;
+    ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
-        ;;
+    ;;
 
     *)
         echo "postinst called with unknown argument" >&2
         exit 1
-        ;;
+    ;;
 esac
 
 exit 0

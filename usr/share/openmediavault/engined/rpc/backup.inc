@@ -48,6 +48,11 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         return $path;
     }
 
+    private function getXPathPartedmagic() {
+        $path = sprintf( "%s/partedmagic", $this->getXPath() );
+        return $path;
+    }
+
     private function getEventMessagePath() {
         $path = sprintf( "org.openmediavault.system.%s", $this->getPluginName() );
         return $path;
@@ -63,11 +68,20 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         $this->registerMethod('getSettings');
         $this->registerMethod('setSettings');
         $this->registerMethod('doBackup');
+
         $this->registerMethod('doInstall');
         $this->registerMethod('doRebootClonezilla');
+
         $this->registerMethod('doInstallSysresccd');
         $this->registerMethod('doRebootSysresccd');
+
+        $this->registerMethod('getPartedmagic');
+        $this->registerMethod('setPartedmagic');
+        $this->registerMethod('doInstallPartedmagic');
+        $this->registerMethod('doRebootPartedmagic');
+
         $this->registerMethod('doRebootOMV');
+
         $this->registerMethod('getCandidates');
         $this->registerMethod('getPhotorec');
         $this->registerMethod('setPhotorec');
@@ -89,6 +103,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
 
         // Remove useless fields from the result object.
         unset($object['photorec']);
+        unset($object['partedmagic']);
 
         return $object;
     }
@@ -126,6 +141,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
             "mntentref" => $params['mntentref'],
             "path"      => $params['path'],
             "photorec"  => isset($oldObject['photorec']) ? $oldObject['photorec'] : array(),
+            "partedmagic"  => isset($oldObject['partedmagic']) ? $oldObject['partedmagic'] : array()
         );
 
         // Set configuration object
@@ -281,6 +297,117 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
             exit(1);
         }
     }
+
+    public function getPartedmagic($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Get configuration object
+        $object = $xmlConfig->get( $this->getXPathPartedmagic() );
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathPartedmagic()
+            );
+        }
+
+        return $object;
+    }
+
+    public function setPartedmagic($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "pmref" : { "type" : "string" }
+            }
+        }');
+
+        // Prepare configuration data
+        $object = array(
+            "pmref" => $params['pmref']
+        );
+
+        // Set configuration object
+        if (false === $xmlConfig->replace($this->getXPathPartedmagic(), $object))
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
+                $this->getXPathPartedmagic()
+            );
+    }
+
+    public function doInstallPartedmagic($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = sprintf("sudo omv-mkconf %s installpm 2>&1", $this->getPluginName() );
+            $this->exec($cmd, $output, $bgOutputFilename);
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            exit(0);
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function doRebootPartedmagic($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = sprintf("sudo omv-mkconf %s partedmagic 2>&1", $this->getPluginName() );
+            $this->exec($cmd, $output, $bgOutputFilename);
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            exit(0);
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
 
     public function doRebootOMV($params, $context) {
         global $xmlConfig;
@@ -464,7 +591,12 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
 
         // Set configuration object
         if (false === $xmlConfig->replace($this->getXPathPhotorec(), $object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, $xpath);
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
+                $this->getXPathPhotorec()
+            );
+        }
 
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();

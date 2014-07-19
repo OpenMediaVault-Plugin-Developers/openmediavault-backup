@@ -1,3 +1,10 @@
+openmediavault-backup (1.0) stable; urgency=low
+
+  * Add Parted Magic
+  * Add locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 19 Jul 2014 12:32:43 -0500
+
 openmediavault-backup (0.6.2.1) stable; urgency=low
 
   * Add more notes
