@@ -112,8 +112,8 @@ installpartedmagic()
     sfref=$(omv_config_get "//system/backup/partedmagic/pmref")
     sfpath=$(omv_get_sharedfolder_path "${sfref}")
 
-    if [ ! -f "${sfpath}/${PARTEDMAGIC_ISO}" ]; then
-        cp ${sfpath}/${PARTEDMAGIC_ISO) ${ISO_PATH}
+    if [ -f "${sfpath}/${PARTEDMAGIC_ISO}" ]; then
+        cp ${sfpath}/${PARTEDMAGIC_ISO} ${ISO_PATH}
     else
         echo "Parted Magic ISO file not found."
         exit 1
@@ -125,7 +125,7 @@ exec tail -n +3 \$0
 menuentry "Parted Magic" {
   set isofile="${ISO_PATH}/${PARTEDMAGIC_ISO}"
   loopback loop \$isofile
-  linux (loop)/pmagic/bzimage iso_filename=\$isofile boot=live
+  linux (loop)/pmagic/bzImage iso_filename=\$isofile boot=live
   initrd (loop)/pmagic/initrd.img
 }
 EOF
