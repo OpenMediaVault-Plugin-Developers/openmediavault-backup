@@ -113,6 +113,7 @@ installpartedmagic()
     sfpath=$(omv_get_sharedfolder_path "${sfref}")
 
     if [ -f "${sfpath}/${PARTEDMAGIC_ISO}" ]; then
+        echo "Copying ${PARTEDMAGIC_ISO} to ${ISO_PATH} ..."
         cp ${sfpath}/${PARTEDMAGIC_ISO} ${ISO_PATH}
     else
         echo "Parted Magic ISO file not found."

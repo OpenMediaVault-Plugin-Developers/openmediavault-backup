@@ -32,7 +32,7 @@ Ext.define("OMV.module.admin.system.backup.Partedmagic", {
     rpcGetMethod : "getPartedmagic",
     rpcSetMethod : "setPartedmagic",
 
-    hideResetButton : true,
+    hideOkButton : true,
 
     getFormItems : function() {
         var me = this;
