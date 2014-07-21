@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# songming <by@songming.me>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-19 14:15-0500\n"
-"PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-07-20 06:51+0000\n"
+"Last-Translator: songming <by@songming.me>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-backup/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,281 +19,281 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "%s (%s available)"
-msgstr ""
+msgstr "%s(%s可用)"
 
 msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr ""
+msgstr "PhotoRec会尝试恢复所有文件类型的文件。"
 
 msgid "BMP bitmap image"
-msgstr ""
+msgstr "BMP位图图像"
 
 msgid "Backup"
-msgstr ""
+msgstr "备份"
 
 msgid ""
 "Backup the operating system drive to a data drive for emergency restoration."
-msgstr ""
+msgstr "备份系统盘到数据盘以供紧急恢复使用。"
 
 msgid "Clonezilla"
-msgstr ""
+msgstr "Clonezilla"
 
 msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr ""
+msgstr "配置grub引导以允许从Parted Magic ISO启动。"
 
 msgid "Contax picture, Panasonic/Leica RAW"
-msgstr ""
+msgstr "康泰时照片、松下/徕卡RAW"
 
 msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr ""
+msgstr "从上面选中的共享文件夹中复制Parted Magic ISO文件到/boot/"
 
 msgid "Destination"
-msgstr ""
+msgstr "目标"
 
 msgid "Done..."
-msgstr ""
+msgstr "完成 ..."
 
 msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
 "from ISO."
-msgstr ""
+msgstr "下载Clonezilla ISO并配置grub引导允许从ISO启动。"
 
 msgid ""
 "Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
 " from ISO."
-msgstr ""
+msgstr "下载SystemRescuecd ISO并配置grub引导允许从ISO启动。"
 
 msgid "Drive with missing or lost files."
-msgstr ""
+msgstr "丢失文件磁盘。"
 
 msgid "Everything"
-msgstr ""
+msgstr "全部"
 
 msgid "Files will be recovered only from the free space."
-msgstr ""
+msgstr "将只从空闲空间恢复文件。"
 
 msgid "For more information, see PhotoRec wiki"
-msgstr ""
+msgstr "更多信息请看PhotoRec 我iki"
 
 msgid "Freespace"
-msgstr ""
+msgstr "空余空间"
 
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
 "headless servers."
-msgstr ""
+msgstr "IP地址由DHCP设置，若没有DHCP服务则使用静态地址。"
 
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr ""
+msgstr "ISO大约会使用/boot目录所在OS盘139M空间。"
 
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr ""
+msgstr "ISO大约会使用/boot目录所在OS盘1381M空间。"
 
 msgid "Install"
-msgstr ""
+msgstr "安装"
 
 msgid "Install Clonezilla"
-msgstr ""
+msgstr "安装Clonezilla"
 
 msgid "Install Parted Magic"
-msgstr ""
+msgstr "安装Parted Magic"
 
 msgid "Install SystemRescueCD"
-msgstr ""
+msgstr "安装SystemRescueCD"
 
 msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr ""
+msgstr "MP3音频(MPEG ADTS, layer III, v1)"
 
 msgid "Matroska video file"
-msgstr ""
+msgstr "Matroska视频文件"
 
 msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr ""
+msgstr "微软Office文档(doc/xls/ppt/vsd/...)，3ds Max，MetaStock"
 
 msgid "Moving Picture Experts Group video"
-msgstr ""
+msgstr "Moving Picture Experts Group video"
 
 msgid "OMV"
-msgstr ""
+msgstr "OMV"
 
 msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr ""
+msgstr "其它文本文件：txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
 
 msgid "Parted Magic"
-msgstr ""
+msgstr "Parted Magic"
 
 msgid ""
 "Parted Magic ISO file named partedmagic.iso should be located in this shared"
 " folder."
-msgstr ""
+msgstr "Parted Magic ISO文件partedmagic.iso位于该文件夹。"
 
 msgid "Path"
-msgstr ""
+msgstr "路径"
 
 msgid "PhotoRec"
-msgstr ""
+msgstr "PhotoRec"
 
 msgid "Portable Document Format, Adobe Illustrator"
-msgstr ""
+msgstr "Portable Document Format, Adobe Illustrator"
 
 msgid "Portable/JPEG/Multiple-Image Network Graphics"
-msgstr ""
+msgstr "Portable/JPEG/Multiple-Image Network Graphics"
 
 msgid "Reboot to Clonezilla"
-msgstr ""
+msgstr "重启到Clonezilla"
 
 msgid "Reboot to OpenMediaVault"
-msgstr ""
+msgstr "重启到OpenMediaVault"
 
 msgid "Reboot to Parted Magic"
-msgstr ""
+msgstr "重启到Parted Magic"
 
 msgid "Reboot to SystemRescueCD"
-msgstr ""
+msgstr "重启到SystemRescueCD"
 
 msgid "Recover using Photorec"
-msgstr ""
+msgstr "用Photorec恢复"
 
 msgid "Recover with output"
-msgstr ""
+msgstr "恢复输出"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>openmediavault</b>"
-msgstr ""
+msgstr "SSH服务默认开启，登录用户名： <b>root</b>，密码：<b>openmediavault</b>"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>partedmagic</b>"
-msgstr ""
+msgstr "SSH服务默认开启，登录用户名： <b>root</b>，密码：<b>partedmagic</b>"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>user</b> and "
 "password: <b>live</b>"
-msgstr ""
+msgstr "SSH服务默认开启，登录用户名： <b>user</b>，密码：<b>live</b>"
 
 msgid "Select a drive ..."
-msgstr ""
+msgstr "选择磁盘 ..."
 
 msgid "Select a volume ..."
-msgstr ""
+msgstr "选择卷 ..."
 
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr ""
+msgstr "设置grub从Clonezilla ISO引导启动<b>1</b>次。"
 
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr ""
+msgstr "设置grub从Parted Magic ISO引导启动<b>1</b>次。"
 
 msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr ""
+msgstr "设置grub从SystemRescueCD ISO引导启动<b>1</b>次。"
 
 msgid "Sets grub bootloader to boot normally from OpenMediaVault."
-msgstr ""
+msgstr "设置grub默认引导OpenMediaVault启动。"
 
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 msgid "Shared Folder"
-msgstr ""
+msgstr "共享文件夹"
 
 msgid ""
 "Shared folder cannot be located on the source drive - {$params['source']}."
-msgstr ""
+msgstr "无法在源磁盘上找到共享文件夹 - {$params['source']}。"
 
 msgid "Shared folder where recovered files will be placed."
-msgstr ""
+msgstr "若有恢复的文件将保存到该文件夹。"
 
 msgid "Silent Recover"
-msgstr ""
+msgstr "静默恢复"
 
 msgid "Source"
-msgstr ""
+msgstr "来源"
 
 msgid "System Backup"
-msgstr ""
+msgstr "系统备份"
 
 msgid "SystemRescueCD"
-msgstr ""
+msgstr "SystemRescueCD"
 
 msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-msgstr ""
+msgstr "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
 
 msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr ""
+msgstr "文本文件头：rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
 "accidentally deleted using PhotoRec."
-msgstr ""
+msgstr "PhotoRec将尝试恢复意外删除或磁盘损坏而丢失的数据。"
 
 msgid "Volume"
-msgstr ""
+msgstr "卷"
 
 msgid ""
 "When connecting via ssh, the ssh key will be different than the "
 "OpenMediaVault ssh key and need to be updated on the client system."
-msgstr ""
+msgstr "当使用SSH链接时，SSH密钥会与OpenMediaVault SSH密钥不同，客户端需要更新密钥。"
 
 msgid ""
 "When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr ""
+msgstr "当远程登录时，启动clonezilla命令：<b>sudo clonezilla</b>"
 
 msgid "bmp"
-msgstr ""
+msgstr "不冒泡"
 
 msgid "bz2"
-msgstr ""
+msgstr "bz2"
 
 msgid "bzip2 compressed data"
-msgstr ""
+msgstr "bzip2压缩数据"
 
 msgid "doc"
-msgstr ""
+msgstr "doc"
 
 msgid "gz"
-msgstr ""
+msgstr "gz"
 
 msgid "gzip compressed data"
-msgstr ""
+msgstr "gzip压缩数据"
 
 msgid "link"
-msgstr ""
+msgstr "链接"
 
 msgid "mkv"
-msgstr ""
+msgstr "mkv"
 
 msgid "mov"
-msgstr ""
+msgstr "mov"
 
 msgid "mov/mp4/3gp/3g2/jp2"
-msgstr ""
+msgstr "mov/mp4/3gp/3g2/jp2"
 
 msgid "mp3"
-msgstr ""
+msgstr "mp3"
 
 msgid "mpg"
-msgstr ""
+msgstr "mpg"
 
 msgid "pdf"
-msgstr ""
+msgstr "pdf"
 
 msgid "png"
-msgstr ""
+msgstr "png"
 
 msgid "raw"
-msgstr ""
+msgstr "raw"
 
 msgid "tif"
-msgstr ""
+msgstr "tif"
 
 msgid "tx?"
-msgstr ""
+msgstr "tx?"
 
 msgid "txt"
-msgstr ""
+msgstr "txt"
 
 msgid "zip"
-msgstr ""
+msgstr "zip"
 
 msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr ""
+msgstr "zip文档包括OpenOffice和MSOffice 2007"

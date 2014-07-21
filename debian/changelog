@@ -1,3 +1,10 @@
+openmediavault-backup (1.0.1) stable; urgency=low
+
+  * Add docache option to systemrescuecd
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 21 Jul 2014 07:41:55 -0500
+
 openmediavault-backup (1.0) stable; urgency=low
 
   * Add Parted Magic
