@@ -146,7 +146,8 @@ rebootclonezilla()
 
         echo "Configuring grub to boot once from Clonezilla iso..."
 
-        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
+        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
+        mv ${TFILE} ${GRUB}
         grub-set-default ${DEFAULT}
         update-grub
         grub-reboot ${ENTRY}
@@ -164,7 +165,8 @@ rebootsysresccd()
 
         echo "Configuring grub to boot once from SystemRescueCD iso..."
 
-        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
+        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
+        mv ${TFILE} ${GRUB}
         grub-set-default ${DEFAULT}
         update-grub
         grub-reboot ${ENTRY}
@@ -182,7 +184,8 @@ rebootpartedmagic()
 
         echo "Configuring grub to boot once from Parted Magic iso..."
 
-        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
+        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
+        mv ${TFILE} ${GRUB}
         grub-set-default ${DEFAULT}
         update-grub
         grub-reboot ${ENTRY}
@@ -198,7 +201,8 @@ rebootomv()
 
         echo "Configuring grub to boot OpenMediaVault by default..."
 
-        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE} && mv ${TFILE} ${GRUB}
+        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
+        mv ${TFILE} ${GRUB}
         grub-set-default 0
         update-grub
         grub-reboot 0
