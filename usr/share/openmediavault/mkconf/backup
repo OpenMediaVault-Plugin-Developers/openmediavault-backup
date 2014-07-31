@@ -142,7 +142,7 @@ rebootclonezilla()
     else
         NEW="GRUB_DEFAULT=saved"
         DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
-        ENTRY=$(($(cat /boot/grub/grub.cfg | grep menuentry | grep -n Clonezilla | cut -f1 -d:)-1))
+        ENTRY=$(($(cat /boot/grub/grub.cfg | grep 'menuentry ' | grep -n Clonezilla | cut -f1 -d:)-1))
 
         echo "Configuring grub to boot once from Clonezilla iso..."
 
@@ -161,7 +161,7 @@ rebootsysresccd()
     else
         NEW="GRUB_DEFAULT=saved"
         DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
-        ENTRY=$(($(cat /boot/grub/grub.cfg | grep menuentry | grep -n SystemRescueCD | cut -f1 -d:)-1))
+        ENTRY=$(($(cat /boot/grub/grub.cfg | grep 'menuentry ' | grep -n SystemRescueCD | cut -f1 -d:)-1))
 
         echo "Configuring grub to boot once from SystemRescueCD iso..."
 
@@ -180,7 +180,7 @@ rebootpartedmagic()
     else
         NEW="GRUB_DEFAULT=saved"
         DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
-        ENTRY=$(($(cat /boot/grub/grub.cfg | grep menuentry | grep -n 'Parted Magic' | cut -f1 -d:)-1))
+        ENTRY=$(($(cat /boot/grub/grub.cfg | grep 'menuentry ' | grep -n 'Parted Magic' | cut -f1 -d:)-1))
 
         echo "Configuring grub to boot once from Parted Magic iso..."
 
