@@ -19,6 +19,7 @@ PARTEDMAGIC_ISO="partedmagic.iso"
 
 GRUB="/etc/default/grub"
 GRUB_BACKUP="grub.bak"
+GRUB_CFG="/boot/grub/grub.cfg"
 TFILE="/tmp/grub"
 
 backup()
@@ -141,10 +142,15 @@ rebootclonezilla()
         echo "Please click on Install button."
     else
         NEW="GRUB_DEFAULT=saved"
-        DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
-        ENTRY=$(($(cat /boot/grub/grub.cfg | grep 'menuentry ' | grep -n Clonezilla | cut -f1 -d:)-1))
+        DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
 
-        echo "Configuring grub to boot once from Clonezilla iso..."
+        if grep -q 'submenu' ${GRUB_CFG}; then
+            ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n Clonezilla | cut -f1 -d:)
+        else
+            ENTRY=$(($(cat ${GRUB_CFG} | grep 'menuentry ' | grep -n Clonezilla | cut -f1 -d:)-1))
+        fi
+
+        echo "Configuring grub to boot once from Clonezilla iso...  ${ENTRY}"
 
         sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
         mv ${TFILE} ${GRUB}
@@ -160,10 +166,15 @@ rebootsysresccd()
         echo "Please click on Install button."
     else
         NEW="GRUB_DEFAULT=saved"
-        DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
-        ENTRY=$(($(cat /boot/grub/grub.cfg | grep 'menuentry ' | grep -n SystemRescueCD | cut -f1 -d:)-1))
+        DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
 
-        echo "Configuring grub to boot once from SystemRescueCD iso..."
+        if grep -q 'submenu' ${GRUB_CFG}; then
+            ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n SystemRescueCD | cut -f1 -d:)
+        else
+            ENTRY=$(($(cat ${GRUB_CFG} | grep 'menuentry ' | grep -n SystemRescueCD | cut -f1 -d:)-1))
+        fi
+
+        echo "Configuring grub to boot once from SystemRescueCD iso...  ${ENTRY}"
 
         sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
         mv ${TFILE} ${GRUB}
@@ -179,10 +190,15 @@ rebootpartedmagic()
         echo "Please click on Install button."
     else
         NEW="GRUB_DEFAULT=saved"
-        DEFAULT=$(cat /etc/default/grub | grep GRUB_DEFAULT | cut -d= -f2)
-        ENTRY=$(($(cat /boot/grub/grub.cfg | grep 'menuentry ' | grep -n 'Parted Magic' | cut -f1 -d:)-1))
+        DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
 
-        echo "Configuring grub to boot once from Parted Magic iso..."
+        if grep -q 'submenu' ${GRUB_CFG}; then
+            ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n 'Parted Magic' | cut -f1 -d:)
+        else
+            ENTRY=$(($(cat ${GRUB_CFG} | grep 'menuentry ' | grep -n 'Parted Magic' | cut -f1 -d:)-1))
+        fi
+
+        echo "Configuring grub to boot once from Parted Magic iso...  ${ENTRY}"
 
         sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
         mv ${TFILE} ${GRUB}
