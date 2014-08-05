@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-19 14:15-0500\n"
-"PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-07-22 12:17+0000\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/openmediavault-backup/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,281 +19,281 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%s (%s available)"
-msgstr ""
+msgstr "%s (%s disponible)"
 
 msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr ""
+msgstr "Todos los tipos de archivo conocidos por PhotoRec, se intentarán recuperar."
 
 msgid "BMP bitmap image"
-msgstr ""
+msgstr "Imagen BMP bitmap"
 
 msgid "Backup"
-msgstr ""
+msgstr "Backup"
 
 msgid ""
 "Backup the operating system drive to a data drive for emergency restoration."
-msgstr ""
+msgstr "Salvar el disco del O.S. en un disco de datos para una restauración de emergencia."
 
 msgid "Clonezilla"
-msgstr ""
+msgstr "Clonezilla"
 
 msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr ""
+msgstr "Configura el cargador de arranque para permitir arrancar Parted Magic ISO."
 
 msgid "Contax picture, Panasonic/Leica RAW"
-msgstr ""
+msgstr "Contax picture, Panasonic/Leica RAW"
 
 msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr ""
+msgstr "Copia el archivo Parted Magic ISO de una carpeta compartida a /boot/"
 
 msgid "Destination"
-msgstr ""
+msgstr "Destino"
 
 msgid "Done..."
-msgstr ""
+msgstr "Hecho..."
 
 msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
 "from ISO."
-msgstr ""
+msgstr "Descarga la ISO de Clonezilla y configura grub para arrancar desde esa ISO."
 
 msgid ""
 "Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
 " from ISO."
-msgstr ""
+msgstr "Descarga la ISO de SystemRescuecd y configura grub para arrancar desde esa ISO."
 
 msgid "Drive with missing or lost files."
-msgstr ""
+msgstr "Disco sin archivos."
 
 msgid "Everything"
-msgstr ""
+msgstr "Todo"
 
 msgid "Files will be recovered only from the free space."
-msgstr ""
+msgstr "Los archivos serán recuperados unicamente del espacio libre."
 
 msgid "For more information, see PhotoRec wiki"
-msgstr ""
+msgstr "Para más información, ver el wiki de PhotoRec"
 
 msgid "Freespace"
-msgstr ""
+msgstr "Espacio libre"
 
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
 "headless servers."
-msgstr ""
+msgstr "La Ip debe ser DHCP. Se recomienda DHCP estatico para servidores sin monitor."
 
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr ""
+msgstr "La ISO ocupará aproximadamente 139 Mb en la carpeta /boot del disco de arranque."
 
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr ""
+msgstr "La ISO ocupara aproximadamente 381 Mb en la carpeta /boot del disco de arranque."
 
 msgid "Install"
-msgstr ""
+msgstr "Instalar"
 
 msgid "Install Clonezilla"
-msgstr ""
+msgstr "Instalar clonezilla"
 
 msgid "Install Parted Magic"
-msgstr ""
+msgstr "Instalar Parted Magic"
 
 msgid "Install SystemRescueCD"
-msgstr ""
+msgstr "Instalar SystemRescueCD"
 
 msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr ""
+msgstr "MP3 audio (MPEG ADTS, capa 3, v1)"
 
 msgid "Matroska video file"
-msgstr ""
+msgstr "Archivos de video Matroska"
 
 msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr ""
+msgstr "Documentos Microsoft Office (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
 
 msgid "Moving Picture Experts Group video"
-msgstr ""
+msgstr "MPEG"
 
 msgid "OMV"
-msgstr ""
+msgstr "OMV"
 
 msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr ""
+msgstr "Otros archivos de texto: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
 
 msgid "Parted Magic"
-msgstr ""
+msgstr "Parted Magic"
 
 msgid ""
 "Parted Magic ISO file named partedmagic.iso should be located in this shared"
 " folder."
-msgstr ""
+msgstr "La ISO de Parted Magic, debe llamarse partedmagic.iso y debe guardarse en esta carpeta compartida."
 
 msgid "Path"
-msgstr ""
+msgstr "Ruta"
 
 msgid "PhotoRec"
-msgstr ""
+msgstr "PhotoRec"
 
 msgid "Portable Document Format, Adobe Illustrator"
-msgstr ""
+msgstr "PDF, Adobe Illustrator"
 
 msgid "Portable/JPEG/Multiple-Image Network Graphics"
-msgstr ""
+msgstr "Portable/JPEG/Multiple-Image Network Graphics"
 
 msgid "Reboot to Clonezilla"
-msgstr ""
+msgstr "Reiniciar como Clonezilla"
 
 msgid "Reboot to OpenMediaVault"
-msgstr ""
+msgstr "Reiniciar como OpenMediaVault"
 
 msgid "Reboot to Parted Magic"
-msgstr ""
+msgstr "Reiniciar como Parted Magic"
 
 msgid "Reboot to SystemRescueCD"
-msgstr ""
+msgstr "Reiniciar como SystemRescueCD"
 
 msgid "Recover using Photorec"
-msgstr ""
+msgstr "Recuperar usando PhotoRec"
 
 msgid "Recover with output"
-msgstr ""
+msgstr "Recuperar con salida"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>openmediavault</b>"
-msgstr ""
+msgstr "El servidor SSH está habilitado por defecto.  Usuario: <b>root</b> y contraseña: <b>openmediavault</b>"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>partedmagic</b>"
-msgstr ""
+msgstr "El servidor SSH está habilitado por defecto.  Usuario: <b>root</b> y contraseña: <b>partedmagic</b>"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>user</b> and "
 "password: <b>live</b>"
-msgstr ""
+msgstr "El servidor SSH está habilitado por defecto.  Usuario: <b>root</b> y contraseña: <b>live</b>"
 
 msgid "Select a drive ..."
-msgstr ""
+msgstr "Seleccionar un disco ..."
 
 msgid "Select a volume ..."
-msgstr ""
+msgstr "Seleccionar un volumen ..."
 
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr ""
+msgstr "Indica al cargador grub que arranque como Clonezilla <b>UNA</b> vez."
 
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr ""
+msgstr "Indica al cargador grub que arranque desde la ISO Parted Magic<b>UNA</b> vez."
 
 msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr ""
+msgstr "Indica al cargador grub que arranque desde la ISO SystemRescueCD <b>UNA</b> vez."
 
 msgid "Sets grub bootloader to boot normally from OpenMediaVault."
-msgstr ""
+msgstr "Indica al cargador grub que arranque como OMV."
 
 msgid "Settings"
-msgstr ""
+msgstr "Opciones"
 
 msgid "Shared Folder"
-msgstr ""
+msgstr "Carpetas compartidas"
 
 msgid ""
 "Shared folder cannot be located on the source drive - {$params['source']}."
-msgstr ""
+msgstr "La carpeta compartida no puede ubicarse en el disco de arranque - {$params['source']}."
 
 msgid "Shared folder where recovered files will be placed."
-msgstr ""
+msgstr "Carpeta compartida donde los archivos recuperados serán guardados."
 
 msgid "Silent Recover"
-msgstr ""
+msgstr "Recuperación silenciosa"
 
 msgid "Source"
-msgstr ""
+msgstr "Origen"
 
 msgid "System Backup"
-msgstr ""
+msgstr "Backup del sistema"
 
 msgid "SystemRescueCD"
-msgstr ""
+msgstr "SystemRescueCD"
 
 msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-msgstr ""
+msgstr "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
 
 msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr ""
+msgstr "rchivos de texto con cabeceras: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
 "accidentally deleted using PhotoRec."
-msgstr ""
+msgstr "Esto tratará de recuperar los archivos perdidos de un disco dañado o borrado accidentalmente usando PhotoRec"
 
 msgid "Volume"
-msgstr ""
+msgstr "Volumen"
 
 msgid ""
 "When connecting via ssh, the ssh key will be different than the "
 "OpenMediaVault ssh key and need to be updated on the client system."
-msgstr ""
+msgstr "Cuando se conecte via SSH, las claves SSH deben ser diferentes a la clave SSH de OMV y deben actualizarse en el cliente."
 
 msgid ""
 "When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr ""
+msgstr "Cuando se logue remotamente, arrancar Clonezilla con:  <b>sudo clonezilla</b>"
 
 msgid "bmp"
-msgstr ""
+msgstr "bmp"
 
 msgid "bz2"
-msgstr ""
+msgstr "bz2"
 
 msgid "bzip2 compressed data"
-msgstr ""
+msgstr "bzip2 compressed data"
 
 msgid "doc"
-msgstr ""
+msgstr "doc"
 
 msgid "gz"
-msgstr ""
+msgstr "gz"
 
 msgid "gzip compressed data"
-msgstr ""
+msgstr "gzip compressed data"
 
 msgid "link"
-msgstr ""
+msgstr "link"
 
 msgid "mkv"
-msgstr ""
+msgstr "mkv"
 
 msgid "mov"
-msgstr ""
+msgstr "mov"
 
 msgid "mov/mp4/3gp/3g2/jp2"
-msgstr ""
+msgstr "mov/mp4/3gp/3g2/jp2"
 
 msgid "mp3"
-msgstr ""
+msgstr "mp3"
 
 msgid "mpg"
-msgstr ""
+msgstr "mpg"
 
 msgid "pdf"
-msgstr ""
+msgstr "pdf"
 
 msgid "png"
-msgstr ""
+msgstr "png"
 
 msgid "raw"
-msgstr ""
+msgstr "raw"
 
 msgid "tif"
-msgstr ""
+msgstr "tif"
 
 msgid "tx?"
-msgstr ""
+msgstr "tx?"
 
 msgid "txt"
-msgstr ""
+msgstr "txt"
 
 msgid "zip"
-msgstr ""
+msgstr "zip"
 
 msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr ""
+msgstr "Archivos zip incluyendo OpenOffice y MSOffice 2007"

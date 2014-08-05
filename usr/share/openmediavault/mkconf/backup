@@ -11,7 +11,7 @@ CLONEZILLA_VERSION="2.2.3-25"
 CLONEZILLA_ISO="clonezilla-live-${CLONEZILLA_VERSION}-i686-pae.iso"
 
 GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
-SYSRESCCD_VERSION="4.2.0"
+SYSRESCCD_VERSION="4.3.0"
 SYSRESCCD_ISO="systemrescuecd-x86-${SYSRESCCD_VERSION}.iso"
 
 GRUB_PARTEDMAGIC="/etc/grub.d/42_partedmagic"

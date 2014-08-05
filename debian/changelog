@@ -1,3 +1,10 @@
+openmediavault-backup (1.0.4) stable; urgency=low
+
+  * Update to SystemRescueCD 4.3.0
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 05 Aug 2014 08:26:50 -0500
+
 openmediavault-backup (1.0.3) stable; urgency=low
 
   * Fix boot once when advanced options menu is found

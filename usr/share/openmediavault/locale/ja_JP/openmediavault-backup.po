@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Toshihiro Kan <kansuke4649@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-07-19 14:15-0500\n"
-"PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2014-07-23 06:05+0000\n"
+"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-backup/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,281 +19,281 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "%s (%s available)"
-msgstr ""
+msgstr "%s (%s 利用可能)"
 
 msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr ""
+msgstr "PhotoRecは認識しているすべてのファイルタイプの復元を試みます。"
 
 msgid "BMP bitmap image"
-msgstr ""
+msgstr "BMP ビットマップ画像"
 
 msgid "Backup"
-msgstr ""
+msgstr "バックアップ"
 
 msgid ""
 "Backup the operating system drive to a data drive for emergency restoration."
-msgstr ""
+msgstr "緊急復元用にオペレーティングシステムのドライブをデータドライブへバックアップします。"
 
 msgid "Clonezilla"
-msgstr ""
+msgstr "Clonezilla"
 
 msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr ""
+msgstr "Parted Magic のISOイメージからの起動を可能にするためにGRUBブートローダを設定します。"
 
 msgid "Contax picture, Panasonic/Leica RAW"
-msgstr ""
+msgstr "Contaxの画像, Panasonic/LeicaのRAW"
 
 msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr ""
+msgstr "/boot/ に上記で選択した共有フォルダから Parted Magic ISO ファイルをコピーします"
 
 msgid "Destination"
-msgstr ""
+msgstr "出力先"
 
 msgid "Done..."
-msgstr ""
+msgstr "完了..."
 
 msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
 "from ISO."
-msgstr ""
+msgstr "Clonezilla ISOイメージのダウンロードとISOイメージからの起動を可能にするためにGRUBブートローダの設定を行います。"
 
 msgid ""
 "Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
 " from ISO."
-msgstr ""
+msgstr "SystemRescueCD ISOイメージのダウンロードとISOイメージからの起動を可能にするためにGRUBブートローダの設定を行います。"
 
 msgid "Drive with missing or lost files."
-msgstr ""
+msgstr "ドライブはファイルが不足もしくは削除されています。"
 
 msgid "Everything"
-msgstr ""
+msgstr "すべて"
 
 msgid "Files will be recovered only from the free space."
-msgstr ""
+msgstr "ファイルは空き容量から復元されます。"
 
 msgid "For more information, see PhotoRec wiki"
-msgstr ""
+msgstr "詳細はPhotoRec wikiを参照してください"
 
 msgid "Freespace"
-msgstr ""
+msgstr "空き容量"
 
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
 "headless servers."
-msgstr ""
+msgstr "IPアドレスはDHCPによって設定されました。静的DHCPの使用はヘッドレス・サーバに対して推奨されます。"
 
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr ""
+msgstr "ISOはOSドライブ上の /boot ディレクトリを約139Mb使用します。"
 
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr ""
+msgstr "ISOはOSドライブ上の /boot ディレクトリを約381Mb使用します。"
 
 msgid "Install"
-msgstr ""
+msgstr "インストール"
 
 msgid "Install Clonezilla"
-msgstr ""
+msgstr "Clonezillaのインストール"
 
 msgid "Install Parted Magic"
-msgstr ""
+msgstr "Parted Magicのインストール"
 
 msgid "Install SystemRescueCD"
-msgstr ""
+msgstr "SystemRescueCDのインストール"
 
 msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr ""
+msgstr "MP3 オーディオ (MPEG ADTS, layer III, v1)"
 
 msgid "Matroska video file"
-msgstr ""
+msgstr "Matroska ビデオファイル"
 
 msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr ""
+msgstr "Microsoft Officeドキュメント(doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
 
 msgid "Moving Picture Experts Group video"
-msgstr ""
+msgstr "Moving Picture Experts Group ビデオ"
 
 msgid "OMV"
-msgstr ""
+msgstr "OMV"
 
 msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr ""
+msgstr "その他のテキストファイル：txt,html,asp,bat,C,jsp,perl,php,py/emlx... スクリプト"
 
 msgid "Parted Magic"
-msgstr ""
+msgstr "Parted Magic"
 
 msgid ""
 "Parted Magic ISO file named partedmagic.iso should be located in this shared"
 " folder."
-msgstr ""
+msgstr "partedmagic.isoという名前のParted Magic ISOファイルはこの共有フォルダに格納する必要があります。"
 
 msgid "Path"
-msgstr ""
+msgstr "パス"
 
 msgid "PhotoRec"
-msgstr ""
+msgstr "PhotoRec"
 
 msgid "Portable Document Format, Adobe Illustrator"
-msgstr ""
+msgstr "Portable Document Format, Adobe Illustrator"
 
 msgid "Portable/JPEG/Multiple-Image Network Graphics"
-msgstr ""
+msgstr "Portable/JPEG/Multiple-Image Network Graphics"
 
 msgid "Reboot to Clonezilla"
-msgstr ""
+msgstr "Clonezillaで再起動"
 
 msgid "Reboot to OpenMediaVault"
-msgstr ""
+msgstr "OpenMediaVaultで再起動"
 
 msgid "Reboot to Parted Magic"
-msgstr ""
+msgstr "Parted Magicで再起動"
 
 msgid "Reboot to SystemRescueCD"
-msgstr ""
+msgstr "SystemRescueCDで再起動"
 
 msgid "Recover using Photorec"
-msgstr ""
+msgstr "Photorecを使用した復元"
 
 msgid "Recover with output"
-msgstr ""
+msgstr "出力をともなう復元"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>openmediavault</b>"
-msgstr ""
+msgstr "SSHサーバはデフォルトで有効です。ログインにはユーザー名： <b>root</b> 、パスワード：<b>openmediavault</b> を使用します。"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>partedmagic</b>"
-msgstr ""
+msgstr "SSHサーバはデフォルトで有効です。ログインにはユーザー名： <b>root</b> 、パスワード：<b>partedmagic</b> を使用します。"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>user</b> and "
 "password: <b>live</b>"
-msgstr ""
+msgstr "SSHサーバはデフォルトで有効です。ログインにはユーザー名： <b>root</b> 、パスワード：<b>live</b> を使用します。"
 
 msgid "Select a drive ..."
-msgstr ""
+msgstr "ドライブの選択 ..."
 
 msgid "Select a volume ..."
-msgstr ""
+msgstr "ボリュームの選択 ..."
 
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr ""
+msgstr "<b>一度</b>だけClonezilla のISOイメージから起動するようにGRUBブートローダーを設定します。"
 
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr ""
+msgstr "<b>一度</b>だけParted MagicのISOイメージから起動するようにGRUBブートローダーを設定します。"
 
 msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr ""
+msgstr "<b>一度</b>だけSystemRescueCDのISOイメージから起動するようにGRUBブートローダーを設定します。"
 
 msgid "Sets grub bootloader to boot normally from OpenMediaVault."
-msgstr ""
+msgstr "通常どおり、OpenMediaVaultを起動するようにGRUBブートローダーを設定ます。"
 
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 msgid "Shared Folder"
-msgstr ""
+msgstr "共有フォルダ"
 
 msgid ""
 "Shared folder cannot be located on the source drive - {$params['source']}."
-msgstr ""
+msgstr "共有フォルダはソースドライブ上に配置することができません - {$params['source']}。"
 
 msgid "Shared folder where recovered files will be placed."
-msgstr ""
+msgstr "ファイルを復元し、共有フォルダが配置されます。"
 
 msgid "Silent Recover"
-msgstr ""
+msgstr "静的復元"
 
 msgid "Source"
-msgstr ""
+msgstr "ソース"
 
 msgid "System Backup"
-msgstr ""
+msgstr "システムバックアップ"
 
 msgid "SystemRescueCD"
-msgstr ""
+msgstr "SystemRescueCD"
 
 msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-msgstr ""
+msgstr "タグイメージファイルフォーマットといくつかのRAWファイルフォーマット(pef/nef/dcr/sr2/cr2)"
 
 msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr ""
+msgstr "ヘッダ付きテキストファイル：rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
 "accidentally deleted using PhotoRec."
-msgstr ""
+msgstr "ドライブ破損または誤って削除され失われたファイルをPhotoRecを使用して復元を試みます。"
 
 msgid "Volume"
-msgstr ""
+msgstr "ボリューム"
 
 msgid ""
 "When connecting via ssh, the ssh key will be different than the "
 "OpenMediaVault ssh key and need to be updated on the client system."
-msgstr ""
+msgstr "SSH経由で接続する場合、SSHキーがOpenMediaVaultと異なり、クライアントシステムのアップデートが必要となります。"
 
 msgid ""
 "When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr ""
+msgstr "リモートからのログイン時にclonezillaを起動するには、次のコマンドを使用してください：<b>sudo clonezilla</b>"
 
 msgid "bmp"
-msgstr ""
+msgstr "bmp"
 
 msgid "bz2"
-msgstr ""
+msgstr "bz2"
 
 msgid "bzip2 compressed data"
-msgstr ""
+msgstr "bzip2圧縮データ"
 
 msgid "doc"
-msgstr ""
+msgstr "doc"
 
 msgid "gz"
-msgstr ""
+msgstr "gz"
 
 msgid "gzip compressed data"
-msgstr ""
+msgstr "gzip圧縮データ"
 
 msgid "link"
-msgstr ""
+msgstr "link"
 
 msgid "mkv"
-msgstr ""
+msgstr "mkv"
 
 msgid "mov"
-msgstr ""
+msgstr "mov"
 
 msgid "mov/mp4/3gp/3g2/jp2"
-msgstr ""
+msgstr "mov/mp4/3gp/3g2/jp2"
 
 msgid "mp3"
-msgstr ""
+msgstr "mp3"
 
 msgid "mpg"
-msgstr ""
+msgstr "mpg"
 
 msgid "pdf"
-msgstr ""
+msgstr "pdf"
 
 msgid "png"
-msgstr ""
+msgstr "png"
 
 msgid "raw"
-msgstr ""
+msgstr "raw"
 
 msgid "tif"
-msgstr ""
+msgstr "tif"
 
 msgid "tx?"
-msgstr ""
+msgstr "tx?"
 
 msgid "txt"
-msgstr ""
+msgstr "txt"
 
 msgid "zip"
-msgstr ""
+msgstr "zip"
 
 msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr ""
+msgstr "OpenOfficeとMSOffice 2007が含まれたzipアーカイブ"
