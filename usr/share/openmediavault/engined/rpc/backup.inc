@@ -675,7 +675,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = "/usr/sbin/photorec /log /logname \"{$destPath}photorec.log\" /d {$destPath} /cmd {$sourcePath} fileopt,{$cmd2},search 2>&1";
+            $cmd = "/usr/bin/photorec /log /logname \"{$destPath}photorec.log\" /d {$destPath} /cmd {$sourcePath} fileopt,{$cmd2},search 2>&1";
 
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
@@ -719,7 +719,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         $sourcePath = $object['source'];
         $destPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $object['destination']), $context);
 
-        $cmd = "/usr/sbin/photorec /log /logname \"{$destPath}photorec.log\" /d {$destPath} /cmd {$sourcePath} fileopt,{$cmd2},search 2>&1";
+        $cmd = "/usr/bin/photorec /log /logname \"{$destPath}photorec.log\" /d {$destPath} /cmd {$sourcePath} fileopt,{$cmd2},search 2>&1";
 
         if(0 !== $this->exec($cmd, $output)) {
             throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
