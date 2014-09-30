@@ -7,11 +7,11 @@ set -e
 
 ISO_PATH="/boot"
 GRUB_CLONEZILLA="/etc/grub.d/42_clonezilla"
-CLONEZILLA_VERSION="2.2.3-25"
+CLONEZILLA_VERSION="2.2.4-12"
 CLONEZILLA_ISO="clonezilla-live-${CLONEZILLA_VERSION}-i686-pae.iso"
 
 GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
-SYSRESCCD_VERSION="4.3.0"
+SYSRESCCD_VERSION="4.3.1"
 SYSRESCCD_ISO="systemrescuecd-x86-${SYSRESCCD_VERSION}.iso"
 
 GRUB_PARTEDMAGIC="/etc/grub.d/42_partedmagic"
@@ -59,6 +59,7 @@ backup()
         dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub.dd bs=446 count=1
         dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub_parts.dd bs=512 count=1
         blkid > ${BACKUP_PATH}/uuids
+        dpkg -l | grep openmediavault > ${BACKUP_PATH}/packages
     else
         echo "No backup volume set.  Please choose a backup volume."
     fi

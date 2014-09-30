@@ -164,6 +164,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "sysresccd",
     path      : "/system/backup",
     text      : _("SystemRescueCD"),
-    position  : 30,
+    position  : 20,
     className : "OMV.module.admin.system.backup.Sysresccd"
 });

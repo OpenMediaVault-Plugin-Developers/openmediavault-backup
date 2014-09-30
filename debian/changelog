@@ -1,3 +1,13 @@
+openmediavault-backup (1.0.6) stable; urgency=low
+
+  * Update to SystemRescueCD 4.3.1
+  * Update to Clonezilla 2.2.4-12
+  * Save package list in backup
+  * Reorder tabs
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 30 Sep 2014 06:32:32 -0500
+
 openmediavault-backup (1.0.5) stable; urgency=low
 
   * Fix photorec location

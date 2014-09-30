@@ -165,6 +165,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "clonezilla",
     path      : "/system/backup",
     text      : _("Clonezilla"),
-    position  : 20,
+    position  : 10,
     className : "OMV.module.admin.system.backup.Clonezilla"
 });

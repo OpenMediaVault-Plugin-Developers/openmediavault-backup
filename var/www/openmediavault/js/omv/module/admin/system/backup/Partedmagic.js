@@ -174,6 +174,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "partedmagic",
     path      : "/system/backup",
     text      : _("Parted Magic"),
-    position  : 40,
+    position  : 30,
     className : "OMV.module.admin.system.backup.Partedmagic"
 });
