@@ -1,3 +1,10 @@
+openmediavault-backup (1.0.7) UNRELEASED; urgency=low
+
+  * Remove lsblk from package since it is available in Debian Wheezy
+  * Add extundelete tab
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 23 Oct 2014 18:44:55 -0500
+
 openmediavault-backup (1.0.6) stable; urgency=low
 
   * Update to SystemRescueCD 4.3.1
