@@ -119,6 +119,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "systembackup",
     path      : "/system/backup",
     text      : _("System Backup"),
-    position  : 50,
+    position  : 60,
     className : "OMV.module.admin.system.backup.SystemBackup"
 });

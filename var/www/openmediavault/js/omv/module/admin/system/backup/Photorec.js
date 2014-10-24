@@ -85,7 +85,10 @@ Ext.define("OMV.module.admin.system.backup.PhotoRec", {
                         type : "rpc",
                         rpcData : {
                             service : "Backup",
-                            method  : "getDrives"
+                            method  : "getDrives",
+                            params  : {
+                                extonly : false
+                            }
                         },
                         appendSortParams : false
                     },

@@ -42,6 +42,12 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         return $path;
     }
 
+    private function getXPathExtundelete()
+    {
+        $path = sprintf( "%s/extundelete", $this->getXPath() );
+        return $path;
+    }
+
     private function getXPathPhotorec()
     {
         $path = sprintf( "%s/photorec", $this->getXPath() );
@@ -60,10 +66,36 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         return $path;
     }
 
+    private function getEventMessagePathExtundelete()
+    {
+        $path = sprintf( "%s.extundelete", $this->getEventMessagePath() );
+        return $path;
+    }
+
     private function getEventMessagePathPhotorec()
     {
         $path = sprintf( "%s.photorec", $this->getEventMessagePath() );
         return $path;
+    }
+
+    private function getXPathSystemShare()
+    {
+        return "//system/shares/sharedfolder";
+    }
+
+    private function getXPathMntent()
+    {
+        return "//system/fstab/mntent";
+    }
+
+    private function getExtundeleteBin()
+    {
+        return "/usr/bin/extundelete";
+    }
+
+    private function getPhotorecBin()
+    {
+        return "/usr/bin/photorec";
     }
 
     public function initialize()
@@ -91,13 +123,22 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         $this->registerMethod('getDrives');
         $this->registerMethod('doRecover');
         $this->registerMethod('doSilent');
+
+        $this->registerMethod('getExtundelete');
+        $this->registerMethod('setExtundelete');
+        $this->registerMethod('doRecoverExt');
+        $this->registerMethod('doSilentExt');
     }
 
-    public function getSettings($params, $context) {
+    public function getSettings($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Get configuration object
         $object = $xmlConfig->get( $this->getXPath() );
@@ -105,17 +146,22 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath() );
 
         // Remove useless fields from the result object.
+        unset($object['extundelete']);
         unset($object['photorec']);
         unset($object['partedmagic']);
 
         return $object;
     }
 
-    public function setSettings($params, $context) {
+    public function setSettings($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
@@ -126,8 +172,8 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             }
         }');
 
-        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
-        $deviceDir = $xmlConfig->get($xpath);
+        $xPath = sprintf("%s[uuid='%s']", $this->getXPathMntent(), $params['mntentref']);
+        $deviceDir = $xmlConfig->get($xPath);
         $deviceDir = $deviceDir['dir'];
 
         $backupPath = "{$deviceDir}/omvbackup";
@@ -135,37 +181,55 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
 
         // Get the existing configuration object.
         $oldObject = $xmlConfig->get( $this->getXPath() );
-        if(is_null($oldObject)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath() );
+        if (is_null($oldObject))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath()
+            );
         }
 
         // Prepare configuration data
         $object = array(
-            "mntentref" => $params['mntentref'],
-            "path"      => $params['path'],
-            "photorec"  => isset($oldObject['photorec']) ? $oldObject['photorec'] : array(),
-            "partedmagic"  => isset($oldObject['partedmagic']) ? $oldObject['partedmagic'] : array()
+            "mntentref"   => $params['mntentref'],
+            "path"        => $params['path'],
+            "photorec"    => isset($oldObject['photorec']) ? $oldObject['photorec'] : array(),
+            "partedmagic" => isset($oldObject['partedmagic']) ? $oldObject['partedmagic'] : array(),
+            "extundelete" => isset($oldObject['extundelete']) ? $oldObject['extundelete'] : array()
         );
 
         // Set configuration object
         if (false === $xmlConfig->replace($this->getXPath(), $object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, $this->getXPath() );
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
+                $this->getXPath()
+            );
+        }
 
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
-        $dispatcher->notify(OMV_NOTIFY_MODIFY, $this->getEventMessagePath(), $object);
+        $dispatcher->notify(
+            OMV_NOTIFY_MODIFY,
+            $this->getEventMessagePath(),
+            $object
+        );
     }
 
-    public function doBackup($params, $context) {
+    public function doBackup($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if($pid > 0) { // Parent process.
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -175,7 +239,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("sudo omv-mkconf %s backup 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s backup 2>&1", $this->getPluginName() );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -185,16 +249,20 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    public function doInstall($params, $context) {
+    public function doInstall($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if($pid > 0) { // Parent process.
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -204,7 +272,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("sudo omv-mkconf %s install 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s install 2>&1", $this->getPluginName() );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -214,16 +282,20 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    public function doRebootClonezilla($params, $context) {
+    public function doRebootClonezilla($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if($pid > 0) { // Parent process.
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -233,7 +305,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("sudo omv-mkconf %s clonezilla 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s clonezilla 2>&1", $this->getPluginName() );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -243,16 +315,20 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    public function doInstallSysresccd($params, $context) {
+    public function doInstallSysresccd($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if($pid > 0) { // Parent process.
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -262,7 +338,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("sudo omv-mkconf %s installsys 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s installsys 2>&1", $this->getPluginName() );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -272,16 +348,20 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    public function doRebootSysresccd($params, $context) {
+    public function doRebootSysresccd($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if($pid > 0) { // Parent process.
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -291,7 +371,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("sudo omv-mkconf %s sysresccd 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s sysresccd 2>&1", $this->getPluginName() );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -301,7 +381,8 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    public function getPartedmagic($params, $context) {
+    public function getPartedmagic($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -323,7 +404,8 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         return $object;
     }
 
-    public function setPartedmagic($params, $context) {
+    public function setPartedmagic($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -353,16 +435,20 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             );
     }
 
-    public function doInstallPartedmagic($params, $context) {
+    public function doInstallPartedmagic($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if($pid > 0) { // Parent process.
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -372,7 +458,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("sudo omv-mkconf %s installpm 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s installpm 2>&1", $this->getPluginName() );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -382,16 +468,20 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    public function doRebootPartedmagic($params, $context) {
+    public function doRebootPartedmagic($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if($pid > 0) { // Parent process.
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -401,7 +491,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("sudo omv-mkconf %s partedmagic 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s partedmagic 2>&1", $this->getPluginName() );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -412,16 +502,20 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
     }
 
 
-    public function doRebootOMV($params, $context) {
+    public function doRebootOMV($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if($pid > 0) { // Parent process.
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -431,7 +525,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("sudo omv-mkconf %s omv 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s omv 2>&1", $this->getPluginName() );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -441,28 +535,37 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    public function getCandidates($params, $context) {
+    public function getCandidates($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Get a list of mount points, except bind mounts.
-        $xpath = "//system/fstab/mntent[not(contains(opts,'bind'))]";
-        $objects = $xmlConfig->getList($xpath);
-        if(is_null($objects)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        $xPath = sprintf("%s[not(contains(opts,'bind'))]", $this->getXPathMntent() );
+        $objects = $xmlConfig->getList($xPath);
+        if (is_null($objects))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $xPath
+            );
         }
 
         // Get the filesystem details for each mount point.
         $result = array();
-        foreach($objects as $objectk => $objectv) {
+        foreach($objects as $objectk => $objectv)
+        {
             $fs = new OMVFilesystem($objectv['fsname']);
-            if(!$fs->exists())
+            if (!$fs->exists())
                 continue;
 
             // Skip the filesystems that are not mounted at the moment.
-            if(FALSE === $fs->isMounted())
+            if (FALSE === $fs->isMounted())
                 continue;
 
             // Get some filesystem details.
@@ -477,10 +580,13 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             );
 
             // Get some more filesystem details if possible.
-            if(FALSE !== ($fsStats = $fs->getStatistics())) {
+            if (FALSE !== ($fsStats = $fs->getStatistics()))
+            {
                 $object['description'] = sprintf(
-                    gettext("%s (%s available)"), $object['description'],
-                    binary_format($fsStats['available']));
+                    gettext("%s (%s available)"),
+                    $object['description'],
+                    binary_format($fsStats['available'])
+                );
             }
 
             $result[] = $object;
@@ -489,33 +595,47 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         return $result;
     }
 
-    public function getPhotorec($params, $context) {
+    public function getPhotorec($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Get configuration object
         $object = $xmlConfig->get( $this->getXPathPhotorec() );
         if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPathPhotorec() );
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathPhotorec()
+            );
+        }
 
         // Modify the result object.
         $options = array("freespace", "everything", "bmp", "bz2", "doc", "gz", "mkv", "mov",
             "mp3", "mpg", "pdf", "png", "raw", "tif", "tx", "txt", "zip");
 
-        foreach ($options as $value) {
+        foreach ($options as $value)
+        {
             $object[$value] = array_boolval($object, $value);
         }
 
         return $object;
     }
 
-    public function setPhotorec($params, $context) {
+    public function setPhotorec($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
@@ -545,28 +665,47 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
 
         // Check to see if shared folder is on source drive.
         // Get shared folder configuration object.
-        $xpath = sprintf("//system/shares/sharedfolder[uuid='%s']", $params['destination']);
-        $sfObject = $xmlConfig->get($xpath);
-        if(is_null($sfObject))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        $xPath = sprintf("%s[uuid='%s']", $this->getXPathSystemShare(), $params['destination']);
+        $sfObject = $xmlConfig->get($xPath);
+        if (is_null($sfObject))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $xPath
+            );
+        }
 
         // Get the mount point configuration object to build the absolute shared folder path.
-        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $sfObject['mntentref']);
-        $meObject = $xmlConfig->get($xpath);
-        if(is_null($meObject))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        $xPath = sprintf("%s[uuid='%s']", $this->getXPathMntent(), $sfObject['mntentref']);
+        $meObject = $xmlConfig->get($xPath);
+        if (is_null($meObject))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $xPath
+            );
+        }
 
-        $cmd = "mount | grep {$params['source']} | grep {$meObject['dir']}";
+        $cmd = sprintf("mount | grep %s | grep %s", $params['source'], $meObject['dir']);
         $this->exec($cmd, $output);
-        if ( count($output) > 0 ) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                gettext("Shared folder cannot be located on the source drive - {$params['source']}."));
+        if ( count($output) > 0 )
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext(
+                    sprintf("Shared folder cannot be located on the source drive - %s", $params['source'])
+                )
+            );
         }
 
         // Get the existing configuration object.
         $oldObject = $xmlConfig->get( $this->getXPathPhotorec() );
-        if(is_null($oldObject)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        if (is_null($oldObject))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathPhotorec()
+            );
         }
 
         // Prepare configuration data
@@ -606,14 +745,27 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         $dispatcher->notify(OMV_NOTIFY_MODIFY, $this->getEventMessagePathPhotorec(), $object);
     }
 
-    public function getDrives($params, $context) {
+    public function getDrives($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
-        if ($params['ext'] == 1)
-            $cmd = "blkid -o list | grep ext[3-4]";
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "extonly" : { "type" : "boolean", "optional" : true }
+            }
+        }');
+
+        $extonly = boolval($params['extonly']);
+        if ($extonly === true)
+            $cmd = "blkid -o list | grep ext[3-4] | grep 'not mounted'";
         else
             $cmd = 'lsblk -dno name,size 2>&1';
 
@@ -623,42 +775,66 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             return false;
 
         $drives = array();
-        foreach($output as $row) {
+        foreach($output as $row)
+        {
             $info = preg_split('/\s+/', $row);
-            $object = array(
-                "drive"   => sprintf("/dev/%s", $info[0]),
-                "display" => sprintf("/dev/%s - %s", $info[0], $info[1])
-            );
 
+            if ($extonly === true)
+            {
+                $object = array(
+                    "drive"   => $info[0],
+                    "display" => $info[0]
+                );
+            }
+            else
+            {
+                $object = array(
+                    "drive"   => sprintf("/dev/%s", $info[0]),
+                    "display" => sprintf("/dev/%s - %s", $info[0], $info[1])
+                );
+            }
             $drives[] = $object;
         }
 
         return $drives;
     }
 
-    public function doRecover($params, $context) {
+    public function doRecover($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Get the configuration object.
         $object = $xmlConfig->get( $this->getXPathPhotorec() );
-        if(is_null($object)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPathPhotorec() );
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathPhotorec()
+            );
         }
 
         $options = array("bmp", "bz2", "doc", "gz", "mkv", "mov", "mp3", "mpg",
             "pdf", "png", "raw", "tif", "tx", "txt", "zip");
 
         // Get options
-        if ( boolval($object['everything']) ) {
+        if ( boolval($object['everything']) )
+        {
             $cmd2 = "everything,enable";
-        } else {
+        }
+        else
+        {
             $cmd2 = "everything,disable";
 
-            foreach ($options as $value) {
-                if ( boolval($object[$value]) )  $cmd2 .= ",{$value},enable";
+            foreach ($options as $value)
+            {
+                if ( boolval($object[$value]) )
+                    $cmd2 .= sprintf(",%s,enable", $value);
             }
         }
         if ( boolval($object['freespace']) )
@@ -671,7 +847,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
-        if($pid > 0) { // Parent process.
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
@@ -681,7 +857,9 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = "/usr/bin/photorec /log /logname \"{$destPath}photorec.log\" /d {$destPath} /cmd {$sourcePath} fileopt,{$cmd2},search 2>&1";
+            $cmd = sprintf("%s /log /logname \"%sphotorec.log\" /d %s /cmd %s fileopt,%s,search 2>&1",
+                $this->getPhotorecBin(), $destPath, $destPath, $sourcePath, $cmd2
+            );
 
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
@@ -692,30 +870,42 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    function doSilent($params, $context) {
+    function doSilent($params, $context)
+    {
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
 
         // Get the configuration object.
-        $xpath = "//system/backup/photorec";
         $object = $xmlConfig->get( $this->getXPathPhotorec() );
-        if(is_null($object)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPathPhotorec() );
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathPhotorec()
+            );
         }
 
         $options = array("bmp", "bz2", "doc", "gz", "mkv", "mov", "mp3", "mpg",
             "pdf", "png", "raw", "tif", "tx", "txt", "zip");
 
         // Get options
-        if ( boolval($object['everything']) ) {
+        if ( boolval($object['everything']) )
+        {
             $cmd2 = "everything,enable";
-        } else {
+        }
+        else
+        {
             $cmd2 = "everything,disable";
 
-            foreach ($options as $value) {
-                if ( boolval($object[$value]) )  $cmd2 .= ",{$value},enable";
+            foreach ($options as $value)
+            {
+                if ( boolval($object[$value]) )
+                    $cmd2 .= sprintf(",%s,enable", $value);
             }
         }
         if ( boolval($object['freespace']) )
@@ -725,10 +915,207 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         $sourcePath = $object['source'];
         $destPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $object['destination']), $context);
 
-        $cmd = "/usr/bin/photorec /log /logname \"{$destPath}photorec.log\" /d {$destPath} /cmd {$sourcePath} fileopt,{$cmd2},search 2>&1";
+        $cmd = sprintf("%s /log /logname \"%sphotorec.log\" /d %s /cmd %s fileopt,%s,search 2>&1",
+            $this->getPhotorecBin(), $destPath, $destPath, $sourcePath, $cmd2
+        );
+        //$cmd = "/usr/bin/photorec /log /logname \"{$destPath}photorec.log\" /d {$destPath} /cmd {$sourcePath} fileopt,{$cmd2},search 2>&1";
 
-        if(0 !== $this->exec($cmd, $output)) {
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
+        if (0 !== $this->exec($cmd, $output))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("\n", $output)
+            );
+        }
+    }
+
+    public function getExtundelete($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Get configuration object
+        $object = $xmlConfig->get( $this->getXPathExtundelete() );
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathExtundelete()
+            );
+        }
+
+        return $object;
+    }
+
+    public function setExtundelete($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "source"      : { "type" : "string" },
+                "destination" : { "type" : "string" }
+            }
+        }');
+
+        // Check to see if shared folder is on source drive.
+        // Get shared folder configuration object.
+        $xPath = sprintf("%s[uuid='%s']", $this->getXPathSystemShare(), $params['destination']);
+        $sfObject = $xmlConfig->get($xPath);
+        if (is_null($sfObject))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $xPath
+            );
+        }
+
+        // Get the mount point configuration object to build the absolute shared folder path.
+        $xPath = sprintf("%s[uuid='%s']", $this->getXPathMntent(), $sfObject['mntentref']);
+        $meObject = $xmlConfig->get($xPath);
+        if (is_null($meObject))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $xPath
+            );
+        }
+
+        $cmd = sprintf("mount | grep %s | grep %s", $params['source'], $meObject['dir']);
+        $this->exec($cmd, $output);
+        if ( count($output) > 0 )
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext(sprintf("Shared folder cannot be located on the source drive - %s", $params['source']))
+            );
+        }
+
+        // Get the existing configuration object.
+        $oldObject = $xmlConfig->get( $this->getXPathExtundelete() );
+        if (is_null($oldObject))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathExtundelete()
+            );
+        }
+
+        // Prepare configuration data
+        $object = array(
+            "source"      => $params['source'],
+            "destination" => $params['destination']
+        );
+
+        // Set configuration object
+        if (false === $xmlConfig->replace($this->getXPathExtundelete(), $object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
+                $this->getXPathExtundelete()
+            );
+        }
+
+        // Notify configuration changes
+        $dispatcher = &OMVNotifyDispatcher::getInstance();
+        $dispatcher->notify(OMV_NOTIFY_MODIFY, $this->getEventMessagePathExtundelete(), $object);
+    }
+
+    public function doRecoverExt($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Get the configuration object.
+        $object = $xmlConfig->get( $this->getXPathExtundelete() );
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathExtundelete()
+            );
+        }
+
+        // Get paths
+        $sourcePath = $object['source'];
+        $destPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $object['destination']), $context);
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if ($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = sprintf("cd %s && %s --restore-all %s 2>&1", $destPath, $this->getExtundeleteBin(), $sourcePath);
+
+            $this->exec($cmd, $output, $bgOutputFilename);
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            exit(0);
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    function doSilentExt($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Get the configuration object.
+        $object = $xmlConfig->get( $this->getXPathExtundelete() );
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathExtundelete()
+            );
+        }
+
+        // Get paths
+        $sourcePath = $object['source'];
+        $destPath = OMVRpc::exec("ShareMgmt", "getPath", array("uuid" => $object['destination']), $context);
+
+        $cmd = sprintf("cd %s && %s --restore-all --log \"%sextundelete.log\" %s 2>&1", $destPath, $this->getExtundeleteBin(), $destPath, $sourcePath);
+
+        if (0 !== $this->exec($cmd, $output))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("\n", $output)
+            );
         }
     }
 }

@@ -68,9 +68,9 @@ Ext.define("OMV.module.admin.system.backup.Extundelete", {
                         type : "rpc",
                         rpcData : {
                             service : "Backup",
-                            method  : "getDrives"
+                            method  : "getDrives",
                             params  : {
-                                ext : 1
+                                extonly : true
                             }
                         },
                         appendSortParams : false
@@ -82,7 +82,7 @@ Ext.define("OMV.module.admin.system.backup.Extundelete", {
                 }),
                 plugins    : [{
                     ptype : "fieldinfo",
-                    text  : _("Drive with missing or lost files.")
+                    text  : _("Drive with missing or lost files. Must be ext3 or ext4 and unmounted.")
                 }]
             },{
                 xtype      : "sharedfoldercombo",
@@ -109,7 +109,7 @@ Ext.define("OMV.module.admin.system.backup.Extundelete", {
             },{
                 border : false,
                 html   : "<ul><li>" + _("This will attempt recovery of lost files from a damaged drive or accidentally deleted using Extundelete.") + "</li>" +
-                         "<li>" + _("For more information, see PhotoRec wiki") + " - <a href='http://www.cgsecurity.org/wiki/PhotoRec' target=_blank>" + _("link") + "</a></li></ul>"
+                         "<li>" + _("For more information, see Extundelete page") + " - <a href='http://extundelete.sourceforge.net/' target=_blank>" + _("link") + "</a></li></ul>"
             }]
         }];
     },
@@ -146,9 +146,9 @@ Ext.define("OMV.module.admin.system.backup.Extundelete", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "photorec",
+    id        : "extundelete",
     path      : "/system/backup",
-    text      : _("PhotoRec"),
-    position  : 40,
-    className : "OMV.module.admin.system.backup.PhotoRec"
+    text      : _("Extundelete"),
+    position  : 50,
+    className : "OMV.module.admin.system.backup.Extundelete"
 });

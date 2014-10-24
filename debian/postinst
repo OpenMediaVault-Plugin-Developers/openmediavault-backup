@@ -27,6 +27,10 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "partedmagic" ""
         fi
 
+        if ! omv_config_exists "${SERVICE_XPATH}/extundelete"; then
+            omv_config_add_element "${SERVICE_XPATH}" "extundelete" ""
+        fi
+
         dpkg-trigger update-fixperms
         dpkg-trigger update-locale
     ;;

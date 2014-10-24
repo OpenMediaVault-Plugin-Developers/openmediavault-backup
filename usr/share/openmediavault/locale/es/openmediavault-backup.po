@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-19 14:15-0500\n"
-"PO-Revision-Date: 2014-07-22 12:17+0000\n"
-"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
+"POT-Creation-Date: 2014-10-24 08:06-0500\n"
+"PO-Revision-Date: 2014-10-24 13:08+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/openmediavault-backup/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,11 +66,20 @@ msgstr "Descarga la ISO de SystemRescuecd y configura grub para arrancar desde e
 msgid "Drive with missing or lost files."
 msgstr "Disco sin archivos."
 
+msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
+msgstr ""
+
 msgid "Everything"
 msgstr "Todo"
 
+msgid "Extundelete"
+msgstr ""
+
 msgid "Files will be recovered only from the free space."
 msgstr "Los archivos serán recuperados unicamente del espacio libre."
+
+msgid "For more information, see Extundelete page"
+msgstr ""
 
 msgid "For more information, see PhotoRec wiki"
 msgstr "Para más información, ver el wiki de PhotoRec"
@@ -151,6 +160,9 @@ msgstr "Reiniciar como Parted Magic"
 msgid "Reboot to SystemRescueCD"
 msgstr "Reiniciar como SystemRescueCD"
 
+msgid "Recover using Extundelete"
+msgstr ""
+
 msgid "Recover using Photorec"
 msgstr "Recuperar usando PhotoRec"
 
@@ -196,10 +208,6 @@ msgstr "Opciones"
 msgid "Shared Folder"
 msgstr "Carpetas compartidas"
 
-msgid ""
-"Shared folder cannot be located on the source drive - {$params['source']}."
-msgstr "La carpeta compartida no puede ubicarse en el disco de arranque - {$params['source']}."
-
 msgid "Shared folder where recovered files will be placed."
 msgstr "Carpeta compartida donde los archivos recuperados serán guardados."
 
@@ -220,6 +228,11 @@ msgstr "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
 
 msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
 msgstr "rchivos de texto con cabeceras: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
+
+msgid ""
+"This will attempt recovery of lost files from a damaged drive or "
+"accidentally deleted using Extundelete."
+msgstr ""
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "

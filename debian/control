@@ -8,7 +8,7 @@ Homepage: http://omv-extras.org/
 
 Package: openmediavault-backup
 Architecture: all
-Depends: openmediavault (>= 1.0.6), rsync, testdisk, extundelete
+Depends: openmediavault (>= 1.0.29), rsync, testdisk, extundelete
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault
  system minus data drives for restoration in emergency
@@ -20,4 +20,4 @@ Description: backup plugin for OpenMediaVault.
  .
  Install from shared folder and boot from Parted Magic for utility purposes.
  .
- Recovery accidentally deleted files using Photorec.
+ Recovery accidentally deleted files using Photorec and/or Extundelete.
