@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
  * Copyright (C) 2009-2013 Volker Theile <volker.theile@openmediavault.org>
@@ -17,8 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-
 require_once "openmediavault/config.inc";
 require_once "openmediavault/error.inc";
 require_once "openmediavault/notify.inc";
@@ -27,38 +24,44 @@ require_once "openmediavault/rpcservice.inc";
 require_once "openmediavault/system.inc";
 require_once "openmediavault/util.inc";
 
-class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
-
+class OMVRpcServiceBackup extends OMVRpcServiceAbstract
+{
     public function getName()
     {
         return 'Backup';
     }
 
-    private function getPluginName() {
+    private function getPluginName()
+    {
         return strtolower( $this->getName() );
     }
 
-    private function getXPath() {
+    private function getXPath()
+    {
         $path = sprintf( "//system/%s", $this->getPluginName() );
         return $path;
     }
 
-    private function getXPathPhotorec() {
+    private function getXPathPhotorec()
+    {
         $path = sprintf( "%s/photorec", $this->getXPath() );
         return $path;
     }
 
-    private function getXPathPartedmagic() {
+    private function getXPathPartedmagic()
+    {
         $path = sprintf( "%s/partedmagic", $this->getXPath() );
         return $path;
     }
 
-    private function getEventMessagePath() {
+    private function getEventMessagePath()
+    {
         $path = sprintf( "org.openmediavault.system.%s", $this->getPluginName() );
         return $path;
     }
 
-    private function getEventMessagePathPhotorec() {
+    private function getEventMessagePathPhotorec()
+    {
         $path = sprintf( "%s.photorec", $this->getEventMessagePath() );
         return $path;
     }
@@ -609,8 +612,11 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         // Validate the RPC caller context.
         $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
 
-        // Get lsblk output
-        $cmd = '/usr/local/bin/lsblk -dno name,size 2>&1';
+        if ($params['ext'] == 1)
+            $cmd = "blkid -o list | grep ext[3-4]";
+        else
+            $cmd = 'lsblk -dno name,size 2>&1';
+
         OMVUtil::exec($cmd, $output, $result);
 
         if ($result !== 0)
@@ -620,8 +626,8 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract {
         foreach($output as $row) {
             $info = preg_split('/\s+/', $row);
             $object = array(
-                "drive"   => "/dev/".$info[0],
-                "display" => "/dev/".$info[0]." - ".$info[1]
+                "drive"   => sprintf("/dev/%s", $info[0]),
+                "display" => sprintf("/dev/%s - %s", $info[0], $info[1])
             );
 
             $drives[] = $object;
