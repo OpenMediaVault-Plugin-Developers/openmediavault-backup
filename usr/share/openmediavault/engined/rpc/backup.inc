@@ -104,18 +104,12 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         $this->registerMethod('setSettings');
         $this->registerMethod('doBackup');
 
-        $this->registerMethod('doInstall');
-        $this->registerMethod('doRebootClonezilla');
-
-        $this->registerMethod('doInstallSysresccd');
-        $this->registerMethod('doRebootSysresccd');
+        $this->registerMethod('doInstallISO');
+        $this->registerMethod('doRebootISO');
+        $this->registerMethod('doRebootOMV');
 
         $this->registerMethod('getPartedmagic');
         $this->registerMethod('setPartedmagic');
-        $this->registerMethod('doInstallPartedmagic');
-        $this->registerMethod('doRebootPartedmagic');
-
-        $this->registerMethod('doRebootOMV');
 
         $this->registerMethod('getCandidates');
         $this->registerMethod('getPhotorec');
@@ -249,7 +243,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    public function doInstall($params, $context)
+    public function doInstallISO($params, $context)
     {
         global $xmlConfig;
 
@@ -258,6 +252,23 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $context,
             array( "role" => OMV_ROLE_ADMINISTRATOR )
         );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "command" : { "type" : "string" }
+            }
+        }');
+
+        $commands = array("cz", "sys", "pm", "gp");
+        if (!in_array($params['command'], $commands))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_MISC_OPERATION_DENIED,
+                sprinf("Unknown command - %s", $params['command'])
+            );
+        }
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
@@ -272,7 +283,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("omv-mkconf %s install 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s install%s 2>&1", $this->getPluginName(), $params['command']);
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -282,7 +293,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         }
     }
 
-    public function doRebootClonezilla($params, $context)
+    public function doRebootISO($params, $context)
     {
         global $xmlConfig;
 
@@ -291,6 +302,23 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $context,
             array( "role" => OMV_ROLE_ADMINISTRATOR )
         );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "command" : { "type" : "string" }
+            }
+        }');
+
+        $commands = array("clonezilla", "sysresccd", "partedmagic", "gpartedlive");
+        if (!in_array($params['command'], $commands))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_MISC_OPERATION_DENIED,
+                sprinf("Unknown command - %s", $params['command'])
+            );
+        }
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
@@ -305,73 +333,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("omv-mkconf %s clonezilla 2>&1", $this->getPluginName() );
-            $this->exec($cmd, $output, $bgOutputFilename);
-            $this->finalizeBgProcStatus($bgStatusFilename, $output);
-            exit(0);
-        } catch(Exception $e) {
-            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
-            exit(1);
-        }
-    }
-
-    public function doInstallSysresccd($params, $context)
-    {
-        global $xmlConfig;
-
-        // Validate the RPC caller context.
-        $this->validateMethodContext(
-            $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
-        );
-
-        // Create a background process.
-        $bgStatusFilename = $this->createBgProcStatus();
-        $pid = $this->fork();
-        if ($pid > 0) { // Parent process.
-            $this->initializeBgProcStatus($bgStatusFilename, $pid);
-            return $bgStatusFilename;
-        }
-
-        // Child process.
-        try {
-            $bgOutputFilename = $this->createBgProcOutput();
-            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
-
-            $cmd = sprintf("omv-mkconf %s installsys 2>&1", $this->getPluginName() );
-            $this->exec($cmd, $output, $bgOutputFilename);
-            $this->finalizeBgProcStatus($bgStatusFilename, $output);
-            exit(0);
-        } catch(Exception $e) {
-            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
-            exit(1);
-        }
-    }
-
-    public function doRebootSysresccd($params, $context)
-    {
-        global $xmlConfig;
-
-        // Validate the RPC caller context.
-        $this->validateMethodContext(
-            $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
-        );
-
-        // Create a background process.
-        $bgStatusFilename = $this->createBgProcStatus();
-        $pid = $this->fork();
-        if ($pid > 0) { // Parent process.
-            $this->initializeBgProcStatus($bgStatusFilename, $pid);
-            return $bgStatusFilename;
-        }
-
-        // Child process.
-        try {
-            $bgOutputFilename = $this->createBgProcOutput();
-            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
-
-            $cmd = sprintf("omv-mkconf %s sysresccd 2>&1", $this->getPluginName() );
+            $cmd = sprintf("omv-mkconf %s %s 2>&1", $this->getPluginName(), $params['command'] );
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -434,73 +396,6 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
                 $this->getXPathPartedmagic()
             );
     }
-
-    public function doInstallPartedmagic($params, $context)
-    {
-        global $xmlConfig;
-
-        // Validate the RPC caller context.
-        $this->validateMethodContext(
-            $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
-        );
-
-        // Create a background process.
-        $bgStatusFilename = $this->createBgProcStatus();
-        $pid = $this->fork();
-        if ($pid > 0) { // Parent process.
-            $this->initializeBgProcStatus($bgStatusFilename, $pid);
-            return $bgStatusFilename;
-        }
-
-        // Child process.
-        try {
-            $bgOutputFilename = $this->createBgProcOutput();
-            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
-
-            $cmd = sprintf("omv-mkconf %s installpm 2>&1", $this->getPluginName() );
-            $this->exec($cmd, $output, $bgOutputFilename);
-            $this->finalizeBgProcStatus($bgStatusFilename, $output);
-            exit(0);
-        } catch(Exception $e) {
-            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
-            exit(1);
-        }
-    }
-
-    public function doRebootPartedmagic($params, $context)
-    {
-        global $xmlConfig;
-
-        // Validate the RPC caller context.
-        $this->validateMethodContext(
-            $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
-        );
-
-        // Create a background process.
-        $bgStatusFilename = $this->createBgProcStatus();
-        $pid = $this->fork();
-        if ($pid > 0) { // Parent process.
-            $this->initializeBgProcStatus($bgStatusFilename, $pid);
-            return $bgStatusFilename;
-        }
-
-        // Child process.
-        try {
-            $bgOutputFilename = $this->createBgProcOutput();
-            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
-
-            $cmd = sprintf("omv-mkconf %s partedmagic 2>&1", $this->getPluginName() );
-            $this->exec($cmd, $output, $bgOutputFilename);
-            $this->finalizeBgProcStatus($bgStatusFilename, $output);
-            exit(0);
-        } catch(Exception $e) {
-            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
-            exit(1);
-        }
-    }
-
 
     public function doRebootOMV($params, $context)
     {

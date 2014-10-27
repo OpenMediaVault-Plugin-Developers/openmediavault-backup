@@ -1,3 +1,11 @@
+openmediavault-backup (1.0.8) UNRELEASED; urgency=low
+
+  * Add GParted Live
+  * Update to SystemRescueCD 4.4.0
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 27 Oct 2014 07:15:46 -0500
+
 openmediavault-backup (1.0.7) stable; urgency=low
 
   * Remove lsblk from package since it is available in Debian Wheezy

@@ -86,7 +86,10 @@ Ext.define("OMV.module.admin.system.backup.Sysresccd", {
         var wnd = Ext.create("OMV.window.Execute", {
             title           : _("Install SystemRescueCD"),
             rpcService      : "Backup",
-            rpcMethod       : "doInstallSysresccd",
+            rpcMethod       : "doInstallISO",
+            rpcParams       : {
+                command : "sys"
+            },
             rpcIgnoreErrors : true,
             hideStartButton : true,
             hideStopButton  : true,
@@ -112,7 +115,10 @@ Ext.define("OMV.module.admin.system.backup.Sysresccd", {
         var wnd = Ext.create("OMV.window.Execute", {
             title           : _("Reboot to SystemRescueCD"),
             rpcService      : "Backup",
-            rpcMethod       : "doRebootSysresccd",
+            rpcMethod       : "doRebootISO",
+            rpcParams       : {
+                command : "sysresccd"
+            },
             rpcIgnoreErrors : true,
             hideStartButton : true,
             hideStopButton  : true,

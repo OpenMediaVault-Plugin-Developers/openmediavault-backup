@@ -96,7 +96,10 @@ Ext.define("OMV.module.admin.system.backup.Partedmagic", {
         var wnd = Ext.create("OMV.window.Execute", {
             title           : _("Install Parted Magic"),
             rpcService      : "Backup",
-            rpcMethod       : "doInstallPartedmagic",
+            rpcMethod       : "doInstallISO",
+            rpcParams       : {
+                command : "pm"
+            },
             rpcIgnoreErrors : true,
             hideStartButton : true,
             hideStopButton  : true,
@@ -122,7 +125,10 @@ Ext.define("OMV.module.admin.system.backup.Partedmagic", {
         var wnd = Ext.create("OMV.window.Execute", {
             title           : _("Reboot to Parted Magic"),
             rpcService      : "Backup",
-            rpcMethod       : "doRebootPartedmagic",
+            rpcMethod       : "doRebootISO",
+            rpcParams       : {
+                command : "partedmagic"
+            },
             rpcIgnoreErrors : true,
             hideStartButton : true,
             hideStopButton  : true,
@@ -174,6 +180,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "partedmagic",
     path      : "/system/backup",
     text      : _("Parted Magic"),
-    position  : 30,
+    position  : 40,
     className : "OMV.module.admin.system.backup.Partedmagic"
 });

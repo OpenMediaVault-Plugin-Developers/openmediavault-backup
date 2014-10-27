@@ -21,7 +21,7 @@
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
 
-Ext.define("OMV.module.admin.system.backup.Clonezilla", {
+Ext.define("OMV.module.admin.system.backup.Gpartedlive", {
     extend : "OMV.workspace.form.Panel",
     uses   : [
         "OMV.data.Model",
@@ -37,7 +37,7 @@ Ext.define("OMV.module.admin.system.backup.Clonezilla", {
         var me = this;
         return [{
             xtype    : "fieldset",
-            title    : _("Clonezilla"),
+            title    : _("GParted Live"),
             defaults : {
                 labelSeparator : ""
             },
@@ -51,23 +51,21 @@ Ext.define("OMV.module.admin.system.backup.Clonezilla", {
             },{
                 border : false,
                 html   : "<ul>" +
-                         "<li>" + _("Downloads Clonezilla ISO and configures grub bootloader to allow booting from ISO.") + "</li>" +
-                         "<li>" + _("SSH server is enabled by default.  Login with username: <b>user</b> and password: <b>live</b>") + "</li>" +
-                         "<li>" + _("When connecting via ssh, the ssh key will be different than the OpenMediaVault ssh key and need to be updated on the client system.") + "</li>" +
+                         "<li>" + _("Downloads GParted Live ISO and configures grub bootloader to allow booting from ISO.") + "</li>" +
+                         "<li>" + _("Default username: <b>user</b> and password: <b>live</b>") + "</li>" +
                          "<li>" + _("IP Address will be set by DHCP.  Using static DHCP is recommended for headless servers.") + "</li>" +
-                         "<li>" + _("When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>") + "</li>" +
-                         "<li>" + _("ISO uses approximately 139 Mb in /boot directory on OS drive.") + "</li>" +
+                         "<li>" + _("ISO uses approximately 219 Mb in /boot directory on OS drive.") + "</li>" +
                          "</ul>"
             },{
                 xtype   : "button",
-                name    : "rebootcz",
-                text    : _("Clonezilla"),
+                name    : "rebootgp",
+                text    : _("GParted Live"),
                 scope   : this,
-                handler : Ext.Function.bind(me.onCzButton, me, [ me ]),
+                handler : Ext.Function.bind(me.onGpButton, me, [ me ]),
                 margin  : "5 0 0 0"
             },{
                 border : false,
-                html   : "<ul><li>" + _("Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time.") + "</li></ul>"
+                html   : "<ul><li>" + _("Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time.") + "</li></ul>"
             },{
                 xtype   : "button",
                 name    : "rebootomv",
@@ -85,11 +83,11 @@ Ext.define("OMV.module.admin.system.backup.Clonezilla", {
     onInstallButton: function() {
         var me = this;
         var wnd = Ext.create("OMV.window.Execute", {
-            title           : _("Install Clonezilla"),
+            title           : _("Install GParted Live"),
             rpcService      : "Backup",
             rpcMethod       : "doInstallISO",
             rpcParams       : {
-                command : "cz"
+                command : "gp"
             },
             rpcIgnoreErrors : true,
             hideStartButton : true,
@@ -111,14 +109,14 @@ Ext.define("OMV.module.admin.system.backup.Clonezilla", {
         wnd.start();
     },
 
-    onCzButton: function() {
+    onGpButton: function() {
         var me = this;
         var wnd = Ext.create("OMV.window.Execute", {
-            title           : _("Reboot to Clonezilla"),
+            title           : _("Reboot to GParted Live"),
             rpcService      : "Backup",
             rpcMethod       : "doRebootISO",
             rpcParams       : {
-                command : "clonezilla"
+                command : "gpartedlive"
             },
             rpcIgnoreErrors : true,
             hideStartButton : true,
@@ -168,9 +166,9 @@ Ext.define("OMV.module.admin.system.backup.Clonezilla", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "clonezilla",
+    id        : "gpartedlive",
     path      : "/system/backup",
-    text      : _("Clonezilla"),
-    position  : 10,
-    className : "OMV.module.admin.system.backup.Clonezilla"
+    text      : _("GParted Live"),
+    position  : 30,
+    className : "OMV.module.admin.system.backup.Gpartedlive"
 });

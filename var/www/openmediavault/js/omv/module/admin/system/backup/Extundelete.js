@@ -149,6 +149,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "extundelete",
     path      : "/system/backup",
     text      : _("Extundelete"),
-    position  : 50,
+    position  : 60,
     className : "OMV.module.admin.system.backup.Extundelete"
 });
