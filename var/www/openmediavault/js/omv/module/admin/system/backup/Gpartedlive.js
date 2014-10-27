@@ -54,7 +54,7 @@ Ext.define("OMV.module.admin.system.backup.Gpartedlive", {
                          "<li>" + _("Downloads GParted Live ISO and configures grub bootloader to allow booting from ISO.") + "</li>" +
                          "<li>" + _("Not recommended for headless servers.  SSH is not enabled by default.") + "</li>" +
                          "<li>" + _("Default username: <b>user</b> and password: <b>live</b>") + "</li>" +
-                         "<li>" + _("IP Address will be set by DHCP.  Using static DHCP is recommended for headless servers.") + "</li>" +
+                         "<li>" + _("IP Address will be set by DHCP.") + "</li>" +
                          "<li>" + _("ISO uses approximately 219 Mb in /boot directory on OS drive.") + "</li>" +
                          "</ul>"
             },{

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 08:02-0500\n"
+"POT-Creation-Date: 2014-10-27 08:18-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,6 +87,9 @@ msgid "Freespace"
 msgstr ""
 
 msgid "GParted Live"
+msgstr ""
+
+msgid "IP Address will be set by DHCP."
 msgstr ""
 
 msgid "IP Address will be set by DHCP.  Using static DHCP is recommended for headless servers."

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 08:02-0500\n"
-"PO-Revision-Date: 2014-10-27 13:04+0000\n"
+"POT-Creation-Date: 2014-10-27 08:18-0500\n"
+"PO-Revision-Date: 2014-10-27 13:20+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-backup/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgid ""
 msgstr "Kopiert die Parted Magic ISO Datei vom ausgewählten freigegebenen Ordner nach /boot/"
 
 msgid "Default username: <b>user</b> and password: <b>live</b>"
-msgstr ""
+msgstr "Standardbenutzername: <b>user</b> und Passwort: <b>live</b>"
 
 msgid "Destination"
 msgstr "Ziel"
@@ -97,6 +97,9 @@ msgid "Freespace"
 msgstr "Freier Speicher"
 
 msgid "GParted Live"
+msgstr "GParted Live"
+
+msgid "IP Address will be set by DHCP."
 msgstr ""
 
 msgid ""
@@ -120,7 +123,7 @@ msgid "Install Clonezilla"
 msgstr "Clonezilla installieren"
 
 msgid "Install GParted Live"
-msgstr ""
+msgstr "GParted Live installieren"
 
 msgid "Install Parted Magic"
 msgstr "Parted Magic installieren"
@@ -254,7 +257,7 @@ msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
 msgstr ""
 
 msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr ""
+msgstr "Textdateien mit Kopfzeile: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
