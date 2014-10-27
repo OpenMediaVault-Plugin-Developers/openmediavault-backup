@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-24 08:06-0500\n"
-"PO-Revision-Date: 2014-10-24 13:08+0000\n"
+"POT-Creation-Date: 2014-10-27 08:02-0500\n"
+"PO-Revision-Date: 2014-10-27 13:04+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/openmediavault-backup/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -47,6 +47,9 @@ msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
 msgstr "將 Parted Magic ISO 檔案由以上所選的共享檔案夾複製到 /boot/"
 
+msgid "Default username: <b>user</b> and password: <b>live</b>"
+msgstr ""
+
 msgid "Destination"
 msgstr "目的地"
 
@@ -57,6 +60,11 @@ msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
 "from ISO."
 msgstr "下載 Clonezilla ISO，並將 grub 啟動載入器設置成允許從 ISO 啟動。"
+
+msgid ""
+"Downloads GParted Live ISO and configures grub bootloader to allow booting "
+"from ISO."
+msgstr ""
 
 msgid ""
 "Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
@@ -87,6 +95,9 @@ msgstr "欲得到更多資訊，請參閱 PhotoRec wiki"
 msgid "Freespace"
 msgstr "位用空間"
 
+msgid "GParted Live"
+msgstr ""
+
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
 "headless servers."
@@ -94,6 +105,9 @@ msgstr "IP 地址將由 DHCP 設定。建議在無頭伺服器上使用靜態 DH
 
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
 msgstr "ISO 在作業系統磁碟上的 /boot 目錄會使用大約 139 Mb。"
+
+msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
+msgstr ""
 
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
 msgstr "ISO 在作業系統磁碟上的 /boot 目錄會使用大約 381 Mb。"
@@ -103,6 +117,9 @@ msgstr "安裝"
 
 msgid "Install Clonezilla"
 msgstr "安裝 Clonezilla"
+
+msgid "Install GParted Live"
+msgstr ""
 
 msgid "Install Parted Magic"
 msgstr "安裝 Parted Magic"
@@ -121,6 +138,9 @@ msgstr "Microsoft Office 檔案 (doc/xls/ppt/vsd/...)、3ds Max、MetaStock"
 
 msgid "Moving Picture Experts Group video"
 msgstr "動態影像專家群組視頻"
+
+msgid "Not recommended for headless servers.  SSH is not enabled by default."
+msgstr ""
 
 msgid "OMV"
 msgstr "OMV"
@@ -150,6 +170,9 @@ msgstr "可攜式/JPEG/多圖像網路圖形"
 
 msgid "Reboot to Clonezilla"
 msgstr "從新啟動到 Clonezilla"
+
+msgid "Reboot to GParted Live"
+msgstr ""
 
 msgid "Reboot to OpenMediaVault"
 msgstr "從新啟動到 OpenMediaVault"
@@ -192,6 +215,9 @@ msgstr "選擇磁碟 ..."
 
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
 msgstr "設定 grub 啟動載入器從 Clonezilla ISO 啟動<b>一次</b>。"
+
+msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
+msgstr ""
 
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
 msgstr "設定 grub 啟動載入器從 Parted Magic ISO 啟動<b>一次</b>。"

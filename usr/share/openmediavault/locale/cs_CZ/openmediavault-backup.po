@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-24 08:06-0500\n"
-"PO-Revision-Date: 2014-10-24 13:08+0000\n"
+"POT-Creation-Date: 2014-10-27 08:02-0500\n"
+"PO-Revision-Date: 2014-10-27 13:04+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/projects/p/openmediavault-backup/language/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,9 @@ msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
 msgstr ""
 
+msgid "Default username: <b>user</b> and password: <b>live</b>"
+msgstr ""
+
 msgid "Destination"
 msgstr ""
 
@@ -54,6 +57,11 @@ msgstr ""
 
 msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
+"from ISO."
+msgstr ""
+
+msgid ""
+"Downloads GParted Live ISO and configures grub bootloader to allow booting "
 "from ISO."
 msgstr ""
 
@@ -86,12 +94,18 @@ msgstr ""
 msgid "Freespace"
 msgstr ""
 
+msgid "GParted Live"
+msgstr ""
+
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
 "headless servers."
 msgstr ""
 
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
+msgstr ""
+
+msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
 msgstr ""
 
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
@@ -101,6 +115,9 @@ msgid "Install"
 msgstr ""
 
 msgid "Install Clonezilla"
+msgstr ""
+
+msgid "Install GParted Live"
 msgstr ""
 
 msgid "Install Parted Magic"
@@ -119,6 +136,9 @@ msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
 msgstr ""
 
 msgid "Moving Picture Experts Group video"
+msgstr ""
+
+msgid "Not recommended for headless servers.  SSH is not enabled by default."
 msgstr ""
 
 msgid "OMV"
@@ -148,6 +168,9 @@ msgid "Portable/JPEG/Multiple-Image Network Graphics"
 msgstr ""
 
 msgid "Reboot to Clonezilla"
+msgstr ""
+
+msgid "Reboot to GParted Live"
 msgstr ""
 
 msgid "Reboot to OpenMediaVault"
@@ -190,6 +213,9 @@ msgid "Select a volume ..."
 msgstr ""
 
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
+msgstr ""
+
+msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
 msgstr ""
 
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."

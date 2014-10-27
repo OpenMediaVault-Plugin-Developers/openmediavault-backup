@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-24 08:06-0500\n"
-"PO-Revision-Date: 2014-10-24 13:08+0000\n"
+"POT-Creation-Date: 2014-10-27 08:02-0500\n"
+"PO-Revision-Date: 2014-10-27 13:04+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-backup/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
@@ -47,6 +47,9 @@ msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
 msgstr "/boot/ に上記で選択した共有フォルダから Parted Magic ISO ファイルをコピーします"
 
+msgid "Default username: <b>user</b> and password: <b>live</b>"
+msgstr ""
+
 msgid "Destination"
 msgstr "出力先"
 
@@ -57,6 +60,11 @@ msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
 "from ISO."
 msgstr "Clonezilla ISOイメージのダウンロードとISOイメージからの起動を可能にするためにGRUBブートローダの設定を行います。"
+
+msgid ""
+"Downloads GParted Live ISO and configures grub bootloader to allow booting "
+"from ISO."
+msgstr ""
 
 msgid ""
 "Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
@@ -87,6 +95,9 @@ msgstr "詳細はPhotoRec wikiを参照してください"
 msgid "Freespace"
 msgstr "空き容量"
 
+msgid "GParted Live"
+msgstr ""
+
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
 "headless servers."
@@ -94,6 +105,9 @@ msgstr "IPアドレスはDHCPによって設定されました。静的DHCPの�
 
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
 msgstr "ISOはOSドライブ上の /boot ディレクトリを約139Mb使用します。"
+
+msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
+msgstr ""
 
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
 msgstr "ISOはOSドライブ上の /boot ディレクトリを約381Mb使用します。"
@@ -103,6 +117,9 @@ msgstr "インストール"
 
 msgid "Install Clonezilla"
 msgstr "Clonezillaのインストール"
+
+msgid "Install GParted Live"
+msgstr ""
 
 msgid "Install Parted Magic"
 msgstr "Parted Magicのインストール"
@@ -121,6 +138,9 @@ msgstr "Microsoft Officeドキュメント(doc/xls/ppt/vsd/...), 3ds Max, MetaSt
 
 msgid "Moving Picture Experts Group video"
 msgstr "Moving Picture Experts Group ビデオ"
+
+msgid "Not recommended for headless servers.  SSH is not enabled by default."
+msgstr ""
 
 msgid "OMV"
 msgstr "OMV"
@@ -150,6 +170,9 @@ msgstr "Portable/JPEG/Multiple-Image Network Graphics"
 
 msgid "Reboot to Clonezilla"
 msgstr "Clonezillaで再起動"
+
+msgid "Reboot to GParted Live"
+msgstr ""
 
 msgid "Reboot to OpenMediaVault"
 msgstr "OpenMediaVaultで再起動"
@@ -192,6 +215,9 @@ msgstr "ボリュームの選択 ..."
 
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
 msgstr "<b>一度</b>だけClonezilla のISOイメージから起動するようにGRUBブートローダーを設定します。"
+
+msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
+msgstr ""
 
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
 msgstr "<b>一度</b>だけParted MagicのISOイメージから起動するようにGRUBブートローダーを設定します。"

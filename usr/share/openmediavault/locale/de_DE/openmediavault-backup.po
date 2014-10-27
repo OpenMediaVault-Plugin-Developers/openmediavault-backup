@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-24 08:06-0500\n"
-"PO-Revision-Date: 2014-10-24 13:08+0000\n"
+"POT-Creation-Date: 2014-10-27 08:02-0500\n"
+"PO-Revision-Date: 2014-10-27 13:04+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-backup/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -48,6 +48,9 @@ msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
 msgstr "Kopiert die Parted Magic ISO Datei vom ausgewählten freigegebenen Ordner nach /boot/"
 
+msgid "Default username: <b>user</b> and password: <b>live</b>"
+msgstr ""
+
 msgid "Destination"
 msgstr "Ziel"
 
@@ -60,6 +63,11 @@ msgid ""
 msgstr "Lädt das Clonezilla ISO herunter und konfiguriert GRUB Bootloader dieses zu starten."
 
 msgid ""
+"Downloads GParted Live ISO and configures grub bootloader to allow booting "
+"from ISO."
+msgstr ""
+
+msgid ""
 "Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
 " from ISO."
 msgstr "Lädt das SystemRescuecd ISO herunter und konfiguriert GRUB Bootloader dieses zu starten."
@@ -68,25 +76,28 @@ msgid "Drive with missing or lost files."
 msgstr "Laufwerk mit den fehlenden oder gelöschten Dateien."
 
 msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
-msgstr ""
+msgstr "Laufwerk mit den fehlenden oder gelöschten Dateien. Dateisystem muss ext3 oder ext4 sein und nicht gemountet."
 
 msgid "Everything"
 msgstr "Alles"
 
 msgid "Extundelete"
-msgstr ""
+msgstr "Extundelete"
 
 msgid "Files will be recovered only from the free space."
 msgstr "Daten werden nur von freiem Speicher wiederhergestellt."
 
 msgid "For more information, see Extundelete page"
-msgstr ""
+msgstr "Für weitere Informationen, finden sie auf der Extundelete Seite."
 
 msgid "For more information, see PhotoRec wiki"
 msgstr "Für weitere Informationen, lesen sie das PhotoRec Wiki"
 
 msgid "Freespace"
 msgstr "Freier Speicher"
+
+msgid "GParted Live"
+msgstr ""
 
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
@@ -96,6 +107,9 @@ msgstr "IP-Adresse wird über DHCP eingestellt. Statischen DHCP wird für Headle
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
 msgstr "ISO verbraucht ca. 139 MB in /boot Verzeichnis auf dem OS Laufwerk."
 
+msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
+msgstr ""
+
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
 msgstr "ISO verbraucht ca. 381 MB in /boot Verzeichnis auf dem OS Laufwerk."
 
@@ -104,6 +118,9 @@ msgstr "Installation"
 
 msgid "Install Clonezilla"
 msgstr "Clonezilla installieren"
+
+msgid "Install GParted Live"
+msgstr ""
 
 msgid "Install Parted Magic"
 msgstr "Parted Magic installieren"
@@ -122,6 +139,9 @@ msgstr "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
 
 msgid "Moving Picture Experts Group video"
 msgstr "Moving Picture Experts Group video"
+
+msgid "Not recommended for headless servers.  SSH is not enabled by default."
+msgstr ""
 
 msgid "OMV"
 msgstr "OMV"
@@ -152,6 +172,9 @@ msgstr "Portable/JPEG/Multiple-Image Network Graphics"
 msgid "Reboot to Clonezilla"
 msgstr "Neustarten in Clonezilla"
 
+msgid "Reboot to GParted Live"
+msgstr ""
+
 msgid "Reboot to OpenMediaVault"
 msgstr "Neustarten in OpenMediaVault"
 
@@ -162,7 +185,7 @@ msgid "Reboot to SystemRescueCD"
 msgstr "Neustarten in SystemRescueCD"
 
 msgid "Recover using Extundelete"
-msgstr ""
+msgstr "Extundelete zur Wiederherstellung verwenden"
 
 msgid "Recover using Photorec"
 msgstr "Photorec zur Wiederherstellung benutzen"
@@ -194,6 +217,9 @@ msgstr "Partition auswählen ..."
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
 msgstr "Konfiguriert GRUB Bootloader um Clonezilla ISO <b>EINMAL</b> zu starten"
 
+msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
+msgstr ""
+
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
 msgstr ""
 
@@ -213,7 +239,7 @@ msgid "Shared folder where recovered files will be placed."
 msgstr ""
 
 msgid "Silent Recover"
-msgstr ""
+msgstr "Silent Recover"
 
 msgid "Source"
 msgstr "Quelle"
@@ -310,4 +336,4 @@ msgid "zip"
 msgstr "zip"
 
 msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr ""
+msgstr "ZIP-Archiv mit OpenOffice und MSOffice 2007"
