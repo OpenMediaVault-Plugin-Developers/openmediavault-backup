@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Cyryl Sochacki <cyrylsochacki@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-27 08:18-0500\n"
-"PO-Revision-Date: 2014-10-27 13:20+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-10-27 21:35+0000\n"
+"Last-Translator: Cyryl Sochacki <cyrylsochacki@gmail.com>\n"
 "Language-Team: Polish (Poland) (http://www.transifex.com/projects/p/openmediavault-backup/language/pl_PL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "%s (%s available)"
-msgstr ""
+msgstr "%s (%s dostępne)"
 
 msgid "All file types known to PhotoRec will attempted to be recovered."
 msgstr ""
@@ -27,14 +28,14 @@ msgid "BMP bitmap image"
 msgstr ""
 
 msgid "Backup"
-msgstr ""
+msgstr "Kopia zapasowa"
 
 msgid ""
 "Backup the operating system drive to a data drive for emergency restoration."
 msgstr ""
 
 msgid "Clonezilla"
-msgstr ""
+msgstr "Clonezilla"
 
 msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
 msgstr ""
@@ -53,7 +54,7 @@ msgid "Destination"
 msgstr ""
 
 msgid "Done..."
-msgstr ""
+msgstr "Ukończone..."
 
 msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
@@ -77,7 +78,7 @@ msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
 msgstr ""
 
 msgid "Everything"
-msgstr ""
+msgstr "Wszystko"
 
 msgid "Extundelete"
 msgstr ""
@@ -95,7 +96,7 @@ msgid "Freespace"
 msgstr ""
 
 msgid "GParted Live"
-msgstr ""
+msgstr "GParted Live"
 
 msgid "IP Address will be set by DHCP."
 msgstr ""
@@ -115,22 +116,22 @@ msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
 msgstr ""
 
 msgid "Install"
-msgstr ""
+msgstr "Instaluj"
 
 msgid "Install Clonezilla"
-msgstr ""
+msgstr "Instaluj Clonezill-e"
 
 msgid "Install GParted Live"
-msgstr ""
+msgstr "Instaluj GParted Live"
 
 msgid "Install Parted Magic"
-msgstr ""
+msgstr "Instaluj Parted Magic"
 
 msgid "Install SystemRescueCD"
-msgstr ""
+msgstr "Instaluj SystemRescueCD"
 
 msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr ""
+msgstr "MP3 audio (MPEG ADTS, layer III, v1)"
 
 msgid "Matroska video file"
 msgstr ""
@@ -145,13 +146,13 @@ msgid "Not recommended for headless servers.  SSH is not enabled by default."
 msgstr ""
 
 msgid "OMV"
-msgstr ""
+msgstr "OMV"
 
 msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
 msgstr ""
 
 msgid "Parted Magic"
-msgstr ""
+msgstr "Parted Magic"
 
 msgid ""
 "Parted Magic ISO file named partedmagic.iso should be located in this shared"
@@ -162,7 +163,7 @@ msgid "Path"
 msgstr ""
 
 msgid "PhotoRec"
-msgstr ""
+msgstr "PhotoRec"
 
 msgid "Portable Document Format, Adobe Illustrator"
 msgstr ""
@@ -171,7 +172,7 @@ msgid "Portable/JPEG/Multiple-Image Network Graphics"
 msgstr ""
 
 msgid "Reboot to Clonezilla"
-msgstr ""
+msgstr "Restartuj do CloneZill-i"
 
 msgid "Reboot to GParted Live"
 msgstr ""
@@ -210,7 +211,7 @@ msgid ""
 msgstr ""
 
 msgid "Select a drive ..."
-msgstr ""
+msgstr "Wybierz dysk ..."
 
 msgid "Select a volume ..."
 msgstr ""
@@ -231,7 +232,7 @@ msgid "Sets grub bootloader to boot normally from OpenMediaVault."
 msgstr ""
 
 msgid "Settings"
-msgstr ""
+msgstr "Ustawienia"
 
 msgid "Shared Folder"
 msgstr ""
@@ -240,16 +241,16 @@ msgid "Shared folder where recovered files will be placed."
 msgstr ""
 
 msgid "Silent Recover"
-msgstr ""
+msgstr "Ciche odzyskiwanie"
 
 msgid "Source"
-msgstr ""
+msgstr "Źródło"
 
 msgid "System Backup"
-msgstr ""
+msgstr "Kopia systemu"
 
 msgid "SystemRescueCD"
-msgstr ""
+msgstr "SystemRescueCD"
 
 msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
 msgstr ""
@@ -268,7 +269,7 @@ msgid ""
 msgstr ""
 
 msgid "Volume"
-msgstr ""
+msgstr "Partycja"
 
 msgid ""
 "When connecting via ssh, the ssh key will be different than the "
@@ -280,61 +281,61 @@ msgid ""
 msgstr ""
 
 msgid "bmp"
-msgstr ""
+msgstr "bmp"
 
 msgid "bz2"
-msgstr ""
+msgstr "bz2"
 
 msgid "bzip2 compressed data"
 msgstr ""
 
 msgid "doc"
-msgstr ""
+msgstr "doc"
 
 msgid "gz"
-msgstr ""
+msgstr "gz"
 
 msgid "gzip compressed data"
 msgstr ""
 
 msgid "link"
-msgstr ""
+msgstr "link"
 
 msgid "mkv"
-msgstr ""
+msgstr "mkv"
 
 msgid "mov"
-msgstr ""
+msgstr "mov"
 
 msgid "mov/mp4/3gp/3g2/jp2"
-msgstr ""
+msgstr "mov/mp4/3gp/3g2/jp2"
 
 msgid "mp3"
-msgstr ""
+msgstr "mp3"
 
 msgid "mpg"
-msgstr ""
+msgstr "mpg"
 
 msgid "pdf"
-msgstr ""
+msgstr "pdf"
 
 msgid "png"
-msgstr ""
+msgstr "png"
 
 msgid "raw"
-msgstr ""
+msgstr "raw"
 
 msgid "tif"
-msgstr ""
+msgstr "tif"
 
 msgid "tx?"
-msgstr ""
+msgstr "tx?"
 
 msgid "txt"
-msgstr ""
+msgstr "txt"
 
 msgid "zip"
-msgstr ""
+msgstr "zip"
 
 msgid "zip archive including OpenOffice and MSOffice 2007"
 msgstr ""
