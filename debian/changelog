@@ -1,10 +1,10 @@
-openmediavault-backup (1.0.8) UNRELEASED; urgency=low
+openmediavault-backup (1.0.8) stable; urgency=low
 
   * Add GParted Live
   * Update to SystemRescueCD 4.4.0
   * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 27 Oct 2014 07:15:46 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 28 Oct 2014 06:35:02 -0500
 
 openmediavault-backup (1.0.7) stable; urgency=low
 
