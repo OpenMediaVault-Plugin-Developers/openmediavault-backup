@@ -1,5 +1,6 @@
 Source: openmediavault-backup
-Section: net
+Section: misc
+XB-Plugin-Section: backup
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 Build-Depends: debhelper (>= 9.0.0)
