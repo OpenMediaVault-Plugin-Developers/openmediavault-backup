@@ -3,339 +3,338 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-27 08:18-0500\n"
-"PO-Revision-Date: 2014-11-02 10:58+0000\n"
-"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
-"Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-backup/language/da/)\n"
+"PO-Revision-Date: 2014-07-19 17:36+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Norwegian (http://www.transifex.com/projects/p/openmediavault-backup/language/no/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
+"Language: no\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%s (%s available)"
-msgstr "%s (%s tilgængelig)"
+msgstr ""
 
 msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr "Alle filtyper kendt af PhotoRec vil blive forsøgt genskabt."
+msgstr ""
 
 msgid "BMP bitmap image"
-msgstr "BMP bitmap billede"
+msgstr ""
 
 msgid "Backup"
-msgstr "Backup"
+msgstr ""
 
 msgid ""
 "Backup the operating system drive to a data drive for emergency restoration."
-msgstr "Backup operativ systemdisk til et datadisk til genskabelse i nødstilfælde."
+msgstr ""
 
 msgid "Clonezilla"
-msgstr "Clonezilla"
+msgstr ""
 
 msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr "Konfigurere grub bootloader til at tillade at boote fra Parted Magic ISO."
+msgstr ""
 
 msgid "Contax picture, Panasonic/Leica RAW"
-msgstr "Contax billede, Panasonic/Leica RAW"
+msgstr ""
 
 msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr "Kopierer Parted Magic ISO fil fra delt mappe valgt fra overstående til /boot/"
+msgstr ""
 
 msgid "Default username: <b>user</b> and password: <b>live</b>"
-msgstr "Standard brugernavn: <b>user</b> og adgangskode: <b>live</b>"
+msgstr ""
 
 msgid "Destination"
-msgstr "Destination"
+msgstr ""
 
 msgid "Done..."
-msgstr "Færdig..."
+msgstr ""
 
 msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
 "from ISO."
-msgstr "Downloader Clonezilla ISO og konfigurere grub bootloader til at tillade at boote fra ISO."
+msgstr ""
 
 msgid ""
 "Downloads GParted Live ISO and configures grub bootloader to allow booting "
 "from ISO."
-msgstr "Downloader GParted Live ISO og konfigurere grub bootloader til at tillade at boote fra ISO."
+msgstr ""
 
 msgid ""
 "Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
 " from ISO."
-msgstr "Downloader SystemRescuecd ISO og konfigurere grub bootloader til at tillade at boote fra ISO."
+msgstr ""
 
 msgid "Drive with missing or lost files."
-msgstr "Disk med manglede eller tabte filer."
+msgstr ""
 
 msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
-msgstr "Disk med manglede eller tabte filer. Skal være ext3 eller ext4 og ikke monteret."
+msgstr ""
 
 msgid "Everything"
-msgstr "Alt"
+msgstr ""
 
 msgid "Extundelete"
-msgstr "Extundelete"
+msgstr ""
 
 msgid "Files will be recovered only from the free space."
-msgstr "Filer vil kun blive genskabt fra ledig plads."
+msgstr ""
 
 msgid "For more information, see Extundelete page"
-msgstr "For flere oplysninger, se Extundelete siden"
+msgstr ""
 
 msgid "For more information, see PhotoRec wiki"
-msgstr "For flere oplysninger, se PhotoRec wiki"
+msgstr ""
 
 msgid "Freespace"
-msgstr "Ledig plads"
+msgstr ""
 
 msgid "GParted Live"
-msgstr "GParted Live"
+msgstr ""
 
 msgid "IP Address will be set by DHCP."
-msgstr "IP Adresse vil blive sat af DCHP."
+msgstr ""
 
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
 "headless servers."
-msgstr "IP Adresse vil blive sat af DHCP. Brug af statisk DHCP er anbefalet på servere uden monitor."
+msgstr ""
 
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr "ISO bruger omkring 139 Mb i /boot/ biblioteket på OS disk."
+msgstr ""
 
 msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
-msgstr "ISO bruger omkring 219 Mb i /boot/ biblioteket på OS disk."
+msgstr ""
 
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr "ISO bruger omkring 381 Mb i /boot/ biblioteket på OS disk."
+msgstr ""
 
 msgid "Install"
-msgstr "Installer"
+msgstr ""
 
 msgid "Install Clonezilla"
-msgstr "Installer Clonezilla"
+msgstr ""
 
 msgid "Install GParted Live"
-msgstr "Installer GParted Live"
+msgstr ""
 
 msgid "Install Parted Magic"
-msgstr "Installer Parted Magic"
+msgstr ""
 
 msgid "Install SystemRescueCD"
-msgstr "Installer SystemRescueCD"
+msgstr ""
 
 msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr "MP3 lyd (MPEG ADTS, layer III, v1)"
+msgstr ""
 
 msgid "Matroska video file"
-msgstr "Matroska video fil"
+msgstr ""
 
 msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr "Microsoft Office Dokument (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
+msgstr ""
 
 msgid "Moving Picture Experts Group video"
-msgstr "Moving Picture Experts Group video"
+msgstr ""
 
 msgid "Not recommended for headless servers.  SSH is not enabled by default."
-msgstr "Ikke anbefalet til skærmløse servere. SSH er ikke aktiveret som standard."
+msgstr ""
 
 msgid "OMV"
-msgstr "OMV"
+msgstr ""
 
 msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr "Andre tekst filer: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
+msgstr ""
 
 msgid "Parted Magic"
-msgstr "Parted Magic"
+msgstr ""
 
 msgid ""
 "Parted Magic ISO file named partedmagic.iso should be located in this shared"
 " folder."
-msgstr "Parted Magic ISO fil ved navn partedmagic.iso skal placeres i denne delte mappe."
+msgstr ""
 
 msgid "Path"
-msgstr "Sti"
+msgstr ""
 
 msgid "PhotoRec"
-msgstr "PhotoRec"
+msgstr ""
 
 msgid "Portable Document Format, Adobe Illustrator"
-msgstr "Transportabel Dokument Format, Adobe Illustrator"
+msgstr ""
 
 msgid "Portable/JPEG/Multiple-Image Network Graphics"
-msgstr "Transportabel/JPEG/Flere-Billede Netværk Grafik"
+msgstr ""
 
 msgid "Reboot to Clonezilla"
-msgstr "Genstart til Clonezilla"
+msgstr ""
 
 msgid "Reboot to GParted Live"
-msgstr "Genstart til GParted Live"
+msgstr ""
 
 msgid "Reboot to OpenMediaVault"
-msgstr "Genstart til OpenMediaVault"
+msgstr ""
 
 msgid "Reboot to Parted Magic"
-msgstr "Genstart til Parted Magic"
+msgstr ""
 
 msgid "Reboot to SystemRescueCD"
-msgstr "Genstart til SystemRescueCD"
+msgstr ""
 
 msgid "Recover using Extundelete"
-msgstr "Genskab ved hjælp af Extundelete"
+msgstr ""
 
 msgid "Recover using Photorec"
-msgstr "Genskab med Photorec"
+msgstr ""
 
 msgid "Recover with output"
-msgstr "Genskab med output"
+msgstr ""
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>openmediavault</b>"
-msgstr "SSH server er aktiveret som standard.  Log ind med brugernavn: <b>root</b> og adgangskode: <b>openmediavault</b>"
+msgstr ""
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>partedmagic</b>"
-msgstr "SSH server er aktiveret som standard.  Log ind med brugernavn: <b>root</b> og adgangskode: <b>partedmagic</b>"
+msgstr ""
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>user</b> and "
 "password: <b>live</b>"
-msgstr "SSH server er aktiveret som standard.  Log ind med brugernavn: <b>user</b> og adgangskode: <b>live</b>"
+msgstr ""
 
 msgid "Select a drive ..."
-msgstr "Vælg en disk ..."
+msgstr ""
 
 msgid "Select a volume ..."
-msgstr "Vælg et drev ..."
+msgstr ""
 
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr "Indstil grub bootloader til at boote fra Clonezilla ISO <b>EN</b> gang."
+msgstr ""
 
 msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
-msgstr "Indstil grub bootloader til at boote fra GParted Live ISO <b>EN</b> gang."
+msgstr ""
 
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr "Indstil grub bootloader til at boote fra Parted Magic ISO <b>EN</b> gang."
+msgstr ""
 
 msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr "Indstil grub bootloader til at boote fra SystemRescueCD ISO <b>EN</b> gang."
+msgstr ""
 
 msgid "Sets grub bootloader to boot normally from OpenMediaVault."
-msgstr "Indstil grub bootloader til at boote normalt fra OpenMediaVault. "
+msgstr ""
 
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr ""
 
 msgid "Shared Folder"
-msgstr "Delt mappe"
+msgstr ""
 
 msgid "Shared folder where recovered files will be placed."
-msgstr "Delt mappe hvor genskabte filer vil blive placeret."
+msgstr ""
 
 msgid "Silent Recover"
-msgstr "Stille Genskabning"
+msgstr ""
 
 msgid "Source"
-msgstr "Kilde"
+msgstr ""
 
 msgid "System Backup"
-msgstr "System Backup"
+msgstr ""
 
 msgid "SystemRescueCD"
-msgstr "SystemRescueCD"
+msgstr ""
 
 msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-msgstr "Tag Billede Fil Format og nogle raw fil formater (pef/nef/dcr/sr2/cr2)"
+msgstr ""
 
 msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr "Tekst filer med header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
+msgstr ""
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
 "accidentally deleted using Extundelete."
-msgstr "Dette vil forsøge genskabning af tabte filer fra en ødelagt disk eller utilsigtet sletning ved brug af Extundelete."
+msgstr ""
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
 "accidentally deleted using PhotoRec."
-msgstr "Dette vil forsøge genskabning af tabte filer fra en ødelagt disk eller utilsigtet sletning ved brug af PhotoRec."
+msgstr ""
 
 msgid "Volume"
-msgstr "Drev"
+msgstr ""
 
 msgid ""
 "When connecting via ssh, the ssh key will be different than the "
 "OpenMediaVault ssh key and need to be updated on the client system."
-msgstr "Ved forbindelse via ssh, vil ssh nøglen være forskellig fra OpenMediaVault ssh nøglen og skal opdateres på klient systemet."
+msgstr ""
 
 msgid ""
 "When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr "Ved ekstern log ind, så start clonezilla med: <b>sudo clonezilla</b>"
+msgstr ""
 
 msgid "bmp"
-msgstr "bmp"
+msgstr ""
 
 msgid "bz2"
-msgstr "bz2"
+msgstr ""
 
 msgid "bzip2 compressed data"
-msgstr "bzip2 komprimeret data"
+msgstr ""
 
 msgid "doc"
-msgstr "doc"
+msgstr ""
 
 msgid "gz"
-msgstr "gz"
+msgstr ""
 
 msgid "gzip compressed data"
-msgstr "gzip komprimeret data"
+msgstr ""
 
 msgid "link"
-msgstr "link"
+msgstr ""
 
 msgid "mkv"
-msgstr "mkv"
+msgstr ""
 
 msgid "mov"
-msgstr "mov"
+msgstr ""
 
 msgid "mov/mp4/3gp/3g2/jp2"
-msgstr "mov/mp4/3gp/3g2/jp2"
+msgstr ""
 
 msgid "mp3"
-msgstr "mp3"
+msgstr ""
 
 msgid "mpg"
-msgstr "mpg"
+msgstr ""
 
 msgid "pdf"
-msgstr "pdf"
+msgstr ""
 
 msgid "png"
-msgstr "png"
+msgstr ""
 
 msgid "raw"
-msgstr "raw"
+msgstr ""
 
 msgid "tif"
-msgstr "tif"
+msgstr ""
 
 msgid "tx?"
-msgstr "tx?"
+msgstr ""
 
 msgid "txt"
-msgstr "txt"
+msgstr ""
 
 msgid "zip"
-msgstr "zip"
+msgstr ""
 
 msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr "zip arkiv inklusiv OpenOffice og MSOffice 2007"
+msgstr ""

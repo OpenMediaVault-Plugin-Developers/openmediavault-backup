@@ -3,153 +3,153 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# songming <by@songming.me>, 2014
+# Hyeonkyu Chu <hyeonkyu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-27 08:18-0500\n"
-"PO-Revision-Date: 2014-11-04 13:17+0000\n"
-"Last-Translator: songming <by@songming.me>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-backup/language/zh_CN/)\n"
+"PO-Revision-Date: 2014-11-17 23:41+0000\n"
+"Last-Translator: Hyeonkyu Chu <hyeonkyu@gmail.com>\n"
+"Language-Team: Korean (Korea) (http://www.transifex.com/projects/p/openmediavault-backup/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
+"Language: ko_KR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "%s (%s available)"
-msgstr "%s(%s可用)"
+msgstr "%s (%s 사용 가능)"
 
 msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr "PhotoRec会尝试恢复所有文件类型的文件。"
+msgstr "PhotoRec에 알려진 모든 파일 형식을 복구합니다."
 
 msgid "BMP bitmap image"
-msgstr "BMP位图图像"
+msgstr "BMP bitmap image"
 
 msgid "Backup"
-msgstr "备份"
+msgstr "백업"
 
 msgid ""
 "Backup the operating system drive to a data drive for emergency restoration."
-msgstr "备份系统盘到数据盘以供紧急恢复使用。"
+msgstr "운영체제 드라이브를 응급 복구 데이터 드라이브로 백업합니다."
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
 
 msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr "配置grub引导以允许从Parted Magic ISO启动。"
+msgstr "Parted Magic ISO로 부팅 할 수 있도록 GRUB 부트로더를 구성합니다."
 
 msgid "Contax picture, Panasonic/Leica RAW"
-msgstr "康泰时照片、松下/徕卡RAW"
+msgstr "Contax picture, Panasonic/Leica RAW"
 
 msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr "从上面选中的共享文件夹中复制Parted Magic ISO文件到/boot/"
+msgstr "선택된 공유 폴더의 Parted Magic ISO 파일을 /boot/ 에 복사합니다."
 
 msgid "Default username: <b>user</b> and password: <b>live</b>"
-msgstr "默认用户名: <b>user</b> 密码: <b>live</b>"
+msgstr "기본 사용자 이름: <b>user</b> 비밀번호: <b>live</b>"
 
 msgid "Destination"
-msgstr "目标"
+msgstr "대상"
 
 msgid "Done..."
-msgstr "完成 ..."
+msgstr "완료..."
 
 msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
 "from ISO."
-msgstr "下载Clonezilla ISO并配置grub引导允许从ISO启动。"
+msgstr "Clonezilla ISO를 내려받고, 내려받은 ISO로 부팅 할 수 있도록 GRUB 부트로더를 구성합니다."
 
 msgid ""
 "Downloads GParted Live ISO and configures grub bootloader to allow booting "
 "from ISO."
-msgstr "下载GParted Live ISO并配置grub引导允许从ISO启动。"
+msgstr "GParted Live ISO를 내려받고, 내려받은 ISO로 부팅 할 수 있도록 GRUB 부트로더를 구성합니다."
 
 msgid ""
 "Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
 " from ISO."
-msgstr "下载SystemRescuecd ISO并配置grub引导允许从ISO启动。"
+msgstr "SystemRescuecd ISO를 내려받고, 내려받은 ISO로 부팅 할 수 있도록 GRUB 부트로더를 구성합니다."
 
 msgid "Drive with missing or lost files."
-msgstr "丢失文件磁盘。"
+msgstr "누락 또는 손실된 파일들이 위치하는 드라이브."
 
 msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
-msgstr "找不到磁盘或丢失文件，磁盘文件系统必须是ext3或ext4并且已经挂载。"
+msgstr "누락 또는 손실된 파일들이 위치하는 드라이브. 해당 드라이브는 ext3 또는 ext4 파일 시스템이어야 하고, 마운트를 해제하여야 합니다."
 
 msgid "Everything"
-msgstr "全部"
+msgstr "모든 형식"
 
 msgid "Extundelete"
 msgstr "Extundelete"
 
 msgid "Files will be recovered only from the free space."
-msgstr "将只从空闲空间恢复文件。"
+msgstr "파일들은 여유 공간에서만 복구됩니다."
 
 msgid "For more information, see Extundelete page"
-msgstr "更多信息请看Extundelete恢复指南"
+msgstr "자세한 내용은 Extundelete 페이지를 참조하십시오"
 
 msgid "For more information, see PhotoRec wiki"
-msgstr "更多信息请看PhotoRec wiki"
+msgstr "자세한 내용은 PhotoRec 위키를 참조하십시오"
 
 msgid "Freespace"
-msgstr "空余空间"
+msgstr "여유 공간"
 
 msgid "GParted Live"
 msgstr "GParted Live"
 
 msgid "IP Address will be set by DHCP."
-msgstr "设置IP地址为DHCP模式。"
+msgstr "IP 주소는 DHCP에 의해 설정됩니다."
 
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
 "headless servers."
-msgstr "IP地址由DHCP设置，若没有DHCP服务则使用静态地址。"
+msgstr "IP 주소는 DHCP에 의해 설정됩니다. Headless Server*에는 정적 DHCP를 권장합니다. *Headless Server: 단말기/콘솔/제어 장치(모니터, 키보드, 마우스)가 없는 서버."
 
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr "ISO大约会使用/boot目录所在OS盘139M空间。"
+msgstr "ISO는 운영체제 드라이브의 /boot 디렉터리를 약 139 MB 사용합니다."
 
 msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
-msgstr "ISO大约会使用/boot目录所在OS盘219M空间。"
+msgstr "ISO는 운영체제 드라이브의 /boot 디렉터리를 약 219 MB 사용합니다."
 
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr "ISO大约会使用/boot目录所在OS盘1381M空间。"
+msgstr "ISO는 운영체제 드라이브의 /boot 디렉터리를 약 381 MB 사용합니다."
 
 msgid "Install"
-msgstr "安装"
+msgstr "설치"
 
 msgid "Install Clonezilla"
-msgstr "安装Clonezilla"
+msgstr "Clonezilla 설치"
 
 msgid "Install GParted Live"
-msgstr "安装GParted Live"
+msgstr "GParted Live 설치"
 
 msgid "Install Parted Magic"
-msgstr "安装Parted Magic"
+msgstr "Parted Magic 설치"
 
 msgid "Install SystemRescueCD"
-msgstr "安装SystemRescueCD"
+msgstr "SystemRescueCD 설치"
 
 msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr "MP3音频(MPEG ADTS, layer III, v1)"
+msgstr "MP3 audio (MPEG ADTS, layer III, v1)"
 
 msgid "Matroska video file"
-msgstr "Matroska视频文件"
+msgstr "Matroska video file"
 
 msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr "微软Office文档(doc/xls/ppt/vsd/...)，3ds Max，MetaStock"
+msgstr "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
 
 msgid "Moving Picture Experts Group video"
 msgstr "Moving Picture Experts Group video"
 
 msgid "Not recommended for headless servers.  SSH is not enabled by default."
-msgstr ""
+msgstr "Headless Server*는 추천하지 않습니다. SSH는 기본적으로 비활성화 됩니다. *Headless Server: 단말기/콘솔/제어 장치(모니터, 키보드, 마우스)가 없는 서버."
 
 msgid "OMV"
 msgstr "OMV"
 
 msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr "其它文本文件：txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
+msgstr "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
 
 msgid "Parted Magic"
 msgstr "Parted Magic"
@@ -157,10 +157,10 @@ msgstr "Parted Magic"
 msgid ""
 "Parted Magic ISO file named partedmagic.iso should be located in this shared"
 " folder."
-msgstr "Parted Magic ISO文件partedmagic.iso位于该文件夹。"
+msgstr "Parted Magic ISO가 파일이름 '<b>partedmagic.iso</b>'로 이 공유 폴더에 위치해야 합니다. *역주: Parted Magic은 유료이기에 자동 내려받기를 지원하지 않습니다."
 
 msgid "Path"
-msgstr "路径"
+msgstr "경로"
 
 msgid "PhotoRec"
 msgstr "PhotoRec"
@@ -172,82 +172,82 @@ msgid "Portable/JPEG/Multiple-Image Network Graphics"
 msgstr "Portable/JPEG/Multiple-Image Network Graphics"
 
 msgid "Reboot to Clonezilla"
-msgstr "重启到Clonezilla"
+msgstr "Clonezilla로 재시작"
 
 msgid "Reboot to GParted Live"
-msgstr "重启到GParted Live"
+msgstr "GParted Live로 재시작"
 
 msgid "Reboot to OpenMediaVault"
-msgstr "重启到OpenMediaVault"
+msgstr "OpenMediaVault로 재시작"
 
 msgid "Reboot to Parted Magic"
-msgstr "重启到Parted Magic"
+msgstr "Parted Magic으로 재시작"
 
 msgid "Reboot to SystemRescueCD"
-msgstr "重启到SystemRescueCD"
+msgstr "SystemRescueCD로 재시작"
 
 msgid "Recover using Extundelete"
-msgstr "用Extundelete恢复"
+msgstr "Extundelete로 복원"
 
 msgid "Recover using Photorec"
-msgstr "用Photorec恢复"
+msgstr "PhotoRec으로 복원"
 
 msgid "Recover with output"
-msgstr "恢复输出"
+msgstr "복원 - 과정 출력"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>openmediavault</b>"
-msgstr "SSH服务默认开启，登录用户名： <b>root</b>，密码：<b>openmediavault</b>"
+msgstr "SSH 서버는 기본적으로 활성화됩니다. 로그인 사용자 이름: <b>root</b> 비밀번호: <b>openmediavault</b>"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>partedmagic</b>"
-msgstr "SSH服务默认开启，登录用户名： <b>root</b>，密码：<b>partedmagic</b>"
+msgstr "SSH 서버는 기본적으로 활성화됩니다. 로그인 사용자 이름: <b>root</b> 비밀번호: <b>partedmagic</b>"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>user</b> and "
 "password: <b>live</b>"
-msgstr "SSH服务默认开启，登录用户名： <b>user</b>，密码：<b>live</b>"
+msgstr "SSH 서버는 기본적으로 활성화됩니다. 로그인 사용자 이름: <b>user</b> 비밀번호: <b>live</b>"
 
 msgid "Select a drive ..."
-msgstr "选择磁盘 ..."
+msgstr "드라이브 선택 ..."
 
 msgid "Select a volume ..."
-msgstr "选择卷 ..."
+msgstr "볼륨 선택 ..."
 
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr "设置grub从Clonezilla ISO引导启动<b>1</b>次。"
+msgstr "다음번 부팅시 <b>한번만</b> Clonezilla ISO로 부팅하도록 GRUB 부트로더를 설정합니다."
 
 msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
-msgstr "设置grub从GParted Live ISO引导启动<b>1</b>次。"
+msgstr "다음번 부팅시 <b>한번만</b> GParted Live ISO로 부팅하도록 GRUB 부트로더를 설정합니다."
 
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr "设置grub从Parted Magic ISO引导启动<b>1</b>次。"
+msgstr "다음번 부팅시 <b>한번만</b> Parted Magic ISO로 부팅하도록 GRUB 부트로더를 설정합니다."
 
 msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr "设置grub从SystemRescueCD ISO引导启动<b>1</b>次。"
+msgstr "다음번 부팅시 <b>한번만</b> SystemRescueCD ISO로 부팅하도록 GRUB 부트로더를 설정합니다."
 
 msgid "Sets grub bootloader to boot normally from OpenMediaVault."
-msgstr "设置grub默认引导OpenMediaVault启动。"
+msgstr "기본 OpenMedaiVault로 부팅하도록 GRUB 부트로더를 설정합니다."
 
 msgid "Settings"
-msgstr "设置"
+msgstr "설정"
 
 msgid "Shared Folder"
-msgstr "共享文件夹"
+msgstr "공유 폴더"
 
 msgid "Shared folder where recovered files will be placed."
-msgstr "若有恢复的文件将保存到该文件夹。"
+msgstr "복구 파일들이 위치할 공유 폴더."
 
 msgid "Silent Recover"
-msgstr "静默恢复"
+msgstr "복원 - 조용히"
 
 msgid "Source"
-msgstr "来源"
+msgstr "원본"
 
 msgid "System Backup"
-msgstr "系统备份"
+msgstr "시스템 백업"
 
 msgid "SystemRescueCD"
 msgstr "SystemRescueCD"
@@ -256,38 +256,38 @@ msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
 msgstr "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
 
 msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr "文本文件头：rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
+msgstr "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
 "accidentally deleted using Extundelete."
-msgstr "Extundelete将尝试恢复意外删除或磁盘损坏而丢失的数据。"
+msgstr "손상된 드라이브의 손실된 파일 또는 실수로 삭제한 파일들을 Extundelete를 이용하여 복구합니다."
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
 "accidentally deleted using PhotoRec."
-msgstr "PhotoRec将尝试恢复意外删除或磁盘损坏而丢失的数据。"
+msgstr "손상된 드라이브의 손실된 파일 또는 실수로 삭제한 파일들을 PhotoRec을 이용하여 복구합니다."
 
 msgid "Volume"
-msgstr "卷"
+msgstr "볼륨"
 
 msgid ""
 "When connecting via ssh, the ssh key will be different than the "
 "OpenMediaVault ssh key and need to be updated on the client system."
-msgstr "当使用SSH链接时，SSH密钥会与OpenMediaVault SSH密钥不同，客户端需要更新密钥。"
+msgstr "SSH를 통해 연결하는 경우, 해당 SSH 키는 OpenMediaVault의 SSH 키와 다를 수 있으며, 클라이언트 시스템에 갱신해야 합니다."
 
 msgid ""
 "When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr "当远程登录时，启动clonezilla命令：<b>sudo clonezilla</b>"
+msgstr "원격으로 로그인할 경우, clonezilla 시작: <b>sudo clonezilla</b>"
 
 msgid "bmp"
-msgstr "不冒泡"
+msgstr "bmp"
 
 msgid "bz2"
 msgstr "bz2"
 
 msgid "bzip2 compressed data"
-msgstr "bzip2压缩数据"
+msgstr "bzip2 compressed data"
 
 msgid "doc"
 msgstr "doc"
@@ -296,10 +296,10 @@ msgid "gz"
 msgstr "gz"
 
 msgid "gzip compressed data"
-msgstr "gzip压缩数据"
+msgstr "gzip compressed data"
 
 msgid "link"
-msgstr "链接"
+msgstr "연결"
 
 msgid "mkv"
 msgstr "mkv"
@@ -338,4 +338,4 @@ msgid "zip"
 msgstr "zip"
 
 msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr "zip文档包括OpenOffice和MSOffice 2007"
+msgstr "zip archive including OpenOffice and MSOffice 2007"

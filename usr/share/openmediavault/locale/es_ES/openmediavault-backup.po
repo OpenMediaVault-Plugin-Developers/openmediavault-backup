@@ -3,153 +3,153 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2014
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-27 08:18-0500\n"
-"PO-Revision-Date: 2014-11-02 10:58+0000\n"
-"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
-"Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-backup/language/da/)\n"
+"PO-Revision-Date: 2014-11-16 10:01+0000\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
+"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/openmediavault-backup/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%s (%s available)"
-msgstr "%s (%s tilgængelig)"
+msgstr "%s (%s disponible)"
 
 msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr "Alle filtyper kendt af PhotoRec vil blive forsøgt genskabt."
+msgstr "Todos los tipos de archivo conocidos por PhotoRec, se intentarán recuperar."
 
 msgid "BMP bitmap image"
-msgstr "BMP bitmap billede"
+msgstr "Imagen BMP bitmap"
 
 msgid "Backup"
 msgstr "Backup"
 
 msgid ""
 "Backup the operating system drive to a data drive for emergency restoration."
-msgstr "Backup operativ systemdisk til et datadisk til genskabelse i nødstilfælde."
+msgstr "Salvar el disco del O.S. en un disco de datos para una restauración de emergencia."
 
 msgid "Clonezilla"
 msgstr "Clonezilla"
 
 msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr "Konfigurere grub bootloader til at tillade at boote fra Parted Magic ISO."
+msgstr "Configura el cargador de arranque para permitir arrancar Parted Magic ISO."
 
 msgid "Contax picture, Panasonic/Leica RAW"
-msgstr "Contax billede, Panasonic/Leica RAW"
+msgstr "Contax picture, Panasonic/Leica RAW"
 
 msgid ""
 "Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr "Kopierer Parted Magic ISO fil fra delt mappe valgt fra overstående til /boot/"
+msgstr "Copia el archivo Parted Magic ISO de una carpeta compartida a /boot/"
 
 msgid "Default username: <b>user</b> and password: <b>live</b>"
-msgstr "Standard brugernavn: <b>user</b> og adgangskode: <b>live</b>"
+msgstr "Usuario por defecto: <b>user</b> y contraseña: <b>live</b>"
 
 msgid "Destination"
-msgstr "Destination"
+msgstr "Destino"
 
 msgid "Done..."
-msgstr "Færdig..."
+msgstr "Hecho..."
 
 msgid ""
 "Downloads Clonezilla ISO and configures grub bootloader to allow booting "
 "from ISO."
-msgstr "Downloader Clonezilla ISO og konfigurere grub bootloader til at tillade at boote fra ISO."
+msgstr "Descarga la ISO de Clonezilla y configura grub para arrancar desde esa ISO."
 
 msgid ""
 "Downloads GParted Live ISO and configures grub bootloader to allow booting "
 "from ISO."
-msgstr "Downloader GParted Live ISO og konfigurere grub bootloader til at tillade at boote fra ISO."
+msgstr "Descarga la ISO de GParted Live y configura el cargador grub para permitir arrancar de esa ISO."
 
 msgid ""
 "Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
 " from ISO."
-msgstr "Downloader SystemRescuecd ISO og konfigurere grub bootloader til at tillade at boote fra ISO."
+msgstr "Descarga la ISO de SystemRescuecd y configura grub para arrancar desde esa ISO."
 
 msgid "Drive with missing or lost files."
-msgstr "Disk med manglede eller tabte filer."
+msgstr "Disco sin archivos."
 
 msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
-msgstr "Disk med manglede eller tabte filer. Skal være ext3 eller ext4 og ikke monteret."
+msgstr "Disco con archivos perdidos o borrados, Debe ser ext3 o ext4 y estar desmontado,"
 
 msgid "Everything"
-msgstr "Alt"
+msgstr "Todo"
 
 msgid "Extundelete"
-msgstr "Extundelete"
+msgstr "ExtUndelete"
 
 msgid "Files will be recovered only from the free space."
-msgstr "Filer vil kun blive genskabt fra ledig plads."
+msgstr "Los archivos serán recuperados unicamente del espacio libre."
 
 msgid "For more information, see Extundelete page"
-msgstr "For flere oplysninger, se Extundelete siden"
+msgstr "Para más informcación ir a la web de ExtUndelete"
 
 msgid "For more information, see PhotoRec wiki"
-msgstr "For flere oplysninger, se PhotoRec wiki"
+msgstr "Para más información, ver el wiki de PhotoRec"
 
 msgid "Freespace"
-msgstr "Ledig plads"
+msgstr "Espacio libre"
 
 msgid "GParted Live"
 msgstr "GParted Live"
 
 msgid "IP Address will be set by DHCP."
-msgstr "IP Adresse vil blive sat af DCHP."
+msgstr "La IP debe ser del tipo DHCP."
 
 msgid ""
 "IP Address will be set by DHCP.  Using static DHCP is recommended for "
 "headless servers."
-msgstr "IP Adresse vil blive sat af DHCP. Brug af statisk DHCP er anbefalet på servere uden monitor."
+msgstr "La Ip debe ser DHCP. Se recomienda DHCP estatico para servidores sin monitor."
 
 msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr "ISO bruger omkring 139 Mb i /boot/ biblioteket på OS disk."
+msgstr "La ISO ocupará aproximadamente 139 Mb en la carpeta /boot del disco de arranque."
 
 msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
-msgstr "ISO bruger omkring 219 Mb i /boot/ biblioteket på OS disk."
+msgstr "La imagen ISO ocupa unos 219 Mb en el directorio /boot del disco de arranque."
 
 msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr "ISO bruger omkring 381 Mb i /boot/ biblioteket på OS disk."
+msgstr "La ISO ocupara aproximadamente 381 Mb en la carpeta /boot del disco de arranque."
 
 msgid "Install"
-msgstr "Installer"
+msgstr "Instalar"
 
 msgid "Install Clonezilla"
-msgstr "Installer Clonezilla"
+msgstr "Instalar clonezilla"
 
 msgid "Install GParted Live"
-msgstr "Installer GParted Live"
+msgstr "Instalar GParted Live"
 
 msgid "Install Parted Magic"
-msgstr "Installer Parted Magic"
+msgstr "Instalar Parted Magic"
 
 msgid "Install SystemRescueCD"
-msgstr "Installer SystemRescueCD"
+msgstr "Instalar SystemRescueCD"
 
 msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr "MP3 lyd (MPEG ADTS, layer III, v1)"
+msgstr "MP3 audio (MPEG ADTS, capa 3, v1)"
 
 msgid "Matroska video file"
-msgstr "Matroska video fil"
+msgstr "Archivos de video Matroska"
 
 msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr "Microsoft Office Dokument (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
+msgstr "Documentos Microsoft Office (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
 
 msgid "Moving Picture Experts Group video"
-msgstr "Moving Picture Experts Group video"
+msgstr "MPEG"
 
 msgid "Not recommended for headless servers.  SSH is not enabled by default."
-msgstr "Ikke anbefalet til skærmløse servere. SSH er ikke aktiveret som standard."
+msgstr "Not se recomienda para servidores sin monitor. el servicio SSH no está habilitado por defecto."
 
 msgid "OMV"
 msgstr "OMV"
 
 msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr "Andre tekst filer: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
+msgstr "Otros archivos de texto: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
 
 msgid "Parted Magic"
 msgstr "Parted Magic"
@@ -157,128 +157,128 @@ msgstr "Parted Magic"
 msgid ""
 "Parted Magic ISO file named partedmagic.iso should be located in this shared"
 " folder."
-msgstr "Parted Magic ISO fil ved navn partedmagic.iso skal placeres i denne delte mappe."
+msgstr "La ISO de Parted Magic, debe llamarse partedmagic.iso y debe guardarse en esta carpeta compartida."
 
 msgid "Path"
-msgstr "Sti"
+msgstr "Ruta"
 
 msgid "PhotoRec"
 msgstr "PhotoRec"
 
 msgid "Portable Document Format, Adobe Illustrator"
-msgstr "Transportabel Dokument Format, Adobe Illustrator"
+msgstr "PDF, Adobe Illustrator"
 
 msgid "Portable/JPEG/Multiple-Image Network Graphics"
-msgstr "Transportabel/JPEG/Flere-Billede Netværk Grafik"
+msgstr "Portable/JPEG/Multiple-Image Network Graphics"
 
 msgid "Reboot to Clonezilla"
-msgstr "Genstart til Clonezilla"
+msgstr "Reiniciar como Clonezilla"
 
 msgid "Reboot to GParted Live"
-msgstr "Genstart til GParted Live"
+msgstr "Reiniciar y arrancar GParted Live"
 
 msgid "Reboot to OpenMediaVault"
-msgstr "Genstart til OpenMediaVault"
+msgstr "Reiniciar como OpenMediaVault"
 
 msgid "Reboot to Parted Magic"
-msgstr "Genstart til Parted Magic"
+msgstr "Reiniciar como Parted Magic"
 
 msgid "Reboot to SystemRescueCD"
-msgstr "Genstart til SystemRescueCD"
+msgstr "Reiniciar como SystemRescueCD"
 
 msgid "Recover using Extundelete"
-msgstr "Genskab ved hjælp af Extundelete"
+msgstr "Recuperar usando ExtUndelete"
 
 msgid "Recover using Photorec"
-msgstr "Genskab med Photorec"
+msgstr "Recuperar usando PhotoRec"
 
 msgid "Recover with output"
-msgstr "Genskab med output"
+msgstr "Recuperar con salida"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>openmediavault</b>"
-msgstr "SSH server er aktiveret som standard.  Log ind med brugernavn: <b>root</b> og adgangskode: <b>openmediavault</b>"
+msgstr "El servidor SSH está habilitado por defecto.  Usuario: <b>root</b> y contraseña: <b>openmediavault</b>"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>root</b> and "
 "password: <b>partedmagic</b>"
-msgstr "SSH server er aktiveret som standard.  Log ind med brugernavn: <b>root</b> og adgangskode: <b>partedmagic</b>"
+msgstr "El servidor SSH está habilitado por defecto.  Usuario: <b>root</b> y contraseña: <b>partedmagic</b>"
 
 msgid ""
 "SSH server is enabled by default.  Login with username: <b>user</b> and "
 "password: <b>live</b>"
-msgstr "SSH server er aktiveret som standard.  Log ind med brugernavn: <b>user</b> og adgangskode: <b>live</b>"
+msgstr "El servidor SSH está habilitado por defecto.  Usuario: <b>root</b> y contraseña: <b>live</b>"
 
 msgid "Select a drive ..."
-msgstr "Vælg en disk ..."
+msgstr "Seleccionar un disco ..."
 
 msgid "Select a volume ..."
-msgstr "Vælg et drev ..."
+msgstr "Seleccionar un volumen ..."
 
 msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr "Indstil grub bootloader til at boote fra Clonezilla ISO <b>EN</b> gang."
+msgstr "Indica al cargador grub que arranque como Clonezilla <b>UNA</b> vez."
 
 msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
-msgstr "Indstil grub bootloader til at boote fra GParted Live ISO <b>EN</b> gang."
+msgstr "Configura el cargador grub para arrancar la imagen ISO de GParted Live <b>UNA</b> vez"
 
 msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr "Indstil grub bootloader til at boote fra Parted Magic ISO <b>EN</b> gang."
+msgstr "Indica al cargador grub que arranque desde la ISO Parted Magic<b>UNA</b> vez."
 
 msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr "Indstil grub bootloader til at boote fra SystemRescueCD ISO <b>EN</b> gang."
+msgstr "Indica al cargador grub que arranque desde la ISO SystemRescueCD <b>UNA</b> vez."
 
 msgid "Sets grub bootloader to boot normally from OpenMediaVault."
-msgstr "Indstil grub bootloader til at boote normalt fra OpenMediaVault. "
+msgstr "Indica al cargador grub que arranque como OMV."
 
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "Opciones"
 
 msgid "Shared Folder"
-msgstr "Delt mappe"
+msgstr "Carpetas compartidas"
 
 msgid "Shared folder where recovered files will be placed."
-msgstr "Delt mappe hvor genskabte filer vil blive placeret."
+msgstr "Carpeta compartida donde los archivos recuperados serán guardados."
 
 msgid "Silent Recover"
-msgstr "Stille Genskabning"
+msgstr "Recuperación silenciosa"
 
 msgid "Source"
-msgstr "Kilde"
+msgstr "Origen"
 
 msgid "System Backup"
-msgstr "System Backup"
+msgstr "Backup del sistema"
 
 msgid "SystemRescueCD"
 msgstr "SystemRescueCD"
 
 msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-msgstr "Tag Billede Fil Format og nogle raw fil formater (pef/nef/dcr/sr2/cr2)"
+msgstr "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
 
 msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr "Tekst filer med header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
+msgstr "rchivos de texto con cabeceras: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
 "accidentally deleted using Extundelete."
-msgstr "Dette vil forsøge genskabning af tabte filer fra en ødelagt disk eller utilsigtet sletning ved brug af Extundelete."
+msgstr "Se intentará recuperar archivos borrados o perdidos de un disco dañado o borrado accidentalmente usando ExtUndelete"
 
 msgid ""
 "This will attempt recovery of lost files from a damaged drive or "
 "accidentally deleted using PhotoRec."
-msgstr "Dette vil forsøge genskabning af tabte filer fra en ødelagt disk eller utilsigtet sletning ved brug af PhotoRec."
+msgstr "Esto tratará de recuperar los archivos perdidos de un disco dañado o borrado accidentalmente usando PhotoRec"
 
 msgid "Volume"
-msgstr "Drev"
+msgstr "Volumen"
 
 msgid ""
 "When connecting via ssh, the ssh key will be different than the "
 "OpenMediaVault ssh key and need to be updated on the client system."
-msgstr "Ved forbindelse via ssh, vil ssh nøglen være forskellig fra OpenMediaVault ssh nøglen og skal opdateres på klient systemet."
+msgstr "Cuando se conecte via SSH, las claves SSH deben ser diferentes a la clave SSH de OMV y deben actualizarse en el cliente."
 
 msgid ""
 "When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr "Ved ekstern log ind, så start clonezilla med: <b>sudo clonezilla</b>"
+msgstr "Cuando se logue remotamente, arrancar Clonezilla con:  <b>sudo clonezilla</b>"
 
 msgid "bmp"
 msgstr "bmp"
@@ -287,7 +287,7 @@ msgid "bz2"
 msgstr "bz2"
 
 msgid "bzip2 compressed data"
-msgstr "bzip2 komprimeret data"
+msgstr "bzip2 compressed data"
 
 msgid "doc"
 msgstr "doc"
@@ -296,7 +296,7 @@ msgid "gz"
 msgstr "gz"
 
 msgid "gzip compressed data"
-msgstr "gzip komprimeret data"
+msgstr "gzip compressed data"
 
 msgid "link"
 msgstr "link"
@@ -338,4 +338,4 @@ msgid "zip"
 msgstr "zip"
 
 msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr "zip arkiv inklusiv OpenOffice og MSOffice 2007"
+msgstr "Archivos zip incluyendo OpenOffice y MSOffice 2007"
