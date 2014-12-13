@@ -33,6 +33,67 @@ Ext.define("OMV.module.admin.system.backup.Clonezilla", {
     hideResetButton : true,
     mode            : "local",
 
+    initComponent: function() {
+        var me = this;
+        OMV.Rpc.request({
+            scope    : this,
+            callback : function(id, success, response) {
+                var parent = me.up('tabpanel');
+
+                if (!parent)
+                    return;
+
+                var arch = response.arch;
+                var n = arch.indexOf("arm");
+                var panel = parent.down('panel[title=' + _("Clonezilla") + ']');
+                if (panel) {
+                    if (n < 0) {
+                        panel.tab.show();
+                    } else {
+                        panel.tab.hide();
+                    }
+                }
+                panel = parent.down('panel[title=' + _("SystemRescueCD") + ']');
+                if (panel) {
+                    if (n < 0) {
+                        panel.tab.show();
+                    } else {
+                        panel.tab.hide();
+                    }
+                }
+                panel = parent.down('panel[title=' + _("GParted Live") + ']');
+                if (panel) {
+                    if (n < 0) {
+                        panel.tab.show();
+                    } else {
+                        panel.tab.hide();
+                    }
+                }
+                panel = parent.down('panel[title=' + _("Parted Magic") + ']');
+                if (panel) {
+                    if (n < 0) {
+                        panel.tab.show();
+                    } else {
+                        panel.tab.hide();
+                    }
+                }
+                if (n > -1) {
+                    panel = parent.down('panel[title=' + _("PhotoRec") + ']');
+                    if (panel) {
+                        parent.setActiveTab(panel);
+                    }
+                }
+            },
+            relayErrors : false,
+            rpcData     : {
+                service  : "OmvExtrasOrg",
+                method   : "getArch"
+            }
+        });
+
+        me.callParent(arguments);
+    },
+
     getFormItems : function() {
         var me = this;
         return [{
