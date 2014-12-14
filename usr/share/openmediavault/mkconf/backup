@@ -7,11 +7,11 @@ set -e
 
 ISO_PATH="/boot"
 GRUB_CLONEZILLA="/etc/grub.d/42_clonezilla"
-CLONEZILLA_VERSION="2.2.4-12"
+CLONEZILLA_VERSION="2.3.1-18"
 CLONEZILLA_ISO="clonezilla-live-${CLONEZILLA_VERSION}-i686-pae.iso"
 
 GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
-SYSRESCCD_VERSION="4.4.0"
+SYSRESCCD_VERSION="4.4.1"
 SYSRESCCD_ISO="systemrescuecd-x86-${SYSRESCCD_VERSION}.iso"
 
 GRUB_PARTEDMAGIC="/etc/grub.d/42_partedmagic"
@@ -98,13 +98,23 @@ installsysresccd()
         wget "https://sourceforge.net/projects/systemrescuecd/files/sysresccd-x86/${SYSRESCCD_VERSION}/${SYSRESCCD_ISO}/download" -O ${ISO_PATH}/${SYSRESCCD_ISO}
     fi
 
+    ARCH="`/bin/uname -m`"
+    case "$ARCH" in
+        x86_64)
+            rescue="64"
+        ;;
+        *)
+            rescue="32"
+        ;;
+    esac
+
     cat <<EOF > ${GRUB_SYSRESCCD}
 #!/bin/sh
 exec tail -n +3 \$0
 menuentry "SystemRescueCD" {
   set isofile="${ISO_PATH}/${SYSRESCCD_ISO}"
   loopback loop \$isofile
-  linux (loop)/isolinux/rescue32 nomodeset setkmap=us rootpass=openmediavault docache isoloop=\$isofile
+  linux (loop)/isolinux/rescue${rescue} nomodeset setkmap=us rootpass=openmediavault docache isoloop=\$isofile
   initrd (loop)/isolinux/initram.igz
 }
 EOF
