@@ -31,6 +31,10 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "extundelete" ""
         fi
 
+        if ! omv_config_exists "${SERVICE_XPATH}/rear"; then
+            omv_config_add_element "${SERVICE_XPATH}" "rear" ""
+        fi
+
         dpkg-trigger update-fixperms
         dpkg-trigger update-locale
     ;;

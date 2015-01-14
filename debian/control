@@ -9,7 +9,8 @@ Homepage: http://omv-extras.org/
 
 Package: openmediavault-backup
 Architecture: all
-Depends: openmediavault (>= 1.0.29), rsync, testdisk, extundelete
+Depends: openmediavault (>= 1.9), rsync, testdisk, extundelete, rear,
+ openmediavault-usbbackup
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault
  system minus data drives for restoration in emergency

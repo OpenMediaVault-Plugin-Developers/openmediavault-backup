@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2015 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -149,6 +149,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "extundelete",
     path      : "/system/backup",
     text      : _("Extundelete"),
-    position  : 60,
+    position  : 70,
     className : "OMV.module.admin.system.backup.Extundelete"
 });

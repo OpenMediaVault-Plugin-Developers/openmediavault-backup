@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2015 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -180,6 +180,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "partedmagic",
     path      : "/system/backup",
     text      : _("Parted Magic"),
-    position  : 40,
+    position  : 50,
     className : "OMV.module.admin.system.backup.Partedmagic"
 });

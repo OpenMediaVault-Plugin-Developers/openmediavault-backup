@@ -286,6 +286,38 @@ rebootomv()
     fi
 }
 
+mkrearconfig()
+{
+    rearlocalconf="/etc/rear/local.conf"
+
+    backuptype=$(omv_config_get "//system/backup/rear/backuptype")
+    output=$(omv_config_get "//system/backup/rear/output")
+    grubrescuepassword=$(omv_config_get "//system/backup/rear/grubrescuepassword")
+    sshpassword=$(omv_config_get "//system/backup/rear/sshpassword")
+    compressiontype=$(omv_config_get "//system/backup/rear/compressiontype")
+    excludes=$(omv_config_get "//system/backup/rear/excludes")
+
+    #=$(omv_config_get "//system/backup/rear/")
+    #=$(omv_config_get "//system/backup/rear/")
+    #=$(omv_config_get "//system/backup/rear/")
+
+}
+
+rearbackup()
+{
+
+}
+
+rearrescue()
+{
+
+}
+
+rearonly()
+{
+
+}
+
 case $2 in
     backup)
         backup
@@ -327,6 +359,21 @@ case $2 in
         rebootomv
     ;;
 
+    rearbackup)
+        mkrearconfig
+        rearbackup
+    ;;
+
+    rearrescue)
+        mkrearconfig
+        rearrescue
+    ;;
+
+    rearonly)
+        mkrearconfig
+        rearonly
+    ;;
+    
 esac
 
 exit 0

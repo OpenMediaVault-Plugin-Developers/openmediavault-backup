@@ -1,6 +1,5 @@
 /**
- * Copyright (C) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
- * Copyright (C) 2013-2014 OpenMediaVault Plugin Developers
+ * Copyright (C) 2015 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,57 +14,105 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 // require("js/omv/WorkspaceManager.js")
 // require("js/omv/workspace/form/Panel.js")
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
-// require("js/omv/form/plugin/LinkedFields.js")
+// require("js/omv/data/proxy/Rpc.js")
+// require("js/omv/workspace/window/plugin/ConfigObject.js")
 // require("js/omv/window/MessageBox.js")
 
 Ext.define("OMV.module.admin.system.backup.Rear", {
     extend : "OMV.workspace.form.Panel",
     uses   : [
         "OMV.data.Model",
-        "OMV.data.Store"
+        "OMV.data.Store",
+        "OMV.workspace.window.plugin.ConfigObject",
+        "OMV.form.plugin.LinkedFields"
     ],
+
+    plugins: [{
+        ptype        : "linkedfields",
+        correlations : [{
+            conditions : [{
+                name  : "output",
+                value : "USB"
+            }],
+            name       : [
+                "fsuuid"
+            ],
+            properties : [
+                "show"
+            ]
+        },{
+            conditions : [{
+                name  : "output",
+                value : "ISO"
+            }],
+            name       : [
+                "outputurltype",
+                "outputurl",
+                "outputusername",
+                "outputpassword"
+            ],
+            properties : [
+                "show"
+            ]
+        },{
+            conditions : [{
+                name  : "output",
+                value : "ISO"
+            }],
+            name       : [
+                "outputurl"
+            ],
+            properties : [
+                "!allowBlank"
+            ]
+        },{
+            conditions : [{
+                name  : "backuptype",
+                value : "incremental"
+            }],
+            name       : [
+                "incrementalday"
+            ],
+            properties : [
+                "show"
+            ]
+        }]
+    }],
 
     rpcService   : "Backup",
     rpcGetMethod : "getRear",
     rpcSetMethod : "setRear",
 
+    hideOkButton    : false,
+    hideResetButton : true,
+
     getButtonItems : function() {
         var me = this;
         var items = me.callParent(arguments);
         items.push({
-            id      : me.getId() + "-mkbackuponly",
             xtype   : "button",
             text    : _("Backup"),
-            icon    : "images/add.png",
-            iconCls : Ext.baseCSSPrefix + "btn-icon-16x16",
             scope   : me,
-            handler : Ext.Function.bind(me.onBackupButton, me, [ "only" ])
-        },{
-            id      : me.getId() + "-mkbackup",
-            xtype   : "button",
-            text    : _("Backup+Rescue"),
-            icon    : "images/add.png",
+            icon    : "images/save.png",
             iconCls : Ext.baseCSSPrefix + "btn-icon-16x16",
-            scope   : me,
-            handler : Ext.Function.bind(me.onBackupButton, me, [ "backup" ])
+            menu    : [{
+                text    : _("Backup only"),
+                handler : Ext.Function.bind(me.onBackupButton, me, [ "only" ])
+            },{
+                text    : _("Backup + Rescue"),
+                handler : Ext.Function.bind(me.onBackupButton, me, [ "backup" ])
+            },{
+                text    : _("Rescue only"),
+                handler : Ext.Function.bind(me.onBackupButton, me, [ "rescue" ])
+            }]
         },{
-            id      : me.getId() + "-mkrescue",
-            xtype   : "button",
-            text    : _("Rescue"),
-            icon    : "images/add.png",
-            iconCls : Ext.baseCSSPrefix + "btn-icon-16x16",
-            scope   : me,
-            handler : Ext.Function.bind(me.onBackupButton, me, [ "rescue" ])
-        },{
-            id      : me.getId() + "-dump",
             xtype   : "button",
             text    : _("Info"),
-            icon    : "images/add.png",
+            icon    : "images/details.png",
             iconCls : Ext.baseCSSPrefix + "btn-icon-16x16",
             scope   : me,
             handler : Ext.Function.bind(me.onDumpButton, me, [ me ])
@@ -74,6 +121,7 @@ Ext.define("OMV.module.admin.system.backup.Rear", {
     },
 
     getFormItems : function() {
+        var me = this;
         return [{
             xtype    : "fieldset",
             title    : "General settings",
@@ -81,28 +129,6 @@ Ext.define("OMV.module.admin.system.backup.Rear", {
                 labelSeparator : ""
             },
             items : [{
-                xtype      : "combo",
-                name       : "output",
-                fieldLabel : _("Output"),
-                mode       : "local",
-                store      : new Ext.data.SimpleStore({
-                    fields  : [ "value", "text" ],
-                    data    : [
-                        [ "ISO", _("ISO") ],
-                        [ "USB", _("SUB") ]
-                    ]
-                }),
-                displayField  : "text",
-                valueField    : "value",
-                allowBlank    : false,
-                editable      : false,
-                triggerAction : "all",
-                value         : "ISO",
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("")
-                }]
-            },{
                 xtype      : "combo",
                 name       : "backuptype",
                 fieldLabel : _("Backup Type"),
@@ -122,23 +148,157 @@ Ext.define("OMV.module.admin.system.backup.Rear", {
                 value         : "incremental",
                 plugins    : [{
                     ptype : "fieldinfo",
-                    text  : _("")
+                    text  : _("Incremental")
                 }]
+            },{
+                xtype      : "combo",
+                name       : "incrementalday",
+                fieldLabel : _("Incremental Day"),
+                mode       : "local",
+                hidden     : true,
+                store      : new Ext.data.SimpleStore({
+                    fields  : [ "value", "text" ],
+                    data    : [
+                        [ "sun", _("Sunday") ],
+                        [ "mon", _("Monday") ],
+                        [ "tue", _("Tuesday") ],
+                        [ "wed", _("Wednesday") ],
+                        [ "thu", _("Thursday") ],
+                        [ "fri", _("Friday") ],
+                        [ "sat", _("Saturday") ]
+                    ]
+                }),
+                displayField  : "text",
+                valueField    : "value",
+                allowBlank    : false,
+                editable      : false,
+                triggerAction : "all",
+                value         : "mon"
+            },{
+                xtype      : "combo",
+                name       : "output",
+                fieldLabel : _("Output"),
+                mode       : "local",
+                store      : new Ext.data.SimpleStore({
+                    fields  : [ "value", "text" ],
+                    data    : [
+                        [ "ISO", _("ISO") ],
+                        [ "USB", _("USB") ]
+                    ]
+                }),
+                displayField  : "text",
+                valueField    : "value",
+                allowBlank    : false,
+                editable      : false,
+                triggerAction : "all",
+                value         : "ISO",
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("USB")
+                }]
+            },{
+                xtype         : "combo",
+                name          : "fsuuid",
+                fieldLabel    : _("Device"),
+                emptyText     : _("Select a device ..."),
+                allowBlank    : false,
+                allowNone     : false,
+                editable      : false,
+                hidden        : true,
+                triggerAction : "all",
+                displayField  : "description",
+                valueField    : "uuid",
+                trigger2Cls   : Ext.baseCSSPrefix + "form-search-trigger",
+                store         : Ext.create("OMV.data.Store", {
+                    autoLoad : true,
+                    model    : OMV.data.Model.createImplicit({
+                        idProperty  : "uuid",
+                        fields      : [
+                            { name : "uuid", type : "string" },
+                            { name : "devicefile", type : "string" },
+                            { name : "label", type : "string" },
+                            { name : "type", type : "string" },
+                            { name : "description", type : "string" }
+                        ]
+                    }),
+                    proxy : {
+                        type             : "rpc",
+                        appendSortParams : false,
+                        rpcData          : {
+                            service : "UsbBackup",
+                            method  : "getCandidates"
+                        }
+                    },
+                    sorters : [{
+                        direction : "ASC",
+                        property  : "devicefile"
+                    }]
+                }),
+                plugins : [{
+                    ptype : "fieldinfo",
+                    text  : _("The external storage device.")
+                }],
+                listeners : {
+                    scope       : me,
+                    afterrender : function(c, eOpts) {
+                        // Add tooltip to trigger button.
+                        var trigger2El = c.getTriggerButtonEl(c.trigger2Cls);
+                        Ext.tip.QuickTipManager.register({
+                            target : trigger2El.id,
+                            text   : _("Scan")
+                        });
+                    }
+                },
+                onTrigger2Click : function(c) {
+                    var me = this;
+                    // Reload list of detected external storage devices.
+                    delete me.lastQuery;
+                    me.store.reload();
+                }
+            },{
+                xtype      : "combo",
+                name       : "outputurltype",
+                fieldLabel : _("Output URL Type"),
+                mode       : "local",
+                hidden     : true,
+                store      : new Ext.data.SimpleStore({
+                    fields  : [ "value", "text" ],
+                    data    : [
+                        [ "file", _("file") ],
+                        [ "ftp", _("ftp") ],
+                        [ "ftps", _("ftps") ],
+                        [ "http", _("http") ],
+                        [ "https", _("https") ],
+                        [ "nfs", _("nfs") ],
+                        [ "rsync", _("rsync") ],
+                        [ "sftp", _("sftp") ],
+                        [ "smb", _("smb/cifs") ],
+                    ]
+                }),
+                displayField  : "text",
+                valueField    : "value",
+                allowBlank    : false,
+                editable      : false,
+                triggerAction : "all",
+                value         : "nfs"
             },{
                 xtype      : "textfield",
                 name       : "outputurl",
-                fieldLabel : _("Output URL"),
-                allowBlank : false,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("OUTPUT_URL=file://  Write the image to disk. The default is in /var/lib/rear/output/.
-                               OUTPUT_URL=ftp://   Write the image using lftp and the FTP protocol.
-                               OUTPUT_URL=ftps://  Write the image using lftp and the FTPS protocol.
-                               OUTPUT_URL=http://  Write the image using lftp and the HTTP (PUT) procotol.
-                               OUTPUT_URL=https:// Write the image using lftp and the HTTPS (PUT) protocol.
-                               OUTPUT_URL=sftp://  Write the image using lftp and the secure FTP (SFTP) protocol.
-                               OUTPUT_URL=rsync:// Write the image using rsync and the RSYNC protocol.")
-                }]
+                fieldLabel : _("Output Path/URL"),
+                allowBlank : true,
+                hidden     : true
+            },{
+                xtype      : "textfield",
+                name       : "outputusername",
+                fieldLabel : _("Output Username"),
+                allowBlank : true,
+                hidden     : true
+            },{
+                xtype      : "textfield",
+                name       : "outputpassword",
+                fieldLabel : _("Output Password"),
+                allowBlank : true,
+                hidden     : true
             },{
                 xtype      : "combo",
                 name       : "compressiontype",
@@ -160,20 +320,27 @@ Ext.define("OMV.module.admin.system.backup.Rear", {
                 value         : "gzip",
                 plugins    : [{
                     ptype : "fieldinfo",
-                    text  : _("")
+                    text  : _("gzip")
+                }]
+            },{
+                xtype       : "textfield",
+                name        : "excludes",
+                fieldLabel  : _("Excludes"),
+                allowBlank  : true,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Put a space between exclusions. Default exclusions:  /tmp/* /dev/shm/* /var/lib/rear/output/*")
                 }]
             },{
                 xtype       : "passwordfield",
                 name        : "grubrescuepassword",
                 fieldLabel  : _("Grub Rescue Password"),
-                allowBlank  : true,
-                submitValue : false
+                allowBlank  : true
             },{
                 xtype       : "passwordfield",
                 name        : "sshpassword",
                 fieldLabel  : _("Password"),
-                allowBlank  : true,
-                submitValue : false
+                allowBlank  : true
             }]
         }];
     },
@@ -181,6 +348,7 @@ Ext.define("OMV.module.admin.system.backup.Rear", {
     onBackupButton : function(cmd) {
         var me = this;
         var title = "";
+        me.doSubmit();
         switch(cmd) {
             case "only":
                 title = _("Make backup without rescue ...");
@@ -194,7 +362,7 @@ Ext.define("OMV.module.admin.system.backup.Rear", {
         var wnd = Ext.create("OMV.window.Execute", {
             title           : title,
             rpcService      : "Backup",
-            rpcMethod       : "doBackup",
+            rpcMethod       : "doRearBackup",
             rpcParams       : {
                 "command" : cmd
             },
@@ -223,6 +391,7 @@ Ext.define("OMV.module.admin.system.backup.Rear", {
 
     onDumpButton : function(cmd) {
         var me = this;
+        me.doSubmit();
         var wnd = Ext.create("OMV.window.Execute", {
             title           : "REAR Information",
             rpcService      : "Backup",
@@ -253,8 +422,8 @@ Ext.define("OMV.module.admin.system.backup.Rear", {
 
 OMV.WorkspaceManager.registerPanel({
     id        : "rear",
-    path      : "/system/rear",
-    text      : _("Relax-and-Recover (REAR)"),
+    path      : "/system/backup",
+    text      : _("Relax-and-Recover"),
     position  : 10,
     className : "OMV.module.admin.system.backup.Rear"
 });

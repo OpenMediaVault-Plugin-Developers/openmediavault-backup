@@ -26,6 +26,9 @@ require_once "openmediavault/util.inc";
 
 class OMVRpcServiceBackup extends OMVRpcServiceAbstract
 {
+
+    private static $commands = array("backup","only","rescue");
+
     public function getName()
     {
         return 'Backup';
@@ -60,6 +63,12 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         return $path;
     }
 
+    private function getXPathRear()
+    {
+        $path = sprintf( "%s/rear", $this->getXPath() );
+        return $path;
+    }
+
     private function getEventMessagePath()
     {
         $path = sprintf( "org.openmediavault.system.%s", $this->getPluginName() );
@@ -75,6 +84,12 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
     private function getEventMessagePathPhotorec()
     {
         $path = sprintf( "%s.photorec", $this->getEventMessagePath() );
+        return $path;
+    }
+
+    private function getEventMessagePathRear()
+    {
+        $path = sprintf( "%s.rear", $this->getEventMessagePath() );
         return $path;
     }
 
@@ -96,6 +111,11 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
     private function getPhotorecBin()
     {
         return "/usr/bin/photorec";
+    }
+
+    private function getRearBin()
+    {
+        return "/usr/sbin/rear";
     }
 
     public function initialize()
@@ -122,6 +142,11 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         $this->registerMethod('setExtundelete');
         $this->registerMethod('doRecoverExt');
         $this->registerMethod('doSilentExt');
+
+        $this->registerMethod('getRear');
+        $this->registerMethod('setRear');
+        $this->registerMethod('doRearBackup');
+        $this->registerMethod('doDump');
     }
 
     public function getSettings($params, $context)
@@ -143,6 +168,7 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
         unset($object['extundelete']);
         unset($object['photorec']);
         unset($object['partedmagic']);
+        unset($object['rear']);
 
         return $object;
     }
@@ -189,7 +215,8 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
             "path"        => $params['path'],
             "photorec"    => isset($oldObject['photorec']) ? $oldObject['photorec'] : array(),
             "partedmagic" => isset($oldObject['partedmagic']) ? $oldObject['partedmagic'] : array(),
-            "extundelete" => isset($oldObject['extundelete']) ? $oldObject['extundelete'] : array()
+            "extundelete" => isset($oldObject['extundelete']) ? $oldObject['extundelete'] : array(),
+            "rear"        => isset($oldObject['rear']) ? $oldObject['rear'] : array()
         );
 
         // Set configuration object
@@ -1011,6 +1038,167 @@ class OMVRpcServiceBackup extends OMVRpcServiceAbstract
                 $cmd,
                 implode("\n", $output)
             );
+        }
+    }
+
+    public function getRear($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Get configuration object
+        $object = $xmlConfig->get( $this->getXPathRear() );
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPathRear()
+            );
+        }
+
+        return $object;
+    }
+
+    public function setRear($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "backuptype"         : { "type" : "string" },
+                "incrementalday"     : { "type" : "string", "optional" : true },
+                "output"             : { "type" : "string" },
+                "fsuuid"             : { "type" : "string", "optional" : true  },
+                "outputurltype"      : { "type" : "string", "optional" : true },
+                "outputurl"          : { "type" : "string", "optional" : true },
+                "outputusername"     : { "type" : "string", "optional" : true },
+                "outputpassword"     : { "type" : "string", "optional" : true },
+                "compressiontype"    : { "type" : "string" },
+                "excludes"           : { "type" : "string" },
+                "grubrescuepassword" : { "type" : "string" },
+                "sshpassword"        : { "type" : "string" }
+            }
+        }');
+
+        // Prepare configuration data
+        $object = array(
+            "backuptype"         => $params['backuptype'],
+            "incrementalday"     => $params['incrementalday'],
+            "output"             => $params['output'],
+            "fsuuid"             => $params['fsuuid'],
+            "outputurltype"      => $params['outputurltype'],
+            "outputurl"          => $params['outputurl'],
+            "outputusername"     => $params['outputusername'],
+            "outputpassword"     => $params['outputpassword'],
+            "compressiontype"    => $params['compressiontype'],
+            "excludes"           => $params['excludes'],
+            "grubrescuepassword" => $params['grubrescuepassword'],
+            "sshpassword"        => $params['sshpassword']
+        );
+
+        // Set configuration object
+        if (false === $xmlConfig->replace($this->getXPathRear(), $object))
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
+                $this->getXPathRear()
+            );
+    }
+
+    public function doRearBackup($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "command" : { "type" : "string" }
+            }
+        }');
+
+        if (!in_array($params['command'], self::$commands))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_MISC_OPERATION_DENIED,
+                sprinf("Unknown command - %s", $params['command'])
+            );
+        }
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+
+        if ($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = sprintf("omv-mkconf backup rear%s 2>&1", $params['command']);
+            $this->exec($cmd, $output, $bgOutputFilename);
+
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            exit(0);
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function doDump($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if ($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = sprintf("%s dump 2>&1", $this->getRearBin());
+
+            $this->exec($cmd, $output, $bgOutputFilename);
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            exit(0);
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
         }
     }
 }
