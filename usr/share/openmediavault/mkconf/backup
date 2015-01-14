@@ -288,7 +288,9 @@ rebootomv()
 
 mkrearconfig()
 {
-    rearlocalconf="/etc/rear/local.conf"
+    rearconfdir="/etc/rear"
+    rearlocalconf="${rearconfdir}/local.conf"
+    rearcifscreds="${rearconfdir}/.cifs"
 
     backuptype=$(omv_config_get "//system/backup/rear/backuptype")
     output=$(omv_config_get "//system/backup/rear/output")
@@ -297,25 +299,57 @@ mkrearconfig()
     compressiontype=$(omv_config_get "//system/backup/rear/compressiontype")
     excludes=$(omv_config_get "//system/backup/rear/excludes")
 
-    #=$(omv_config_get "//system/backup/rear/")
-    #=$(omv_config_get "//system/backup/rear/")
-    #=$(omv_config_get "//system/backup/rear/")
+    echo "OUTPUT=${output}" > ${rearlocalconf}
+    echo "BACKUP=NETFS" >> ${rearlocalconf}
+    echo "BACKUP_TYPE=${backuptype}" >> ${rearlocalconf}
+    echo "BACKUP_PROG_COMPRESS_OPTIONS=${compressiontype}" >> ${rearlocalconf}
+    echo "BACKUP_PROG_EXCLUDE=('tmp' '/dev/shm/*' ${backuptype})" >> ${rearlocalconf}
 
+    if [ "${backuptype}" = "incremental" ]; then
+        incrementalday=$(omv_config_get "//system/backup/rear/incrementalday")
+        echo "FULLBACKUPDAY=”${incrementalday}" >> ${rearlocalconf}
+    fi
+
+    if [ "${output}" = "ISO" ]; then
+        backupurl=$(omv_config_get "//system/backup/rear/outputurl")
+        backupurltype=$(omv_config_get "//system/backup/rear/outputurltype")
+        echo "BACKUP_URL=${backupurltype}://${backupurl}" >> ${rearlocalconf}
+        echo "BACKUP_PROG=tar" >> ${rearlocalconf}
+
+        if ["${outputurltype}" = "smb" ]; then
+            backupusername=$(omv_config_get "//system/backup/rear/outputusername")
+            backuppassword=$(omv_config_get "//system/backup/rear/outputpassword")
+            echo "username=${backupusername}" > ${rearcifscreds}
+            echo "password=${backuppassword}" >> ${rearcifscreds}
+
+            echo "BACKUP_OPTIONS=\"cred=${rearcifscreds}\"" >> ${rearlocalconf}
+        fi
+    else
+        usburl=$(omv_config_get "//system/backup/rear/fsuuid")
+        #usb:///dev/disk/by-path/READ-000
+        echo "BACKUP_URL=usb://" >> ${rearlocalconf}
+    fi
+
+    echo "GRUB_RESCUE_PASSWORD=\"${grubrescuepassword}\"" >> ${rearlocalconf}
+    echo "SSH_ROOT_PASSWORD=\"${sshpassword}\"" >> ${rearlocalconf}
 }
 
 rearbackup()
 {
-
+    echo "backup+rescue"
+    #/usr/sbin/rear -v mkbackup
 }
 
 rearrescue()
 {
-
+    echo "rescue only"
+    #/usr/sbin/rear -v mkrescue
 }
 
 rearonly()
 {
-
+    echo "backup only"
+    #/usr/sbin/rear -v mkbackuponly
 }
 
 case $2 in
