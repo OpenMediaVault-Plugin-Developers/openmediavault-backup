@@ -296,8 +296,8 @@ rebootomv()
 
 disablesubmenu()
 {
-    if ! grep -q 'GRUB_DISABLE_SUBMENU' ${GRUB_CFG}; then
-        echo "GRUB_DISABLE_SUBMENU=y" >> ${GRUB_CFG}
+    if ! grep -q 'GRUB_DISABLE_SUBMENU' ${GRUB}; then
+        echo "GRUB_DISABLE_SUBMENU=y" >> ${GRUB}
         update-grub
     fi
 }
