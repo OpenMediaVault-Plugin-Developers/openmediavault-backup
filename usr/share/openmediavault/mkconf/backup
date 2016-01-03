@@ -7,18 +7,18 @@ set -e
 
 ISO_PATH="/boot"
 GRUB_CLONEZILLA="/etc/grub.d/42_clonezilla"
-CLONEZILLA_VERSION="2.3.1-18"
+CLONEZILLA_VERSION="2.4.2-61"
 CLONEZILLA_ISO="clonezilla-live-${CLONEZILLA_VERSION}-i686-pae.iso"
 
 GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
-SYSRESCCD_VERSION="4.4.1"
+SYSRESCCD_VERSION="4.7.0"
 SYSRESCCD_ISO="systemrescuecd-x86-${SYSRESCCD_VERSION}.iso"
 
 GRUB_PARTEDMAGIC="/etc/grub.d/42_partedmagic"
 PARTEDMAGIC_ISO="partedmagic.iso"
 
 GRUB_GPARTEDLIVE="/etc/grub.d/42_gpartedlive"
-GPARTEDLIVE_VERSION="0.20.0-2"
+GPARTEDLIVE_VERSION="0.24.0-2"
 GPARTEDLIVE_ISO="gparted-live-${GPARTEDLIVE_VERSION}-i486.iso"
 
 GRUB="/etc/default/grub"
@@ -181,6 +181,8 @@ rebootclonezilla()
         NEW="GRUB_DEFAULT=saved"
         DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
 
+        disablesubmenu
+
         if grep -q 'submenu' ${GRUB_CFG}; then
             ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n Clonezilla | cut -f1 -d:)
         else
@@ -204,6 +206,8 @@ rebootsysresccd()
     else
         NEW="GRUB_DEFAULT=saved"
         DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
+
+        disablesubmenu
 
         if grep -q 'submenu' ${GRUB_CFG}; then
             ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n SystemRescueCD | cut -f1 -d:)
@@ -229,6 +233,8 @@ rebootpartedmagic()
         NEW="GRUB_DEFAULT=saved"
         DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
 
+        disablesubmenu
+
         if grep -q 'submenu' ${GRUB_CFG}; then
             ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n 'Parted Magic' | cut -f1 -d:)
         else
@@ -252,6 +258,8 @@ rebootgpartedlive()
     else
         NEW="GRUB_DEFAULT=saved"
         DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
+
+        disablesubmenu
 
         if grep -q 'submenu' ${GRUB_CFG}; then
             ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n GParted | cut -f1 -d:)
@@ -286,70 +294,12 @@ rebootomv()
     fi
 }
 
-mkrearconfig()
+disablesubmenu()
 {
-    rearconfdir="/etc/rear"
-    rearlocalconf="${rearconfdir}/local.conf"
-    rearcifscreds="${rearconfdir}/.cifs"
-
-    backuptype=$(omv_config_get "//system/backup/rear/backuptype")
-    output=$(omv_config_get "//system/backup/rear/output")
-    grubrescuepassword=$(omv_config_get "//system/backup/rear/grubrescuepassword")
-    sshpassword=$(omv_config_get "//system/backup/rear/sshpassword")
-    compressiontype=$(omv_config_get "//system/backup/rear/compressiontype")
-    excludes=$(omv_config_get "//system/backup/rear/excludes")
-
-    echo "OUTPUT=${output}" > ${rearlocalconf}
-    echo "BACKUP=NETFS" >> ${rearlocalconf}
-    echo "BACKUP_TYPE=${backuptype}" >> ${rearlocalconf}
-    echo "BACKUP_PROG_COMPRESS_OPTIONS=${compressiontype}" >> ${rearlocalconf}
-    echo "BACKUP_PROG_EXCLUDE=('tmp' '/dev/shm/*' ${backuptype})" >> ${rearlocalconf}
-
-    if [ "${backuptype}" = "incremental" ]; then
-        incrementalday=$(omv_config_get "//system/backup/rear/incrementalday")
-        echo "FULLBACKUPDAY=”${incrementalday}" >> ${rearlocalconf}
+    if ! grep -q 'GRUB_DISABLE_SUBMENU' ${GRUB_CFG}; then
+        echo "GRUB_DISABLE_SUBMENU=y" >> ${GRUB_CFG}
+        update-grub
     fi
-
-    if [ "${output}" = "ISO" ]; then
-        backupurl=$(omv_config_get "//system/backup/rear/outputurl")
-        backupurltype=$(omv_config_get "//system/backup/rear/outputurltype")
-        echo "BACKUP_URL=${backupurltype}://${backupurl}" >> ${rearlocalconf}
-        echo "BACKUP_PROG=tar" >> ${rearlocalconf}
-
-        if ["${outputurltype}" = "smb" ]; then
-            backupusername=$(omv_config_get "//system/backup/rear/outputusername")
-            backuppassword=$(omv_config_get "//system/backup/rear/outputpassword")
-            echo "username=${backupusername}" > ${rearcifscreds}
-            echo "password=${backuppassword}" >> ${rearcifscreds}
-
-            echo "BACKUP_OPTIONS=\"cred=${rearcifscreds}\"" >> ${rearlocalconf}
-        fi
-    else
-        usburl=$(omv_config_get "//system/backup/rear/fsuuid")
-        #usb:///dev/disk/by-path/READ-000
-        echo "BACKUP_URL=usb://" >> ${rearlocalconf}
-    fi
-
-    echo "GRUB_RESCUE_PASSWORD=\"${grubrescuepassword}\"" >> ${rearlocalconf}
-    echo "SSH_ROOT_PASSWORD=\"${sshpassword}\"" >> ${rearlocalconf}
-}
-
-rearbackup()
-{
-    echo "backup+rescue"
-    #/usr/sbin/rear -v mkbackup
-}
-
-rearrescue()
-{
-    echo "rescue only"
-    #/usr/sbin/rear -v mkrescue
-}
-
-rearonly()
-{
-    echo "backup only"
-    #/usr/sbin/rear -v mkbackuponly
 }
 
 case $2 in
@@ -393,21 +343,9 @@ case $2 in
         rebootomv
     ;;
 
-    rearbackup)
-        mkrearconfig
-        rearbackup
+    disablesubmenu)
+        disablesubmenu
     ;;
-
-    rearrescue)
-        mkrearconfig
-        rearrescue
-    ;;
-
-    rearonly)
-        mkrearconfig
-        rearonly
-    ;;
-    
 esac
 
 exit 0

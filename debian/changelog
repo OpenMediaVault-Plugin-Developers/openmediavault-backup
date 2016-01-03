@@ -1,8 +1,11 @@
-openmediavault-backup (1.0.12) UNRELEASED; urgency=low
+openmediavault-backup (3.0) stable; urgency=low
 
-  * Add Relax-and-Recover - REAR backup
+  * Adapt for OMV 3.0
+  * Use Clonezilla 2.4.2-61
+  * Use SystemRescueCD 4.7.0
+  * Use GParted Live 0.25.0-2
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 14 Jan 2015 06:28:50 -0600
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 03 Jan 2016 11:00:25 -0600
 
 openmediavault-backup (1.0.11) stable; urgency=low
 

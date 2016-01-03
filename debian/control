@@ -4,12 +4,12 @@ XB-Plugin-Section: backup
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 Build-Depends: debhelper (>= 9.0.0)
-Standards-Version: 3.9.3
+Standards-Version: 3.9.6
 Homepage: http://omv-extras.org/
 
 Package: openmediavault-backup
 Architecture: all
-Depends: openmediavault (>= 1.9), rsync, testdisk, extundelete, rear,
+Depends: openmediavault (>= 3.0), rsync, testdisk, extundelete,
  openmediavault-usbbackup
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault
