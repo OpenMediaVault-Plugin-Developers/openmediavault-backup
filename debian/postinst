@@ -12,21 +12,20 @@ case "$1" in
         SERVICE_XPATH_NAME="backup"
         SERVICE_XPATH="/config/system/${SERVICE_XPATH_NAME}"
 
+        mntentref=""
+
         if ! omv_config_exists "${SERVICE_XPATH}"; then
-            echo "Initial configuration."
             omv_config_add_element "/config/system" "${SERVICE_XPATH_NAME}"
-            omv_config_add_element "${SERVICE_XPATH}" "sharedfolderref" ""
-        fi
-
-        if omv_config_exists "${SERVICE_XPATH}/path"; then
-            omv_config_delete "${SERVICE_XPATH}/path"
-        fi
-
-        if omv_config_exists "${SERVICE_XPATH}/mntentref"; then
-            mntentref="$(omv_config_get "${SERVICE_XPATH}/mntentref")"
-            echo "copying"
             omv_config_add_element "${SERVICE_XPATH}" "sharedfolderref" "${mntentref}"
-            omv_config_delete "${SERVICE_XPATH}/mntentref"
+        fi
+
+        if dpkg --compare-versions "${2}" lt-nl "3.2"; then
+            if omv_config_exists "${SERVICE_XPATH}/mntentref"; then
+                mntentref="$(omv_config_get "${SERVICE_XPATH}/mntentref")"
+            fi
+            omv_config_delete "${SERVICE_XPATH}"
+            omv_config_add_element "/config/system" "${SERVICE_XPATH_NAME}"
+            omv_config_add_element "${SERVICE_XPATH}" "sharedfolderref" "${mntentref}"
         fi
 
         dpkg-trigger update-fixperms
