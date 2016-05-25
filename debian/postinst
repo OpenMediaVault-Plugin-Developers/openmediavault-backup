@@ -5,34 +5,28 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-SERVICE_XPATH_NAME="backup"
-SERVICE_XPATH="/config/system/${SERVICE_XPATH_NAME}"
-SERVICE_XPATH_PHOTOREC="/config/system/${SERVICE_XPATH_NAME}/photorec"
+
 
 case "$1" in
     configure)
+        SERVICE_XPATH_NAME="backup"
+        SERVICE_XPATH="/config/system/${SERVICE_XPATH_NAME}"
 
         if ! omv_config_exists "${SERVICE_XPATH}"; then
             echo "Initial configuration."
             omv_config_add_element "/config/system" "${SERVICE_XPATH_NAME}"
-            omv_config_add_element "${SERVICE_XPATH}" "mntentref" ""
-            omv_config_add_element "${SERVICE_XPATH}" "path" ""
-
-            omv_config_add_element "${SERVICE_XPATH}" "photorec"
-            omv_config_add_element "${SERVICE_XPATH_PHOTOREC}" "freespace" "1"
-            omv_config_add_element "${SERVICE_XPATH_PHOTOREC}" "everything" "1"
+            omv_config_add_element "${SERVICE_XPATH}" "sharedfolderref" ""
         fi
 
-        if ! omv_config_exists "${SERVICE_XPATH}/partedmagic"; then
-            omv_config_add_element "${SERVICE_XPATH}" "partedmagic" ""
+        if omv_config_exists "${SERVICE_XPATH}/path"; then
+            omv_config_delete "${SERVICE_XPATH}/path"
         fi
 
-        if ! omv_config_exists "${SERVICE_XPATH}/extundelete"; then
-            omv_config_add_element "${SERVICE_XPATH}" "extundelete" ""
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/rear"; then
-            omv_config_add_element "${SERVICE_XPATH}" "rear" ""
+        if omv_config_exists "${SERVICE_XPATH}/mntentref"; then
+            mntentref="$(omv_config_get "${SERVICE_XPATH}/mntentref")"
+            echo "copying"
+            omv_config_add_element "${SERVICE_XPATH}" "sharedfolderref" "${mntentref}"
+            omv_config_delete "${SERVICE_XPATH}/mntentref"
         fi
 
         dpkg-trigger update-fixperms

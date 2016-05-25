@@ -1,0 +1,14 @@
+[{
+	"type": "rpc",
+	"id": "rpc.backup.set",
+	"params": {
+		"type": "object",
+		"properties": {
+			"sharedfolderref": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			}
+		}
+	}
+}]

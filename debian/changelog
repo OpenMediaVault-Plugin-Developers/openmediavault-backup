@@ -1,3 +1,9 @@
+openmediavault-backup (3.2) stable; urgency=low
+
+  * Remove everything but backup
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 24 May 2016 21:30:22 -0500
+
 openmediavault-backup (3.1) stable; urgency=low
 
   * Changed dependency of OMV Package to = 3.0.13 to avoid accidental user updates

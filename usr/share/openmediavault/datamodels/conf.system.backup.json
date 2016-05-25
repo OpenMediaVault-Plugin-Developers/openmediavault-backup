@@ -1,0 +1,15 @@
+{
+	"type": "config",
+	"id": "conf.system.backup",
+	"title": "Backup",
+	"queryinfo": {
+		"xpath": "//system/backup",
+		"iterable": false
+	},
+	"properties": {
+		"sharedfolderref": {
+			"type": "string",
+			"format": "uuidv4"
+		}
+	}
+}

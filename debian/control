@@ -9,19 +9,9 @@ Homepage: http://omv-extras.org/
 
 Package: openmediavault-backup
 Architecture: all
-Depends: openmediavault (=3.0.13), rsync, testdisk, extundelete,
- openmediavault-usbbackup
+Depends: openmediavault (>=3.0.15),
+         rsync
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault
  system minus data drives for restoration in emergency
  situations.
- .
- Install and boot from Clonezilla for backup/restore purposes.
- .
- Install and boot from SystemRescueCD for utility purposes.
- .
- Install and boot from GParted Live for utility purposes.
- .
- Install from shared folder and boot from Parted Magic for utility purposes.
- .
- Recovery accidentally deleted files using Photorec and/or Extundelete.

@@ -31,10 +31,10 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
     ],
 
     rpcService   : "Backup",
-    rpcGetMethod : "getSettings",
-    rpcSetMethod : "setSettings",
+    rpcGetMethod : "get",
+    rpcSetMethod : "set",
 
-    hideOkButton : true,
+    hideTopToolbar: true,
 
     getFormItems : function() {
         var me = this;
@@ -45,45 +45,9 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
                 labelSeparator : ""
             },
             items : [{
-                xtype         : "combo",
-                name          : "mntentref",
-                fieldLabel    : _("Volume"),
-                emptyText     : _("Select a volume ..."),
-                allowBlank    : false,
-                allowNone     : false,
-                editable      : false,
-                triggerAction : "all",
-                displayField  : "description",
-                valueField    : "uuid",
-                store         : Ext.create("OMV.data.Store", {
-                    autoLoad : true,
-                    model    : OMV.data.Model.createImplicit({
-                        idProperty : "uuid",
-                        fields     : [
-                            { name : "uuid", type : "string" },
-                            { name : "devicefile", type : "string" },
-                            { name : "description", type : "string" }
-                        ]
-                    }),
-                    proxy : {
-                        type : "rpc",
-                        rpcData : {
-                            service : "Backup",
-                            method  : "getCandidates"
-                        },
-                        appendSortParams : false
-                    },
-                    sorters : [{
-                        direction : "ASC",
-                        property  : "devicefile"
-                    }]
-                })
-            },{
-                xtype      : "textfield",
-                name       : "path",
-                fieldLabel : _("Path"),
-                allowNone  : true,
-                readOnly   : true
+                xtype      : "sharedfoldercombo",
+                name       : "sharedfolderref",
+                fieldLabel : _("Shared Folder")
             },{
                 xtype   : "button",
                 name    : "backup",
@@ -93,7 +57,7 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
                 margin  : "5 0 0 0"
             },{
                 border : false,
-                html   : "<ul><li>" + _("Backup the operating system drive to a data drive for emergency restoration.") + "</li></ul>"
+                html   : "<ul><li>" + _("Backup the operating system drive to the select shared folder for emergency restoration.") + "</li></ul>"
             }]
         }];
     },
@@ -119,6 +83,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "systembackup",
     path      : "/system/backup",
     text      : _("System Backup"),
-    position  : 70,
+    position  : 10,
     className : "OMV.module.admin.system.backup.SystemBackup"
 });

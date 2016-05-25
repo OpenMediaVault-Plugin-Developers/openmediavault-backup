@@ -5,347 +5,44 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-ISO_PATH="/boot"
-GRUB_CLONEZILLA="/etc/grub.d/42_clonezilla"
-CLONEZILLA_VERSION="2.4.2-61"
-CLONEZILLA_ISO="clonezilla-live-${CLONEZILLA_VERSION}-i686-pae.iso"
+# clean apt-get cache to save space
+apt-get clean
 
-GRUB_SYSRESCCD="/etc/grub.d/42_sysresccd"
-SYSRESCCD_VERSION="4.7.0"
-SYSRESCCD_ISO="systemrescuecd-x86-${SYSRESCCD_VERSION}.iso"
+# clean openmediavault upload cache and recreate Packages file
+rm -f /var/cache/openmediavault/archives/*
+touch /var/cache/openmediavault/archives/Packages
 
-GRUB_PARTEDMAGIC="/etc/grub.d/42_partedmagic"
-PARTEDMAGIC_ISO="partedmagic.iso"
+# Get the shared folder reference and path
+sfref=$(omv_config_get "/config/system/backup/sharedfolderref")
 
-GRUB_GPARTEDLIVE="/etc/grub.d/42_gpartedlive"
-GPARTEDLIVE_VERSION="0.24.0-2"
-GPARTEDLIVE_ISO="gparted-live-${GPARTEDLIVE_VERSION}-i586.iso"
+# check to see if backup path exists and backup
+if [ "${sfref}" != "" ]; then
+    sfpath=$(omv_get_sharedfolder_path "${sfref}")
 
-GRUB="/etc/default/grub"
-GRUB_BACKUP="grub.bak"
-GRUB_CFG="/boot/grub/grub.cfg"
-TFILE="/tmp/grub"
+    rsync -aAXv /* ${sfpath} \
+        --delete \
+        --exclude=/dev \
+        --exclude=/proc \
+        --exclude=/sys \
+        --exclude=/tmp \
+        --exclude=/run \
+        --exclude=/mnt \
+        --exclude=/media \
+        --exclude=/lost+found \
+        --exclude=/export \
+        --exclude=/home/ftp \
+        --exclude=/srv/ftp \
+        --exclude=/srv/tftp
 
-backup()
-{
-    BACKUP_PATH=$(omv_config_get "//system/backup/path")
     SYSDRIVE_UUID="$(cat /etc/fstab | egrep "UUID.* / " | awk '{print $1}' | sed 's/UUID=//g')"
     SYSDRIVE="$(ls -l /dev/disk/by-uuid/ | grep $SYSDRIVE_UUID | awk '{print $11}' | sed 's/..\/..\///g')"
 
-    # clean apt-get cache to save space
-    apt-get clean
-
-    # clean openmediavault upload cache and recreate Packages file
-    rm -f /var/cache/openmediavault/archives/*
-    touch /var/cache/openmediavault/archives/Packages
-
-    # check to see if backup path exists and backup
-    if [ "${BACKUP_PATH}" != "" ]; then
-
-        if [ -d "${BACKUP_PATH}" ]; then
-            mkdir -p ${BACKUP_PATH}
-        fi
-
-        rsync -aAXv /* ${BACKUP_PATH} --delete \
-            --exclude=/dev \
-            --exclude=/proc \
-            --exclude=/sys \
-            --exclude=/tmp \
-            --exclude=/run \
-            --exclude=/mnt \
-            --exclude=/media \
-            --exclude=/lost+found \
-            --exclude=/export \
-            --exclude=/home/ftp \
-            --exclude=/srv/ftp \
-            --exclude=/srv/tftp
-
-        dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub.dd bs=446 count=1
-        dd if=/dev/${SYSDRIVE} of=${BACKUP_PATH}/grub_parts.dd bs=512 count=1
-        blkid > ${BACKUP_PATH}/uuids
-        dpkg -l | grep openmediavault > ${BACKUP_PATH}/packages
-    else
-        echo "No backup volume set.  Please choose a backup volume."
-    fi
-}
-
-installclonezilla()
-{
-    if [ ! -f "${ISO_PATH}/${CLONEZILLA_ISO}" ]; then
-        rm -f ${ISO_PATH}/clonezilla*.iso
-        wget "https://downloads.sourceforge.net/project/clonezilla/clonezilla_live_stable/${CLONEZILLA_VERSION}/${CLONEZILLA_ISO}" -O ${ISO_PATH}/${CLONEZILLA_ISO}
-    fi
-
-    cat <<EOF > ${GRUB_CLONEZILLA}
-#!/bin/sh
-exec tail -n +3 \$0
-menuentry "Clonezilla Live" {
-  set isofile="${ISO_PATH}/${CLONEZILLA_ISO}"
-  loopback loop \$isofile
-  linux (loop)/live/vmlinuz boot=live live-config noswap nolocales edd=on nomodeset ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts="" ocs_live_batch="no" locales="" ocs_daemonon="ssh" vga=788 nosplash toram=filesystem.squashfs findiso=\$isofile
-  initrd (loop)/live/initrd.img
-}
-EOF
-
-    chmod 755 ${GRUB_CLONEZILLA}
-    update-grub
-}
-
-installsysresccd()
-{
-    if [ ! -f "${ISO_PATH}/${SYSRESCCD_ISO}" ]; then
-        rm -f ${ISO_PATH}/systemrescuecd*.iso
-        wget "https://sourceforge.net/projects/systemrescuecd/files/sysresccd-x86/${SYSRESCCD_VERSION}/${SYSRESCCD_ISO}/download" -O ${ISO_PATH}/${SYSRESCCD_ISO}
-    fi
-
-    ARCH="`/bin/uname -m`"
-    case "$ARCH" in
-        x86_64)
-            rescue="64"
-        ;;
-        *)
-            rescue="32"
-        ;;
-    esac
-
-    cat <<EOF > ${GRUB_SYSRESCCD}
-#!/bin/sh
-exec tail -n +3 \$0
-menuentry "SystemRescueCD" {
-  set isofile="${ISO_PATH}/${SYSRESCCD_ISO}"
-  loopback loop \$isofile
-  linux (loop)/isolinux/rescue${rescue} nomodeset setkmap=us rootpass=openmediavault docache isoloop=\$isofile
-  initrd (loop)/isolinux/initram.igz
-}
-EOF
-
-    chmod 755 ${GRUB_SYSRESCCD}
-    update-grub
-}
-
-installpartedmagic()
-{
-    sfref=$(omv_config_get "//system/backup/partedmagic/pmref")
-    sfpath=$(omv_get_sharedfolder_path "${sfref}")
-
-    if [ -f "${sfpath}/${PARTEDMAGIC_ISO}" ]; then
-        echo "Copying ${PARTEDMAGIC_ISO} to ${ISO_PATH} ..."
-        cp ${sfpath}/${PARTEDMAGIC_ISO} ${ISO_PATH}
-    else
-        echo "Parted Magic ISO file not found."
-        exit 1
-    fi
-
-    cat <<EOF > ${GRUB_PARTEDMAGIC}
-#!/bin/sh
-exec tail -n +3 \$0
-menuentry "Parted Magic" {
-  set isofile="${ISO_PATH}/${PARTEDMAGIC_ISO}"
-  loopback loop \$isofile
-  linux (loop)/pmagic/bzImage iso_filename=\$isofile boot=live
-  initrd (loop)/pmagic/initrd.img
-}
-EOF
-
-    chmod 755 ${GRUB_PARTEDMAGIC}
-    update-grub
-}
-
-installgpartedlive()
-{
-    if [ ! -f "${ISO_PATH}/${GPARTEDLIVE_ISO}" ]; then
-        rm -f ${ISO_PATH}/gparted-live*.iso
-        wget "https://downloads.sourceforge.net/gparted/${GPARTEDLIVE_ISO}" -O ${ISO_PATH}/${GPARTEDLIVE_ISO}
-    fi
-
-    cat <<EOF > ${GRUB_GPARTEDLIVE}
-#!/bin/sh
-exec tail -n +3 \$0
-menuentry "GParted Live" {
-  set isofile="${ISO_PATH}/${GPARTEDLIVE_ISO}"
-  loopback loop \$isofile
-  linux (loop)/live/vmlinuz boot=live config union=aufs noswap noprompt nolocales edd=on gl_batch keyboard-layouts="" locales="" vga=788 ip=frommedia toram=filesystem.squashfs findiso=\$isofile
-  initrd (loop)/live/initrd.img
-}
-EOF
-
-    chmod 755 ${GRUB_GPARTEDLIVE}
-    update-grub
-}
-
-rebootclonezilla()
-{
-    if [ ! -f "${ISO_PATH}/${CLONEZILLA_ISO}" ]; then
-        echo "Please click on Install button."
-    else
-        NEW="GRUB_DEFAULT=saved"
-        DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
-
-        disablesubmenu
-
-        if grep -q 'submenu' ${GRUB_CFG}; then
-            ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n Clonezilla | cut -f1 -d:)
-        else
-            ENTRY=$(($(cat ${GRUB_CFG} | grep 'menuentry ' | grep -n Clonezilla | cut -f1 -d:)-1))
-        fi
-
-        echo "Configuring grub to boot once from Clonezilla iso...  ${ENTRY}"
-
-        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
-        mv ${TFILE} ${GRUB}
-        grub-set-default ${DEFAULT}
-        update-grub
-        grub-reboot ${ENTRY}
-    fi
-}
-
-rebootsysresccd()
-{
-    if [ ! -f "${ISO_PATH}/${SYSRESCCD_ISO}" ]; then
-        echo "Please click on Install button."
-    else
-        NEW="GRUB_DEFAULT=saved"
-        DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
-
-        disablesubmenu
-
-        if grep -q 'submenu' ${GRUB_CFG}; then
-            ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n SystemRescueCD | cut -f1 -d:)
-        else
-            ENTRY=$(($(cat ${GRUB_CFG} | grep 'menuentry ' | grep -n SystemRescueCD | cut -f1 -d:)-1))
-        fi
-
-        echo "Configuring grub to boot once from SystemRescueCD iso...  ${ENTRY}"
-
-        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
-        mv ${TFILE} ${GRUB}
-        grub-set-default ${DEFAULT}
-        update-grub
-        grub-reboot ${ENTRY}
-    fi
-}
-
-rebootpartedmagic()
-{
-    if [ ! -f "${ISO_PATH}/${PARTEDMAGIC_ISO}" ]; then
-        echo "Please click on Install button."
-    else
-        NEW="GRUB_DEFAULT=saved"
-        DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
-
-        disablesubmenu
-
-        if grep -q 'submenu' ${GRUB_CFG}; then
-            ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n 'Parted Magic' | cut -f1 -d:)
-        else
-            ENTRY=$(($(cat ${GRUB_CFG} | grep 'menuentry ' | grep -n 'Parted Magic' | cut -f1 -d:)-1))
-        fi
-
-        echo "Configuring grub to boot once from Parted Magic iso...  ${ENTRY}"
-
-        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
-        mv ${TFILE} ${GRUB}
-        grub-set-default ${DEFAULT}
-        update-grub
-        grub-reboot ${ENTRY}
-    fi
-}
-
-rebootgpartedlive()
-{
-    if [ ! -f "${ISO_PATH}/${GPARTEDLIVE_ISO}" ]; then
-        echo "Please click on Install button."
-    else
-        NEW="GRUB_DEFAULT=saved"
-        DEFAULT=$(cat ${GRUB} | grep GRUB_DEFAULT | cut -d= -f2)
-
-        disablesubmenu
-
-        if grep -q 'submenu' ${GRUB_CFG}; then
-            ENTRY=$(cat ${GRUB_CFG} | grep '^menuentry ' | grep -n GParted | cut -f1 -d:)
-        else
-            ENTRY=$(($(cat ${GRUB_CFG} | grep 'menuentry ' | grep -n GParted | cut -f1 -d:)-1))
-        fi
-
-        echo "Configuring grub to boot once from GParted Live iso...  ${ENTRY}"
-
-        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
-        mv ${TFILE} ${GRUB}
-        grub-set-default ${DEFAULT}
-        update-grub
-        grub-reboot ${ENTRY}
-    fi
-}
-
-rebootomv()
-{
-    if [ ! -f "${ISO_PATH}/${CLONEZILLA_ISO}" ]; then
-        echo "Please click on Install button."
-    else
-        NEW="GRUB_DEFAULT=0"
-
-        echo "Configuring grub to boot OpenMediaVault by default..."
-
-        sed "s/GRUB_DEFAULT=.*/$NEW/g" ${GRUB} > ${TFILE}
-        mv ${TFILE} ${GRUB}
-        grub-set-default 0
-        update-grub
-        grub-reboot 0
-    fi
-}
-
-disablesubmenu()
-{
-    if ! grep -q 'GRUB_DISABLE_SUBMENU' ${GRUB}; then
-        echo "GRUB_DISABLE_SUBMENU=y" >> ${GRUB}
-        update-grub
-    fi
-}
-
-case $2 in
-    backup)
-        backup
-    ;;
-
-    installcz)
-        installclonezilla
-    ;;
-
-    installsys)
-        installsysresccd
-    ;;
-
-    installpm)
-        installpartedmagic
-    ;;
-
-    installgp)
-        installgpartedlive
-    ;;
-
-    clonezilla)
-        rebootclonezilla
-    ;;
-
-    sysresccd)
-        rebootsysresccd
-    ;;
-
-    partedmagic)
-        rebootpartedmagic
-    ;;
-
-    gpartedlive)
-        rebootgpartedlive
-    ;;
-
-    omv)
-        rebootomv
-    ;;
-
-    disablesubmenu)
-        disablesubmenu
-    ;;
-esac
+    dd if=/dev/${SYSDRIVE} of=${sfpath}/grub.dd bs=446 count=1
+    dd if=/dev/${SYSDRIVE} of=${sfpath}/grub_parts.dd bs=512 count=1
+    blkid > ${sfpath}/uuids
+    dpkg -l | grep openmediavault > ${sfpath}/packages
+else
+    echo "No backup volume set.  Please choose a backup volume."
+fi
 
 exit 0
