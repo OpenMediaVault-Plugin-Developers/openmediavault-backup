@@ -17,7 +17,10 @@ sfref=$(omv_config_get "/config/system/backup/sharedfolderref")
 
 # check to see if backup path exists and backup
 if [ "${sfref}" != "" ]; then
-    sfpath=$(omv_get_sharedfolder_path "${sfref}")
+    sfpath=$(omv_get_sharedfolder_path "${sfref}")/omvbackup/
+
+    # make the backup dir if it doesn't exist
+    mkdir -p ${sfref}
 
     rsync -aAXv /* ${sfpath} \
         --delete \

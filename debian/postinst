@@ -5,8 +5,6 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-
-
 case "$1" in
     configure)
         SERVICE_XPATH_NAME="backup"

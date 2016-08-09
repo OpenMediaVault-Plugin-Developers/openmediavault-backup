@@ -1,3 +1,10 @@
+openmediavault-backup (3.3.2) stable; urgency=low
+
+  * Make omvbackup sub-directory to avoid file deletion when using
+    shared folder for more than one plugin.
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 08 Aug 2016 19:47:10 -0500
+
 openmediavault-backup (3.3.1) stable; urgency=low
 
   * Fix uninstall
