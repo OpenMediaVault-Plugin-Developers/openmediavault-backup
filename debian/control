@@ -9,7 +9,7 @@ Homepage: http://omv-extras.org/
 
 Package: openmediavault-backup
 Architecture: all
-Depends: openmediavault (>=3.0.22),
+Depends: openmediavault (>=3.0.35),
          rsync
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault

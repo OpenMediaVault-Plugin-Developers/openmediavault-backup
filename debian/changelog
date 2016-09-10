@@ -1,3 +1,9 @@
+openmediavault-backup (3.3.3) stable; urgency=low
+
+  * Use execBgProc
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 10 Sep 2016 09:35:55 -0500
+
 openmediavault-backup (3.3.2) stable; urgency=low
 
   * Make omvbackup sub-directory to avoid file deletion when using
