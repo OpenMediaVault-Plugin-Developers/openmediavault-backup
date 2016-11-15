@@ -37,11 +37,14 @@ if [ "${sfref}" != "" ]; then
         --exclude=/srv/ftp \
         --exclude=/srv/tftp
 
-    SYSDRIVE_UUID="$(cat /etc/fstab | egrep "UUID.* / " | awk '{print $1}' | sed 's/UUID=//g')"
-    SYSDRIVE="$(ls -l /dev/disk/by-uuid/ | grep $SYSDRIVE_UUID | awk '{print $11}' | sed 's/..\/..\///g')"
+    for device in $(blkid -o device); do
+        [ "$(stat --format '%04D' /)" = "$(stat --format '%02t%02T' $device)" ] && root="$device" && break
+    done
 
-    dd if=/dev/${SYSDRIVE} of=${sfpath}/grub.dd bs=446 count=1
-    dd if=/dev/${SYSDRIVE} of=${sfpath}/grub_parts.dd bs=512 count=1
+    echo "Root drive: ${root}"
+
+    dd if=${root} of=${sfpath}/grub.dd bs=446 count=1
+    dd if=${root} of=${sfpath}/grub_parts.dd bs=512 count=1
     blkid > ${sfpath}/uuids
     dpkg -l | grep openmediavault > ${sfpath}/packages
 else
