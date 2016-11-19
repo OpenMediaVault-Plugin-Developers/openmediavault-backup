@@ -4,232 +4,34 @@
 # 
 # Translators:
 # Ettore Atalan <atalanttore@googlemail.com>, 2014
+# Raiko, 2015
 # Stephan Steiner, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 08:18-0500\n"
-"PO-Revision-Date: 2014-10-27 13:33+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
-"Language-Team: German (http://www.transifex.com/projects/p/openmediavault-backup/language/de/)\n"
+"POT-Creation-Date: 2016-11-19 08:54-0600\n"
+"PO-Revision-Date: 2016-11-19 14:54+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"Language-Team: German (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "%s (%s available)"
-msgstr "%s (%s verfügbar)"
-
-msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr "Alle von PhotoRec bekannten Dateitypen werden wiederhergestellt."
-
-msgid "BMP bitmap image"
-msgstr "BMP-Punktegrafikbild"
-
 msgid "Backup"
 msgstr "Sicherung"
 
 msgid ""
-"Backup the operating system drive to a data drive for emergency restoration."
-msgstr "Sicherung des Betriebsystemlaufwerks für Notfallwiederherstellung."
-
-msgid "Clonezilla"
-msgstr "Clonezilla"
-
-msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr "Konfiguriert den GRUB Bootloader, um ein Starten des Parted Magic ISOs zu ermöglichen."
-
-msgid "Contax picture, Panasonic/Leica RAW"
-msgstr "Contax picture, Panasonic/Leica RAW"
-
-msgid ""
-"Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr "Kopiert die Parted Magic ISO-Datei vom ausgewählten freigegebenen Ordner nach /boot/"
-
-msgid "Default username: <b>user</b> and password: <b>live</b>"
-msgstr "Standardbenutzername: <b>user</b> und Passwort: <b>live</b>"
-
-msgid "Destination"
-msgstr "Ziel"
-
-msgid "Done..."
-msgstr "Fertig..."
-
-msgid ""
-"Downloads Clonezilla ISO and configures grub bootloader to allow booting "
-"from ISO."
-msgstr "Lädt die Clonezilla-ISO herunter und konfiguriert GRUB Bootloader dieses zu starten."
-
-msgid ""
-"Downloads GParted Live ISO and configures grub bootloader to allow booting "
-"from ISO."
+"Backup the operating system drive to the selected shared folder for "
+"emergency restoration."
 msgstr ""
 
-msgid ""
-"Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
-" from ISO."
-msgstr "Lädt die SystemRescuecd-ISO herunter und konfiguriert den GRUB Bootloader dieses zu starten."
-
-msgid "Drive with missing or lost files."
-msgstr "Laufwerk mit den fehlenden oder gelöschten Dateien."
-
-msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
-msgstr "Laufwerk mit den fehlenden oder gelöschten Dateien. Dateisystem muss ext3 oder ext4 sein und ausgehängt."
-
-msgid "Everything"
-msgstr "Alles"
-
-msgid "Extundelete"
-msgstr "Extundelete"
-
-msgid "Files will be recovered only from the free space."
-msgstr "Dateien werden nur von freiem Speicher wiederhergestellt."
-
-msgid "For more information, see Extundelete page"
-msgstr "Siehe die Extundelete-Seite für weitere Informationen"
-
-msgid "For more information, see PhotoRec wiki"
-msgstr "Lesen Sie das PhotoRec Wiki für weitere Informationen"
-
-msgid "Freespace"
-msgstr "Freier Speicher"
-
-msgid "GParted Live"
-msgstr "GParted Live"
-
-msgid "IP Address will be set by DHCP."
-msgstr "IP-Adresse wird über DHCP festgelegt."
-
-msgid ""
-"IP Address will be set by DHCP.  Using static DHCP is recommended for "
-"headless servers."
-msgstr "IP-Adresse wird über DHCP festgelegt. Statisches DHCP wird für Headless-Server empfohlen."
-
-msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr "ISO belegt ca. 139 MB im /boot-Verzeichnis auf dem Betriebssystemlaufwerk."
-
-msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
-msgstr "ISO belegt ca. 219 MB im /boot-Verzeichnis auf dem Betriebssystemlaufwerk."
-
-msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr "ISO belegt ca. 381 MB im /boot-Verzeichnis auf dem Betriebssystemlaufwerk."
-
-msgid "Install"
-msgstr "Installation"
-
-msgid "Install Clonezilla"
-msgstr "Clonezilla installieren"
-
-msgid "Install GParted Live"
-msgstr "GParted Live installieren"
-
-msgid "Install Parted Magic"
-msgstr "Parted Magic installieren"
-
-msgid "Install SystemRescueCD"
-msgstr "SystemRescueCD installieren"
-
-msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr "MP3 Audio (MPEG ADTS, Layer III, v1)"
-
-msgid "Matroska video file"
-msgstr "Matroska-Videodatei"
-
-msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr "Microsoft Office-Dokument (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-
-msgid "Moving Picture Experts Group video"
-msgstr "Moving Picture Experts Group-Video"
-
-msgid "Not recommended for headless servers.  SSH is not enabled by default."
+msgid "Example"
 msgstr ""
 
-msgid "OMV"
-msgstr "OMV"
-
-msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr "Andere Textdateien: txt,html,asp,bat,C,jsp,perl,php,py/emlx... Skripte"
-
-msgid "Parted Magic"
-msgstr "Parted Magic"
-
-msgid ""
-"Parted Magic ISO file named partedmagic.iso should be located in this shared"
-" folder."
-msgstr "Die Parted Magic ISO-Datei namens partedmagic.iso sollte in den freigegebenen Ordner gelegt werden."
-
-msgid "Path"
-msgstr "Pfad"
-
-msgid "PhotoRec"
-msgstr "PhotoRec"
-
-msgid "Portable Document Format, Adobe Illustrator"
-msgstr "Portable Document Format, Adobe Illustrator"
-
-msgid "Portable/JPEG/Multiple-Image Network Graphics"
-msgstr "Portable/JPEG/Multiple-Image Network Graphics"
-
-msgid "Reboot to Clonezilla"
-msgstr "Neustarten in Clonezilla"
-
-msgid "Reboot to GParted Live"
-msgstr "Neustarten in GParted Live"
-
-msgid "Reboot to OpenMediaVault"
-msgstr "Neustarten in OpenMediaVault"
-
-msgid "Reboot to Parted Magic"
-msgstr "Neustarten in Parted Magic"
-
-msgid "Reboot to SystemRescueCD"
-msgstr "Neustarten in SystemRescueCD"
-
-msgid "Recover using Extundelete"
-msgstr "Extundelete zur Wiederherstellung verwenden"
-
-msgid "Recover using Photorec"
-msgstr "Photorec zur Wiederherstellung benutzen"
-
-msgid "Recover with output"
-msgstr "Ohne Ausgabe wiederherstellen"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>root</b> and "
-"password: <b>openmediavault</b>"
-msgstr "c<b>root</b> und Passwort: <b>openmediavault</b> benutzen."
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>root</b> and "
-"password: <b>partedmagic</b>"
-msgstr "SSH-Server ist standardmäßig aktiviert. Anmeldung mit Benutzername:<b>root</b> und Passwort: <b>partedmagic</b> benutzen."
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>user</b> and "
-"password: <b>live</b>"
-msgstr "SSH-Server ist standardmäßig aktiviert. Anmeldung mit Benutzername:<b>user</b> und Passwort: <b>live</b> benutzen."
-
-msgid "Select a drive ..."
-msgstr "Laufwerk auswählen ..."
-
-msgid "Select a volume ..."
-msgstr "Partition auswählen ..."
-
-msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr "Konfiguriert GRUB Bootloader um Clonezilla ISO <b>EINMAL</b> zu starten"
-
-msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
-msgstr ""
-
-msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr ""
-
-msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr ""
-
-msgid "Sets grub bootloader to boot normally from OpenMediaVault."
+msgid "Extra Options"
 msgstr ""
 
 msgid "Settings"
@@ -238,105 +40,13 @@ msgstr "Einstellungen"
 msgid "Shared Folder"
 msgstr "Gemeinsamer Ordner"
 
-msgid "Shared folder where recovered files will be placed."
-msgstr ""
-
-msgid "Silent Recover"
-msgstr "Silent Recover"
-
-msgid "Source"
-msgstr "Quelle"
-
 msgid "System Backup"
 msgstr "Systemsicherung"
 
-msgid "SystemRescueCD"
-msgstr "SystemWiederherstellungsCD"
-
-msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-msgstr ""
-
-msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr "Textdateien mit Kopfzeile: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-
 msgid ""
-"This will attempt recovery of lost files from a damaged drive or "
-"accidentally deleted using Extundelete."
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space."
 msgstr ""
 
-msgid ""
-"This will attempt recovery of lost files from a damaged drive or "
-"accidentally deleted using PhotoRec."
+msgid "Warning!!  You can break the backup with wrong options."
 msgstr ""
-
-msgid "Volume"
-msgstr "Datenträger"
-
-msgid ""
-"When connecting via ssh, the ssh key will be different than the "
-"OpenMediaVault ssh key and need to be updated on the client system."
-msgstr ""
-
-msgid ""
-"When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr ""
-
-msgid "bmp"
-msgstr "bmp"
-
-msgid "bz2"
-msgstr "bz2"
-
-msgid "bzip2 compressed data"
-msgstr "bzip2-komprimierte Daten"
-
-msgid "doc"
-msgstr "doc"
-
-msgid "gz"
-msgstr "gz"
-
-msgid "gzip compressed data"
-msgstr "gzip-komprimierte Daten"
-
-msgid "link"
-msgstr "Verknüpfung"
-
-msgid "mkv"
-msgstr "mkv"
-
-msgid "mov"
-msgstr "mov"
-
-msgid "mov/mp4/3gp/3g2/jp2"
-msgstr "mov/mp4/3gp/3g2/jp2"
-
-msgid "mp3"
-msgstr "mp3"
-
-msgid "mpg"
-msgstr "mpg"
-
-msgid "pdf"
-msgstr "pdf"
-
-msgid "png"
-msgstr "png"
-
-msgid "raw"
-msgstr "roh"
-
-msgid "tif"
-msgstr "tif"
-
-msgid "tx?"
-msgstr "tx?"
-
-msgid "txt"
-msgstr "txt"
-
-msgid "zip"
-msgstr "zip"
-
-msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr "ZIP-Archiv mit OpenOffice und MSOffice 2007"

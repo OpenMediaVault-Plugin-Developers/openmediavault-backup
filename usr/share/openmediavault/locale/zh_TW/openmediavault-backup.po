@@ -3,233 +3,34 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2014
+# kochin <kochinc@outlook.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 08:18-0500\n"
-"PO-Revision-Date: 2014-11-19 20:45+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/openmediavault-backup/language/zh_TW/)\n"
+"POT-Creation-Date: 2016-11-19 08:54-0600\n"
+"PO-Revision-Date: 2016-11-19 14:54+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "%s (%s available)"
-msgstr "%s (%s 可用)"
-
-msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr "將試圖復原所有 PhotoRec 認得的檔案型式。"
-
-msgid "BMP bitmap image"
-msgstr "BMP 位元映像圖片"
-
 msgid "Backup"
 msgstr "備份"
 
 msgid ""
-"Backup the operating system drive to a data drive for emergency restoration."
-msgstr "將作業系統硬碟備份到一個資料硬碟，以做為緊急復原使用。"
+"Backup the operating system drive to the selected shared folder for "
+"emergency restoration."
+msgstr ""
 
-msgid "Clonezilla"
-msgstr "Clonezilla"
+msgid "Example"
+msgstr ""
 
-msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr "將 grub 啟動載入器設置成允許從 Parted Magic ISO 啟動。"
-
-msgid "Contax picture, Panasonic/Leica RAW"
-msgstr "Contax 圖片、Panasonic/Leica RAW"
-
-msgid ""
-"Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr "將 Parted Magic ISO 檔案由以上所選的共享檔案夾複製到 /boot/"
-
-msgid "Default username: <b>user</b> and password: <b>live</b>"
-msgstr "預設用戶名稱：<b>user</b> 和密碼：<b>live</b>"
-
-msgid "Destination"
-msgstr "目的地"
-
-msgid "Done..."
-msgstr "完成 ..."
-
-msgid ""
-"Downloads Clonezilla ISO and configures grub bootloader to allow booting "
-"from ISO."
-msgstr "下載 Clonezilla ISO，並將 grub 啟動載入器設置成允許從 ISO 啟動。"
-
-msgid ""
-"Downloads GParted Live ISO and configures grub bootloader to allow booting "
-"from ISO."
-msgstr "下載 GParted Live ISO，並將 grub 啟動載入器設置成允許從 ISO 啟動。"
-
-msgid ""
-"Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
-" from ISO."
-msgstr "下載 SystemRescuecd ISO，並將 grub 啟動載入器設置成允許從 ISO 啟動。"
-
-msgid "Drive with missing or lost files."
-msgstr "含有遺漏或丟失檔案的磁碟。"
-
-msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
-msgstr "含有遺漏或丟失檔案的磁碟。必須是 ext3 或 ext4，並且已經卸載。"
-
-msgid "Everything"
-msgstr "所有形式"
-
-msgid "Extundelete"
-msgstr "Extundelete"
-
-msgid "Files will be recovered only from the free space."
-msgstr "檔案將只從未用空間中被復原回來。"
-
-msgid "For more information, see Extundelete page"
-msgstr "欲得到更多資訊，請參閱 Extundelete 網頁"
-
-msgid "For more information, see PhotoRec wiki"
-msgstr "欲得到更多資訊，請參閱 PhotoRec wiki"
-
-msgid "Freespace"
-msgstr "位用空間"
-
-msgid "GParted Live"
-msgstr "GParted Live"
-
-msgid "IP Address will be set by DHCP."
-msgstr "IP 地址將由 DHCP 設定。"
-
-msgid ""
-"IP Address will be set by DHCP.  Using static DHCP is recommended for "
-"headless servers."
-msgstr "IP 地址將由 DHCP 設定。建議在無頭伺服器上使用靜態 DHCP。"
-
-msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr "ISO 在作業系統磁碟上的 /boot 目錄會使用大約 139 Mb。"
-
-msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
-msgstr "ISO 在作業系統磁碟上的 /boot 目錄會使用大約 219 Mb。"
-
-msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr "ISO 在作業系統磁碟上的 /boot 目錄會使用大約 381 Mb。"
-
-msgid "Install"
-msgstr "安裝"
-
-msgid "Install Clonezilla"
-msgstr "安裝 Clonezilla"
-
-msgid "Install GParted Live"
-msgstr "安裝 GParted Live"
-
-msgid "Install Parted Magic"
-msgstr "安裝 Parted Magic"
-
-msgid "Install SystemRescueCD"
-msgstr "安裝 SystemRescueCD"
-
-msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr "MP3 聲頻 (MPEG ADTS、layer III、v1)"
-
-msgid "Matroska video file"
-msgstr "Matroska 視頻檔案"
-
-msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr "Microsoft Office 檔案 (doc/xls/ppt/vsd/...)、3ds Max、MetaStock"
-
-msgid "Moving Picture Experts Group video"
-msgstr "動態影像專家群組視頻"
-
-msgid "Not recommended for headless servers.  SSH is not enabled by default."
-msgstr "不建議在無頭伺服器上使用。SSH 並非預設為啟動。"
-
-msgid "OMV"
-msgstr "OMV"
-
-msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr "其它文字檔案：txt、html、asp、bat、C、jsp、perl、php、py/emlx ... 腳本程式"
-
-msgid "Parted Magic"
-msgstr "Parted Magic"
-
-msgid ""
-"Parted Magic ISO file named partedmagic.iso should be located in this shared"
-" folder."
-msgstr "Parted Magic ISO 檔案名稱為 partedmagic.iso，應該位於這個共享檔案夾。"
-
-msgid "Path"
-msgstr "路徑"
-
-msgid "PhotoRec"
-msgstr "PhotoRec"
-
-msgid "Portable Document Format, Adobe Illustrator"
-msgstr "可攜式檔案格式、 Adobe Illustrator"
-
-msgid "Portable/JPEG/Multiple-Image Network Graphics"
-msgstr "可攜式/JPEG/多圖像網路圖形"
-
-msgid "Reboot to Clonezilla"
-msgstr "從新啟動到 Clonezilla"
-
-msgid "Reboot to GParted Live"
-msgstr "從新啟動到 GParted Live"
-
-msgid "Reboot to OpenMediaVault"
-msgstr "從新啟動到 OpenMediaVault"
-
-msgid "Reboot to Parted Magic"
-msgstr "從新啟動到 Parted Magic"
-
-msgid "Reboot to SystemRescueCD"
-msgstr "從新啟動到 SystemRescueCD"
-
-msgid "Recover using Extundelete"
-msgstr "使用 Extundelete 復原"
-
-msgid "Recover using Photorec"
-msgstr "使用 PhotoRec 復原"
-
-msgid "Recover with output"
-msgstr "復原顯示輸出"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>root</b> and "
-"password: <b>openmediavault</b>"
-msgstr "SSH 伺服器被預設為啟用。請以用戶名稱：<b>root</b> 和密碼：<b>openmediavault</b> 來登入"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>root</b> and "
-"password: <b>partedmagic</b>"
-msgstr "SSH 伺服器被預設為啟用。請以用戶名稱：<b>root</b> 和密碼：<b>partedmagic</b> 來登入"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>user</b> and "
-"password: <b>live</b>"
-msgstr "SSH 伺服器被預設為啟用。請以用戶名稱：<b>user</b> 和密碼：<b>live</b> 來登入"
-
-msgid "Select a drive ..."
-msgstr "選擇磁碟 ..."
-
-msgid "Select a volume ..."
-msgstr "選擇磁碟 ..."
-
-msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr "設定 grub 啟動載入器從 Clonezilla ISO 啟動<b>一次</b>。"
-
-msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
-msgstr "設定 grub 啟動載入器從 GParted Live ISO 啟動<b>一次</b>。"
-
-msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr "設定 grub 啟動載入器從 Parted Magic ISO 啟動<b>一次</b>。"
-
-msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr "設定 grub 啟動載入器從 SystemRescueCD ISO 啟動<b>一次</b>。"
-
-msgid "Sets grub bootloader to boot normally from OpenMediaVault."
-msgstr "設定 grub 啟動載入器從 OpenMediaVault 正常啟動。"
+msgid "Extra Options"
+msgstr ""
 
 msgid "Settings"
 msgstr "設定"
@@ -237,105 +38,13 @@ msgstr "設定"
 msgid "Shared Folder"
 msgstr "共享檔案夾"
 
-msgid "Shared folder where recovered files will be placed."
-msgstr "用以存放被復原檔案的共享檔案夾。"
-
-msgid "Silent Recover"
-msgstr "沉默地復原"
-
-msgid "Source"
-msgstr "來源"
-
 msgid "System Backup"
 msgstr "系統備份"
 
-msgid "SystemRescueCD"
-msgstr "SystemRescueCD"
-
-msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-msgstr "標籤圖檔格式以及一些原始圖檔格式 (pef/nef/dcr/sr2/cr2)"
-
-msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr "含有標頭的文字檔案：rtf、xml、xhtml、imm、pm、ram、reg、sh、slk、stp"
-
 msgid ""
-"This will attempt recovery of lost files from a damaged drive or "
-"accidentally deleted using Extundelete."
-msgstr "這將使用 Extundelete 來嘗試從損壞的磁碟上復原遺失的檔案或不小心刪除的檔案。"
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space."
+msgstr ""
 
-msgid ""
-"This will attempt recovery of lost files from a damaged drive or "
-"accidentally deleted using PhotoRec."
-msgstr "這將使用 PhotoRec 來嘗試從損壞的磁碟上復原遺失的檔案或不小心刪除的檔案。"
-
-msgid "Volume"
-msgstr "磁碟"
-
-msgid ""
-"When connecting via ssh, the ssh key will be different than the "
-"OpenMediaVault ssh key and need to be updated on the client system."
-msgstr "當經由 ssh 連接時，所用的 ssh 密鑰將會與 OpenMediaVault 的 ssh 密鑰不同，必須在客戶系統上把它更新過。"
-
-msgid ""
-"When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr "當從遠端登入時，以此指令啟動 clonezilla：<b>sudo clonezilla</b>"
-
-msgid "bmp"
-msgstr "bmp"
-
-msgid "bz2"
-msgstr "bz2"
-
-msgid "bzip2 compressed data"
-msgstr "bzip2 壓縮資料"
-
-msgid "doc"
-msgstr "doc"
-
-msgid "gz"
-msgstr "gz"
-
-msgid "gzip compressed data"
-msgstr "gzip 壓縮資料"
-
-msgid "link"
-msgstr "網站連結"
-
-msgid "mkv"
-msgstr "mkv"
-
-msgid "mov"
-msgstr "mov"
-
-msgid "mov/mp4/3gp/3g2/jp2"
-msgstr "mov/mp4/3gp/3g2/jp2"
-
-msgid "mp3"
-msgstr "mp3"
-
-msgid "mpg"
-msgstr "mpg"
-
-msgid "pdf"
-msgstr "pdf"
-
-msgid "png"
-msgstr "png"
-
-msgid "raw"
-msgstr "raw"
-
-msgid "tif"
-msgstr "tif"
-
-msgid "tx?"
-msgstr "tx?"
-
-msgid "txt"
-msgstr "txt"
-
-msgid "zip"
-msgstr "zip"
-
-msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr "zip 歸檔，包含 OpenOffice 和 MSOffice 2007"
+msgid "Warning!!  You can break the backup with wrong options."
+msgstr ""

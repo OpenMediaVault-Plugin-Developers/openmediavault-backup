@@ -8,228 +8,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 08:18-0500\n"
-"PO-Revision-Date: 2014-10-27 13:20+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: Dutch (http://www.transifex.com/projects/p/openmediavault-backup/language/nl/)\n"
+"POT-Creation-Date: 2016-11-19 08:54-0600\n"
+"PO-Revision-Date: 2016-11-19 14:54+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"Language-Team: Dutch (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "%s (%s available)"
-msgstr "%s (%s beschikbaar)"
-
-msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr "Alle typen files die door PhotoRec worden herkend zullen worden hersteld als dat mogelijk is."
-
-msgid "BMP bitmap image"
-msgstr "BMP bitmap afbeelding"
-
 msgid "Backup"
 msgstr "Backup"
 
 msgid ""
-"Backup the operating system drive to a data drive for emergency restoration."
-msgstr "Backup de drive met het operating systeem naar een data schijf voor herstel in noodgevallen"
-
-msgid "Clonezilla"
-msgstr "Clonezilla"
-
-msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr "Stelt de grub boot loader in op het  booten van een Parted Magic ISO."
-
-msgid "Contax picture, Panasonic/Leica RAW"
-msgstr "Contax picture, Panasonic/Leica RAW"
-
-msgid ""
-"Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr "kopieert de Parted Magic ISO file van een gedeelde folder selected above to /boot/"
-
-msgid "Default username: <b>user</b> and password: <b>live</b>"
+"Backup the operating system drive to the selected shared folder for "
+"emergency restoration."
 msgstr ""
 
-msgid "Destination"
-msgstr "Bestemming"
-
-msgid "Done..."
-msgstr "Klaar..."
-
-msgid ""
-"Downloads Clonezilla ISO and configures grub bootloader to allow booting "
-"from ISO."
-msgstr "Downloads Clonezilla ISO en configureert de grub bootloader van deze ISO."
-
-msgid ""
-"Downloads GParted Live ISO and configures grub bootloader to allow booting "
-"from ISO."
+msgid "Example"
 msgstr ""
 
-msgid ""
-"Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
-" from ISO."
-msgstr "Downloads de SystemRescuecd ISO en configureert de grub bootloader te booten van deze ISO."
-
-msgid "Drive with missing or lost files."
-msgstr "Schijf met verloren of vermiste files"
-
-msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
+msgid "Extra Options"
 msgstr ""
-
-msgid "Everything"
-msgstr "Alles"
-
-msgid "Extundelete"
-msgstr ""
-
-msgid "Files will be recovered only from the free space."
-msgstr "Files zullen alleen worden hersteld uit de vrije ruimte van de schijf"
-
-msgid "For more information, see Extundelete page"
-msgstr ""
-
-msgid "For more information, see PhotoRec wiki"
-msgstr "Voor meer informatie verwijzen we naar de PhotoRec wiki"
-
-msgid "Freespace"
-msgstr "Vrije ruimte"
-
-msgid "GParted Live"
-msgstr ""
-
-msgid "IP Address will be set by DHCP."
-msgstr ""
-
-msgid ""
-"IP Address will be set by DHCP.  Using static DHCP is recommended for "
-"headless servers."
-msgstr "het IP Address zal worden ingesteld door  DHCP.  Gebruik een statisch DHCP nummer voor servers zonder beeldscherm"
-
-msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr "de ISO gebruikt ongeveer 139 Mb in de /boot directory op de Operating Systeem schijf."
-
-msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
-msgstr ""
-
-msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr "de ISO gebruikt ongeveer 381 Mb in /boot directory op het besturing systeem schijf."
-
-msgid "Install"
-msgstr "Installeer"
-
-msgid "Install Clonezilla"
-msgstr "Installeer Clonezilla"
-
-msgid "Install GParted Live"
-msgstr ""
-
-msgid "Install Parted Magic"
-msgstr "Installeer Parted Magic"
-
-msgid "Install SystemRescueCD"
-msgstr "Installeer SystemRescueCD"
-
-msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr "MP3 audio (MPEG ADTS, layer III, v1)"
-
-msgid "Matroska video file"
-msgstr "Matroska video file"
-
-msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-
-msgid "Moving Picture Experts Group video"
-msgstr "Moving Picture Experts Group video"
-
-msgid "Not recommended for headless servers.  SSH is not enabled by default."
-msgstr ""
-
-msgid "OMV"
-msgstr "OMV"
-
-msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr "Andere text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-
-msgid "Parted Magic"
-msgstr "Parted Magic"
-
-msgid ""
-"Parted Magic ISO file named partedmagic.iso should be located in this shared"
-" folder."
-msgstr "Parted Magic ISO file met de naam partedmagic.iso zou terug te moeten vinden zijn in de gedeelde folder. "
-
-msgid "Path"
-msgstr "Pad"
-
-msgid "PhotoRec"
-msgstr "PhotoRec"
-
-msgid "Portable Document Format, Adobe Illustrator"
-msgstr "Portable Document Format, Adobe Illustrator"
-
-msgid "Portable/JPEG/Multiple-Image Network Graphics"
-msgstr "Portable/JPEG/Multiple-Image Network Afbeeldingen"
-
-msgid "Reboot to Clonezilla"
-msgstr "Reboot met Clonezilla"
-
-msgid "Reboot to GParted Live"
-msgstr ""
-
-msgid "Reboot to OpenMediaVault"
-msgstr "Reboot met OpenMediaVault"
-
-msgid "Reboot to Parted Magic"
-msgstr "Reboot met Parted Magic"
-
-msgid "Reboot to SystemRescueCD"
-msgstr "Reboot met SystemRescueCD"
-
-msgid "Recover using Extundelete"
-msgstr ""
-
-msgid "Recover using Photorec"
-msgstr "herstel met het Photorec programma"
-
-msgid "Recover with output"
-msgstr "Herstel met output"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>root</b> and "
-"password: <b>openmediavault</b>"
-msgstr "de SSH server staat standaard aan.  Login met de gebruikersnaam: <b>root</b> en paswoord: <b>openmediavault</b>"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>root</b> and "
-"password: <b>partedmagic</b>"
-msgstr "de SSH server staat standaar aan.  Login met gebruikersnaam: <b>root</b> en paswoord: <b>partedmagic</b>"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>user</b> and "
-"password: <b>live</b>"
-msgstr "SSH server is standaard ingesteld.  Login met gebruikersnaam: <b>user</b> en paswoord: <b>live</b>"
-
-msgid "Select a drive ..."
-msgstr "Selecteer een drive..."
-
-msgid "Select a volume ..."
-msgstr "Selecteer een volume"
-
-msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr "Stelt de grub boot loader in op het <b>EEN</b> malig booten van een Clonezilla ISO."
-
-msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
-msgstr ""
-
-msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr "Stelt de grub boot loader in om van de Parted Magic ISO <b>EEN</b> malig te installeren."
-
-msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr "Stelt de grub boot loader in om van de  SystemRescueCD ISO <b>EEN</b> malig te installeren."
-
-msgid "Sets grub bootloader to boot normally from OpenMediaVault."
-msgstr "Stelt de grub boot loader in om normaal te booten met OpenMediaVault."
 
 msgid "Settings"
 msgstr "Instellingen"
@@ -237,105 +38,13 @@ msgstr "Instellingen"
 msgid "Shared Folder"
 msgstr "Gedeelde Folder"
 
-msgid "Shared folder where recovered files will be placed."
-msgstr "De gedeelde folder waar herstelde files worden opgeslagen."
-
-msgid "Silent Recover"
-msgstr "Herstellen zonder enige foutmeldingen"
-
-msgid "Source"
-msgstr "Bron"
-
 msgid "System Backup"
 msgstr "Systeem Backup"
 
-msgid "SystemRescueCD"
-msgstr "Systeem Rescue CD"
-
-msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-msgstr "Tag Image File Format (TIFF) and some raw file formats (pef/nef/dcr/sr2/cr2)"
-
-msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr "Text files met header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-
 msgid ""
-"This will attempt recovery of lost files from a damaged drive or "
-"accidentally deleted using Extundelete."
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space."
 msgstr ""
 
-msgid ""
-"This will attempt recovery of lost files from a damaged drive or "
-"accidentally deleted using PhotoRec."
-msgstr "Er wordt een poging gedaan om verloren gegane files te herstellen van een beschadigde drive of per ongeluk gewiste schijf door gebruikt te maken van PhotoRec."
-
-msgid "Volume"
-msgstr "Volume"
-
-msgid ""
-"When connecting via ssh, the ssh key will be different than the "
-"OpenMediaVault ssh key and need to be updated on the client system."
-msgstr "Wanneer contact wordt gemaakt op basis van ssh, the ssh sleutel zal verschillend zijn van de OpenMediaVault ssh sleutel en zal daarom op het client system moeten worden bijgewerkt"
-
-msgid ""
-"When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr "Wanneer je een remote login doet, start clonezilla met:  <b>sudo clonezilla</b>"
-
-msgid "bmp"
-msgstr "bmp"
-
-msgid "bz2"
-msgstr "bz2"
-
-msgid "bzip2 compressed data"
-msgstr "bzip2 compressed data"
-
-msgid "doc"
-msgstr "doc"
-
-msgid "gz"
-msgstr "gz"
-
-msgid "gzip compressed data"
-msgstr "gzip compressed data"
-
-msgid "link"
-msgstr "link"
-
-msgid "mkv"
-msgstr "mkv"
-
-msgid "mov"
-msgstr "mov"
-
-msgid "mov/mp4/3gp/3g2/jp2"
-msgstr "mov/mp4/3gp/3g2/jp2"
-
-msgid "mp3"
-msgstr "mp3"
-
-msgid "mpg"
-msgstr "mpg"
-
-msgid "pdf"
-msgstr "pdf"
-
-msgid "png"
-msgstr "png"
-
-msgid "raw"
-msgstr "raw"
-
-msgid "tif"
-msgstr "tif"
-
-msgid "tx?"
-msgstr "tx?"
-
-msgid "txt"
-msgstr "txt"
-
-msgid "zip"
-msgstr "zip"
-
-msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr "zip archief met daarbij OpenOffice and MSOffice 2007"
+msgid "Warning!!  You can break the backup with wrong options."
+msgstr ""
