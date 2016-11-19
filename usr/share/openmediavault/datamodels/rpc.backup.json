@@ -8,6 +8,10 @@
 				"type": "string",
 				"format": "uuidv4",
 				"required": true
+			},
+			"extraoptions": {
+				"type": "string",
+				"required": false
 			}
 		}
 	}

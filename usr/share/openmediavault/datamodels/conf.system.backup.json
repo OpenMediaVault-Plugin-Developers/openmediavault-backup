@@ -10,6 +10,9 @@
 		"sharedfolderref": {
 			"type": "string",
 			"format": "uuidv4"
+		},
+		"extraoptions": {
+			"type": "string"
 		}
 	}
 }

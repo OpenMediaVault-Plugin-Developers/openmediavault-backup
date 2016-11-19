@@ -29,6 +29,9 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
         "OMV.data.Model",
         "OMV.data.Store"
     ],
+    requires: [
+        'OMV.form.field.plugin.FieldInfo'
+    ],
 
     rpcService   : "Backup",
     rpcGetMethod : "get",
@@ -49,6 +52,19 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
                 name       : "sharedfolderref",
                 fieldLabel : _("Shared Folder")
             },{
+                xtype      : 'textfield',
+                name       : 'extraoptions',
+                fieldLabel : _("Extra Options"),
+                allowBlank : true,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("To exclude addition directories, add --exclude= before each directory and separate additional entries with a space.") +
+                              "<br />" +
+                            _("Example") + ":  --exclude=/pool --exclude=/test" +
+                              "<br />" +
+                            _("Warning!!  You can break the backup with wrong options.")
+                }]
+            },{
                 xtype   : "button",
                 name    : "backup",
                 text    : _("Backup"),
@@ -57,7 +73,7 @@ Ext.define("OMV.module.admin.system.backup.SystemBackup", {
                 margin  : "5 0 0 0"
             },{
                 border : false,
-                html   : "<ul><li>" + _("Backup the operating system drive to the select shared folder for emergency restoration.") + "</li></ul>"
+                html   : "<ul><li>" + _("Backup the operating system drive to the selected shared folder for emergency restoration.") + "</li></ul>"
             }]
         }];
     },
