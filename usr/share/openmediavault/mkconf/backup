@@ -23,7 +23,7 @@ if [ "${sfref}" != "" ]; then
     # make the backup dir if it doesn't exist
     mkdir -p ${sfref}
 
-    rsync -aAXv /* ${sfpath} \
+    rsync -aAXvxx /* ${sfpath} \
         --delete \
         --exclude=/dev \
         --exclude=/proc \
