@@ -35,8 +35,7 @@ if [ "${sfref}" != "" ]; then
         --exclude=/lost+found \
         --exclude=/export \
         --exclude=/home/ftp \
-        --exclude=/srv/ftp \
-        --exclude=/srv/tftp ${extra}
+        --exclude=/srv ${extra}
 
     for device in $(blkid -o device); do
         [ "$(stat --format '%04D' /)" = "$(stat --format '%02t%02T' $device)" ] && root="$device" && break
