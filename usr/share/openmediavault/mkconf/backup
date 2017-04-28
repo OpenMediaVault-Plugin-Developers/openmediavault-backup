@@ -32,6 +32,7 @@ if [ "${sfref}" != "" ]; then
         --exclude=/run \
         --exclude=/mnt \
         --exclude=/media \
+        --exclude=${OMV_MOUNT_DIR:-/media} \
         --exclude=/lost+found \
         --exclude=/export \
         --exclude=/home/ftp \
