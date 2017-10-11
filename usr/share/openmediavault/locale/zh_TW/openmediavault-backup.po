@@ -1,16 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2014-2015
+# kochin <kochinc@outlook.com>, 2014-2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-19 08:54-0600\n"
-"PO-Revision-Date: 2016-11-19 14:54+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"POT-Creation-Date: 2017-10-11 13:43-0500\n"
+"PO-Revision-Date: 2017-09-20 07:49+0000\n"
+"Last-Translator: kochin <kochinc@outlook.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,13 +24,13 @@ msgstr "備份"
 msgid ""
 "Backup the operating system drive to the selected shared folder for "
 "emergency restoration."
-msgstr ""
+msgstr "將作業系統硬碟備份到一個選定的共享檔案夾，以做為緊急復原使用。"
 
 msgid "Example"
-msgstr ""
+msgstr "範例"
 
 msgid "Extra Options"
-msgstr ""
+msgstr "額外選項"
 
 msgid "Settings"
 msgstr "設定"
@@ -44,7 +44,7 @@ msgstr "系統備份"
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
-msgstr ""
+msgstr "要排除額外的檔案目錄，在每個目錄前加上 --exclude=，並以空白與其它的項目分開。"
 
 msgid "Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "警告!! 錯誤的選項可能讓您將備份損壞。"

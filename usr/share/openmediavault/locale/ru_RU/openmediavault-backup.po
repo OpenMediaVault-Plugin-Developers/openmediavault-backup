@@ -1,16 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# артур Мудрых <arturmon82@gmail.com>, 2016
+# Артур Мудрых <arturmon82@gmail.com>, 2016
+# Артур Мудрых <arturmon82@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-19 08:54-0600\n"
-"PO-Revision-Date: 2016-11-19 14:54+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"POT-Creation-Date: 2017-10-11 13:43-0500\n"
+"PO-Revision-Date: 2017-09-20 07:49+0000\n"
+"Last-Translator: Артур Мудрых <arturmon82@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,27 +25,27 @@ msgstr "Резервное копирование"
 msgid ""
 "Backup the operating system drive to the selected shared folder for "
 "emergency restoration."
-msgstr ""
+msgstr "Резервное копирование диска операционной системы в выбранную общую папку для аварийного восстановления."
 
 msgid "Example"
-msgstr ""
+msgstr "Пример"
 
 msgid "Extra Options"
-msgstr ""
+msgstr "Дополнительные опции"
 
 msgid "Settings"
 msgstr "Настройки"
 
 msgid "Shared Folder"
-msgstr ""
+msgstr "Общая папка"
 
 msgid "System Backup"
-msgstr ""
+msgstr "Резервное копирование системы"
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
-msgstr ""
+msgstr "Чтобы исключить дополнительные каталоги, добавьте --exclude = перед каждым каталогом и отделите дополнительные записи пробелом."
 
 msgid "Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "Предупреждение!! Вы можете сломать резервную копию с неправильными настройками."

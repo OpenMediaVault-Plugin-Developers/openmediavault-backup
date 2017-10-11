@@ -1,15 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
+# Gyuris Gellért <gellert.gyuris@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-19 08:54-0600\n"
-"PO-Revision-Date: 2016-11-19 14:54+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"POT-Creation-Date: 2017-10-11 13:43-0500\n"
+"PO-Revision-Date: 2017-09-20 07:49+0000\n"
+"Last-Translator: Gyuris Gellért <gellert.gyuris@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,32 +19,32 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Backup"
-msgstr ""
+msgstr "Biztonsági mentés"
 
 msgid ""
 "Backup the operating system drive to the selected shared folder for "
 "emergency restoration."
-msgstr ""
+msgstr "Biztonsági mentést készít az operációs rendszer lemezéről a kijelölt hálózati megosztásra egy vészhelyzeti visszaállításhoz."
 
 msgid "Example"
-msgstr ""
+msgstr "Példa"
 
 msgid "Extra Options"
-msgstr ""
+msgstr "További beállítások"
 
 msgid "Settings"
-msgstr ""
+msgstr "Beállítások"
 
 msgid "Shared Folder"
-msgstr ""
+msgstr "Hálózati megosztás"
 
 msgid "System Backup"
-msgstr ""
+msgstr "Biztonsági mentés a rendszerről"
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
-msgstr ""
+msgstr "Mappák kizárásához egy „--exclude=” előtagot kell hozzáadni a mappa elé, valamint szóközzel kell elválasztani az elemeket."
 
 msgid "Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "Figyelem! Helytelen beállítással tönkretehető a biztonsági mentés."

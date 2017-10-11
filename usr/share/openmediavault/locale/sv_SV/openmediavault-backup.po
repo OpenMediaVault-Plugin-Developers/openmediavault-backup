@@ -3,49 +3,48 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Hyeonkyu Chu <hyeonkyu@gmail.com>, 2014
-# Ian Snyder <guswogjs499@outlook.kr>, 2017
+# Jonatan Nyberg, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-11 13:43-0500\n"
-"PO-Revision-Date: 2017-09-27 17:31+0000\n"
-"Last-Translator: Ian Snyder <guswogjs499@outlook.kr>\n"
-"Language-Team: Korean (Korea) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ko_KR/)\n"
+"PO-Revision-Date: 2017-09-30 04:02+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
+"Language-Team: Swedish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ko_KR\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Backup"
-msgstr "백업"
+msgstr "Säkerhetskopiering"
 
 msgid ""
 "Backup the operating system drive to the selected shared folder for "
 "emergency restoration."
-msgstr "긴급 복구를 위해 운영체제 드라이브를 선택한 공유 폴더로 백업합니다."
+msgstr "Säkerhetskopiera operativsystemenheten till den valda delade mappen för nödåterställning."
 
 msgid "Example"
-msgstr ""
+msgstr "Exempel"
 
 msgid "Extra Options"
-msgstr ""
+msgstr "Extra alternativ"
 
 msgid "Settings"
-msgstr "설정"
+msgstr "Inställningar"
 
 msgid "Shared Folder"
-msgstr "공유 폴더"
+msgstr "Delad mapp"
 
 msgid "System Backup"
-msgstr "시스템 백업"
+msgstr "Systemsäkerhetskopiering"
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
-msgstr ""
+msgstr "För att utesluta additionskataloger lägg till --exclude= före varje katalog och separera ytterligare poster med ett mellanslag."
 
 msgid "Warning!!  You can break the backup with wrong options."
-msgstr "경고!! 잘못된 옵션으로 백업이 망가질 수 있습니다."
+msgstr "Varning!! Du kan bryta säkerheskopieringen med felaktiga alternativ."
