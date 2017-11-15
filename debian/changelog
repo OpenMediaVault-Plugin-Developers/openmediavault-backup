@@ -1,8 +1,9 @@
-openmediavault-backup (3.7) UNRELEASED; urgency=medium
+openmediavault-backup (3.7) stable; urgency=low
 
   * Add root device field
+  * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 14 Nov 2017 19:12:07 -0600
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 14 Nov 2017 19:17:53 -0600
 
 openmediavault-backup (3.6) stable; urgency=low
 
