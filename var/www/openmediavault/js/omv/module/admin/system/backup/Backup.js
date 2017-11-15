@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013-2016 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2017 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-// require("js/omv/WorkspaceManager.js")
+// require('js/omv/WorkspaceManager.js')
 
 OMV.WorkspaceManager.registerNode({
-    id      : "backup",
-    path    : "/system",
-    text    : _("Backup"),
-    icon16  : "images/backup.png",
-    iconSvg : "images/backup.svg"
+    id      : 'backup',
+    path    : '/system',
+    text    : _('Backup'),
+    icon16  : 'images/backup.png',
+    iconSvg : 'images/backup.svg'
 });

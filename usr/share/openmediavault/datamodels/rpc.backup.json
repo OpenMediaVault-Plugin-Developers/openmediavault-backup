@@ -9,6 +9,10 @@
 				"format": "uuidv4",
 				"required": true
 			},
+			"root": {
+				"type": "string",
+				"required": false
+			},
 			"extraoptions": {
 				"type": "string",
 				"required": false

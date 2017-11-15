@@ -11,6 +11,9 @@
 			"type": "string",
 			"format": "uuidv4"
 		},
+		"root": {
+			"type": "string"
+		},
 		"extraoptions": {
 			"type": "string"
 		}

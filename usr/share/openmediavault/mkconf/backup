@@ -37,14 +37,18 @@ if [ "${sfref}" != "" ]; then
         --exclude=/home/ftp \
         --exclude=/srv ${extra}
 
-    for device in $(blkid -o device); do
-        [ "$(stat --format '%04D' /)" = "$(stat --format '%02t%02T' $device)" ] && root="$device" && break
-    done
-
+    root=$(omv_config_get "/config/system/backup/root")
+    # if root is empty, try to determine root device
+    if [ -z "${root}" ]; then
+        for device in $(blkid -o device); do
+            [ "$(stat --format '%04D' /)" = "$(stat --format '%02t%02T' ${device})" ] && root="${device::-1}" && break
+        done
+    fi
     echo "Root drive: ${root}"
-
-    dd if=${root} of=${sfpath}/grub.dd bs=446 count=1
-    dd if=${root} of=${sfpath}/grub_parts.dd bs=512 count=1
+    if [ -n "${root}" ]; then
+        dd if=${root} of=${sfpath}/grub.dd bs=446 count=1
+        dd if=${root} of=${sfpath}/grub_parts.dd bs=512 count=1
+    fi
     blkid > ${sfpath}/uuids
     dpkg -l | grep openmediavault > ${sfpath}/packages
 else

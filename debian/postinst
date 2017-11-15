@@ -7,25 +7,17 @@ set -e
 
 case "$1" in
     configure)
-        SERVICE_XPATH_NAME="backup"
-        SERVICE_XPATH="/config/system/${SERVICE_XPATH_NAME}"
-
-        if ! omv_config_exists "${SERVICE_XPATH}"; then
-            omv_config_add_node "/config/system" "${SERVICE_XPATH_NAME}"
-            omv_config_add_key "${SERVICE_XPATH}" "sharedfolderref" ""
-            omv_config_add_key "${SERVICE_XPATH}" "extraoptions" ""
-        fi
-
-        if dpkg --compare-versions "${2}" lt-nl "3.2"; then
-            omv_config_rename "${SERVICE_XPATH}/mntentref" "sharedfolderref"
-        fi
-
-        if dpkg --compare-versions "${2}" lt-nl "3.4"; then
-            omv_config_add_key "${SERVICE_XPATH}" "extraoptions" ""
-        fi
-
+        # Activate package triggers. These triggers are only set during the
+        # package installation.
         dpkg-trigger update-fixperms
         dpkg-trigger update-locale
+
+        # Initialize and migrate configuration database.
+        echo "Updating configuration database ..."
+        omv-confdbadm create "conf.system.backup"
+        if [ -n "$2" ]; then
+            omv-confdbadm migrate "conf.system.backup" "${2}"
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
