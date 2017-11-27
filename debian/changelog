@@ -1,3 +1,9 @@
+openmediavault-backup (3.8) stable; urgency=low
+
+  * Fix uninstall
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 26 Nov 2017 21:24:37 -0600
+
 openmediavault-backup (3.7) stable; urgency=low
 
   * Add root device field
