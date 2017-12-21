@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2014-2016
+# Stefan Thrane Overby <stoverby@gmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-14 19:17-0600\n"
-"PO-Revision-Date: 2017-11-15 01:17+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"PO-Revision-Date: 2017-12-02 21:05+0000\n"
+"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,10 +34,10 @@ msgstr "Ekstra Valgmuligheder"
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
-msgstr ""
+msgstr "Kun for avancerede bruger - Brug ikke medmindre den præcise root enhed er kendt. "
 
 msgid "Root device"
-msgstr ""
+msgstr "Root enhed"
 
 msgid "Settings"
 msgstr "Indstillinger"
