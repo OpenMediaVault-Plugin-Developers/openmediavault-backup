@@ -40,9 +40,8 @@ if [ "${sfref}" != "" ]; then
     root=$(omv_config_get "/config/system/backup/root")
     # if root is empty, try to determine root device
     if [ -z "${root}" ]; then
-        for device in $(blkid -o device); do
-            [ "$(stat --format '%04D' /)" = "$(stat --format '%02t%02T' ${device})" ] && root="${device::-1}" && break
-        done
+        devicefile=$(omv_get_root_devicefile)
+        root="/dev/$(lsblk -no pkname ${devicefile})"
     fi
     echo "Root drive: ${root}"
     if [ -n "${root}" ]; then

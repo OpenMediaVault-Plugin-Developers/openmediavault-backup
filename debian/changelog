@@ -1,3 +1,9 @@
+openmediavault-backup (3.10) stable; urgency=low
+
+  * Use builtin OMV function and lsblk to determine root drive
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 11 Apr 2018 07:19:57 -0500
+
 openmediavault-backup (3.9) stable; urgency=low
 
   * Fix obscure error affecting very few systems.
