@@ -21,7 +21,7 @@ if [ "${sfref}" != "" ]; then
     extra=$(omv_config_get "/config/system/backup/extraoptions")
 
     # make the backup dir if it doesn't exist
-    mkdir -p ${sfref}
+    mkdir -p ${sfpath}
 
     rsync -aAXvxx /* ${sfpath} \
         --delete \
