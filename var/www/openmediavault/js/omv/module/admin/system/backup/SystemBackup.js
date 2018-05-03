@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013-2017 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2018 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@
 // require("js/omv/form/field/SharedFolderComboBox.js")
 
 Ext.define('OMV.module.admin.system.backup.SystemBackup', {
-    extend : 'OMV.workspace.form.Panel',
-    uses   : [
+    extend: 'OMV.workspace.form.Panel',
+    uses: [
         'OMV.data.Model',
         'OMV.data.Store'
     ],
@@ -33,56 +33,89 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
         'OMV.form.field.plugin.FieldInfo'
     ],
 
-    rpcService   : 'Backup',
-    rpcGetMethod : 'get',
-    rpcSetMethod : 'set',
+    plugins: [{
+        ptype: 'linkedfields',
+        correlations: [{
+            conditions: [{
+                name: 'method',
+                value: 'rsync'
+            }],
+            name: ['extraoptions'],
+            properties: ['show', 'submitValue']
+        }]
+    }],
+
+    rpcService: 'Backup',
+    rpcGetMethod: 'get',
+    rpcSetMethod: 'set',
 
     hideTopToolbar: true,
 
-    getFormItems : function() {
+    getFormItems: function() {
         var me = this;
         return [{
-            xtype    : 'fieldset',
-            title    : _('Settings'),
-            defaults : {
-                labelSeparator : ''
+            xtype: 'fieldset',
+            title: _('Settings'),
+            defaults: {
+                labelSeparator: ''
             },
-            items : [{
-                xtype      : 'sharedfoldercombo',
-                name       : 'sharedfolderref',
-                fieldLabel : _('Shared Folder')
+            items: [{
+                xtype: 'sharedfoldercombo',
+                name: 'sharedfolderref',
+                fieldLabel: _('Shared Folder')
             },{
-                xtype      : 'textfield',
-                name       : 'root',
-                fieldLabel : _('Root device'),
-                allowBlank : true,
-                plugins    : [{
-                    ptype : 'fieldinfo',
-                    text  : _('For advanced users only - Do not use unless exact root device is known.')
+                xtype: 'combo',
+                name: 'method',
+                fieldLabel: _('Method'),
+                queryMode: 'local',
+                store: [
+                    [ 'dd', _('dd') ],
+                    [ 'fsarchiver', _('fsarchiver') ],
+                    [ 'rsync', _('rsync') ]
+                ],
+                editable: false,
+                triggerAction: 'all',
+                value: 'fsarchiver',
+                plugins: [{
+                    ptype: 'fieldinfo',
+                    text: _('dd - use dd to clone the entire drive to a compressed image file.') +
+                            '<br />' +
+                          _('fsarchiver - use fsarchiver to clone all partitions to an archive file') +
+                            '<br />' +
+                          _('rsync - use rsync to sync files to destination directory')
                 }]
             },{
-                xtype      : 'textfield',
-                name       : 'extraoptions',
-                fieldLabel : _('Extra Options'),
-                allowBlank : true,
-                plugins    : [{
-                    ptype : 'fieldinfo',
-                    text  : _('To exclude addition directories, add --exclude= before each directory and separate additional entries with a space.') +
-                              '<br />' +
-                            _('Example') + ':  --exclude=/pool --exclude=/test' +
-                              '<br />' +
-                            _('Warning!!  You can break the backup with wrong options.')
+                xtype: 'textfield',
+                name: 'root',
+                fieldLabel: _('Root device'),
+                allowBlank: true,
+                plugins: [{
+                    ptype: 'fieldinfo',
+                    text: _('For advanced users only - Do not use unless exact root device is known.')
                 }]
             },{
-                xtype   : 'button',
-                name    : 'backup',
-                text    : _('Backup'),
-                scope   : this,
-                handler : Ext.Function.bind(me.onBackupButton, me, [ me ]),
-                margin  : '5 0 0 0'
+                xtype: 'textfield',
+                name: 'extraoptions',
+                fieldLabel: _('Extra Options'),
+                allowBlank: true,
+                plugins: [{
+                    ptype: 'fieldinfo',
+                    text: _('To exclude addition directories, add --exclude= before each directory and separate additional entries with a space.') +
+                            '<br />' +
+                          _('Example') + ':  --exclude=/pool --exclude=/test' +
+                            '<br />' +
+                          _('Warning!!  You can break the backup with wrong options.')
+                }]
             },{
-                border : false,
-                html   : '<ul><li>' + _('Backup the operating system drive to the selected shared folder for emergency restoration.') + '</li></ul>'
+                xtype: 'button',
+                name: 'backup',
+                text: _('Backup'),
+                scope: this,
+                handler: Ext.Function.bind(me.onBackupButton, me, [ me ]),
+                margin: '5 0 0 0'
+            },{
+                border: false,
+                html: '<ul><li>' + _('Backup the operating system drive to the selected shared folder for emergency restoration.') + '</li></ul>'
             }]
         }];
     },
@@ -91,12 +124,12 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
         var me = this;
         me.doSubmit();
         Ext.create('OMV.window.Execute', {
-            title      : _('Backup'),
-            rpcService : 'Backup',
-            rpcMethod  : 'doBackup',
-            listeners  : {
-                scope     : me,
-                exception : function(wnd, error) {
+            title: _('Backup'),
+            rpcService: 'Backup',
+            rpcMethod: 'doBackup',
+            listeners: {
+                scope: me,
+                exception: function(wnd, error) {
                     OMV.MessageBox.error(null, error);
                 }
             }
@@ -105,9 +138,9 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : 'systembackup',
-    path      : '/system/backup',
-    text      : _('System Backup'),
-    position  : 10,
-    className : 'OMV.module.admin.system.backup.SystemBackup'
+    id: 'systembackup',
+    path: '/system/backup',
+    text: _('System Backup'),
+    position: 10,
+    className: 'OMV.module.admin.system.backup.SystemBackup'
 });

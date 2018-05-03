@@ -5,6 +5,9 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
+# date
+date=$(date +"%d-%b-%Y_%H-%M-%S")
+
 # clean apt-get cache to save space
 apt-get clean
 
@@ -14,44 +17,79 @@ touch /var/cache/openmediavault/archives/Packages
 
 # Get the shared folder reference and path
 sfref=$(omv_config_get "/config/system/backup/sharedfolderref")
-
-# check to see if backup path exists and backup
-if [ "${sfref}" != "" ]; then
-    sfpath=$(omv_get_sharedfolder_path "${sfref}")/omvbackup/
-    extra=$(omv_config_get "/config/system/backup/extraoptions")
-
-    # make the backup dir if it doesn't exist
-    mkdir -p ${sfpath}
-
-    rsync -aAXvxx /* ${sfpath} \
-        --delete \
-        --exclude=/dev \
-        --exclude=/proc \
-        --exclude=/sys \
-        --exclude=/tmp \
-        --exclude=/run \
-        --exclude=/mnt \
-        --exclude=/media \
-        --exclude=/lost+found \
-        --exclude=/export \
-        --exclude=/home/ftp \
-        --exclude=/srv ${extra}
-
-    root=$(omv_config_get "/config/system/backup/root")
-    # if root is empty, try to determine root device
-    if [ -z "${root}" ]; then
-        devicefile=$(omv_get_root_devicefile)
-        root="/dev/$(lsblk -no pkname ${devicefile})"
-    fi
-    echo "Root drive: ${root}"
-    if [ -n "${root}" ]; then
-        dd if=${root} of=${sfpath}/grub.dd bs=446 count=1
-        dd if=${root} of=${sfpath}/grub_parts.dd bs=512 count=1
-    fi
-    blkid > ${sfpath}/uuids
-    dpkg -l | grep openmediavault > ${sfpath}/packages
-else
+if ! omv_isuuid "${sfref}" ]; then
     echo "No backup volume set.  Please choose a backup volume."
+    exit 1
 fi
+sfpath="$(omv_get_sharedfolder_path "${sfref}")"
+if [ ! -d "${sfpath}" ]; then
+    echo "Shared folder directory does not exist.  Exiting..."
+    exit 1
+fi
+
+# set backup directory and create it if it doesn't exist
+backupDir="${sfpath}/omvbackup"
+mkdir -p ${backupDir}
+
+# Get the method of backup
+method=$(omv_config_get "/config/system/backup/method")
+echo "Method: ${method}"
+
+# get root device
+root=$(omv_config_get "/config/system/backup/root")
+devicefile=$(omv_get_root_devicefile)
+
+# if root is empty, try to determine root device
+if [ -z "${root}" ]; then
+    root="/dev/$(lsblk -no pkname ${devicefile})"
+fi
+echo "Root drive: ${root}"
+
+if [ -z "${root}" ]; then
+    echo "Could not determine root device.  Exiting..."
+    exit 1
+fi
+
+# save helpful information
+fdisk -l ${root} > "${backupDir}/fdisk-output-${date}"
+blkid > "${backupDir}/uuids-${date}"
+dpkg -l | grep openmediavault > "${backupDir}/packages-${date}"
+
+# save partition table and mbr
+dd if=${root} of="${backupDir}/grub-${date}.dd" bs=446 count=1
+dd if=${root} of="${backupDir}/grub_parts-${date}.dd" bs=512 count=1
+
+# perform backup based on method selected
+case ${method} in
+    dd)
+        echo "Using dd..."
+        dd if=${devicefile} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/backup-omv-${date}.dd.gz"
+        sync
+        ;;
+
+    fsarchiver)
+        echo "Using FSArchiver..."
+        fsarchiver savefs -o "${backupDir}/backup-omv-${date}.fsa" ${devicefile} -v -A
+        ;;
+
+    rsync)
+        echo "Using rsync..."
+        extra=$(omv_config_get "/config/system/backup/extraoptions")
+
+        rsync -aAXvxx /* "${backupDir}/" \
+            --delete \
+            --exclude=/dev \
+            --exclude=/proc \
+            --exclude=/sys \
+            --exclude=/tmp \
+            --exclude=/run \
+            --exclude=/mnt \
+            --exclude=/media \
+            --exclude=/lost+found \
+            --exclude=/export \
+            --exclude=/home/ftp \
+            --exclude=/srv ${extra}
+        ;;
+esac
 
 exit 0

@@ -9,9 +9,10 @@ Homepage: http://omv-extras.org/
 
 Package: openmediavault-backup
 Architecture: all
-Depends: openmediavault (>=3.0.40),
+Depends: fsarchiver,
+         openmediavault (>=4.1.5),
          rsync
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault
- system minus data drives for restoration in emergency
- situations.
+ system minus data drives or system drive for
+ restoration in emergency situations.

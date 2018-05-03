@@ -9,6 +9,11 @@
 				"format": "uuidv4",
 				"required": true
 			},
+			"method": {
+				"type": "string",
+				"enum": ["rsync","fsarchiver","dd"],
+				"required": true
+			},
 			"root": {
 				"type": "string",
 				"required": false

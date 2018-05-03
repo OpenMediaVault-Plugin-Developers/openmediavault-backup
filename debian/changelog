@@ -1,3 +1,9 @@
+openmediavault-backup (4.0) stable; urgency=low
+
+  * Add dd and fsarchiver methods of backup
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 03 May 2018 18:31:10 -0500
+
 openmediavault-backup (3.11) stable; urgency=low
 
   * Fix typo that creates uuid directory in root directory
