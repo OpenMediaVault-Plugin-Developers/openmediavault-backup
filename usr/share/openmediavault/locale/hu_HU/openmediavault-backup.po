@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-14 19:17-0600\n"
-"PO-Revision-Date: 2017-11-26 15:40+0000\n"
-"Last-Translator: Gyuris Gellért <bubu@ujevangelizacio.hu>\n"
+"POT-Creation-Date: 2018-05-03 18:31-0500\n"
+"PO-Revision-Date: 2018-05-03 23:31+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,6 +37,9 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "Csak haladó felhasználóknak ‒ Pontosan ismert gyökéreszköz hiányában ne legyen alkalmazva."
 
+msgid "Method"
+msgstr ""
+
 msgid "Root device"
 msgstr "Gyökéreszköz"
 
@@ -56,3 +59,21 @@ msgstr "Mappák kizárásához egy „--exclude=” előtagot kell hozzáadni a 
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Figyelem! Helytelen beállítással tönkretehető a biztonsági mentés."
+
+msgid "dd"
+msgstr ""
+
+msgid "dd - use dd to clone the entire drive to a compressed image file."
+msgstr ""
+
+msgid "fsarchiver"
+msgstr ""
+
+msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
+msgstr ""
+
+msgid "rsync"
+msgstr ""
+
+msgid "rsync - use rsync to sync files to destination directory"
+msgstr ""

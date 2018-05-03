@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-21 14:15-0600\n"
+"POT-Creation-Date: 2018-05-03 18:31-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +32,9 @@ msgstr ""
 msgid "For advanced users only - Do not use unless exact root device is known."
 msgstr ""
 
+msgid "Method"
+msgstr ""
+
 msgid "Root device"
 msgstr ""
 
@@ -48,4 +51,22 @@ msgid "To exclude addition directories, add --exclude= before each directory and
 msgstr ""
 
 msgid "Warning!!  You can break the backup with wrong options."
+msgstr ""
+
+msgid "dd"
+msgstr ""
+
+msgid "dd - use dd to clone the entire drive to a compressed image file."
+msgstr ""
+
+msgid "fsarchiver"
+msgstr ""
+
+msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
+msgstr ""
+
+msgid "rsync"
+msgstr ""
+
+msgid "rsync - use rsync to sync files to destination directory"
 msgstr ""

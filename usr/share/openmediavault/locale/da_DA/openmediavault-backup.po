@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-14 19:17-0600\n"
-"PO-Revision-Date: 2017-12-02 21:05+0000\n"
-"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
+"POT-Creation-Date: 2018-05-03 18:31-0500\n"
+"PO-Revision-Date: 2018-05-03 23:31+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,6 +36,9 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "Kun for avancerede bruger - Brug ikke medmindre den præcise root enhed er kendt. "
 
+msgid "Method"
+msgstr ""
+
 msgid "Root device"
 msgstr "Root enhed"
 
@@ -55,3 +58,21 @@ msgstr "For at ekskludere yderligere biblioteker, tilføj --exclude= før hvert 
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Advarsel!! Du vil ødelægge din backup med de forkerte valgmuligheder."
+
+msgid "dd"
+msgstr ""
+
+msgid "dd - use dd to clone the entire drive to a compressed image file."
+msgstr ""
+
+msgid "fsarchiver"
+msgstr ""
+
+msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
+msgstr ""
+
+msgid "rsync"
+msgstr ""
+
+msgid "rsync - use rsync to sync files to destination directory"
+msgstr ""

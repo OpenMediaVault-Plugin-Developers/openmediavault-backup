@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-14 19:17-0600\n"
-"PO-Revision-Date: 2017-11-18 12:43+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>\n"
+"POT-Creation-Date: 2018-05-03 18:31-0500\n"
+"PO-Revision-Date: 2018-05-03 23:31+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,6 +36,9 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "只給進階用户使用 - 除非知道確實的根裝置，否則不要使用它。"
 
+msgid "Method"
+msgstr ""
+
 msgid "Root device"
 msgstr "根裝置"
 
@@ -55,3 +58,21 @@ msgstr "要排除額外的檔案目錄，在每個目錄前加上 --exclude=，�
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告!! 錯誤的選項可能讓您將備份損壞。"
+
+msgid "dd"
+msgstr ""
+
+msgid "dd - use dd to clone the entire drive to a compressed image file."
+msgstr ""
+
+msgid "fsarchiver"
+msgstr ""
+
+msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
+msgstr ""
+
+msgid "rsync"
+msgstr ""
+
+msgid "rsync - use rsync to sync files to destination directory"
+msgstr ""
