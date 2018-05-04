@@ -49,7 +49,20 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
     rpcGetMethod: 'get',
     rpcSetMethod: 'set',
 
-    hideTopToolbar: true,
+    getButtonItems: function() {
+        var me = this;
+        var items = me.callParent(arguments);
+        items.push({
+            id: me.getId() + "-backup",
+            xtype: "button",
+            text: _("Backup"),
+            icon: "images/hdd.png",
+            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            scope: me,
+            handler: Ext.Function.bind(me.onBackupButton, me, [ me ])
+        });
+        return items;
+    },
 
     getFormItems: function() {
         var me = this;
@@ -106,16 +119,6 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                             '<br />' +
                           _('Warning!!  You can break the backup with wrong options.')
                 }]
-            },{
-                xtype: 'button',
-                name: 'backup',
-                text: _('Backup'),
-                scope: this,
-                handler: Ext.Function.bind(me.onBackupButton, me, [ me ]),
-                margin: '5 0 0 0'
-            },{
-                border: false,
-                html: '<ul><li>' + _('Backup the operating system drive to the selected shared folder for emergency restoration.') + '</li></ul>'
             }]
         }];
     },
