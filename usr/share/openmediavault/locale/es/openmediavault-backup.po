@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2017
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-03 18:31-0500\n"
-"PO-Revision-Date: 2018-05-03 23:31+0000\n"
+"POT-Creation-Date: 2018-05-05 14:48-0500\n"
+"PO-Revision-Date: 2018-05-05 19:48+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,6 @@ msgstr ""
 msgid "Backup"
 msgstr "Backup"
 
-msgid ""
-"Backup the operating system drive to the selected shared folder for "
-"emergency restoration."
-msgstr "Salvar el disco del S.O. en una carpeta compartida para una restauración de emergencia."
-
 msgid "Example"
 msgstr "Ejemplo"
 
@@ -36,7 +31,21 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "Solo para usuarios avanzados - No usar a menos que se conozca el dispositivo raíz (root)"
 
+msgid ""
+"If a password is specified, fsarchiver will be encrypted. Must be between 6 "
+"and 64 characters."
+msgstr ""
+
+msgid "Keep"
+msgstr ""
+
+msgid "Keep the last x days of backups. Set to zero to disable."
+msgstr ""
+
 msgid "Method"
+msgstr "Metodo"
+
+msgid "Password"
 msgstr ""
 
 msgid "Root device"
@@ -60,19 +69,19 @@ msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Precaución! Puede dañar el Backup con opciones erroneas."
 
 msgid "dd"
-msgstr ""
+msgstr "dd"
 
 msgid "dd - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd - Use dd para clonar el disco completo en una imagen comprimida."
 
 msgid "fsarchiver"
-msgstr ""
+msgstr "fsarchiver"
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr ""
+msgstr "fsarchiver - Use fsarchiver para clonar todas las particiones en un archivo comprimido."
 
 msgid "rsync"
-msgstr ""
+msgstr "rsync"
 
 msgid "rsync - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "rsync - Use rsync para sincronizar los archivos con los del directorio de destino."

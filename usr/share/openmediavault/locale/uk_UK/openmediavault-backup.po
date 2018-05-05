@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-03 18:31-0500\n"
-"PO-Revision-Date: 2018-05-03 23:31+0000\n"
+"POT-Creation-Date: 2018-05-05 14:48-0500\n"
+"PO-Revision-Date: 2018-05-05 19:48+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "Backup"
-msgstr ""
-
-msgid ""
-"Backup the operating system drive to the selected shared folder for "
-"emergency restoration."
 msgstr ""
 
 msgid "Example"
@@ -36,7 +31,21 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr ""
 
+msgid ""
+"If a password is specified, fsarchiver will be encrypted. Must be between 6 "
+"and 64 characters."
+msgstr ""
+
+msgid "Keep"
+msgstr ""
+
+msgid "Keep the last x days of backups. Set to zero to disable."
+msgstr ""
+
 msgid "Method"
+msgstr ""
+
+msgid "Password"
 msgstr ""
 
 msgid "Root device"
