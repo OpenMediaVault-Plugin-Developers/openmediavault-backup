@@ -49,6 +49,13 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
             }],
             name: ['keep'],
             properties: ['!show', '!submitValue']
+        },{
+            conditions: [{
+                name: 'method',
+                value: 'fsarchiver'
+            }],
+            name: ['passwd'],
+            properties: ['show', 'submitValue']
         }]
     }],
 
@@ -139,6 +146,16 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                 plugins: [{
                     ptype: 'fieldinfo',
                     text: _('Keep the last x days of backups. Set to zero to disable.')
+                }]
+            },{
+                xtype: 'passwordfield',
+                name: 'passwd',
+                fieldLabel: _('Password'),
+                maxLength: 64,
+                allowBlank: true,
+                plugins: [{
+                    ptype: 'fieldinfo',
+                    text: _('If a password is specified, fsarchiver will be encrypted. Must be between 6 and 64 characters.')
                 }]
             }]
         }];

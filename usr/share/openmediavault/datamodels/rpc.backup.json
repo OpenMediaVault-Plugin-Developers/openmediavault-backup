@@ -25,6 +25,18 @@
 			"keep": {
 				"type": "integer",
 				"required": false
+			},
+			"passwd": {
+				"type": "string",
+				"oneOf": [{
+					"type": "string",
+					"minLength": 6,
+					"maxLength": 64
+				},{
+					"type": "string",
+					"maxLength": 0
+				}],
+				"required": false
 			}
 		}
 	}

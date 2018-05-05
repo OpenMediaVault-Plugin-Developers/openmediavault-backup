@@ -13,7 +13,7 @@ purgeOld()
     keep=$(omv_config_get "/config/system/backup/keep")
     if [[ ${keep} -gt 0 ]]; then
         echo "Purging old files..."
-        find "${backupDir}" -maxdepth 1 -type f -mtime +${keep} -iregex "${BACKUP_FILE_PREFIX}.*\.\(fdisk\|blkid\|packages\|grub\|grubparts\|gz\|fsa\)"
+        find "${backupDir}" -maxdepth 1 -type f -mtime +${keep} -iregex "${BACKUP_FILE_PREFIX}.*\.\(fdisk\|blkid\|packages\|grub\|grubparts\|gz\|fsa\)" -delete
         echo "Purging done."
     else
         echo "Purging disabled."
@@ -85,8 +85,15 @@ case ${method} in
 
     fsarchiver)
         echo "Using FSArchiver..."
-        fsarchiver savefs -o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} -v -A
+        passwd="$(omv_config_get "/config/system/backup/passwd")"
+        password=""
+        if [ -n "${passwd}" ]; then
+            echo "Encrypting archive..."
+            password="--cryptpass=${passwd} "
+        fi
+        fsarchiver savefs ${password}-o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} -v -A
         purgeOld
+        fsarchiver archinfo ${password} "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa"
         ;;
 
     rsync)
