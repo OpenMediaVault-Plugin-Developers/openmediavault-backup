@@ -5,6 +5,21 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
+BACKUP_FILE_PREFIX="backup-omv"
+
+purgeOld()
+{
+    # get number of days to keep
+    keep=$(omv_config_get "/config/system/backup/keep")
+    if [[ ${keep} -gt 0 ]]; then
+        echo "Purging old files..."
+        find "${backupDir}" -maxdepth 1 -type f -mtime +${keep} -iregex "${BACKUP_FILE_PREFIX}.*\.\(fdisk\|blkid\|packages\|grub\|grubparts\|gz\|fsa\)"
+        echo "Purging done."
+    else
+        echo "Purging disabled."
+    fi
+}
+
 # date
 date=$(date +"%d-%b-%Y_%H-%M-%S")
 
@@ -51,25 +66,27 @@ if [ -z "${root}" ]; then
 fi
 
 # save helpful information
-fdisk -l ${root} > "${backupDir}/fdisk-output-${date}"
-blkid > "${backupDir}/uuids-${date}"
-dpkg -l | grep openmediavault > "${backupDir}/packages-${date}"
+fdisk -l ${root} > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fdisk"
+blkid > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.blkid"
+dpkg -l | grep openmediavault > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.packages"
 
 # save partition table and mbr
-dd if=${root} of="${backupDir}/grub-${date}.dd" bs=446 count=1
-dd if=${root} of="${backupDir}/grub_parts-${date}.dd" bs=512 count=1
+dd if=${root} of="${backupDir}/${BACKUP_FILE_PREFIX}-${date}.grub" bs=446 count=1
+dd if=${root} of="${backupDir}/${BACKUP_FILE_PREFIX}-${date}.grubparts" bs=512 count=1
 
 # perform backup based on method selected
 case ${method} in
     dd)
         echo "Using dd..."
-        dd if=${devicefile} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/backup-omv-${date}.dd.gz"
+        dd if=${devicefile} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.dd.gz"
         sync
+        purgeOld
         ;;
 
     fsarchiver)
         echo "Using FSArchiver..."
-        fsarchiver savefs -o "${backupDir}/backup-omv-${date}.fsa" ${devicefile} -v -A
+        fsarchiver savefs -o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} -v -A
+        purgeOld
         ;;
 
     rsync)

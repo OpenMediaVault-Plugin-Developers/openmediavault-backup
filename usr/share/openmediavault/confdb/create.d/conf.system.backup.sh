@@ -32,6 +32,7 @@ if ! omv_config_exists "${SERVICE_XPATH}"; then
     omv_config_add_key "${SERVICE_XPATH}" "method" ""
     omv_config_add_key "${SERVICE_XPATH}" "root" ""
     omv_config_add_key "${SERVICE_XPATH}" "extraoptions" ""
+    omv_config_add_key "${SERVICE_XPATH}" "keep" "7"
 fi
 
 exit 0

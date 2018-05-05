@@ -21,6 +21,10 @@
 			"extraoptions": {
 				"type": "string",
 				"required": false
+			},
+			"keep": {
+				"type": "integer",
+				"required": false
 			}
 		}
 	}

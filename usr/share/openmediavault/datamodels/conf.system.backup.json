@@ -20,6 +20,9 @@
 		},
 		"extraoptions": {
 			"type": "string"
+		},
+		"keep": {
+			"type": "integer"
 		}
 	}
 }

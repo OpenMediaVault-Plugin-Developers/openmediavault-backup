@@ -42,6 +42,13 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
             }],
             name: ['extraoptions'],
             properties: ['show', 'submitValue']
+        },{
+            conditions: [{
+                name: 'method',
+                value: 'rsync'
+            }],
+            name: ['keep'],
+            properties: ['!show', '!submitValue']
         }]
     }],
 
@@ -118,6 +125,20 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                           _('Example') + ':  --exclude=/pool --exclude=/test' +
                             '<br />' +
                           _('Warning!!  You can break the backup with wrong options.')
+                }]
+            },{
+                xtype: 'numberfield',
+                name: 'keep',
+                fieldLabel: _('Keep'),
+                minValue: 0,
+                maxValue: 9999,
+                allowDecimals: false,
+                allowNegative: false,
+                allowBlank: false,
+                value: 7,
+                plugins: [{
+                    ptype: 'fieldinfo',
+                    text: _('Keep the last x days of backups. Set to zero to disable.')
                 }]
             }]
         }];
