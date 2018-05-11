@@ -1,3 +1,9 @@
+openmediavault-backup (4.0.1) stable; urgency=low
+
+  * Improve root device file detection for btrfs
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 11 May 2018 08:15:31 -0500
+
 openmediavault-backup (4.0) stable; urgency=low
 
   * Add dd and fsarchiver methods of backup

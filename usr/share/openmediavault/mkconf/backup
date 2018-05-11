@@ -50,9 +50,17 @@ mkdir -p ${backupDir}
 method=$(omv_config_get "/config/system/backup/method")
 echo "Method: ${method}"
 
+# get device file for /
+devicefile=$(awk '$5 == "/" { print $10 }' /proc/self/mountinfo)
+echo "Device file:  ${devicefile}"
+
+if [ -z "${devicefile}" ]; then
+    echo "Could not determine root device file.  Exiting..."
+    exit 1
+fi
+
 # get root device
 root=$(omv_config_get "/config/system/backup/root")
-devicefile=$(omv_get_root_devicefile)
 
 # if root is empty, try to determine root device
 if [ -z "${root}" ]; then
