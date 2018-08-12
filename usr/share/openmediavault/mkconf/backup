@@ -32,7 +32,7 @@ touch /var/cache/openmediavault/archives/Packages
 
 # Get the shared folder reference and path
 sfref=$(omv_config_get "/config/system/backup/sharedfolderref")
-if ! omv_isuuid "${sfref}" ]; then
+if ! omv_isuuid "${sfref}"; then
     echo "No backup volume set.  Please choose a backup volume."
     exit 1
 fi
@@ -54,8 +54,13 @@ echo "Method: ${method}"
 devicefile=$(awk '$5 == "/" { print $10 }' /proc/self/mountinfo)
 echo "Device file:  ${devicefile}"
 
-if [ -z "${devicefile}" ]; then
-    echo "Could not determine root device file.  Exiting..."
+# try alternate method to get root device if /dev/root is returned
+if [ "${devicefile}" = "/dev/root" ]; then
+  devicefile=$(findmnt -n / | awk '{ print $2 }')
+fi
+
+if [ "${devicefile}" = "/dev/root" ] || [ -z "${devicefile}" ]; then
+    echo "Could not determine root device file. Please specify in the root device textbox. Exiting..."
     exit 1
 fi
 

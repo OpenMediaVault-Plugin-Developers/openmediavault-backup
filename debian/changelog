@@ -1,3 +1,9 @@
+openmediavault-backup (4.0.2) stable; urgency=low
+
+  * Improve root device detection again.
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 12 Aug 2018 12:16:19 -0500
+
 openmediavault-backup (4.0.1) stable; urgency=low
 
   * Improve root device file detection for btrfs
