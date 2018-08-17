@@ -89,7 +89,9 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
             items: [{
                 xtype: 'sharedfoldercombo',
                 name: 'sharedfolderref',
-                fieldLabel: _('Shared Folder')
+                fieldLabel: _('Shared Folder'),
+                allowNone: true,
+                allowBlank: true
             },{
                 xtype: 'combo',
                 name: 'method',
