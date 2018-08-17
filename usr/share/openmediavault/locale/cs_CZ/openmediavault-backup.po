@@ -3,23 +3,23 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2015-2017
+# Pavel Borecki <pavel.borecki@gmail.com>, 2015-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-05 14:48-0500\n"
-"PO-Revision-Date: 2018-05-05 19:48+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"PO-Revision-Date: 2018-07-10 09:37+0000\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs_CZ\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "Backup"
-msgstr "Zálohovat"
+msgstr "Zálohování systému a nastavení"
 
 msgid "Example"
 msgstr "Příklad"
@@ -34,19 +34,19 @@ msgstr "Pouze pro pokročilé uživatele – nepoužívejte pokud není známé 
 msgid ""
 "If a password is specified, fsarchiver will be encrypted. Must be between 6 "
 "and 64 characters."
-msgstr ""
+msgstr "Pokud je zadáno heslo, fsarchiver bude šifrovaný. Je třeba, aby bylo dlouhé 6 až 64 znaků."
 
 msgid "Keep"
-msgstr ""
+msgstr "Ponechat"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr ""
+msgstr "Ponechat zálohy z uplynulých x dnů. Nastavení na 0 vypíná."
 
 msgid "Method"
-msgstr ""
+msgstr "Metoda"
 
 msgid "Password"
-msgstr ""
+msgstr "Heslo"
 
 msgid "Root device"
 msgstr "Zařízení s kořenovou složkou"
@@ -69,19 +69,19 @@ msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Varování! Chybné předvolby mohou znefunkčnit zálohování."
 
 msgid "dd"
-msgstr ""
+msgstr "dd"
 
 msgid "dd - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd – použít dd pro klonování celého disku do komprimovaného souboru s jeho obrazem."
 
 msgid "fsarchiver"
-msgstr ""
+msgstr "fsarchiver"
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr ""
+msgstr "fsarchiver – použít fsarchiver pro klonování všech oddílů do souboru s archivem"
 
 msgid "rsync"
-msgstr ""
+msgstr "rsync"
 
 msgid "rsync - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "rsync ‒ použít rsync pro synchronizaci souborů do cílové složky"
