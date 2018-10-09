@@ -17,20 +17,41 @@
 // require("js/omv/WorkspaceManager.js")
 // require("js/omv/workspace/form/Panel.js")
 // require("js/omv/workspace/window/Form.js")
-// require("js/omv/data/Store.js")
-// require("js/omv/data/Model.js")
-// require("js/omv/data/proxy/Rpc.js")
-// require("js/omv/workspace/window/plugin/ConfigObject.js")
+// require("js/omv/form/plugin/LinkedFields.js")
 // require("js/omv/form/field/SharedFolderComboBox.js")
+// require("js/omv/module/admin/system/cron/Cron.js")
+
+Ext.define('OMV.module.admin.system.backup.ScheduledBackup', {
+    extend: 'OMV.module.admin.system.cron.Job',
+
+    title: _('Create scheduled backup job'),
+    height: 310,
+    hideResetButton: true,
+
+    initComponent: function() {
+        this.callParent(arguments);
+
+        var enable = this.findField('enable');
+        var username = this.findField('username');
+        var command = this.findField('command');
+        var comment = this.findField('comment');
+
+        enable.hide();
+        username.hide();
+        command.hide();
+        comment.hide();
+
+        enable.setValue(true);
+        username.setValue('root');
+        command.setValue('omv-mkconf backup');
+        comment.setValue('Scheduled system backup.');
+    }
+});
 
 Ext.define('OMV.module.admin.system.backup.SystemBackup', {
     extend: 'OMV.workspace.form.Panel',
     uses: [
-        'OMV.data.Model',
-        'OMV.data.Store'
-    ],
-    requires: [
-        'OMV.form.field.plugin.FieldInfo'
+        'OMV.module.admin.system.backup.ScheduledBackup'
     ],
 
     plugins: [{
@@ -74,6 +95,14 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
             iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
             scope: me,
             handler: Ext.Function.bind(me.onBackupButton, me, [ me ])
+        },{
+            id: this.getId() + '-scheduled-backup',
+            xtype: 'button',
+            text: _('Scheduled backup'),
+            icon: 'images/wrench.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
+            scope: this,
+            handler: Ext.Function.bind(this.onScheduledBackupButton, this)
         });
         return items;
     },
@@ -177,7 +206,15 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                 }
             }
         }).show();
-    }
+    },
+
+    onScheduledBackupButton: function() {
+        var me = this;
+        me.doSubmit();
+        Ext.create('OMV.module.admin.system.backup.ScheduledBackup', {
+            uuid: OMV.UUID_UNDEFINED
+        }).show();
+    },
 });
 
 OMV.WorkspaceManager.registerPanel({
