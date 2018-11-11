@@ -32,6 +32,7 @@ Ext.define('OMV.module.admin.system.backup.ScheduledBackup', {
         this.callParent(arguments);
 
         var enable = this.findField('enable');
+        var execution = this.findField('execution');
         var username = this.findField('username');
         var command = this.findField('command');
         var comment = this.findField('comment');
@@ -42,6 +43,7 @@ Ext.define('OMV.module.admin.system.backup.ScheduledBackup', {
         comment.hide();
 
         enable.setValue(true);
+        execution.setValue('daily');
         username.setValue('root');
         command.setValue('omv-mkconf backup');
         comment.setValue('Scheduled system backup.');
