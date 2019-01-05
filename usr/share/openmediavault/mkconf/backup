@@ -13,7 +13,7 @@ purgeOld()
     keep=$(omv_config_get "/config/system/backup/keep")
     if [[ ${keep} -gt 0 ]]; then
         echo "Purging old files..."
-        find "${backupDir}" -maxdepth 1 -type f -mtime ${keep} -name "${BACKUP_FILE_PREFIX}*" -delete
+        find "${backupDir}" -maxdepth 1 -type f -mtime +${keep} -name "${BACKUP_FILE_PREFIX}*" -delete
         echo "Purging done."
     else
         echo "Purging disabled."
