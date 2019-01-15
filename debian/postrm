@@ -14,7 +14,7 @@ case "$1" in
     purge)
         remove_action
         echo "Cleaning up configuration database ..."
-        omv_config_delete "/config/services/backup"
+        omv_config_delete "/config/system/backup"
     ;;
 
     remove)
