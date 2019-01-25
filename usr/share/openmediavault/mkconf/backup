@@ -44,7 +44,7 @@ fi
 
 # set backup directory and create it if it doesn't exist
 backupDir="${sfpath}/omvbackup"
-mkdir -p ${backupDir}
+mkdir -p "${backupDir}"
 
 # Get the method of backup
 method=$(omv_config_get "/config/system/backup/method")
@@ -123,7 +123,7 @@ case ${method} in
         password=""
         if [ -n "${passwd}" ]; then
             echo "Encrypting archive..."
-            password="--cryptpass=${passwd} "
+            password="--cryptpass='${passwd}' "
         fi
         fsarchiver savefs ${password}-o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A
         touch "${backupDir}/${BACKUP_FILE_PREFIX}"-${date}.*
