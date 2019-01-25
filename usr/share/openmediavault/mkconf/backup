@@ -87,12 +87,33 @@ dpkg -l | grep openmediavault > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.pack
 dd if=${root} of="${backupDir}/${BACKUP_FILE_PREFIX}-${date}.grub" bs=446 count=1
 dd if=${root} of="${backupDir}/${BACKUP_FILE_PREFIX}-${date}.grubparts" bs=512 count=1
 
+# check for /boot partition
+bootpart=$(grep -w /boot /proc/mounts | awk '{ print $1 }')
+if [ ! -b "${bootpart}" ]; then
+    bootpart=""
+else
+    echo "Boot drive: ${bootpart}"
+fi
+
+# backup u-boot if platform_install.sh exists
+if [ -f "/usr/lib/u-boot/platform_install.sh" ]; then
+    . /usr/lib/u-boot/platform_install.sh
+    if [ -d "${DIR}" ]; then
+        tar cjf "${backupDir}/${BACKUP_FILE_PREFIX}_u-boot-${date}.tar.bz" ${DIR}/*
+    fi
+fi
+
 # perform backup based on method selected
 case ${method} in
     dd)
         echo "Using dd..."
         dd if=${devicefile} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.dd.gz"
         sync
+        if [ -n "${bootpart}" ]; then
+            dd if=${bootpart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${BACKUP_FILE_PREFIX}_boot-${date}.dd.gz"
+        fi
+        sync
+        touch "${backupDir}/${BACKUP_FILE_PREFIX}"*-${date}.dd.gz
         purgeOld
         ;;
 
@@ -104,7 +125,8 @@ case ${method} in
             echo "Encrypting archive..."
             password="--cryptpass=${passwd} "
         fi
-        fsarchiver savefs ${password}-o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} -v -A
+        fsarchiver savefs ${password}-o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A
+        touch "${backupDir}/${BACKUP_FILE_PREFIX}"-${date}.*
         purgeOld
         fsarchiver archinfo ${password} "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa"
         ;;

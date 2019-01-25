@@ -1,3 +1,9 @@
+openmediavault-backup (4.0.6) UNRELEASED; urgency=medium
+
+  * Backup arm-specific filesystems and files
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 25 Jan 2019 10:33:21 -0600
+
 openmediavault-backup (4.0.5) stable; urgency=low
 
   * Fix archive purge
