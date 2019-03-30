@@ -1,8 +1,9 @@
-openmediavault-backup (4.0.6) UNRELEASED; urgency=medium
+openmediavault-backup (4.0.6) stable; urgency=low
 
   * Backup arm-specific filesystems and files
+  * Enable extra options for fsarchiver
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 25 Jan 2019 10:33:21 -0600
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 30 Mar 2019 07:48:20 -0500
 
 openmediavault-backup (4.0.5) stable; urgency=low
 

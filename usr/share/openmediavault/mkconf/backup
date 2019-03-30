@@ -119,13 +119,14 @@ case ${method} in
 
     fsarchiver)
         echo "Using FSArchiver..."
+        extra=$(omv_config_get "/config/system/backup/extraoptions")
         passwd="$(omv_config_get "/config/system/backup/passwd")"
         password=""
         if [ -n "${passwd}" ]; then
             echo "Encrypting archive..."
             password="--cryptpass='${passwd}' "
         fi
-        fsarchiver savefs ${password}-o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A
+        fsarchiver savefs ${password}-o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A ${extra}
         touch "${backupDir}/${BACKUP_FILE_PREFIX}"-${date}.*
         purgeOld
         fsarchiver archinfo ${password} "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa"

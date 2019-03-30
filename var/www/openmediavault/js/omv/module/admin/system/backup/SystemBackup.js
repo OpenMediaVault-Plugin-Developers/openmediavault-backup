@@ -61,10 +61,10 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
         correlations: [{
             conditions: [{
                 name: 'method',
-                value: 'rsync'
+                value: 'dd'
             }],
             name: ['extraoptions'],
-            properties: ['show', 'submitValue']
+            properties: ['!show', '!submitValue']
         },{
             conditions: [{
                 name: 'method',
