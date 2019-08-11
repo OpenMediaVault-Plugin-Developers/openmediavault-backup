@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013-2018 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2019 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,7 +45,7 @@ Ext.define('OMV.module.admin.system.backup.ScheduledBackup', {
         enable.setValue(true);
         execution.setValue('daily');
         username.setValue('root');
-        command.setValue('omv-mkconf backup');
+        command.setValue('/usr/sbin/omv-backup');
         comment.setValue('Scheduled system backup.');
     }
 });

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2013-2018 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2019 OpenMediaVault Plugin Developers
  * Copyright (C) 2009-2013 Volker Theile <volker.theile@openmediavault.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -65,7 +65,7 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
         // Create the background process.
         return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
             use ($params) {
-                $cmd = new \OMV\System\Process('omv-mkconf', 'backup');
+                $cmd = new \OMV\System\Process('/usr/sbin/omv-backup');
                 $cmd->setRedirect2to1(true);
                 $cmdLine = $cmd->getCommandLine();
                 if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
