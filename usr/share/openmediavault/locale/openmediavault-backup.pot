@@ -29,7 +29,7 @@ msgstr ""
 msgid "For advanced users only - Do not use unless exact root device is known."
 msgstr ""
 
-msgid "If a password is specified, fsarchiver will be encrypted. Must be between 6 and 64 characters."
+msgid "If a password is specified, backup will be encrypted. Must be between 6 and 64 characters."
 msgstr ""
 
 msgid "Keep"
@@ -71,7 +71,10 @@ msgstr ""
 msgid "fsarchiver"
 msgstr ""
 
-msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
+msgid "borgbackup"
+msgstr ""
+
+msgid "borgbackup - use borgbackup to backup system to an archive file"
 msgstr ""
 
 msgid "rsync"

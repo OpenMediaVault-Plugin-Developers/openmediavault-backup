@@ -75,7 +75,7 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
         },{
             conditions: [{
                 name: 'method',
-                value: 'fsarchiver'
+                value: ['fsarchiver','borg']
             }],
             name: ['passwd'],
             properties: ['show', 'submitValue']
@@ -131,6 +131,7 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                 store: [
                     [ 'dd', _('dd') ],
                     [ 'fsarchiver', _('fsarchiver') ],
+                    [ 'borg', _('borgbackup') ],
                     [ 'rsync', _('rsync') ]
                 ],
                 editable: false,
@@ -141,6 +142,8 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                     text: _('dd - use dd to clone the entire drive to a compressed image file.') +
                             '<br />' +
                           _('fsarchiver - use fsarchiver to clone all partitions to an archive file') +
+                            '<br />' +
+                          _('borgbackup - use borgbackup to backup system to an archive file') +
                             '<br />' +
                           _('rsync - use rsync to sync files to destination directory')
                 }]
@@ -188,7 +191,7 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                 allowBlank: true,
                 plugins: [{
                     ptype: 'fieldinfo',
-                    text: _('If a password is specified, fsarchiver will be encrypted. Must be between 6 and 64 characters.')
+                    text: _('If a password is specified, backup will be encrypted. Must be between 6 and 64 characters.')
                 }]
             }]
         }];
