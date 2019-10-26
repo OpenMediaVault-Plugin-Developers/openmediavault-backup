@@ -132,6 +132,33 @@ case ${method} in
         fsarchiver archinfo ${password} "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa"
         ;;
 
+    borg)
+        echo "Using borgbackup..."
+        extra=$(omv_config_get "/config/system/backup/extraoptions")
+        passwd="$(omv_config_get "/config/system/backup/passwd")"
+        if [ -n "${passwd}" ]; then
+            echo "Encrypting archive..."
+            export BORG_PASSPHRASE="${passwd}"
+        fi
+        if [ ! -d "${backupDir}/borgbackup" ] ; then
+          # First run - init borg directory
+          if [ -n "${passwd}" ]; then
+            borg init -e repokey "${backupDir}/borgbackup"
+          else
+            borg init -e none "${backupDir}/borgbackup"
+          fi
+        fi
+        borg create --stats "${backupDir}/borgbackup::${BACKUP_FILE_PREFIX}-${date}" / \
+          -x --exclude-caches \
+          -e "/dev" -e "/proc" -e "/sys" -e "/tmp" -e "/run" -e "/mnt" \
+          -e "/media" -e "/lost+found" -e "/export" -e "/home/ftp" -e "/srv" ${extra}
+        keep=$(omv_config_get "/config/system/backup/keep")
+        if [[ ${keep} -gt 0 ]]; then
+          purgeOld
+          borg prune "${backupDir}/borgbackup" --keep-daily "${keep}"
+        fi
+        ;;
+
     rsync)
         echo "Using rsync..."
         extra=$(omv_config_get "/config/system/backup/extraoptions")
