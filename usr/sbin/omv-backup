@@ -124,7 +124,7 @@ case ${method} in
         password=""
         if [ -n "${passwd}" ]; then
             echo "Encrypting archive..."
-            password="--cryptpass='${passwd}' "
+            password="--cryptpass=${passwd} "
         fi
         fsarchiver savefs ${password}-o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A ${extra}
         touch "${backupDir}/${BACKUP_FILE_PREFIX}"-${date}.*

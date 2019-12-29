@@ -1,3 +1,10 @@
+openmediavault-backup (5.1) stable; urgency=low
+
+  * Add borg option
+  * Fix password issue
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 29 Dec 2019 11:56:09 -0600
+
 openmediavault-backup (5.0) stable; urgency=low
 
   * Update for OMV 5.x

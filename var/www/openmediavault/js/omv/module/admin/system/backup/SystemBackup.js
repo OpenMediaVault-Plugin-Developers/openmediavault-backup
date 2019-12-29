@@ -189,6 +189,7 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                 fieldLabel: _('Password'),
                 maxLength: 64,
                 allowBlank: true,
+                maskRe: /[^\ ]/,
                 plugins: [{
                     ptype: 'fieldinfo',
                     text: _('If a password is specified, backup will be encrypted. Must be between 6 and 64 characters.')
