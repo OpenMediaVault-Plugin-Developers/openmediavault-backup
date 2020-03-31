@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-05 14:48-0500\n"
-"PO-Revision-Date: 2018-06-12 19:27+0000\n"
-"Last-Translator: Axel Cantenys\n"
+"POT-Creation-Date: 2020-03-31 07:10-0500\n"
+"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,6 +23,9 @@ msgstr ""
 
 msgid "Backup"
 msgstr "Sauvegarde"
+
+msgid "Create scheduled backup job"
+msgstr ""
 
 msgid "Example"
 msgstr "Exemple"
@@ -35,9 +38,9 @@ msgid ""
 msgstr "Pour les utilisateurs avancés seulement. - Ne pas utiliser sauf si le dispositif racine exact est connu."
 
 msgid ""
-"If a password is specified, fsarchiver will be encrypted. Must be between 6 "
-"and 64 characters."
-msgstr "Si un mot de passe est spécifié, fsarchiver sera crypté. Doit être compris entre 6 et 64 caractères."
+"If a password is specified, backup will be encrypted. Must be between 6 and "
+"64 characters."
+msgstr ""
 
 msgid "Keep"
 msgstr "Garder"
@@ -53,6 +56,9 @@ msgstr "Mot de passe"
 
 msgid "Root device"
 msgstr "Dispositif racine"
+
+msgid "Scheduled backup"
+msgstr ""
 
 msgid "Settings"
 msgstr "Options"
@@ -71,11 +77,24 @@ msgstr "Pour exclure des répertoires, ajoutez --exclude= avant chaque répertoi
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Attention!! De mauvaises options peuvent corrompre votre sauvegarde."
 
+msgid "borgbackup"
+msgstr ""
+
+msgid "borgbackup - use borgbackup to backup system to an archive file"
+msgstr ""
+
 msgid "dd"
 msgstr "dd"
 
-msgid "dd - use dd to clone the entire drive to a compressed image file."
-msgstr "dd - Utilise dd pour cloner tout le disque dans un fichier image compressé."
+msgid "dd - use dd to clone the OS partition to a compressed image file."
+msgstr ""
+
+msgid "dd full disk"
+msgstr ""
+
+msgid ""
+"dd full disk - use dd to clone the entire drive to a compressed image file."
+msgstr ""
 
 msgid "fsarchiver"
 msgstr "fsarchiver"

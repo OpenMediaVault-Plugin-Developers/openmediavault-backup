@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-05 14:48-0500\n"
-"PO-Revision-Date: 2018-05-05 19:48+0000\n"
+"POT-Creation-Date: 2020-03-31 07:10-0500\n"
+"PO-Revision-Date: 2020-03-31 12:10+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,9 @@ msgstr ""
 
 msgid "Backup"
 msgstr "Sicherung"
+
+msgid "Create scheduled backup job"
+msgstr ""
 
 msgid "Example"
 msgstr "Beispiel"
@@ -35,8 +38,8 @@ msgid ""
 msgstr "Nur für erfahrene Benutzer - Benutzen Sie dies nicht ohne das genaue root-Gerät zu kennen."
 
 msgid ""
-"If a password is specified, fsarchiver will be encrypted. Must be between 6 "
-"and 64 characters."
+"If a password is specified, backup will be encrypted. Must be between 6 and "
+"64 characters."
 msgstr ""
 
 msgid "Keep"
@@ -53,6 +56,9 @@ msgstr ""
 
 msgid "Root device"
 msgstr "Root-Gerät"
+
+msgid "Scheduled backup"
+msgstr ""
 
 msgid "Settings"
 msgstr "Einstellungen"
@@ -71,10 +77,23 @@ msgstr ""
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Warnung!! Sie können die Sicherung mit falschen Optionen kaputtmachen."
 
+msgid "borgbackup"
+msgstr ""
+
+msgid "borgbackup - use borgbackup to backup system to an archive file"
+msgstr ""
+
 msgid "dd"
 msgstr ""
 
-msgid "dd - use dd to clone the entire drive to a compressed image file."
+msgid "dd - use dd to clone the OS partition to a compressed image file."
+msgstr ""
+
+msgid "dd full disk"
+msgstr ""
+
+msgid ""
+"dd full disk - use dd to clone the entire drive to a compressed image file."
 msgstr ""
 
 msgid "fsarchiver"

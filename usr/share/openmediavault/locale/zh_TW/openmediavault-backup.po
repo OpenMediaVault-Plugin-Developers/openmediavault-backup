@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-05 14:48-0500\n"
-"PO-Revision-Date: 2018-06-06 15:31+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>\n"
+"POT-Creation-Date: 2020-03-31 07:10-0500\n"
+"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,6 +20,9 @@ msgstr ""
 
 msgid "Backup"
 msgstr "備份"
+
+msgid "Create scheduled backup job"
+msgstr ""
 
 msgid "Example"
 msgstr "範例"
@@ -32,9 +35,9 @@ msgid ""
 msgstr "只給進階用户使用 - 除非知道確實的根裝置，否則不要使用它。"
 
 msgid ""
-"If a password is specified, fsarchiver will be encrypted. Must be between 6 "
-"and 64 characters."
-msgstr "如果指定了密碼，fsarchiver 將會加密。必須有 6 到 64 個字符。"
+"If a password is specified, backup will be encrypted. Must be between 6 and "
+"64 characters."
+msgstr ""
 
 msgid "Keep"
 msgstr "保留"
@@ -50,6 +53,9 @@ msgstr "密碼"
 
 msgid "Root device"
 msgstr "根裝置"
+
+msgid "Scheduled backup"
+msgstr ""
 
 msgid "Settings"
 msgstr "設定"
@@ -68,11 +74,24 @@ msgstr "要排除額外的檔案目錄，在每個目錄前加上 --exclude=，�
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告!! 錯誤的選項可能讓您將備份損壞。"
 
+msgid "borgbackup"
+msgstr ""
+
+msgid "borgbackup - use borgbackup to backup system to an archive file"
+msgstr ""
+
 msgid "dd"
 msgstr "dd"
 
-msgid "dd - use dd to clone the entire drive to a compressed image file."
-msgstr "dd - 使用 dd 來複製整個磁碟成為一個壓縮過的映像檔案。"
+msgid "dd - use dd to clone the OS partition to a compressed image file."
+msgstr ""
+
+msgid "dd full disk"
+msgstr ""
+
+msgid ""
+"dd full disk - use dd to clone the entire drive to a compressed image file."
+msgstr ""
 
 msgid "fsarchiver"
 msgstr "fsarchiver"
