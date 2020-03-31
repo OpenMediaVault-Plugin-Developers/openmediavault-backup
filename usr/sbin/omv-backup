@@ -117,6 +117,15 @@ case ${method} in
         purgeOld
         ;;
 
+    ddfull)
+        echo "Using dd full disk..."
+        dd if=${root} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.ddfull.gz"
+        sync
+        sync
+        touch "${backupDir}/${BACKUP_FILE_PREFIX}"*-${date}.ddfull.gz
+        purgeOld
+        ;;
+
     fsarchiver)
         echo "Using FSArchiver..."
         extra=$(omv_config_get "/config/system/backup/extraoptions")

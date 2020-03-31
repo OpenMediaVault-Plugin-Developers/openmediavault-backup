@@ -19,7 +19,7 @@
 		},
 		"method": {
 			"type": "string",
-			"enum": ["rsync","fsarchiver","borg","dd"]
+			"enum": ["rsync","fsarchiver","borg","dd","ddfull"]
 		},
 		"root": {
 			"type": "string"

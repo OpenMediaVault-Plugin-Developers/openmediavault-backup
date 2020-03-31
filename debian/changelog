@@ -1,3 +1,9 @@
+openmediavault-backup (5.2) stable; urgency=low
+
+  * Add dd full disk option
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 31 Mar 2020 06:49:05 -0500
+
 openmediavault-backup (5.1) stable; urgency=low
 
   * Add borg option

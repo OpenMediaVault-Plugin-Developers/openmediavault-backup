@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2013-2019 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2020 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
         correlations: [{
             conditions: [{
                 name: 'method',
-                value: 'dd'
+                value: ['dd','ddfull']
             }],
             name: ['extraoptions'],
             properties: ['!show', '!submitValue']
@@ -130,6 +130,7 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                 queryMode: 'local',
                 store: [
                     [ 'dd', _('dd') ],
+                    [ 'ddfull', _('dd full disk') ],
                     [ 'fsarchiver', _('fsarchiver') ],
                     [ 'borg', _('borgbackup') ],
                     [ 'rsync', _('rsync') ]
@@ -139,7 +140,9 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                 value: 'fsarchiver',
                 plugins: [{
                     ptype: 'fieldinfo',
-                    text: _('dd - use dd to clone the entire drive to a compressed image file.') +
+                    text: _('dd - use dd to clone the OS partition to a compressed image file.') +
+                            '<br />' +
+                          _('dd full disk - use dd to clone the entire drive to a compressed image file.') +
                             '<br />' +
                           _('fsarchiver - use fsarchiver to clone all partitions to an archive file') +
                             '<br />' +
