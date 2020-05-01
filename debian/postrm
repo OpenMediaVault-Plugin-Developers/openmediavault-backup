@@ -12,6 +12,18 @@ remove_action() {
 
 case "$1" in
     purge)
+        # remove any scheduled jobs created by plugin
+        XPATH="/config/system/crontab/job"
+        xmlstarlet sel -t -m "${XPATH}" -v "uuid" -n ${OMV_CONFIG_FILE} | xmlstarlet unesc |
+          while read uuid; do
+            cmd=$(omv_config_get "${XPATH}[uuid='${uuid}']/command")
+            if [ "${cmd}" = "/usr/sbin/omv-backup" ]; then
+              echo "delete ${uuid}..."
+              omv_config_delete "${XPATH}[uuid='${uuid}']"
+            fi
+          done
+        omv-salt deploy run --quiet cron || :
+
         remove_action
         echo "Cleaning up configuration database ..."
         omv_config_delete "/config/system/backup"
