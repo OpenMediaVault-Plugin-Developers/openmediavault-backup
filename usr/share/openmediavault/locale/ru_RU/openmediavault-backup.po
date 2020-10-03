@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 07:10-0500\n"
-"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "Add new scheduled backup job"
+msgstr ""
+
+msgid ""
+"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
+msgstr ""
 
 msgid "Backup"
 msgstr "Резервное копирование"
@@ -50,14 +57,14 @@ msgstr "Хранить резервные копии последние х дн�
 msgid "Method"
 msgstr "Метод"
 
+msgid "Notes"
+msgstr ""
+
 msgid "Password"
 msgstr "Пароль"
 
 msgid "Root device"
 msgstr "Корневое устройство"
-
-msgid "Scheduled backup"
-msgstr ""
 
 msgid "Settings"
 msgstr "Настройки"

@@ -5,14 +5,15 @@
 # Translators:
 # Axel Cantenys, 2017-2018
 # BRUNET David, 2016
+# Axel Cantenys, 2020
 # Julien ROCH <jroch74@live.fr>, 2017
 # Zacharie ARNAISE <spacebrain.damage@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 07:10-0500\n"
-"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +22,18 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+msgid "Add new scheduled backup job"
+msgstr ""
+
+msgid ""
+"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
+msgstr ""
+
 msgid "Backup"
 msgstr "Sauvegarde"
 
 msgid "Create scheduled backup job"
-msgstr ""
+msgstr "Créer une tâche de sauvegarde programmée"
 
 msgid "Example"
 msgstr "Exemple"
@@ -40,7 +48,7 @@ msgstr "Pour les utilisateurs avancés seulement. - Ne pas utiliser sauf si le d
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr ""
+msgstr "Si un mot de passe est spécifié, la sauvegarde sera cryptée. Il doit comporter entre 6 et 64 caractères."
 
 msgid "Keep"
 msgstr "Garder"
@@ -51,14 +59,14 @@ msgstr "Garder les x derniers jours de sauvegardes. Mettre à zéro pour désact
 msgid "Method"
 msgstr "Méthode"
 
+msgid "Notes"
+msgstr ""
+
 msgid "Password"
 msgstr "Mot de passe"
 
 msgid "Root device"
-msgstr "Dispositif racine"
-
-msgid "Scheduled backup"
-msgstr ""
+msgstr "Lecteur racine"
 
 msgid "Settings"
 msgstr "Options"
@@ -72,35 +80,35 @@ msgstr "Sauvegarde système"
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
-msgstr "Pour exclure des répertoires, ajoutez --exclude= avant chaque répertoire et utilisez un espace entre chaque argument supplémentaire."
+msgstr "Pour exclure des répertoires, ajoutez « --exclude= » avant chaque répertoire et utilisez un espace entre chaque argument supplémentaire."
 
 msgid "Warning!!  You can break the backup with wrong options."
-msgstr "Attention!! De mauvaises options peuvent corrompre votre sauvegarde."
+msgstr "Attention !! De mauvaises options peuvent corrompre votre sauvegarde."
 
 msgid "borgbackup"
-msgstr ""
+msgstr "BorgBackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "BorgBackup - Utiliser « BorgBackup » pour sauvegarder le système sur un fichier d'archive."
 
 msgid "dd"
 msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
+msgstr "dd - Utiliser « dd » pour cloner la partition du système d'exploitation vers un fichier d'image compressée."
 
 msgid "dd full disk"
-msgstr ""
+msgstr "dd disque intégral"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd disque intégral - Utiliser « dd » pour cloner la totalité du lecteur vers un fichier d'image compressé."
 
 msgid "fsarchiver"
-msgstr "fsarchiver"
+msgstr "FSArchiver"
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr "fsarchiver - Utilise fsarchiver pour cloner toutes les partitions dans un fichier d'archive"
+msgstr "FSArchiver - Utiliser « FSArchiver » pour cloner toutes les partitions vers un fichier d'archive."
 
 msgid "rsync"
 msgstr "rsync"

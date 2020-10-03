@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# songming <by@songming.me>, 2014-2016,2018
+# songming <by@songming.me>, 2014-2016,2018,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 07:10-0500\n"
-"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,18 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "Add new scheduled backup job"
+msgstr ""
+
+msgid ""
+"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
+msgstr ""
+
 msgid "Backup"
 msgstr "备份"
 
 msgid "Create scheduled backup job"
-msgstr ""
+msgstr "创建计划备份任务"
 
 msgid "Example"
 msgstr "例如"
@@ -37,7 +44,7 @@ msgstr "高级用户设置 - 如果启动设备没确定不要使用高级设置
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr ""
+msgstr "如果设置密码，备份将被加密，密码必须介于6到64个字符。"
 
 msgid "Keep"
 msgstr "保留备份"
@@ -48,14 +55,14 @@ msgstr "保留最近 X 天的备份文件，0 表示不启用该功能。"
 msgid "Method"
 msgstr "方法"
 
+msgid "Notes"
+msgstr ""
+
 msgid "Password"
 msgstr "密码"
 
 msgid "Root device"
 msgstr "启动设备"
-
-msgid "Scheduled backup"
-msgstr ""
 
 msgid "Settings"
 msgstr "设置"
@@ -75,23 +82,23 @@ msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告!!使用错误的参数会中断备份。"
 
 msgid "borgbackup"
-msgstr ""
+msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "borgbackup - 使用 borgbackup 备份系统至归档文件。"
 
 msgid "dd"
 msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
+msgstr "dd - 使用 dd 克隆系统分区到压缩镜像文件。"
 
 msgid "dd full disk"
-msgstr ""
+msgstr "dd 全盘"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd 全盘 - 使用 dd 克隆选中磁盘到压缩镜像文件。"
 
 msgid "fsarchiver"
 msgstr "fsarchiver"

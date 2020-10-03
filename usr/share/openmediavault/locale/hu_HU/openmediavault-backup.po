@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 07:10-0500\n"
-"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -19,6 +19,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Add new scheduled backup job"
+msgstr ""
+
+msgid ""
+"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
+msgstr ""
 
 msgid "Backup"
 msgstr "Biztonsági mentés"
@@ -50,14 +57,14 @@ msgstr "Az utolsó x nap biztonsági mentéseinek megőrzése. Nullát beállít
 msgid "Method"
 msgstr "Módszer"
 
+msgid "Notes"
+msgstr ""
+
 msgid "Password"
 msgstr "Jelszó"
 
 msgid "Root device"
 msgstr "Gyökéreszköz"
-
-msgid "Scheduled backup"
-msgstr ""
 
 msgid "Settings"
 msgstr "Beállítások"

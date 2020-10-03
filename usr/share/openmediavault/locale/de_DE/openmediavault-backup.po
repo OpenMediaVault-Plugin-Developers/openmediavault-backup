@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Ettore Atalan <atalanttore@googlemail.com>, 2014,2016
+# Ettore Atalan <atalanttore@googlemail.com>, 2014,2016,2020
 # Micha K <pikim@web.de>, 2018
 # Raiko, 2015
 # Stephan Steiner, 2014
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 07:10-0500\n"
-"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,18 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Add new scheduled backup job"
+msgstr ""
+
+msgid ""
+"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
+msgstr ""
+
 msgid "Backup"
 msgstr "Sicherung"
 
 msgid "Create scheduled backup job"
-msgstr ""
+msgstr "Auftrag für geplante Sicherung erstellen"
 
 msgid "Example"
 msgstr "Beispiel"
@@ -40,25 +47,25 @@ msgstr "Nur für erfahrene Benutzer - Benutzen Sie dies nicht ohne das genaue ro
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr ""
+msgstr "Wenn ein Passwort angegeben wird, wird die Sicherung verschlüsselt. Es muss zwischen 6 und 64 Zeichen lang sein."
 
 msgid "Keep"
-msgstr ""
+msgstr "Behalten"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr ""
+msgstr "Die letzten x Tage der Sicherungen aufbewahren. Zum Deaktivieren auf Null setzen."
 
 msgid "Method"
+msgstr "Methode"
+
+msgid "Notes"
 msgstr ""
 
 msgid "Password"
-msgstr ""
+msgstr "Passwort"
 
 msgid "Root device"
 msgstr "Root-Gerät"
-
-msgid "Scheduled backup"
-msgstr ""
 
 msgid "Settings"
 msgstr "Einstellungen"
@@ -78,32 +85,32 @@ msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Warnung!! Sie können die Sicherung mit falschen Optionen kaputtmachen."
 
 msgid "borgbackup"
-msgstr ""
+msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "borgbackup - Verwendung von borgbackup zur Sicherung des Systems in eine Archivdatei"
 
 msgid "dd"
-msgstr ""
+msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
+msgstr "dd - Verwendung von dd zum Klonen der BS-Partition in eine komprimierte Abbilddatei."
 
 msgid "dd full disk"
 msgstr ""
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd gesamte Festplatte - Verwendung von dd zum Klonen des gesamten Laufwerks in eine komprimierte Abbilddatei."
 
 msgid "fsarchiver"
-msgstr ""
+msgstr "fsarchiver"
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
 msgstr ""
 
 msgid "rsync"
-msgstr ""
+msgstr "rsync"
 
 msgid "rsync - use rsync to sync files to destination directory"
 msgstr ""

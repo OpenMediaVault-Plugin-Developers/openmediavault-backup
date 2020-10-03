@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2015
+# Miguel Anxo Bouzada <mbouzada@gmail.com>, 2015,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 07:10-0500\n"
-"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -18,44 +18,51 @@ msgstr ""
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Add new scheduled backup job"
+msgstr ""
+
+msgid ""
+"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
+msgstr ""
+
 msgid "Backup"
 msgstr "Copia de seguranza"
 
 msgid "Create scheduled backup job"
-msgstr ""
+msgstr "Crear un traballo de copia de seguridade programada"
 
 msgid "Example"
-msgstr ""
+msgstr "Exemplo"
 
 msgid "Extra Options"
-msgstr ""
+msgstr "Opcións adicionais"
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
-msgstr ""
+msgstr "Só para usuarios avanzados: non o use a menos que coñeza o dispositivo raíz exacto."
 
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr ""
+msgstr "Se se especifica un contrasinal, a copia de seguridade cifrarase. Debe ter entre 6 e 64 caracteres."
 
 msgid "Keep"
-msgstr ""
+msgstr "Manter"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr ""
+msgstr "Mantér os últimos x días de copias de seguridade. Estabelecer a cero para desactivar."
 
 msgid "Method"
+msgstr "Método"
+
+msgid "Notes"
 msgstr ""
 
 msgid "Password"
-msgstr ""
+msgstr "Contrasinal"
 
 msgid "Root device"
-msgstr ""
-
-msgid "Scheduled backup"
-msgstr ""
+msgstr "Dispositivo raíz"
 
 msgid "Settings"
 msgstr "Axuastes"
@@ -69,38 +76,38 @@ msgstr "Copia de seguranza do sistema"
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
-msgstr ""
+msgstr "Para excluíra adición de  directorios, engada --exclude= antes de cada directorio e separe as entradas adicionais cun espazo."
 
 msgid "Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "Advertencia! Pode rachar a copia de seguridade con opcións incorrectas."
 
 msgid "borgbackup"
-msgstr ""
+msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "borgbackup: use borgbackup para facer unha copia de seguridade do sistema nun ficheiro de arquivo"
 
 msgid "dd"
-msgstr ""
+msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
+msgstr "dd: use dd para clonar a partición do SO nun ficheiro de imaxe comprimida."
 
 msgid "dd full disk"
-msgstr ""
+msgstr "dd full disk"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd full disk: use dd para clonar toda a unidade nun ficheiro de imaxe comprimida."
 
 msgid "fsarchiver"
-msgstr ""
+msgstr "fsarchiver"
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr ""
+msgstr "fsarchiver: use fsarchiver para clonar todas as particións nun ficheiro de arquivo"
 
 msgid "rsync"
-msgstr ""
+msgstr "rsync"
 
 msgid "rsync - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "rsync: use rsync para sincronizar os ficheiros co directorio de destino"

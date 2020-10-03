@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 07:10-0500\n"
-"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,18 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Add new scheduled backup job"
+msgstr ""
+
+msgid ""
+"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
+msgstr ""
+
 msgid "Backup"
 msgstr "Backup"
 
 msgid "Create scheduled backup job"
-msgstr ""
+msgstr "Crear un trabajo de Backup programado"
 
 msgid "Example"
 msgstr "Ejemplo"
@@ -37,7 +44,7 @@ msgstr "Solo para usuarios avanzados - No usar a menos que se conozca el disposi
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr ""
+msgstr "Si la contraseña se suministra, el backup será cifrado, Debe tener entre 6 y 64 caracteres."
 
 msgid "Keep"
 msgstr "Mantener"
@@ -48,14 +55,14 @@ msgstr "Mantener los ultimos x dias de Backup. poner a cero para deshabilitar."
 msgid "Method"
 msgstr "Metodo"
 
+msgid "Notes"
+msgstr ""
+
 msgid "Password"
 msgstr "Contraseña"
 
 msgid "Root device"
 msgstr "Dispositivo root"
-
-msgid "Scheduled backup"
-msgstr ""
 
 msgid "Settings"
 msgstr "Opciones"
@@ -75,23 +82,23 @@ msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Precaución! Puede dañar el Backup con opciones erroneas."
 
 msgid "borgbackup"
-msgstr ""
+msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "borgbackup - Usar borgbackup para hacer un backup en un archivo"
 
 msgid "dd"
 msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
+msgstr "dd - Usar dd para clonar el SO a una imagen comprimida."
 
 msgid "dd full disk"
-msgstr ""
+msgstr "dd el disco completo"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd Disco completo - usar dd para clonar un disco entero a un archivo de imagen comprimido."
 
 msgid "fsarchiver"
 msgstr "fsarchiver"

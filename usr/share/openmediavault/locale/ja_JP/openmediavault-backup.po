@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018
+# Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018,2020
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-31 07:10-0500\n"
-"PO-Revision-Date: 2020-03-31 12:10+0000\n"
+"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,18 @@ msgstr ""
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "Add new scheduled backup job"
+msgstr ""
+
+msgid ""
+"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
+msgstr ""
+
 msgid "Backup"
 msgstr "バックアップ"
 
 msgid "Create scheduled backup job"
-msgstr ""
+msgstr "バックアップジョブのスケジュールを作成"
 
 msgid "Example"
 msgstr "例"
@@ -37,7 +44,7 @@ msgstr "上級ユーザーのみ - 正確なルートデバイスがわかって
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr ""
+msgstr "パスワードが指定されている場合、バックアップは暗号化されます。 長さは6〜64文字でなければなりません。"
 
 msgid "Keep"
 msgstr "保持"
@@ -48,14 +55,14 @@ msgstr "最後のx日間のバックアップを保持します。 無効にす�
 msgid "Method"
 msgstr "メソッド"
 
+msgid "Notes"
+msgstr ""
+
 msgid "Password"
 msgstr "パスワード"
 
 msgid "Root device"
 msgstr "ルートデバイス"
-
-msgid "Scheduled backup"
-msgstr ""
 
 msgid "Settings"
 msgstr "設定"
@@ -75,23 +82,23 @@ msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告！！ 間違ったオプションでバックアップが中断されます。"
 
 msgid "borgbackup"
-msgstr ""
+msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "borgbackup - borgbackupを使用してシステムをアーカイブファイルにバックアップします"
 
 msgid "dd"
 msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
+msgstr "dd - ddを使用して、OSパーティションのクローンを圧縮イメージファイルに作成します。"
 
 msgid "dd full disk"
-msgstr ""
+msgstr "dd full disk"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd full disk - ddを使用して、ドライブ全体を圧縮イメージファイルに複製します。"
 
 msgid "fsarchiver"
 msgstr "fsarchiver"
