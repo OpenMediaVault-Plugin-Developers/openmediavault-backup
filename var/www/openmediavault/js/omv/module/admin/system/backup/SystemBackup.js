@@ -100,7 +100,7 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
         },{
             id: this.getId() + '-scheduled-backup',
             xtype: 'button',
-            text: _('Scheduled backup'),
+            text: _('Add new scheduled backup job'),
             icon: 'images/wrench.png',
             iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
             scope: this,
@@ -197,6 +197,18 @@ Ext.define('OMV.module.admin.system.backup.SystemBackup', {
                     ptype: 'fieldinfo',
                     text: _('If a password is specified, backup will be encrypted. Must be between 6 and 64 characters.')
                 }]
+            }]
+        },{
+            xtype: "fieldset",
+            title: _("Notes"),
+            fieldDefaults: {
+                labelSeparator: ""
+            },
+            items: [{
+                border: false,
+                html: "<ul>" +
+                  "<li>" + _("Adding a new scheduled backup job will add a job to the Scheduled Jobs tab.") + "</li>" +
+                  "</ul>"
             }]
         }];
     },

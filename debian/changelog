@@ -1,3 +1,9 @@
+openmediavault-backup (5.2.1) stable; urgency=low
+
+  * Improve notes
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 03 Oct 2020 09:24:44 -0500
+
 openmediavault-backup (5.2) stable; urgency=low
 
   * Add dd full disk option
