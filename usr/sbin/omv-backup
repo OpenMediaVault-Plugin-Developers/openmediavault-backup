@@ -5,7 +5,8 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-BACKUP_FILE_PREFIX="backup-omv"
+OMV_BACKUP_DIR_NAME=${OMV_BACKUP_DIR_NAME:-"omvbackup"}
+OMV_BACKUP_FILE_PREFIX=${OMV_BACKUP_FILE_PREFIX:-"backup-omv"}
 
 purgeOld()
 {
@@ -13,7 +14,7 @@ purgeOld()
     keep=$(omv_config_get "/config/system/backup/keep")
     if [[ ${keep} -gt 0 ]]; then
         echo "Purging old files..."
-        find "${backupDir}" -maxdepth 1 -type f -mtime +${keep} -name "${BACKUP_FILE_PREFIX}*" -delete
+        find "${backupDir}" -maxdepth 1 -type f -mtime +${keep} -name "${OMV_BACKUP_FILE_PREFIX}*" -delete
         echo "Purging done."
     else
         echo "Purging disabled."
@@ -43,7 +44,7 @@ if [ ! -d "${sfpath}" ]; then
 fi
 
 # set backup directory and create it if it doesn't exist
-backupDir="${sfpath}/omvbackup"
+backupDir="${sfpath}/${OMV_BACKUP_DIR_NAME}"
 mkdir -p "${backupDir}"
 
 # Get the method of backup
@@ -79,13 +80,13 @@ if [ -z "${root}" ]; then
 fi
 
 # save helpful information
-fdisk -l ${root} > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fdisk"
-blkid > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.blkid"
-dpkg -l | grep openmediavault > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.packages"
+fdisk -l ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fdisk"
+blkid > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.blkid"
+dpkg -l | grep openmediavault > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.packages"
 
 # save partition table and mbr
-dd if=${root} of="${backupDir}/${BACKUP_FILE_PREFIX}-${date}.grub" bs=446 count=1
-dd if=${root} of="${backupDir}/${BACKUP_FILE_PREFIX}-${date}.grubparts" bs=512 count=1
+dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grub" bs=446 count=1
+dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grubparts" bs=512 count=1
 
 # check for /boot partition
 bootpart=$(grep -w /boot /proc/mounts | awk '{ print $1 }')
@@ -99,7 +100,7 @@ fi
 if [ -f "/usr/lib/u-boot/platform_install.sh" ]; then
     . /usr/lib/u-boot/platform_install.sh
     if [ -d "${DIR}" ]; then
-        tar cjf "${backupDir}/${BACKUP_FILE_PREFIX}_u-boot-${date}.tar.bz" ${DIR}/*
+        tar cjf "${backupDir}/${OMV_BACKUP_FILE_PREFIX}_u-boot-${date}.tar.bz" ${DIR}/*
     fi
 fi
 
@@ -107,22 +108,22 @@ fi
 case ${method} in
     dd)
         echo "Using dd..."
-        dd if=${devicefile} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.dd.gz"
+        dd if=${devicefile} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.dd.gz"
         sync
         if [ -n "${bootpart}" ]; then
-            dd if=${bootpart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${BACKUP_FILE_PREFIX}_boot-${date}.dd.gz"
+            dd if=${bootpart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}_boot-${date}.dd.gz"
         fi
         sync
-        touch "${backupDir}/${BACKUP_FILE_PREFIX}"*-${date}.dd.gz
+        touch "${backupDir}/${OMV_BACKUP_FILE_PREFIX}"*-${date}.dd.gz
         purgeOld
         ;;
 
     ddfull)
         echo "Using dd full disk..."
-        dd if=${root} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.ddfull.gz"
+        dd if=${root} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.ddfull.gz"
         sync
         sync
-        touch "${backupDir}/${BACKUP_FILE_PREFIX}"*-${date}.ddfull.gz
+        touch "${backupDir}/${OMV_BACKUP_FILE_PREFIX}"*-${date}.ddfull.gz
         purgeOld
         ;;
 
@@ -135,10 +136,10 @@ case ${method} in
             echo "Encrypting archive..."
             password="--cryptpass=${passwd} "
         fi
-        fsarchiver savefs ${password}-o "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A ${extra}
-        touch "${backupDir}/${BACKUP_FILE_PREFIX}"-${date}.*
+        fsarchiver savefs ${password}-o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A ${extra}
+        touch "${backupDir}/${OMV_BACKUP_FILE_PREFIX}"-${date}.*
         purgeOld
-        fsarchiver archinfo ${password} "${backupDir}/${BACKUP_FILE_PREFIX}-${date}.fsa"
+        fsarchiver archinfo ${password} "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa"
         ;;
 
     borg)
@@ -157,7 +158,7 @@ case ${method} in
             borg init -e none "${backupDir}/borgbackup"
           fi
         fi
-        borg create --stats "${backupDir}/borgbackup::${BACKUP_FILE_PREFIX}-${date}" / \
+        borg create --stats "${backupDir}/borgbackup::${OMV_BACKUP_FILE_PREFIX}-${date}" / \
           -x --exclude-caches \
           -e "/dev" -e "/proc" -e "/sys" -e "/tmp" -e "/run" -e "/mnt" \
           -e "/media" -e "/lost+found" -e "/export" -e "/home/ftp" -e "/srv" ${extra}
