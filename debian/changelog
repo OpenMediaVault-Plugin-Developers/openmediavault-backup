@@ -1,8 +1,14 @@
-openmediavault-backup (5.2.3) stable; urgency=low
+openmediavault-backup (5.2.4) stable; urgency=low
 
   * Backup GPT properly
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 24 Feb 2021 17:22:05 -0600
+
+openmediavault-backup (5.2.3) stable; urgency=low
+
+  * Use purgeOld with rsync
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 31 Dec 2020 08:42:14 -0600
 
 openmediavault-backup (5.2.2) stable; urgency=low
 
