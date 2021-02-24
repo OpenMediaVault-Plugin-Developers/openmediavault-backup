@@ -196,6 +196,7 @@ case ${method} in
             --exclude=/export \
             --exclude=/home/ftp \
             --exclude=/srv ${extra}
+        purgeOld
         ;;
 esac
 
