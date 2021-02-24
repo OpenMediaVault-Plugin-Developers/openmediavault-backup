@@ -90,7 +90,7 @@ grubparts_bs_calc=$(((128 * ${num_parts}) + 1024))
 
 # save partition table and mbr
 dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grub" bs=446 count=1
-dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grubparts" bs="${grubparts_bs_calc}" count=1
+dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grubparts" bs=${grubparts_bs_calc} count=1
 
 # check for /boot partition
 bootpart=$(grep -w /boot /proc/mounts | awk '{ print $1 }')
