@@ -4,13 +4,14 @@
 # 
 # Translators:
 # okpail <okpail@gmail.com>, 2014
+# Rudy ten Kate, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-03 09:25-0500\n"
-"PO-Revision-Date: 2020-10-03 14:25+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"PO-Revision-Date: 2020-11-22 19:59+0000\n"
+"Last-Translator: Rudy ten Kate\n"
 "Language-Team: Dutch (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,38 +20,38 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Add new scheduled backup job"
-msgstr ""
+msgstr "Voeg een nieuwe geplande back-uptaak toe"
 
 msgid ""
 "Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr ""
+msgstr "Als u een nieuwe geplande back-uptaak toevoegt, wordt een taak toegevoegd aan het tabblad Geplande Taken."
 
 msgid "Backup"
-msgstr "Backup"
+msgstr "Back-up"
 
 msgid "Create scheduled backup job"
-msgstr ""
+msgstr "Maak een geplande back-uptaak"
 
 msgid "Example"
-msgstr ""
+msgstr "Voorbeeld"
 
 msgid "Extra Options"
-msgstr ""
+msgstr "Extra opties"
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
-msgstr ""
+msgstr "Alleen voor gevorderde gebruikers - Niet gebruiken tenzij het exacte root-apparaat bekend is."
 
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr ""
+msgstr "Als er een wachtwoord is opgegeven, wordt de back-up versleuteld. Moet tussen de 6 en 64 tekens lang zijn."
 
 msgid "Keep"
-msgstr ""
+msgstr "Bewaar"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr ""
+msgstr "Bewaar de laatste x dagen van de back-ups. Op nul zetten om uit te schakelen."
 
 msgid "Method"
 msgstr ""
@@ -68,10 +69,10 @@ msgid "Settings"
 msgstr "Instellingen"
 
 msgid "Shared Folder"
-msgstr "Gedeelde Folder"
+msgstr "Gedeelde Map"
 
 msgid "System Backup"
-msgstr "Systeem Backup"
+msgstr "Systeemback-up"
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "

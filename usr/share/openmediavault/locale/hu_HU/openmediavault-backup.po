@@ -3,9 +3,9 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2018
-# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017
-# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2017
+# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2018
+# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2017
+# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
