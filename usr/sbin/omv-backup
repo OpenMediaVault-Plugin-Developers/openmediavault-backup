@@ -7,6 +7,7 @@ set -e
 
 OMV_BACKUP_DIR_NAME=${OMV_BACKUP_DIR_NAME:-"omvbackup"}
 OMV_BACKUP_FILE_PREFIX=${OMV_BACKUP_FILE_PREFIX:-"backup-omv"}
+OMV_BACKUP_MAX_DEPTH=${OMV_BACKUP_MAX_DEPTH:-"1"}
 
 purgeOld()
 {
@@ -14,7 +15,7 @@ purgeOld()
     keep=$(omv_config_get "/config/system/backup/keep")
     if [[ ${keep} -gt 0 ]]; then
         echo "Purging old files..."
-        find "${backupDir}" -maxdepth 1 -type f -mtime +${keep} -name "${OMV_BACKUP_FILE_PREFIX}*" -delete
+        find "${backupDir}" -maxdepth ${OMV_BACKUP_MAX_DEPTH} -type f -mtime +${keep} -name "${OMV_BACKUP_FILE_PREFIX}*" -delete
         echo "Purging done."
     else
         echo "Purging disabled."
