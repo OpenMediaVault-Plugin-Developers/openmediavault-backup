@@ -1,0 +1,7 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "system.backup"
+  text: _("Backup")
+  icon: "mdi:backup-restore"
+  url: "/system/backup"

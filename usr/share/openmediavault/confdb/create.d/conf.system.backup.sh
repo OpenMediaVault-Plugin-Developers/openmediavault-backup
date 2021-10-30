@@ -29,7 +29,7 @@ SERVICE_XPATH="/config/system/${SERVICE_XPATH_NAME}"
 if ! omv_config_exists "${SERVICE_XPATH}"; then
     omv_config_add_node "/config/system" "${SERVICE_XPATH_NAME}"
     omv_config_add_key "${SERVICE_XPATH}" "sharedfolderref" ""
-    omv_config_add_key "${SERVICE_XPATH}" "method" ""
+    omv_config_add_key "${SERVICE_XPATH}" "method" "dd"
     omv_config_add_key "${SERVICE_XPATH}" "root" ""
     omv_config_add_key "${SERVICE_XPATH}" "extraoptions" ""
     omv_config_add_key "${SERVICE_XPATH}" "keep" "7"

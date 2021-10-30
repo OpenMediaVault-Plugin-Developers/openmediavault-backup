@@ -1,0 +1,8 @@
+version: "1.0"
+type: route
+data:
+  url: "/system/backup"
+  title: _("Backup")
+  editing: true
+  notificationTitle: _("Updated backup settings.")
+  component: omv-system-backup-form-page

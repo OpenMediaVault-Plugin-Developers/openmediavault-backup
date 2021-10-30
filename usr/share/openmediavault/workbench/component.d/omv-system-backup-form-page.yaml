@@ -1,0 +1,118 @@
+version: "1.0"
+type: component
+data:
+  name: omv-system-backup-form-page
+  type: formPage
+  config:
+    request:
+      service: Backup
+      get:
+        method: get
+      post:
+        method: set
+    fields:
+      - type: sharedFolderSelect
+        name: sharedfolderref
+        label: _("Shared folder")
+        hint: _("The location of the backup files.")
+        hasEmptyOption: true
+        value: ""
+      - type: select
+        name: method
+        label: _("Method")
+        value: "dd"
+        hint: _("dd - use dd to clone the OS partition to a compressed image file.<br />dd full disk - use dd to clone the entire drive to a compressed image file.<br />fsarchiver - use fsarchiver to clone all partitions to an archive file<br />borgbackup - use borgbackup to backup system to an archive file<br />rsync - use rsync to sync files to destination directory")
+        store:
+          data:
+            - - "dd"
+              - _("dd")
+            - - "ddfull"
+              - _("dd full disk")
+            - - "fsarchiver"
+              - _("fsarchiver")
+            - - "borg"
+              - _("borgbackup")
+            - - "rsync"
+              - _("rsync")
+      - type: textInput
+        name: root
+        label: _("Root device")
+        value: ""
+        hint: _("For advanced users only - Do not use unless exact root device is known.")
+      - type: textInput
+        name: extraoptions
+        label: _("Extra options")
+        value: ""
+        hint: _("To exclude addition directories, add --exclude= before each directory and separate additional entries with a space. Example<br />--exclude=/pool --exclude=/test<br />Warning!!  You can break the backup with wrong options.")
+        modifiers:
+          - type: visible
+            constraint:
+              operator: and
+              arg0:
+                operator: ne
+                arg0:
+                  prop: method
+                arg1: "dd"
+              arg1:
+                operator: ne
+                arg0:
+                  prop: method
+                arg1: "ddfull"
+      - type: numberInput
+        name: keep
+        label: _("Keep")
+        value: 7
+        validators:
+          min: 0
+          max: 9999
+          patternType: port
+          required: true 
+        modifiers:
+          - type: visible
+            constraint:
+              operator: ne
+              arg0:
+                prop: method
+              arg1: "rsync"
+      - type: passwordInput
+        name: passwd
+        label: _("Password")
+        autocomplete: new-password
+        hint: _('If a password is specified, backup will be encrypted. Must be between 6 and 64 characters.')
+        validators:
+          minLength: 8
+          maxLength: 64
+        modifiers:
+          - type: visible
+            constraint:
+              operator: or
+              arg0:
+                operator: eq
+                arg0:
+                  prop: method
+                arg1: "borg"
+              arg1:
+                operator: eq
+                arg0:
+                  prop: method
+                arg1: "fsarchiver"
+    buttons:
+      - template: submit
+      - template: cancel
+        execute:
+          type: url
+          url: "/system/backup"
+      - text: _("Backup")
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Starting backup ...")
+              startOnInit: true
+              request:
+                service: Backup
+                method: doBackup
+              buttons:
+                stop:
+                  hidden: true
+            successUrl: /system/backup

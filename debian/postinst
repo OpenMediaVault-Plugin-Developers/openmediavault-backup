@@ -7,10 +7,8 @@ set -e
 
 case "$1" in
     configure)
-        # Activate package triggers. These triggers are only set during the
-        # package installation.
-        dpkg-trigger update-fixperms
-        dpkg-trigger update-locale
+        # Activate package triggers.
+        dpkg-trigger update-workbench
 
         # Initialize and migrate configuration database.
         echo "Updating configuration database ..."
