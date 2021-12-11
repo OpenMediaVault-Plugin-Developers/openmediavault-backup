@@ -1,0 +1,8 @@
+version: "1.0"
+type: route
+data:
+  url: "/system/backup/schedule"
+  title: _("Scheduled Backup")
+  editing: true
+  notificationTitle: _("Edit scheduled backup.")
+  component: omv-system-backup-schedule-form-page

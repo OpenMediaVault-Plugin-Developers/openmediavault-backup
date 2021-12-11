@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2013-2020 OpenMediaVault Plugin Developers
+ * Copyright (C) 2013-2021 OpenMediaVault Plugin Developers
  * Copyright (C) 2009-2013 Volker Theile <volker.theile@openmediavault.org>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
 
     public function get($params, $context)
     {
+        throw("test");
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
         // Get the configuration object.

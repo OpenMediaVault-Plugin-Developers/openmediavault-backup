@@ -66,7 +66,7 @@ data:
           min: 0
           max: 9999
           patternType: port
-          required: true 
+          required: true
         modifiers:
           - type: visible
             constraint:
@@ -77,6 +77,7 @@ data:
       - type: passwordInput
         name: passwd
         label: _("Password")
+        value: ""
         autocomplete: new-password
         hint: _('If a password is specified, backup will be encrypted. Must be between 6 and 64 characters.')
         validators:
@@ -101,7 +102,7 @@ data:
       - template: cancel
         execute:
           type: url
-          url: "/system/backup"
+          url: "/system"
       - text: _("Backup")
         execute:
           type: taskDialog
@@ -116,3 +117,7 @@ data:
                 stop:
                   hidden: true
             successUrl: /system/backup
+      - text: _("Schedule backup")
+        execute:
+          type: url
+          url: "/system/backup/schedule"
