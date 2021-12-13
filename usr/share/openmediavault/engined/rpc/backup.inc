@@ -34,7 +34,6 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
 
     public function get($params, $context)
     {
-        throw("test");
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
         // Get the configuration object.
