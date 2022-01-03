@@ -24,16 +24,11 @@ data:
         hint: _("dd - use dd to clone the OS partition to a compressed image file.<br />dd full disk - use dd to clone the entire drive to a compressed image file.<br />fsarchiver - use fsarchiver to clone all partitions to an archive file<br />borgbackup - use borgbackup to backup system to an archive file<br />rsync - use rsync to sync files to destination directory")
         store:
           data:
-            - - "dd"
-              - _("dd")
-            - - "ddfull"
-              - _("dd full disk")
-            - - "fsarchiver"
-              - _("fsarchiver")
-            - - "borg"
-              - _("borgbackup")
-            - - "rsync"
-              - _("rsync")
+            - ["dd", _("dd")]
+            - ["ddfull", _("dd full disk")]
+            - ["fsarchiver", _("fsarchiver")]
+            - ["borg", _("borgbackup")]
+            - ["rsync", _("rsync")]
       - type: textInput
         name: root
         label: _("Root device")
