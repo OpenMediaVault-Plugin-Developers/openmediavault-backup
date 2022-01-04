@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"POT-Creation-Date: 2022-01-04 06:30-0600\n"
 "PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/it/)\n"
@@ -31,11 +31,17 @@ msgstr "Backup"
 msgid "Create scheduled backup job"
 msgstr ""
 
+msgid "Edit scheduled backup."
+msgstr ""
+
 msgid "Example"
 msgstr "Esempio"
 
 msgid "Extra Options"
 msgstr "Opzioni Extra"
+
+msgid "Extra options"
+msgstr ""
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -64,19 +70,43 @@ msgstr ""
 msgid "Root device"
 msgstr ""
 
+msgid "Schedule"
+msgstr ""
+
+msgid "Scheduled Backup"
+msgstr ""
+
 msgid "Settings"
 msgstr "Impostazioni"
 
 msgid "Shared Folder"
 msgstr "Cartella Condivisa"
 
+msgid "Shared folder"
+msgstr ""
+
+msgid "Starting backup ..."
+msgstr ""
+
 msgid "System Backup"
 msgstr "Backup di Sistema"
+
+msgid "The location of the backup files."
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
 msgstr "Per escludere alcune cartelle, aggiungi --exclude= prima di ogni cartella e separa ogni parametro con uno spazio."
+
+msgid ""
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space. Example<br />--exclude=/pool "
+"--exclude=/test<br />Warning!!  You can break the backup with wrong options."
+msgstr ""
+
+msgid "Updated backup settings."
+msgstr ""
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Attenzione!! Puoi corrompere il backup con le opzioni errate."
@@ -91,6 +121,14 @@ msgid "dd"
 msgstr ""
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
+msgstr ""
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
+"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
+" - use rsync to sync files to destination directory"
 msgstr ""
 
 msgid "dd full disk"

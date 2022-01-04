@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"POT-Creation-Date: 2022-01-04 06:30-0600\n"
 "PO-Revision-Date: 2020-10-04 03:33+0000\n"
 "Last-Translator: kochin <kochinc@outlook.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_TW/)\n"
@@ -31,11 +31,17 @@ msgstr "備份"
 msgid "Create scheduled backup job"
 msgstr "建立預定備份工作"
 
+msgid "Edit scheduled backup."
+msgstr ""
+
 msgid "Example"
 msgstr "範例"
 
 msgid "Extra Options"
 msgstr "額外選項"
+
+msgid "Extra options"
+msgstr ""
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -64,19 +70,43 @@ msgstr "密碼"
 msgid "Root device"
 msgstr "根裝置"
 
+msgid "Schedule"
+msgstr ""
+
+msgid "Scheduled Backup"
+msgstr ""
+
 msgid "Settings"
 msgstr "設定"
 
 msgid "Shared Folder"
 msgstr "共享檔案夾"
 
+msgid "Shared folder"
+msgstr ""
+
+msgid "Starting backup ..."
+msgstr ""
+
 msgid "System Backup"
 msgstr "系統備份"
+
+msgid "The location of the backup files."
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
 msgstr "要排除額外的檔案目錄，在每個目錄前加上 --exclude=，並以空白與其它的項目分開。"
+
+msgid ""
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space. Example<br />--exclude=/pool "
+"--exclude=/test<br />Warning!!  You can break the backup with wrong options."
+msgstr ""
+
+msgid "Updated backup settings."
+msgstr ""
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告!! 錯誤的選項可能讓您將備份損壞。"
@@ -92,6 +122,14 @@ msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
 msgstr "dd - 使用 dd 來將作業系統分割區複製到一個壓縮過的映像檔案。"
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
+"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
+" - use rsync to sync files to destination directory"
+msgstr ""
 
 msgid "dd full disk"
 msgstr "dd 完整磁碟"

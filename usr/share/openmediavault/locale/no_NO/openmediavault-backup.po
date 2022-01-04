@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"POT-Creation-Date: 2022-01-04 06:30-0600\n"
 "PO-Revision-Date: 2020-10-03 14:25+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Norwegian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/no/)\n"
@@ -30,10 +30,16 @@ msgstr ""
 msgid "Create scheduled backup job"
 msgstr ""
 
+msgid "Edit scheduled backup."
+msgstr ""
+
 msgid "Example"
 msgstr ""
 
 msgid "Extra Options"
+msgstr ""
+
+msgid "Extra options"
 msgstr ""
 
 msgid ""
@@ -63,18 +69,42 @@ msgstr ""
 msgid "Root device"
 msgstr ""
 
+msgid "Schedule"
+msgstr ""
+
+msgid "Scheduled Backup"
+msgstr ""
+
 msgid "Settings"
 msgstr ""
 
 msgid "Shared Folder"
 msgstr ""
 
+msgid "Shared folder"
+msgstr ""
+
+msgid "Starting backup ..."
+msgstr ""
+
 msgid "System Backup"
+msgstr ""
+
+msgid "The location of the backup files."
 msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
+msgstr ""
+
+msgid ""
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space. Example<br />--exclude=/pool "
+"--exclude=/test<br />Warning!!  You can break the backup with wrong options."
+msgstr ""
+
+msgid "Updated backup settings."
 msgstr ""
 
 msgid "Warning!!  You can break the backup with wrong options."
@@ -90,6 +120,14 @@ msgid "dd"
 msgstr ""
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
+msgstr ""
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
+"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
+" - use rsync to sync files to destination directory"
 msgstr ""
 
 msgid "dd full disk"

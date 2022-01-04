@@ -1,3 +1,10 @@
+openmediavault-backup (6.0.2) stable; urgency=low
+
+  * Move schedule to its own tab
+  * Fix settings not loading - issue #31
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 04 Jan 2022 06:28:51 -0600
+
 openmediavault-backup (6.0.1) stable; urgency=low
 
   * Improve scheduled backup form

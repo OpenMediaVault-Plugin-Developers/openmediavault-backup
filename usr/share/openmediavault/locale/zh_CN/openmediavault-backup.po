@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# songming <by@songming.me>, 2014-2016,2018,2020
+# songming <by@songming.me>, 2014-2016,2018,2020-2021
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-03 09:25-0500\n"
-"PO-Revision-Date: 2020-10-03 14:25+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"POT-Creation-Date: 2022-01-04 06:30-0600\n"
+"PO-Revision-Date: 2021-08-10 10:22+0000\n"
+"Last-Translator: songming <by@songming.me>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Add new scheduled backup job"
-msgstr ""
+msgstr "添加新的备份计划任务"
 
 msgid ""
 "Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr ""
+msgstr "添加新的备份计划任务将会在计划任务 tab 页添加一项记录。"
 
 msgid "Backup"
 msgstr "备份"
@@ -31,11 +31,17 @@ msgstr "备份"
 msgid "Create scheduled backup job"
 msgstr "创建计划备份任务"
 
+msgid "Edit scheduled backup."
+msgstr ""
+
 msgid "Example"
 msgstr "例如"
 
 msgid "Extra Options"
 msgstr "扩展选项"
+
+msgid "Extra options"
+msgstr ""
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -56,7 +62,7 @@ msgid "Method"
 msgstr "方法"
 
 msgid "Notes"
-msgstr ""
+msgstr "注意"
 
 msgid "Password"
 msgstr "密码"
@@ -64,19 +70,43 @@ msgstr "密码"
 msgid "Root device"
 msgstr "启动设备"
 
+msgid "Schedule"
+msgstr ""
+
+msgid "Scheduled Backup"
+msgstr ""
+
 msgid "Settings"
 msgstr "设置"
 
 msgid "Shared Folder"
 msgstr "共享文件夹"
 
+msgid "Shared folder"
+msgstr ""
+
+msgid "Starting backup ..."
+msgstr ""
+
 msgid "System Backup"
 msgstr "系统备份"
+
+msgid "The location of the backup files."
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
 msgstr "添加要排除的目录，给每个要排除的目录加前缀 --exclude=，多个目录间用空格隔开。"
+
+msgid ""
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space. Example<br />--exclude=/pool "
+"--exclude=/test<br />Warning!!  You can break the backup with wrong options."
+msgstr ""
+
+msgid "Updated backup settings."
+msgstr ""
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告!!使用错误的参数会中断备份。"
@@ -92,6 +122,14 @@ msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
 msgstr "dd - 使用 dd 克隆系统分区到压缩镜像文件。"
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
+"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
+" - use rsync to sync files to destination directory"
+msgstr ""
 
 msgid "dd full disk"
 msgstr "dd 全盘"

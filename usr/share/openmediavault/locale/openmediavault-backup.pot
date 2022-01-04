@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-31 15:23-0500\n"
+"POT-Creation-Date: 2022-01-04 06:30-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,9 @@ msgid "Backup"
 msgstr ""
 
 msgid "Create scheduled backup job"
+msgstr ""
+
+msgid "Edit scheduled backup."
 msgstr ""
 
 msgid "Example"
@@ -60,6 +63,12 @@ msgid "Password"
 msgstr ""
 
 msgid "Root device"
+msgstr ""
+
+msgid "Schedule"
+msgstr ""
+
+msgid "Scheduled Backup"
 msgstr ""
 
 msgid "Settings"

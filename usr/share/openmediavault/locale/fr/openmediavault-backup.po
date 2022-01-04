@@ -6,16 +6,16 @@
 # Axel Cantenys, 2017-2018
 # BRUNET David, 2016
 # Axel Cantenys, 2020
-# ETIENNE VICTORIA, 2020
+# Etienne V, 2020
 # Julien ROCH <jroch74@live.fr>, 2017
 # Zacharie ARNAISE <spacebrain.damage@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-03 09:25-0500\n"
+"POT-Creation-Date: 2022-01-04 06:30-0600\n"
 "PO-Revision-Date: 2020-11-11 15:38+0000\n"
-"Last-Translator: ETIENNE VICTORIA\n"
+"Last-Translator: Etienne V\n"
 "Language-Team: French (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,11 +36,17 @@ msgstr "Sauvegarde"
 msgid "Create scheduled backup job"
 msgstr "Créer une tâche de sauvegarde programmée"
 
+msgid "Edit scheduled backup."
+msgstr ""
+
 msgid "Example"
 msgstr "Exemple"
 
 msgid "Extra Options"
 msgstr "Options supplémentaires"
+
+msgid "Extra options"
+msgstr ""
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -69,19 +75,43 @@ msgstr "Mot de passe"
 msgid "Root device"
 msgstr "Lecteur racine"
 
+msgid "Schedule"
+msgstr ""
+
+msgid "Scheduled Backup"
+msgstr ""
+
 msgid "Settings"
 msgstr "Options"
 
 msgid "Shared Folder"
 msgstr "Dossier partagé"
 
+msgid "Shared folder"
+msgstr ""
+
+msgid "Starting backup ..."
+msgstr ""
+
 msgid "System Backup"
 msgstr "Sauvegarde système"
+
+msgid "The location of the backup files."
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
 msgstr "Pour exclure des répertoires, ajoutez « --exclude= » avant chaque répertoire et utilisez un espace entre chaque argument supplémentaire."
+
+msgid ""
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space. Example<br />--exclude=/pool "
+"--exclude=/test<br />Warning!!  You can break the backup with wrong options."
+msgstr ""
+
+msgid "Updated backup settings."
+msgstr ""
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Attention !! De mauvaises options peuvent corrompre votre sauvegarde."
@@ -97,6 +127,14 @@ msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
 msgstr "dd - Utiliser « dd » pour cloner la partition du système d'exploitation vers un fichier d'image compressée."
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
+"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
+" - use rsync to sync files to destination directory"
+msgstr ""
 
 msgid "dd full disk"
 msgstr "dd disque intégral"

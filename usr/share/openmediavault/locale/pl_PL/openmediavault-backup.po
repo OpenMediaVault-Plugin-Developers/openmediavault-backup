@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Cyryl Sochacki <cyrylsochacki@gmail.com>, 2014,2016
+# Daniel, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-03 09:25-0500\n"
-"PO-Revision-Date: 2020-10-03 14:25+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"POT-Creation-Date: 2022-01-04 06:30-0600\n"
+"PO-Revision-Date: 2021-11-25 17:34+0000\n"
+"Last-Translator: Daniel\n"
 "Language-Team: Polish (Poland) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/pl_PL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,10 +32,16 @@ msgstr "Kopia zapasowa"
 msgid "Create scheduled backup job"
 msgstr ""
 
-msgid "Example"
+msgid "Edit scheduled backup."
 msgstr ""
 
+msgid "Example"
+msgstr "Przykład"
+
 msgid "Extra Options"
+msgstr "Dodatkowe opcje"
+
+msgid "Extra options"
 msgstr ""
 
 msgid ""
@@ -47,67 +54,99 @@ msgid ""
 msgstr ""
 
 msgid "Keep"
-msgstr ""
+msgstr "Zachowaj"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr ""
+msgstr "Zachowaj ostatnie x dni kopii zapasowych. Wpisz zero by wyłączyć."
 
 msgid "Method"
-msgstr ""
+msgstr "Metoda"
 
 msgid "Notes"
-msgstr ""
+msgstr "Notatki"
 
 msgid "Password"
-msgstr ""
+msgstr "Hasło"
 
 msgid "Root device"
+msgstr ""
+
+msgid "Schedule"
+msgstr ""
+
+msgid "Scheduled Backup"
 msgstr ""
 
 msgid "Settings"
 msgstr "Ustawienia"
 
 msgid "Shared Folder"
+msgstr "Folder współdzielony"
+
+msgid "Shared folder"
+msgstr ""
+
+msgid "Starting backup ..."
 msgstr ""
 
 msgid "System Backup"
 msgstr "Kopia systemu"
+
+msgid "The location of the backup files."
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
 msgstr ""
 
+msgid ""
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space. Example<br />--exclude=/pool "
+"--exclude=/test<br />Warning!!  You can break the backup with wrong options."
+msgstr ""
+
+msgid "Updated backup settings."
+msgstr ""
+
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr ""
 
 msgid "borgbackup"
-msgstr ""
+msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
 msgstr ""
 
 msgid "dd"
-msgstr ""
+msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
 msgstr ""
 
-msgid "dd full disk"
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
+"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
+" - use rsync to sync files to destination directory"
 msgstr ""
+
+msgid "dd full disk"
+msgstr "dd cały dysk"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
 msgstr ""
 
 msgid "fsarchiver"
-msgstr ""
+msgstr "fsarchiver"
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
 msgstr ""
 
 msgid "rsync"
-msgstr ""
+msgstr "rsync"
 
 msgid "rsync - use rsync to sync files to destination directory"
 msgstr ""
