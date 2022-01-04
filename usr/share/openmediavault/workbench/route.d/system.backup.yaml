@@ -3,6 +3,4 @@ type: route
 data:
   url: "/system/backup"
   title: _("Backup")
-  editing: true
-  notificationTitle: _("Updated backup settings.")
-  component: omv-system-backup-form-page
+  component: omv-system-backup-navigation-page

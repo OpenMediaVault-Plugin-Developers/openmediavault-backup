@@ -1,7 +1,7 @@
 version: "1.0"
 type: component
 data:
-  name: omv-system-backup-form-page
+  name: omv-system-backup-settings-form-page
   type: formPage
   config:
     request:
@@ -112,7 +112,3 @@ data:
                 stop:
                   hidden: true
             successUrl: /system/backup
-      - text: _("Schedule backup")
-        execute:
-          type: url
-          url: "/system/backup/schedule"

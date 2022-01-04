@@ -1,0 +1,8 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "system.backup.schedule"
+  text: _("Schedule")
+  position: 20
+  icon: "mdi:wrench-clock"
+  url: "/system/backup/schedule"
