@@ -12,7 +12,8 @@ Architecture: all
 Depends: fsarchiver,
          openmediavault (>=6),
          borgbackup,
-         rsync
+         rsync,
+         fdisk
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault
  system minus data drives or system drive for
