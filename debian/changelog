@@ -1,3 +1,9 @@
+openmediavault-backup (6.0.3) stable; urgency=low
+
+  * Add 'fdisk' to the package dependency list.
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 26 Jan 2022 08:39:17 +0100
+
 openmediavault-backup (6.0.2) stable; urgency=low
 
   * Move schedule to its own tab
