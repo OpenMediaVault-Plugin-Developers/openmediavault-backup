@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# songming <by@songming.me>, 2014-2016,2018,2020-2021
+# songming <by@songming.me>, 2014-2016,2018,2020-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-04 06:30-0600\n"
-"PO-Revision-Date: 2021-08-10 10:22+0000\n"
-"Last-Translator: songming <by@songming.me>\n"
+"POT-Creation-Date: 2022-03-06 09:56-0600\n"
+"PO-Revision-Date: 2022-03-06 15:56+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgid "Create scheduled backup job"
 msgstr "创建计划备份任务"
 
 msgid "Edit scheduled backup."
-msgstr ""
+msgstr "编辑计划任务。"
 
 msgid "Example"
 msgstr "例如"
@@ -41,7 +41,7 @@ msgid "Extra Options"
 msgstr "扩展选项"
 
 msgid "Extra options"
-msgstr ""
+msgstr "扩展选项"
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -71,10 +71,10 @@ msgid "Root device"
 msgstr "启动设备"
 
 msgid "Schedule"
-msgstr ""
+msgstr "计划任务"
 
 msgid "Scheduled Backup"
-msgstr ""
+msgstr "计划备份任务"
 
 msgid "Settings"
 msgstr "设置"
@@ -83,16 +83,19 @@ msgid "Shared Folder"
 msgstr "共享文件夹"
 
 msgid "Shared folder"
-msgstr ""
+msgstr "共享文件夹"
 
 msgid "Starting backup ..."
-msgstr ""
+msgstr "开始备份 ..."
 
 msgid "System Backup"
 msgstr "系统备份"
 
-msgid "The location of the backup files."
+msgid "The field should only contain * or a comma separated list of values."
 msgstr ""
+
+msgid "The location of the backup files."
+msgstr "备份文件位置。"
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -103,10 +106,10 @@ msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space. Example<br />--exclude=/pool "
 "--exclude=/test<br />Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "若要排除文件夹，在排除文件夹路径前添加  --exclude=，多个文件夹使用空格分开，例如<br />--exclude=/pool --exclude=/test<br />，警告，若配置错误会造成备份失败。"
 
 msgid "Updated backup settings."
-msgstr ""
+msgstr "更新备份设置。"
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告!!使用错误的参数会中断备份。"
@@ -129,7 +132,7 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd - 使用 dd 克隆系统分区到压缩镜像。<br />dd full disk - 使用 dd 克隆选中磁盘到压缩镜像。<br />fsarchiver - 使用 fsarchiver 克隆所有分区到归档文件。<br />borgbackup - 使用 borgbackup 备份系统到归档文件。<br />rsync - 使用 rsync 同步文件到目标目录。"
 
 msgid "dd full disk"
 msgstr "dd 全盘"

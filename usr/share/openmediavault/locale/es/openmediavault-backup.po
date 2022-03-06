@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020-2021
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-04 06:30-0600\n"
-"PO-Revision-Date: 2021-02-28 09:16+0000\n"
-"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
+"POT-Creation-Date: 2022-03-06 09:56-0600\n"
+"PO-Revision-Date: 2022-03-06 15:56+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgid "Create scheduled backup job"
 msgstr "Crear un trabajo de Backup programado"
 
 msgid "Edit scheduled backup."
-msgstr ""
+msgstr "Editar trabajo programado"
 
 msgid "Example"
 msgstr "Ejemplo"
@@ -41,7 +41,7 @@ msgid "Extra Options"
 msgstr "Opciones extra"
 
 msgid "Extra options"
-msgstr ""
+msgstr "Opciones Extras"
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -71,10 +71,10 @@ msgid "Root device"
 msgstr "Dispositivo root"
 
 msgid "Schedule"
-msgstr ""
+msgstr "Programador"
 
 msgid "Scheduled Backup"
-msgstr ""
+msgstr "Backup Programado"
 
 msgid "Settings"
 msgstr "Opciones"
@@ -83,16 +83,19 @@ msgid "Shared Folder"
 msgstr "Carpetas compartidas"
 
 msgid "Shared folder"
-msgstr ""
+msgstr "Carpeta compartida"
 
 msgid "Starting backup ..."
-msgstr ""
+msgstr "Iniciando Backup ..."
 
 msgid "System Backup"
 msgstr "Backup del sistema"
 
-msgid "The location of the backup files."
+msgid "The field should only contain * or a comma separated list of values."
 msgstr ""
+
+msgid "The location of the backup files."
+msgstr "Ubicación de los archivos de backup."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -103,10 +106,10 @@ msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space. Example<br />--exclude=/pool "
 "--exclude=/test<br />Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "Para excluir directorios adicionales, agregue --exclude = antes de cada directorio y separe las entradas adicionales con un espacio. Ejemplo:<br />exclude = / pool --exclude = / test <br /> Warning !! Puede romper la copia de seguridad con opciones incorrectas."
 
 msgid "Updated backup settings."
-msgstr ""
+msgstr "Opciones de backup actualizadas."
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Precaución! Puede dañar el Backup con opciones erroneas."
@@ -129,7 +132,7 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd: use dd para clonar la partición del sistema operativo en un archivo de imagen comprimido. <br /> dd disco completo: use dd para clonar todo el disco en un archivo de imagen comprimido <br /> fsarchiver: use fsarchiver para clonar todas las particiones en un archivo de archivo <br />borgbackup: use borgbackup para hacer una copia de seguridad del sistema a un archivo <br /> rsync: use rsync para sincronizar archivos con el directorio de destino"
 
 msgid "dd full disk"
 msgstr "dd el disco completo"

@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Pavel Borecki <pavel.borecki@gmail.com>, 2015-2018,2020
+# Trottel <trottel09@gmail.com>, 2022
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-04 06:30-0600\n"
-"PO-Revision-Date: 2020-10-04 07:34+0000\n"
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
+"POT-Creation-Date: 2022-03-06 09:56-0600\n"
+"PO-Revision-Date: 2022-03-06 15:56+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,20 +20,20 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "Add new scheduled backup job"
-msgstr "Přidat novou úlohu pravidelné zálohy"
+msgstr "Přidat novou naplánovanou úlohu zálohování"
 
 msgid ""
 "Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr "Přidání nové úlohy pravidelné zálohy ji přidá na kartu Naplánované úlohy"
+msgstr "Přidání nové naplánované úlohy zálohování přidá úlohu na kartu Naplánované úlohy."
 
 msgid "Backup"
 msgstr "Zálohování systému a nastavení"
 
 msgid "Create scheduled backup job"
-msgstr "Vytvořit úlohu pravidelného zálohování"
+msgstr "Vytvořit naplánovanou úlohu zálohování"
 
 msgid "Edit scheduled backup."
-msgstr ""
+msgstr "Upravit naplánované úlohu zálohování."
 
 msgid "Example"
 msgstr "Příklad"
@@ -41,22 +42,22 @@ msgid "Extra Options"
 msgstr "Další předvolby"
 
 msgid "Extra options"
-msgstr ""
+msgstr "Další možnosti"
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
-msgstr "Pouze pro pokročilé uživatele – nepoužívejte pokud není známé konkrétní zařízení s kořenovou složkou"
+msgstr "Pouze pro pokročilé uživatele – Nepoužívejte, pokud neznáte přesné zařízení s kořenovou složkou."
 
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr "Pokud je zadáno heslo, záloha bude zašifrována. Je třeba, aby bylo dlouhé 6 až 64 znaků."
+msgstr "Pokud je zadáno heslo, bude záloha zašifrována. Musí mít 6 až 64 znaků."
 
 msgid "Keep"
 msgstr "Ponechat"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr "Ponechat zálohy z uplynulých x dnů. Nastavení na 0 vypíná."
+msgstr "Ponechat zálohy za posledních x dní. Nastavte na nulu pro zakázání."
 
 msgid "Method"
 msgstr "Metoda"
@@ -71,10 +72,10 @@ msgid "Root device"
 msgstr "Zařízení s kořenovou složkou"
 
 msgid "Schedule"
-msgstr ""
+msgstr "Naplánovat"
 
 msgid "Scheduled Backup"
-msgstr ""
+msgstr "Naplánované zálohování"
 
 msgid "Settings"
 msgstr "Nastavení"
@@ -83,16 +84,19 @@ msgid "Shared Folder"
 msgstr "Sdílená složka"
 
 msgid "Shared folder"
-msgstr ""
+msgstr "Sdílená složka"
 
 msgid "Starting backup ..."
-msgstr ""
+msgstr "Spouštění zálohování"
 
 msgid "System Backup"
 msgstr "Záloha systému"
 
-msgid "The location of the backup files."
+msgid "The field should only contain * or a comma separated list of values."
 msgstr ""
+
+msgid "The location of the backup files."
+msgstr "Umístění souborů zálohy."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -103,10 +107,10 @@ msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space. Example<br />--exclude=/pool "
 "--exclude=/test<br />Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "Složky vyloučíte ze zálohy tím, že před každou z nich přidáte „--exclude=“ – jednotlivé položky oddělujte čárkou. Příklad<br />--exclude=/pool --exclude=/test<br />Varování! Špatnými volbami můžete zálohování poškodit."
 
 msgid "Updated backup settings."
-msgstr ""
+msgstr "Aktualizované nastavení zálohování."
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Varování! Chybné předvolby mohou znefunkčnit zálohování."
@@ -115,13 +119,13 @@ msgid "borgbackup"
 msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr "borgbackup – pomocí borgbackup zálohovat systém do souboru s archivem"
+msgstr "borgbackup – použijte borgbackup pro zálohování systému do souboru s archivem"
 
 msgid "dd"
 msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr "dd – pomocí nástroje dd naklonovat oddíl s operačním systémem do jeho obrazu ve zkomprimovaného souboru."
+msgstr "dd – použijte dd pro naklonování oddílu s operačním systémem do komprimovaného souboru s obrazem."
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -129,23 +133,23 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd – použijte dd pro naklonování oddílu s operačním systémem do komprimovaného souboru s obrazem.dd (celý disk) – použijte dd pro naklonování celého disku do komprimovaného souboru s obrazem.<br />fsarchiver – použijte fsarchiver pro naklonování všech oddílů do souboru s archivem.<br />borgbackup – použijte borgbackup pro zálohování systém do souboru s archivem.<br />rsync – použijte rsync pro synchronizaci souborů do cílového adresáře."
 
 msgid "dd full disk"
 msgstr "dd (celý disk)"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr "dd (celý disk) – pomocí nástroje dd naklonovat celý disk do jeho obrazu ve zkomprimovaném souboru"
+msgstr "dd (celý disk) – použijte dd pro naklonování celého disku do komprimovaného souboru s obrazem."
 
 msgid "fsarchiver"
 msgstr "fsarchiver"
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr "fsarchiver – použít fsarchiver pro klonování všech oddílů do souboru s archivem"
+msgstr "fsarchiver – použijte fsarchiver pro naklonování všech oddílů do souboru s archivem."
 
 msgid "rsync"
 msgstr "rsync"
 
 msgid "rsync - use rsync to sync files to destination directory"
-msgstr "rsync ‒ použít rsync pro synchronizaci souborů do cílové složky"
+msgstr "4rsync – použijte rsync pro synchronizaci souborů do cílového adresáře."
