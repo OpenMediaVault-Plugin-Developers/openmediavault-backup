@@ -1,3 +1,9 @@
+openmediavault-backup (6.0.4) stable; urgency=low
+
+  * Fix issue #35 - allow multiple values
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 06 Mar 2022 09:55:56 -0600
+
 openmediavault-backup (6.0.3) stable; urgency=low
 
   * Add 'fdisk' to the package dependency list.
