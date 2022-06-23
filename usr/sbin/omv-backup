@@ -89,7 +89,15 @@ dpkg -l | grep openmediavault > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.
 part_type=$(blkid -p ${root} | cut -d \" -f4)
 if [ "${part_type}" = "gpt" ]; then
     num_parts=$(parted -m ${root} print | tail -n1 | cut -b1)
-    grubparts_bs_calc=$(((128 * ${num_parts}) + 1024))
+    grubparts_bs_calc=$(((128 * num_parts) + 1024))
+    esp=$(parted -m ${root} print | awk -F ":" '$7 ~ /esp/ { print $1 }')
+
+    esppart="${root}${esp}"
+    if [ -e "${esppart}" ]; then
+      dd if=${esppart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.espdd.gz"
+    else
+      echo "ESP partition '${esppart}' not found."
+    fi
 else
     grubparts_bs_calc=512
 fi
