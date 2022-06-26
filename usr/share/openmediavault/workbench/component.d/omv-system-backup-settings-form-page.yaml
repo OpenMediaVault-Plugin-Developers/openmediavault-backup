@@ -60,7 +60,7 @@ data:
         validators:
           min: 0
           max: 9999
-          patternType: port
+          patternType: integer
           required: true
         modifiers:
           - type: visible
