@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-06 09:56-0600\n"
+"POT-Creation-Date: 2022-07-17 12:43-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>, 2014-2017\n"
 "Language-Team: Danish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/da/)\n"
@@ -41,6 +41,12 @@ msgid "Extra Options"
 msgstr "Ekstra Valgmuligheder"
 
 msgid "Extra options"
+msgstr ""
+
+msgid "Fix cron"
+msgstr ""
+
+msgid "Fixing cron task if deleted ..."
 msgstr ""
 
 msgid ""

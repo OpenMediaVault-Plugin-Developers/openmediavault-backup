@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-06 09:56-0600\n"
+"POT-Creation-Date: 2022-07-17 12:43-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018,2020\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ja_JP/)\n"
@@ -41,6 +41,12 @@ msgid "Extra Options"
 msgstr "追加オプション"
 
 msgid "Extra options"
+msgstr ""
+
+msgid "Fix cron"
+msgstr ""
+
+msgid "Fixing cron task if deleted ..."
 msgstr ""
 
 msgid ""
