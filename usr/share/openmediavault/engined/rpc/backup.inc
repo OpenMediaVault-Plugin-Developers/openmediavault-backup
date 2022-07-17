@@ -30,6 +30,7 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('get');
         $this->registerMethod('set');
         $this->registerMethod('doBackup');
+        $this->registerMethod('doFix');
     }
 
     public function get($params, $context)
@@ -66,6 +67,24 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
         return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
             use ($params) {
                 $cmd = new \OMV\System\Process('/usr/sbin/omv-backup');
+                $cmd->setRedirect2to1(true);
+                $cmdLine = $cmd->getCommandLine();
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                    throw new \OMV\ExecException($cmdLine, $output);
+                return $output;
+            }
+        );
+    }
+
+    public function doFix($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+                $cmd = new \OMV\System\Process('/usr/sbin/omv-backup-fix-cron');
                 $cmd->setRedirect2to1(true);
                 $cmdLine = $cmd->getCommandLine();
                 if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))

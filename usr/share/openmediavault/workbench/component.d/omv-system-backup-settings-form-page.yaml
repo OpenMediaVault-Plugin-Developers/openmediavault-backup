@@ -112,3 +112,17 @@ data:
                 stop:
                   hidden: true
             successUrl: /system/backup
+      - text: _("Fix cron")
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Fixing cron task if deleted ...")
+              startOnInit: true
+              request:
+                service: Backup
+                method: doFix
+              buttons:
+                stop:
+                  hidden: true
+            successUrl: /system/backup
