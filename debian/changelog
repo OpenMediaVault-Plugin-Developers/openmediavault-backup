@@ -1,3 +1,9 @@
+openmediavault-backup (6.0.6) stable; urgency=low
+
+  * Add button to fix cron task if deleted
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 17 Jul 2022 12:39:37 -0500
+
 openmediavault-backup (6.0.5) stable; urgency=low
 
   * Add ESP partition backup
