@@ -23,7 +23,7 @@ purgeOld()
 }
 
 # date
-date=$(date +"%d-%b-%Y_%H-%M-%S")
+date=$(date +"%Y-%m-%d_%H-%M-%S")
 
 # clean apt-get cache to save space
 apt-get clean
