@@ -119,7 +119,7 @@ fi
 if [ -f "/usr/lib/u-boot/platform_install.sh" ]; then
     . /usr/lib/u-boot/platform_install.sh
     if [ -d "${DIR}" ]; then
-        tar cjf "${backupDir}/${OMV_BACKUP_FILE_PREFIX}_u-boot-${date}.tar.bz" ${DIR}/*
+        tar cjf "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_u-boot.tar.bz" ${DIR}/*
     fi
 fi
 
@@ -130,10 +130,10 @@ case ${method} in
         dd if=${devicefile} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.dd.gz"
         sync
         if [ -n "${bootpart}" ]; then
-            dd if=${bootpart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}_boot-${date}.dd.gz"
+            dd if=${bootpart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_boot.dd.gz"
         fi
         sync
-        touch "${backupDir}/${OMV_BACKUP_FILE_PREFIX}"*-${date}.dd.gz
+        touch "${backupDir}/${OMV_BACKUP_FILE_PREFIX}"-${date}*.dd.gz
         purgeOld
         ;;
 
