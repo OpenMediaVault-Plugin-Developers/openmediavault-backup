@@ -1,3 +1,9 @@
+openmediavault-backup (6.0.7) stable; urgency=low
+
+  * Improve sorting of backup files
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 28 Jul 2022 06:24:37 -0500
+
 openmediavault-backup (6.0.6) stable; urgency=low
 
   * Add button to fix cron task if deleted
