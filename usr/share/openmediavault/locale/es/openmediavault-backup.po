@@ -44,10 +44,10 @@ msgid "Extra options"
 msgstr "Opciones Extras"
 
 msgid "Fix cron"
-msgstr ""
+msgstr "Arreglar cron"
 
 msgid "Fixing cron task if deleted ..."
-msgstr ""
+msgstr "Arreglando la tarea cron si se elimina ..."
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
