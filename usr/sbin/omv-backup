@@ -108,7 +108,7 @@ dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grub" bs=446 co
 dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grubparts" bs=${grubparts_bs_calc} count=1
 
 # check for /boot partition
-bootpart=$(grep -w /boot /proc/mounts | awk '{ print $1 }')
+bootpart=$(awk '$2 == "/boot" { print $1 }' /proc/mounts)
 if [ ! -b "${bootpart}" ]; then
     bootpart=""
 else
