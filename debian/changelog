@@ -1,3 +1,9 @@
+openmediavault-backup (6.0.8) stable; urgency=low
+
+  * Improve boot partition detection
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 14 Sep 2022 09:23:46 -0500
+
 openmediavault-backup (6.0.7) stable; urgency=low
 
   * Improve sorting of backup files
