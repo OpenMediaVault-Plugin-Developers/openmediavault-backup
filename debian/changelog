@@ -1,3 +1,9 @@
+openmediavault-backup (6.0.9) stable; urgency=low
+
+  * Fix for nvme drivers - issue #42
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 13 Oct 2022 18:27:58 -0500
+
 openmediavault-backup (6.0.8) stable; urgency=low
 
   * Improve boot partition detection
