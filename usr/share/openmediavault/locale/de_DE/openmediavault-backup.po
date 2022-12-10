@@ -7,13 +7,13 @@
 # Ettore Atalan <atalanttore@googlemail.com>, 2014,2016,2020
 # manne bk, 2022
 # Micha K <pikim@web.de>, 2018
-# Raiko, 2015
+# 49656bee90bb57799c7c1e93ceb9b4ef_2da742e, 2015
 # Stephan Steiner, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-17 12:43-0500\n"
+"POT-Creation-Date: 2022-12-10 10:46-0600\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: manne bk, 2022\n"
 "Language-Team: German (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/de/)\n"
@@ -22,6 +22,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Action"
+msgstr ""
 
 msgid "Add new scheduled backup job"
 msgstr "Neuen Sicherungsauftrag planen"
@@ -35,6 +38,9 @@ msgstr "Sicherung"
 
 msgid "Create scheduled backup job"
 msgstr "Auftrag für geplante Sicherung erstellen"
+
+msgid "Date & Time"
+msgstr ""
 
 msgid "Edit scheduled backup."
 msgstr "Planmäßige Sicherung bearbeiten"
@@ -68,6 +74,9 @@ msgstr "Behalten"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Die letzten x Tage der Sicherungen aufbewahren. Zum Deaktivieren auf Null setzen."
+
+msgid "Message"
+msgstr ""
 
 msgid "Method"
 msgstr "Methode"

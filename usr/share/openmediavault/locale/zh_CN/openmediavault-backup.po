@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-17 12:43-0500\n"
+"POT-Creation-Date: 2022-12-10 10:46-0600\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: songming <by@songming.me>, 2014-2016,2018,2020-2022\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_CN/)\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Action"
+msgstr ""
 
 msgid "Add new scheduled backup job"
 msgstr "添加新的备份计划任务"
@@ -30,6 +33,9 @@ msgstr "备份"
 
 msgid "Create scheduled backup job"
 msgstr "创建计划备份任务"
+
+msgid "Date & Time"
+msgstr ""
 
 msgid "Edit scheduled backup."
 msgstr "编辑计划任务。"
@@ -63,6 +69,9 @@ msgstr "保留备份"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "保留最近 X 天的备份文件，0 表示不启用该功能。"
+
+msgid "Message"
+msgstr ""
 
 msgid "Method"
 msgstr "方法"

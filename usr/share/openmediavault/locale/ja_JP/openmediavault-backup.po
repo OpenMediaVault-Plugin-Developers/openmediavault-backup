@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-17 12:43-0500\n"
+"POT-Creation-Date: 2022-12-10 10:46-0600\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018,2020\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ja_JP/)\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Action"
+msgstr ""
 
 msgid "Add new scheduled backup job"
 msgstr "新しいバックアップジョブのスケジュールを追加"
@@ -30,6 +33,9 @@ msgstr "バックアップ"
 
 msgid "Create scheduled backup job"
 msgstr "バックアップジョブのスケジュールを作成"
+
+msgid "Date & Time"
+msgstr ""
 
 msgid "Edit scheduled backup."
 msgstr ""
@@ -63,6 +69,9 @@ msgstr "保持"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "最後のx日間のバックアップを保持します。 無効にするには、ゼロに設定します。"
+
+msgid "Message"
+msgstr ""
 
 msgid "Method"
 msgstr "メソッド"

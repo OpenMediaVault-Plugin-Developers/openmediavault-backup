@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-17 12:43-0500\n"
+"POT-Creation-Date: 2022-12-10 10:46-0600\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Trottel <trottel09@gmail.com>, 2022\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/cs_CZ/)\n"
@@ -18,6 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+msgid "Action"
+msgstr ""
 
 msgid "Add new scheduled backup job"
 msgstr "Přidat novou naplánovanou úlohu zálohování"
@@ -31,6 +34,9 @@ msgstr "Zálohování systému a nastavení"
 
 msgid "Create scheduled backup job"
 msgstr "Vytvořit naplánovanou úlohu zálohování"
+
+msgid "Date & Time"
+msgstr ""
 
 msgid "Edit scheduled backup."
 msgstr "Upravit naplánované úlohu zálohování."
@@ -64,6 +70,9 @@ msgstr "Ponechat"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Ponechat zálohy za posledních x dní. Nastavte na nulu pro zakázání."
+
+msgid "Message"
+msgstr ""
 
 msgid "Method"
 msgstr "Metoda"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-17 12:43-0500\n"
+"POT-Creation-Date: 2022-12-10 10:46-0600\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2015,2017,2019-2022\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/en_GB/)\n"
@@ -17,6 +17,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Action"
+msgstr ""
 
 msgid "Add new scheduled backup job"
 msgstr "Add new scheduled backup job"
@@ -30,6 +33,9 @@ msgstr "Backup"
 
 msgid "Create scheduled backup job"
 msgstr "Create scheduled backup job"
+
+msgid "Date & Time"
+msgstr ""
 
 msgid "Edit scheduled backup."
 msgstr "Edit scheduled backup."
@@ -63,6 +69,9 @@ msgstr "Keep"
 
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Keep the last x days of backups. Set to zero to disable."
+
+msgid "Message"
+msgstr ""
 
 msgid "Method"
 msgstr "Method"
