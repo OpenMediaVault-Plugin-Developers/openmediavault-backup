@@ -1,3 +1,9 @@
+openmediavault-backup (6.1) stable; urgency=low
+
+  * Adding logging to backup
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 10 Dec 2022 09:57:50 -0600
+
 openmediavault-backup (6.0.10) stable; urgency=low
 
   * Fix typo
