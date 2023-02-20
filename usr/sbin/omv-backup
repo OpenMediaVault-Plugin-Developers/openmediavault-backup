@@ -10,7 +10,6 @@
 #
 # version: 1.1.0
 #
-set -e
 
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
@@ -37,7 +36,12 @@ purgeOld()
     if [[ ${keep} -gt 0 ]]; then
         _log "Purging old files..."
         find "${backupDir}" -maxdepth ${OMV_BACKUP_MAX_DEPTH} -type f -mtime +${keep} -name "${OMV_BACKUP_FILE_PREFIX}*" -delete
-        _log "Purging done."
+        if [ $? -eq 0 ]; then
+            _log "Purging done."
+        else
+            _log "ERROR: Purge failed!"
+            exit 1
+        fi
     else
         _log "Purging disabled."
     fi
@@ -107,10 +111,28 @@ fi
 # save helpful information
 _log "Save fdisk output for ${root}"
 fdisk -l ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fdisk"
+if [ $? -eq 0 ]; then
+    _log "Successfully saved fdisk output for ${root}"
+else
+    _log "ERROR: Save of fdisk output for ${root} failed!"
+    exit 1
+fi
 _log "Save blkid output"
 blkid > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.blkid"
+if [ $? -eq 0 ]; then
+    _log "Successfully saved blkid output"
+else
+    _log "ERROR: Save of blkid output failed!"
+    exit 1
+fi
 _log "Save package list"
 dpkg -l | grep openmediavault > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.packages"
+if [ $? -eq 0 ]; then
+    _log "Successfully saved package list"
+else
+    _log "ERROR: Save of package list failed!"
+    exit 1
+fi
 
 # calculate partition table size to accommodate GPT and MBR.
 part_type=$(blkid -p ${root} | cut -d \" -f4)
@@ -126,8 +148,14 @@ if [ "${part_type}" = "gpt" ]; then
     esppart="${root}${partletter}${esp}"
     _log "ESP partition :: ${esppart}"
     if [ -e "${esppart}" ]; then
-      _log "Backup ESP partition"
-      dd if=${esppart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.espdd.gz"
+        _log "Backup ESP partition"
+        dd if=${esppart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.espdd.gz"
+        if [ $? -eq 0 ]; then
+            _log "Successfully backuped ESP partition"
+        else
+            _log "ERROR: Backup of ESP partition failed!"
+            exit 1
+        fi
     else
       _log "ESP partition '${esppart}' not found."
     fi
@@ -137,10 +165,22 @@ fi
 
 
 # save partition table and mbr
-_log "Save mbr"
-dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grub" bs=446 count=1
-_log "Save mbr and partition table"
-dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grubparts" bs=${grubparts_bs_calc} count=1
+    _log "Save mbr"
+    dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grub" bs=446 count=1
+    if [ $? -eq 0 ]; then
+        _log "Successfully saved MBR"
+    else
+        _log "ERROR: Save of MBR failed!"
+        exit 1
+    fi
+    _log "Save mbr and partition table"
+    dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grubparts" bs=${grubparts_bs_calc} count=1
+    if [ $? -eq 0 ]; then
+        _log "Successfully saved MBR and partition table"
+    else
+        _log "ERROR: Save of MBR and partition table failed!"
+        exit 1
+    fi
 
 # check for /boot partition
 bootpart=$(awk '$2 == "/boot" { print $1 }' /proc/mounts)
@@ -156,6 +196,12 @@ if [ -f "/usr/lib/u-boot/platform_install.sh" ]; then
     if [ -d "${DIR}" ]; then
         _log "Backup u-boot"
         tar cjf "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_u-boot.tar.bz" ${DIR}/*
+        if [ $? -eq 0 ]; then
+            _log "Successfully backuped u-boot"
+        else
+            _log "ERROR: Backup of u-boot failed!"
+            exit 1
+        fi
     fi
 fi
 
@@ -168,7 +214,8 @@ case ${method} in
         _log "dd exit code = ${status[0]}"
         _log "gzip exit code = ${status[1]}"
         if [[ ${status[0]} -gt 0 ]] || [[ ${status[1]} -gt 0 ]]; then
-            _log "dd backup failed!"
+            _log "ERROR: dd backup failed!"
+            exit 1
         else
             _log "dd backup complete."
         fi
@@ -176,7 +223,12 @@ case ${method} in
         if [ -n "${bootpart}" ]; then
             _log "Starting dd backup of boot partition..."
             dd if=${bootpart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_boot.dd.gz"
-            _log "dd backup of boot partition complete."
+            if [ $? -eq 0 ]; then
+                _log "dd backup of boot partition complete."
+            else
+                _log "ERROR: dd backup of boot partition failed!"
+                exit 1
+            fi
         fi
         sync
         touch "${backupDir}/${OMV_BACKUP_FILE_PREFIX}"-${date}*.dd.gz
@@ -190,7 +242,8 @@ case ${method} in
         _log "dd exit code = ${status[0]}"
         _log "gzip exit code = ${status[1]}"
         if [[ ${status[0]} -gt 0 ]] || [[ ${status[1]} -gt 0 ]]; then
-            _log "dd full disk backup failed!"
+            _log "ERROR: dd full disk backup failed!"
+            exit 1
         else
             _log "dd full disk backup complete."
         fi
@@ -211,7 +264,8 @@ case ${method} in
         fi
         fsarchiver savefs ${password}-o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A ${extra}
         if [ $? -ne 0 ]; then
-            _log "FSArchiver backup failed!"
+            _log "ERROR: FSArchiver backup failed!"
+            exit 1
         else
             _log "FSArchiver backup complete."
         fi
@@ -243,7 +297,8 @@ case ${method} in
           -e "/dev" -e "/proc" -e "/sys" -e "/tmp" -e "/run" -e "/mnt" \
           -e "/media" -e "/lost+found" -e "/export" -e "/home/ftp" -e "/srv" ${extra}
         if [ $? -ne 0 ]; then
-            _log "borgbackup create failed!"
+            _log "ERROR: borgbackup create failed!"
+            exit 1
         else
             _log "borgbackup create complete."
         fi
@@ -252,7 +307,12 @@ case ${method} in
           purgeOld
           _log "Starting borgbackup prune..."
           borg prune "${backupDir}/borgbackup" --keep-daily "${keep}"
-          _log "borgbackup prune complete."
+          if [ $? -ne 0 ]; then
+              _log "ERROR: borgbackup prune failed!"
+            exit 1	
+          else
+            _log "borgbackup prune complete."
+          fi
         fi
         ;;
 
@@ -274,7 +334,8 @@ case ${method} in
             --exclude=/home/ftp \
             --exclude=/srv ${extra}
         if [ $? -ne 0 ]; then
-            _log "rsync backup failed!"
+            _log "ERROR: rsync backup failed!"
+            exit 1
         else
             _log "rsync backup complete."
         fi
