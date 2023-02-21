@@ -207,7 +207,7 @@ case ${method} in
         _log "gzip exit code = ${status[1]}"
         if [[ ${status[0]} -gt 0 ]] || [[ ${status[1]} -gt 0 ]]; then
             _log "ERROR: dd backup failed!"
-            exit 1
+            exit 14
         else
             _log "dd backup complete."
         fi
@@ -219,7 +219,7 @@ case ${method} in
                 _log "dd backup of boot partition complete."
             else
                 _log "ERROR: dd backup of boot partition failed!"
-                exit 1
+                exit 15
             fi
         fi
         sync
@@ -235,7 +235,7 @@ case ${method} in
         _log "gzip exit code = ${status[1]}"
         if [[ ${status[0]} -gt 0 ]] || [[ ${status[1]} -gt 0 ]]; then
             _log "ERROR: dd full disk backup failed!"
-            exit 1
+            exit 16
         else
             _log "dd full disk backup complete."
         fi
@@ -257,7 +257,7 @@ case ${method} in
         fsarchiver savefs ${password}-o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A ${extra}
         if [ $? -ne 0 ]; then
             _log "ERROR: FSArchiver backup failed!"
-            exit 1
+            exit 17
         else
             _log "FSArchiver backup complete."
         fi
@@ -290,7 +290,7 @@ case ${method} in
           -e "/media" -e "/lost+found" -e "/export" -e "/home/ftp" -e "/srv" ${extra}
         if [ $? -ne 0 ]; then
             _log "ERROR: borgbackup create failed!"
-            exit 1
+            exit 18
         else
             _log "borgbackup create complete."
         fi
@@ -301,7 +301,7 @@ case ${method} in
           borg prune "${backupDir}/borgbackup" --keep-daily "${keep}"
           if [ $? -ne 0 ]; then
               _log "ERROR: borgbackup prune failed!"
-            exit 1	
+            exit 19
           else
             _log "borgbackup prune complete."
           fi
@@ -327,7 +327,7 @@ case ${method} in
             --exclude=/srv ${extra}
         if [ $? -ne 0 ]; then
             _log "ERROR: rsync backup failed!"
-            exit 1
+            exit 20
         else
             _log "rsync backup complete."
         fi
