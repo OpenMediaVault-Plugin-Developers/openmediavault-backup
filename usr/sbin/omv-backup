@@ -39,8 +39,7 @@ purgeOld()
         if [ $? -eq 0 ]; then
             _log "Purging done."
         else
-            _log "ERROR: Purge failed!"
-            exit 1
+            _log "WARNING: Purge failed!"
         fi
     else
         _log "Purging disabled."
@@ -114,24 +113,21 @@ fdisk -l ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fdisk"
 if [ $? -eq 0 ]; then
     _log "Successfully saved fdisk output for ${root}"
 else
-    _log "ERROR: Save of fdisk output for ${root} failed!"
-    exit 1
+    _log "WARNING: Save of fdisk output for ${root} failed!"
 fi
 _log "Save blkid output"
 blkid > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.blkid"
 if [ $? -eq 0 ]; then
     _log "Successfully saved blkid output"
 else
-    _log "ERROR: Save of blkid output failed!"
-    exit 1
+    _log "WARNING: Save of blkid output failed!"
 fi
 _log "Save package list"
 dpkg -l | grep openmediavault > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.packages"
 if [ $? -eq 0 ]; then
     _log "Successfully saved package list"
 else
-    _log "ERROR: Save of package list failed!"
-    exit 1
+    _log "WARNING: Save of package list failed!"
 fi
 
 # calculate partition table size to accommodate GPT and MBR.
@@ -153,8 +149,7 @@ if [ "${part_type}" = "gpt" ]; then
         if [ $? -eq 0 ]; then
             _log "Successfully backuped ESP partition"
         else
-            _log "ERROR: Backup of ESP partition failed!"
-            exit 1
+            _log "WARNING: Backup of ESP partition failed!"
         fi
     else
       _log "ESP partition '${esppart}' not found."
@@ -170,16 +165,14 @@ fi
     if [ $? -eq 0 ]; then
         _log "Successfully saved MBR"
     else
-        _log "ERROR: Save of MBR failed!"
-        exit 1
+        _log "WARNING: Save of MBR failed!"
     fi
     _log "Save mbr and partition table"
     dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grubparts" bs=${grubparts_bs_calc} count=1
     if [ $? -eq 0 ]; then
         _log "Successfully saved MBR and partition table"
     else
-        _log "ERROR: Save of MBR and partition table failed!"
-        exit 1
+        _log "WARNING: Save of MBR and partition table failed!"
     fi
 
 # check for /boot partition
@@ -199,8 +192,7 @@ if [ -f "/usr/lib/u-boot/platform_install.sh" ]; then
         if [ $? -eq 0 ]; then
             _log "Successfully backuped u-boot"
         else
-            _log "ERROR: Backup of u-boot failed!"
-            exit 1
+            _log "WARNING: Backup of u-boot failed!"
         fi
     fi
 fi
