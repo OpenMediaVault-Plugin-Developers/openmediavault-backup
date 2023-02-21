@@ -62,12 +62,12 @@ touch /var/cache/openmediavault/archives/Packages
 # Get the shared folder reference and path
 sfref=$(omv_config_get "/config/system/backup/sharedfolderref")
 if ! omv_isuuid "${sfref}"; then
-    _log "No backup volume set.  Please choose a backup volume."
+    _log "ERROR: No backup volume set.  Please choose a backup volume."
     exit 10
 fi
 sfpath="$(omv_get_sharedfolder_path "${sfref}")"
 if [ ! -d "${sfpath}" ]; then
-    _log "Shared folder directory does not exist.  Exiting..."
+    _log "ERROR: Shared folder directory does not exist.  Exiting..."
     exit 11
 fi
 
@@ -90,7 +90,7 @@ if [ "${devicefile}" = "/dev/root" ]; then
 fi
 
 if [ "${devicefile}" = "/dev/root" ] || [ -z "${devicefile}" ]; then
-    _log "Could not determine root device file. Please specify in the root device textbox. Exiting..."
+    _log "ERROR: Could not determine root device file. Please specify in the root device textbox. Exiting..."
     exit 12
 fi
 
@@ -104,7 +104,7 @@ fi
 _log "Root drive: ${root}"
 
 if [ -z "${root}" ]; then
-    _log "Could not determine root device.  Exiting..."
+    _log "ERROR: Could not determine root device.  Exiting..."
     exit 13
 fi
 
