@@ -39,10 +39,10 @@ _log_warning() # Level for recoverable errors.
     _log_export "$(omv_warning "${msg}")"
 }
 
-_log_error() # Level for unrecoverable errors.
+_log_error() # Level for unrecoverable errors that would be write to stderr an to the logfile.
 {
-    msg="$(omv_error "${1}" 2>&1)"
-    _log_export "${msg}"
+    msg=${1}
+    echo "[$(date +'%Y-%m-%d %H:%M:%S%z')] [backup] $(omv_error "${msg}" 2>&1)" > >(tee -a ${logFile} >&2)
 }
 
 purgeOld()
