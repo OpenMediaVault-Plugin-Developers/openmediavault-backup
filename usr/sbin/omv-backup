@@ -195,7 +195,7 @@ fi
 # Save partition table using sfdisk
 # In this thread https://forum.openmediavault.org/index.php?thread/46590-is-the-backup-plugin-s-grub-backup-broken/
 # It was discovered that USB devices sometimes do not do well with dd based partition tables restore. Out of 3 devices tested, 2 were found to
-# not be able to do a proper restore using dd. Hoeever, sfdisk based backup is still able to perfom a restore in this situation.
+# not be able to do a proper restore using dd. However, sfdisk based backup is still able to perform a restore in this situation.
 _log "Save partitions using sfdisk"
 sfdisk -d ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.sfdisk"
 if [ $? -eq 0 ]; then
