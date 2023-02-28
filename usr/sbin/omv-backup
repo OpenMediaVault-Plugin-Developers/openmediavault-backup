@@ -177,20 +177,29 @@ fi
 
 
 # save partition table and mbr
-    _log "Save mbr"
-    dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grub" bs=446 count=1
-    if [ $? -eq 0 ]; then
-        _log "Successfully saved MBR"
-    else
-        _log_warning "Save of MBR failed!"
-    fi
-    _log "Save mbr and partition table"
-    dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grubparts" bs=${grubparts_bs_calc} count=1
-    if [ $? -eq 0 ]; then
-        _log "Successfully saved MBR and partition table"
-    else
-        _log_warning "Save of MBR and partition table failed!"
-    fi
+_log "Save mbr"
+dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grub" bs=446 count=1
+if [ $? -eq 0 ]; then
+    _log "Successfully saved MBR"
+else
+    _log_warning "Save of MBR failed!"
+fi
+_log "Save mbr and partition table"
+dd if=${root} of="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.grubparts" bs=${grubparts_bs_calc} count=1
+if [ $? -eq 0 ]; then
+    _log "Successfully saved MBR and partition table"
+else
+    _log_warning "Save of MBR and partition table failed!"
+fi
+
+# Save partition table using sfdisk
+_log "Save partitions using sfdisk"
+sfdisk -d ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.sfdisk"
+if [ $? -eq 0 ]; then
+    _log "Successfully saved partition table using sfdisk"
+else
+    _log_warning "Save of sfdisk partition table failed"
+fi
 
 # check for /boot partition
 bootpart=$(awk '$2 == "/boot" { print $1 }' /proc/mounts)
