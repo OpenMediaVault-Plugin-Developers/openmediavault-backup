@@ -8,11 +8,13 @@
 # License version 3. This program is licensed "as is" without any
 # warranty of any kind, whether express or implied.
 #
-# version: 1.1.1
+# version: 1.1.2
 #
 
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
+
+declare -i esp=0
 
 OMV_BACKUP_DIR_NAME=${OMV_BACKUP_DIR_NAME:-"omvbackup"}
 OMV_BACKUP_FILE_PREFIX=${OMV_BACKUP_FILE_PREFIX:-"backup-omv"}
@@ -154,22 +156,26 @@ if [ "${part_type}" = "gpt" ]; then
     num_parts=$(parted -m ${root} print | tail -n1 | cut -b1)
     grubparts_bs_calc=$(((128 * num_parts) + 1024))
     esp=$(parted -m ${root} print | awk -F ":" '$7 ~ /esp/ { print $1 }')
-    partletter=""
-    if [[ ${root} =~ nvme ]]; then
-        partletter="p"
-    fi
-    esppart="${root}${partletter}${esp}"
-    _log "ESP partition :: ${esppart}"
-    if [ -e "${esppart}" ]; then
-        _log "Backup ESP partition"
-        dd if=${esppart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.espdd.gz"
-        if [ $? -eq 0 ]; then
-            _log "Successfully backuped ESP partition"
-        else
-            _log_warning "Backup of ESP partition failed!"
-        fi
+    if [ ${esp} -lt 1 ]; then
+        _log "ESP partition not found."
     else
-      _log "ESP partition '${esppart}' not found."
+        partletter=""
+        if [[ ${root} =~ nvme ]]; then
+            partletter="p"
+        fi
+        esppart="${root}${partletter}${esp}"
+        _log "ESP partition :: ${esppart}"
+        if [ -e "${esppart}" ]; then
+            _log "Backup ESP partition"
+            dd if=${esppart} bs=1M conv=sync,noerror status=progress | gzip -c > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.espdd.gz"
+            if [ $? -eq 0 ]; then
+                _log "Successfully backuped ESP partition"
+            else
+                _log_warning "Backup of ESP partition failed!"
+            fi
+        else
+          _log "ESP partition '${esppart}' not found."
+        fi
     fi
 else
     grubparts_bs_calc=512
