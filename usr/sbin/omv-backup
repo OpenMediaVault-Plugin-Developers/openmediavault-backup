@@ -20,6 +20,10 @@ OMV_BACKUP_DIR_NAME=${OMV_BACKUP_DIR_NAME:-"omvbackup"}
 OMV_BACKUP_FILE_PREFIX=${OMV_BACKUP_FILE_PREFIX:-"backup-omv"}
 OMV_BACKUP_MAX_DEPTH=${OMV_BACKUP_MAX_DEPTH:-"1"}
 
+# TODO: Use Salt instead
+OMV_BACKUP_FSA_COMP_LEVEL=${OMV_BACKUP_FSA_COMP_LEVEL:-"2"}
+threads=$(nproc --all)
+
 # logging location
 logDir="/var/log/"
 logFile="${logDir}/omv-backup.log"
@@ -286,7 +290,7 @@ case ${method} in
             _log "Encrypting archive..."
             password="--cryptpass=${passwd} "
         fi
-        fsarchiver savefs ${password}-o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A ${extra}
+        fsarchiver savefs ${password}-o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A -Z ${OMV_BACKUP_FSA_COMP_LEVEL} -j ${threads} ${extra}
         if [ $? -ne 0 ]; then
             _log_error "FSArchiver backup failed!"
             exit 17
