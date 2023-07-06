@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Andi Chandler <andi@gowling.com>, 2015,2017,2019-2022
+# Andi Chandler <andi@gowling.com>, 2015,2017,2019-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-10 10:46-0600\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: Andi Chandler <andi@gowling.com>, 2015,2017,2019-2022\n"
-"Language-Team: English (United Kingdom) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/en_GB/)\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2015,2017,2019-2023\n"
+"Language-Team: English (United Kingdom) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 msgid "Add new scheduled backup job"
 msgstr "Add new scheduled backup job"
@@ -35,7 +35,7 @@ msgid "Create scheduled backup job"
 msgstr "Create scheduled backup job"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "Date & Time"
 
 msgid "Edit scheduled backup."
 msgstr "Edit scheduled backup."
@@ -50,10 +50,10 @@ msgid "Extra options"
 msgstr "Extra options"
 
 msgid "Fix cron"
-msgstr ""
+msgstr "Fix cron"
 
 msgid "Fixing cron task if deleted ..."
-msgstr ""
+msgstr "Fixing cron task if deleted ..."
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -71,7 +71,7 @@ msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Keep the last x days of backups. Set to zero to disable."
 
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 msgid "Method"
 msgstr "Method"

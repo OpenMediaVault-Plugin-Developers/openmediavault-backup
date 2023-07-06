@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2014-2015,2017-2018,2020,2022
+# kochin <kochinc@outlook.com>, 2014-2015,2017-2018,2020,2022-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-10 10:46-0600\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>, 2014-2015,2017-2018,2020,2022\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_TW/)\n"
+"Last-Translator: kochin <kochinc@outlook.com>, 2014-2015,2017-2018,2020,2022-2023\n"
+"Language-Team: Chinese (Taiwan) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Action"
-msgstr ""
+msgstr "動作"
 
 msgid "Add new scheduled backup job"
 msgstr "新增預定備份工作"
@@ -35,7 +35,7 @@ msgid "Create scheduled backup job"
 msgstr "建立預定備份工作"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "日期和時間"
 
 msgid "Edit scheduled backup."
 msgstr "編輯預定備份工作。"
@@ -71,7 +71,7 @@ msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "保留最近 x 天的備份。若設成零則停用。"
 
 msgid "Message"
-msgstr ""
+msgstr "訊息"
 
 msgid "Method"
 msgstr "方式"

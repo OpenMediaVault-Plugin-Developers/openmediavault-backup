@@ -1,235 +1,95 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014,2016,2018,2022-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 08:18-0500\n"
-"PO-Revision-Date: 2014-11-16 10:01+0000\n"
-"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
-"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/openmediavault-backup/language/es_ES/)\n"
+"POT-Creation-Date: 2023-07-06 05:59-0500\n"
+"PO-Revision-Date: 2014-07-19 17:36+0000\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014,2016,2018,2022-2023\n"
+"Language-Team: Spanish (Spain) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es_ES\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-msgid "%s (%s available)"
-msgstr "%s (%s disponible)"
+msgid "Action"
+msgstr "Acción"
 
-msgid "All file types known to PhotoRec will attempted to be recovered."
-msgstr "Todos los tipos de archivo conocidos por PhotoRec, se intentarán recuperar."
+msgid "Add new scheduled backup job"
+msgstr "Añadir un nuevo trabajo de backup programado"
 
-msgid "BMP bitmap image"
-msgstr "Imagen BMP bitmap"
+msgid ""
+"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
+msgstr "Añadir un nuevo trabajo de backup programado, añadirá el trabajo a la lista de trabajos programados"
 
 msgid "Backup"
 msgstr "Backup"
 
-msgid ""
-"Backup the operating system drive to a data drive for emergency restoration."
-msgstr "Salvar el disco del O.S. en un disco de datos para una restauración de emergencia."
+msgid "Create scheduled backup job"
+msgstr "Crear un trabajo de Backup programado"
 
-msgid "Clonezilla"
-msgstr "Clonezilla"
+msgid "Date & Time"
+msgstr "Fecha & Hora"
 
-msgid "Configures grub bootloader to allow booting from Parted Magic ISO."
-msgstr "Configura el cargador de arranque para permitir arrancar Parted Magic ISO."
+msgid "Edit scheduled backup."
+msgstr "Editar trabajo programado"
 
-msgid "Contax picture, Panasonic/Leica RAW"
-msgstr "Contax picture, Panasonic/Leica RAW"
+msgid "Example"
+msgstr "Ejemplo"
 
-msgid ""
-"Copies Parted Magic ISO file from shared folder selected above to /boot/"
-msgstr "Copia el archivo Parted Magic ISO de una carpeta compartida a /boot/"
+msgid "Extra Options"
+msgstr "Opciones extra"
 
-msgid "Default username: <b>user</b> and password: <b>live</b>"
-msgstr "Usuario por defecto: <b>user</b> y contraseña: <b>live</b>"
+msgid "Extra options"
+msgstr "Opciones Extras"
 
-msgid "Destination"
-msgstr "Destino"
+msgid "Fix cron"
+msgstr "Arreglar cron"
 
-msgid "Done..."
-msgstr "Hecho..."
+msgid "Fixing cron task if deleted ..."
+msgstr "Arreglando la tarea cron si se elimina ..."
 
 msgid ""
-"Downloads Clonezilla ISO and configures grub bootloader to allow booting "
-"from ISO."
-msgstr "Descarga la ISO de Clonezilla y configura grub para arrancar desde esa ISO."
+"For advanced users only - Do not use unless exact root device is known."
+msgstr "Solo para usuarios avanzados - No usar a menos que se conozca el dispositivo raíz (root)"
 
 msgid ""
-"Downloads GParted Live ISO and configures grub bootloader to allow booting "
-"from ISO."
-msgstr "Descarga la ISO de GParted Live y configura el cargador grub para permitir arrancar de esa ISO."
+"If a password is specified, backup will be encrypted. Must be between 6 and "
+"64 characters."
+msgstr "Si la contraseña se suministra, el backup será cifrado, Debe tener entre 6 y 64 caracteres."
 
-msgid ""
-"Downloads SystemRescuecd ISO and configures grub bootloader to allow booting"
-" from ISO."
-msgstr "Descarga la ISO de SystemRescuecd y configura grub para arrancar desde esa ISO."
+msgid "Keep"
+msgstr "Mantener"
 
-msgid "Drive with missing or lost files."
-msgstr "Disco sin archivos."
+msgid "Keep the last x days of backups. Set to zero to disable."
+msgstr "Mantener los ultimos x dias de Backup. poner a cero para deshabilitar."
 
-msgid "Drive with missing or lost files. Must be ext3 or ext4 and unmounted."
-msgstr "Disco con archivos perdidos o borrados, Debe ser ext3 o ext4 y estar desmontado,"
+msgid "Message"
+msgstr "Mensaje"
 
-msgid "Everything"
-msgstr "Todo"
+msgid "Method"
+msgstr "Metodo"
 
-msgid "Extundelete"
-msgstr "ExtUndelete"
+msgid "Notes"
+msgstr "Notas"
 
-msgid "Files will be recovered only from the free space."
-msgstr "Los archivos serán recuperados unicamente del espacio libre."
+msgid "Password"
+msgstr "Contraseña"
 
-msgid "For more information, see Extundelete page"
-msgstr "Para más informcación ir a la web de ExtUndelete"
+msgid "Root device"
+msgstr "Dispositivo root"
 
-msgid "For more information, see PhotoRec wiki"
-msgstr "Para más información, ver el wiki de PhotoRec"
+msgid "Schedule"
+msgstr "Programador"
 
-msgid "Freespace"
-msgstr "Espacio libre"
-
-msgid "GParted Live"
-msgstr "GParted Live"
-
-msgid "IP Address will be set by DHCP."
-msgstr "La IP debe ser del tipo DHCP."
-
-msgid ""
-"IP Address will be set by DHCP.  Using static DHCP is recommended for "
-"headless servers."
-msgstr "La Ip debe ser DHCP. Se recomienda DHCP estatico para servidores sin monitor."
-
-msgid "ISO uses approximately 139 Mb in /boot directory on OS drive."
-msgstr "La ISO ocupará aproximadamente 139 Mb en la carpeta /boot del disco de arranque."
-
-msgid "ISO uses approximately 219 Mb in /boot directory on OS drive."
-msgstr "La imagen ISO ocupa unos 219 Mb en el directorio /boot del disco de arranque."
-
-msgid "ISO uses approximately 381 Mb in /boot directory on OS drive."
-msgstr "La ISO ocupara aproximadamente 381 Mb en la carpeta /boot del disco de arranque."
-
-msgid "Install"
-msgstr "Instalar"
-
-msgid "Install Clonezilla"
-msgstr "Instalar clonezilla"
-
-msgid "Install GParted Live"
-msgstr "Instalar GParted Live"
-
-msgid "Install Parted Magic"
-msgstr "Instalar Parted Magic"
-
-msgid "Install SystemRescueCD"
-msgstr "Instalar SystemRescueCD"
-
-msgid "MP3 audio (MPEG ADTS, layer III, v1)"
-msgstr "MP3 audio (MPEG ADTS, capa 3, v1)"
-
-msgid "Matroska video file"
-msgstr "Archivos de video Matroska"
-
-msgid "Microsoft Office Document (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-msgstr "Documentos Microsoft Office (doc/xls/ppt/vsd/...), 3ds Max, MetaStock"
-
-msgid "Moving Picture Experts Group video"
-msgstr "MPEG"
-
-msgid "Not recommended for headless servers.  SSH is not enabled by default."
-msgstr "Not se recomienda para servidores sin monitor. el servicio SSH no está habilitado por defecto."
-
-msgid "OMV"
-msgstr "OMV"
-
-msgid "Other text files: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-msgstr "Otros archivos de texto: txt,html,asp,bat,C,jsp,perl,php,py/emlx... scripts"
-
-msgid "Parted Magic"
-msgstr "Parted Magic"
-
-msgid ""
-"Parted Magic ISO file named partedmagic.iso should be located in this shared"
-" folder."
-msgstr "La ISO de Parted Magic, debe llamarse partedmagic.iso y debe guardarse en esta carpeta compartida."
-
-msgid "Path"
-msgstr "Ruta"
-
-msgid "PhotoRec"
-msgstr "PhotoRec"
-
-msgid "Portable Document Format, Adobe Illustrator"
-msgstr "PDF, Adobe Illustrator"
-
-msgid "Portable/JPEG/Multiple-Image Network Graphics"
-msgstr "Portable/JPEG/Multiple-Image Network Graphics"
-
-msgid "Reboot to Clonezilla"
-msgstr "Reiniciar como Clonezilla"
-
-msgid "Reboot to GParted Live"
-msgstr "Reiniciar y arrancar GParted Live"
-
-msgid "Reboot to OpenMediaVault"
-msgstr "Reiniciar como OpenMediaVault"
-
-msgid "Reboot to Parted Magic"
-msgstr "Reiniciar como Parted Magic"
-
-msgid "Reboot to SystemRescueCD"
-msgstr "Reiniciar como SystemRescueCD"
-
-msgid "Recover using Extundelete"
-msgstr "Recuperar usando ExtUndelete"
-
-msgid "Recover using Photorec"
-msgstr "Recuperar usando PhotoRec"
-
-msgid "Recover with output"
-msgstr "Recuperar con salida"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>root</b> and "
-"password: <b>openmediavault</b>"
-msgstr "El servidor SSH está habilitado por defecto.  Usuario: <b>root</b> y contraseña: <b>openmediavault</b>"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>root</b> and "
-"password: <b>partedmagic</b>"
-msgstr "El servidor SSH está habilitado por defecto.  Usuario: <b>root</b> y contraseña: <b>partedmagic</b>"
-
-msgid ""
-"SSH server is enabled by default.  Login with username: <b>user</b> and "
-"password: <b>live</b>"
-msgstr "El servidor SSH está habilitado por defecto.  Usuario: <b>root</b> y contraseña: <b>live</b>"
-
-msgid "Select a drive ..."
-msgstr "Seleccionar un disco ..."
-
-msgid "Select a volume ..."
-msgstr "Seleccionar un volumen ..."
-
-msgid "Sets grub bootloader to boot from Clonezilla ISO <b>ONE</b> time."
-msgstr "Indica al cargador grub que arranque como Clonezilla <b>UNA</b> vez."
-
-msgid "Sets grub bootloader to boot from GParted Live ISO <b>ONE</b> time."
-msgstr "Configura el cargador grub para arrancar la imagen ISO de GParted Live <b>UNA</b> vez"
-
-msgid "Sets grub bootloader to boot from Parted Magic ISO <b>ONE</b> time."
-msgstr "Indica al cargador grub que arranque desde la ISO Parted Magic<b>UNA</b> vez."
-
-msgid "Sets grub bootloader to boot from SystemRescueCD ISO <b>ONE</b> time."
-msgstr "Indica al cargador grub que arranque desde la ISO SystemRescueCD <b>UNA</b> vez."
-
-msgid "Sets grub bootloader to boot normally from OpenMediaVault."
-msgstr "Indica al cargador grub que arranque como OMV."
+msgid "Scheduled Backup"
+msgstr "Backup Programado"
 
 msgid "Settings"
 msgstr "Opciones"
@@ -237,105 +97,73 @@ msgstr "Opciones"
 msgid "Shared Folder"
 msgstr "Carpetas compartidas"
 
-msgid "Shared folder where recovered files will be placed."
-msgstr "Carpeta compartida donde los archivos recuperados serán guardados."
+msgid "Shared folder"
+msgstr "Carpeta compartida"
 
-msgid "Silent Recover"
-msgstr "Recuperación silenciosa"
-
-msgid "Source"
-msgstr "Origen"
+msgid "Starting backup ..."
+msgstr "Iniciando Backup ..."
 
 msgid "System Backup"
 msgstr "Backup del sistema"
 
-msgid "SystemRescueCD"
-msgstr "SystemRescueCD"
+msgid "The field should only contain * or a comma separated list of values."
+msgstr "El campo solo debe contener * o una lista de valores separados por comas."
 
-msgid "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-msgstr "Tag Image File Format and some raw file formats (pef/nef/dcr/sr2/cr2)"
-
-msgid "Text files with header: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
-msgstr "rchivos de texto con cabeceras: rtf,xml,xhtml,imm,pm,ram,reg,sh,slk,stp"
+msgid "The location of the backup files."
+msgstr "Ubicación de los archivos de backup."
 
 msgid ""
-"This will attempt recovery of lost files from a damaged drive or "
-"accidentally deleted using Extundelete."
-msgstr "Se intentará recuperar archivos borrados o perdidos de un disco dañado o borrado accidentalmente usando ExtUndelete"
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space."
+msgstr "Para excluir directotrios, añadir --exclude= antes de cada directorio y separa las entradas con espacios."
 
 msgid ""
-"This will attempt recovery of lost files from a damaged drive or "
-"accidentally deleted using PhotoRec."
-msgstr "Esto tratará de recuperar los archivos perdidos de un disco dañado o borrado accidentalmente usando PhotoRec"
+"To exclude addition directories, add --exclude= before each directory and "
+"separate additional entries with a space. Example<br />--exclude=/pool "
+"--exclude=/test<br />Warning!!  You can break the backup with wrong options."
+msgstr "Para excluir directorios adicionales, agregue --exclude = antes de cada directorio y separe las entradas adicionales con un espacio. Ejemplo:<br />exclude = / pool --exclude = / test <br /> Warning !! Puede romper la copia de seguridad con opciones incorrectas."
 
-msgid "Volume"
-msgstr "Volumen"
+msgid "Updated backup settings."
+msgstr "Opciones de backup actualizadas."
+
+msgid "Warning!!  You can break the backup with wrong options."
+msgstr "Precaución! Puede dañar el Backup con opciones erroneas."
+
+msgid "borgbackup"
+msgstr "borgbackup"
+
+msgid "borgbackup - use borgbackup to backup system to an archive file"
+msgstr "borgbackup - Usar borgbackup para hacer un backup en un archivo"
+
+msgid "dd"
+msgstr "dd"
+
+msgid "dd - use dd to clone the OS partition to a compressed image file."
+msgstr "dd - Usar dd para clonar el SO a una imagen comprimida."
 
 msgid ""
-"When connecting via ssh, the ssh key will be different than the "
-"OpenMediaVault ssh key and need to be updated on the client system."
-msgstr "Cuando se conecte via SSH, las claves SSH deben ser diferentes a la clave SSH de OMV y deben actualizarse en el cliente."
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
+"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
+" - use rsync to sync files to destination directory"
+msgstr "dd: use dd para clonar la partición del sistema operativo en un archivo de imagen comprimido. <br /> dd disco completo: use dd para clonar todo el disco en un archivo de imagen comprimido <br /> fsarchiver: use fsarchiver para clonar todas las particiones en un archivo de archivo <br />borgbackup: use borgbackup para hacer una copia de seguridad del sistema a un archivo <br /> rsync: use rsync para sincronizar archivos con el directorio de destino"
+
+msgid "dd full disk"
+msgstr "dd el disco completo"
 
 msgid ""
-"When logging in remotely, start clonezilla with:  <b>sudo clonezilla</b>"
-msgstr "Cuando se logue remotamente, arrancar Clonezilla con:  <b>sudo clonezilla</b>"
+"dd full disk - use dd to clone the entire drive to a compressed image file."
+msgstr "dd Disco completo - usar dd para clonar un disco entero a un archivo de imagen comprimido."
 
-msgid "bmp"
-msgstr "bmp"
+msgid "fsarchiver"
+msgstr "fsarchiver"
 
-msgid "bz2"
-msgstr "bz2"
+msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
+msgstr "fsarchiver - Use fsarchiver para clonar todas las particiones en un archivo comprimido."
 
-msgid "bzip2 compressed data"
-msgstr "bzip2 compressed data"
+msgid "rsync"
+msgstr "rsync"
 
-msgid "doc"
-msgstr "doc"
-
-msgid "gz"
-msgstr "gz"
-
-msgid "gzip compressed data"
-msgstr "gzip compressed data"
-
-msgid "link"
-msgstr "link"
-
-msgid "mkv"
-msgstr "mkv"
-
-msgid "mov"
-msgstr "mov"
-
-msgid "mov/mp4/3gp/3g2/jp2"
-msgstr "mov/mp4/3gp/3g2/jp2"
-
-msgid "mp3"
-msgstr "mp3"
-
-msgid "mpg"
-msgstr "mpg"
-
-msgid "pdf"
-msgstr "pdf"
-
-msgid "png"
-msgstr "png"
-
-msgid "raw"
-msgstr "raw"
-
-msgid "tif"
-msgstr "tif"
-
-msgid "tx?"
-msgstr "tx?"
-
-msgid "txt"
-msgstr "txt"
-
-msgid "zip"
-msgstr "zip"
-
-msgid "zip archive including OpenOffice and MSOffice 2007"
-msgstr "Archivos zip incluyendo OpenOffice y MSOffice 2007"
+msgid "rsync - use rsync to sync files to destination directory"
+msgstr "rsync - Use rsync para sincronizar los archivos con los del directorio de destino."
