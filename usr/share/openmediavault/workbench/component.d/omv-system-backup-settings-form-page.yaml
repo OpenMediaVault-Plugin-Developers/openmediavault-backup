@@ -21,7 +21,7 @@ data:
         name: method
         label: _("Method")
         value: "dd"
-        hint: _("dd - use dd to clone the OS partition to a compressed image file.<br />dd full disk - use dd to clone the entire drive to a compressed image file.<br />fsarchiver - use fsarchiver to clone all partitions to an archive file<br />borgbackup - use borgbackup to backup system to an archive file<br />rsync - use rsync to sync files to destination directory")
+        hint: _("dd - use dd to clone the OS partition to a compressed image file.<br />dd full disk - use dd to clone the entire drive to a compressed image file.<br />fsarchiver - use fsarchiver to clone the OS partition to an archive file<br />borgbackup - use borgbackup to backup system to an archive file<br />rsync - use rsync to sync files to destination directory")
         store:
           data:
             - ["dd", _("dd")]
