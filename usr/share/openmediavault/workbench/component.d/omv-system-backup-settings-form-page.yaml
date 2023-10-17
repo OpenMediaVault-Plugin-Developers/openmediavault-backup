@@ -93,6 +93,17 @@ data:
                 arg0:
                   prop: method
                 arg1: "fsarchiver"
+      - type: checkbox
+        name: verbose
+        label: _("Verbose output")
+        hint: _("Show more output when checked.")
+        modifiers:
+          - type: visible
+            constraint:
+              operator: ne
+              arg0:
+                prop: method
+              arg1: "borg"
     buttons:
       - template: submit
       - template: cancel
