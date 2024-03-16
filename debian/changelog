@@ -1,3 +1,9 @@
+openmediavault-backup (7.1) stable; urgency=low
+
+  * Replace gzip with zstd
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 16 Mar 2024 11:23:39 -0500
+
 openmediavault-backup (7.0) stable; urgency=low
 
   * Update for OMV 7.x
