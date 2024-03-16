@@ -67,6 +67,8 @@ purgeOld()
 }
 
 _log "Starting backup ..."
+_log "threads :: ${threads}"
+_log "arch :: ${arch}"
 
 # date
 date=$(date +"%Y-%m-%d_%H-%M-%S")
@@ -258,6 +260,8 @@ case ${method} in
     vb=""
     if [ ${verbose} -eq 1 ]; then
       vb=" --verbose"
+    else
+      vb=" --quiet"
     fi
     _log "Running fstrim on / ..."
     fstrim /
@@ -293,6 +297,8 @@ case ${method} in
     vb=""
     if [ ${verbose} -eq 1 ]; then
       vb=" --verbose"
+    else
+      vb=" --quiet"
     fi
     for mp in $(lsblk --noheadings --output MOUNTPOINT ${root}); do
       _log "Running fstrim on ${mp} ..."
@@ -318,6 +324,8 @@ case ${method} in
     vb=""
     if [ ${verbose} -eq 1 ]; then
       vb=" -v"
+    else
+      vb=" --quiet"
     fi
     _log "Starting FSArchiver backup ..."
     extra=$(omv_config_get "/config/system/backup/extraoptions")
