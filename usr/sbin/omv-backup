@@ -16,13 +16,14 @@
 
 declare -i esp=0
 threads=$(nproc --all)
-arch=$(uname -m)
+arch=$(uname --machine)
 
 # logging location
 logDir="/var/log/"
 logFile="${logDir}/omv-backup.log"
 
-_log_export() # Shim to write messages to stdout and to the logfile.
+# Shim to write messages to stdout and to the logfile.
+_log_export()
 {
     echo "[$(date +'%Y-%m-%d %H:%M:%S%z')] [backup] ${msg}" | tee -a ${logFile} >&2
 }
@@ -33,13 +34,15 @@ _log()
     _log_export "$(omv_log "${msg}")"
 }
 
-_log_warning() # Level for recoverable errors.
+# Level for recoverable errors.
+_log_warning()
 {
     msg=${1}
     _log_export "$(omv_warning "${msg}")"
 }
 
-_log_error() # Level for unrecoverable errors that would be write to stderr an to the logfile.
+# Level for unrecoverable errors that would be write to stderr an to the logfile.
+_log_error()
 {
     msg=${1}
     echo "[$(date +'%Y-%m-%d %H:%M:%S%z')] [backup] $(omv_error "${msg}" 2>&1)" > >(tee -a ${logFile} >&2)
@@ -51,7 +54,7 @@ purgeOld()
     keep=$(omv_config_get "/config/system/backup/keep")
     _log "keep days :: ${keep}"
     if [[ ${keep} -gt 0 ]]; then
-        _log "Purging old files..."
+        _log "Purging old files ..."
         find "${backupDir}" -maxdepth ${OMV_BACKUP_MAX_DEPTH} -type f -mtime +${keep} -name "${OMV_BACKUP_FILE_PREFIX}*" -delete
         if [ $? -eq 0 ]; then
             _log "Purging done."
@@ -63,7 +66,7 @@ purgeOld()
     fi
 }
 
-_log "Starting backup..."
+_log "Starting backup ..."
 
 # date
 date=$(date +"%Y-%m-%d_%H-%M-%S")
@@ -83,7 +86,7 @@ if ! omv_isuuid "${sfref}"; then
 fi
 sfpath="$(omv_get_sharedfolder_path "${sfref}")"
 if [ ! -d "${sfpath}" ]; then
-    _log_error "Shared folder directory does not exist.  Exiting..."
+    _log_error "Shared folder directory does not exist.  Exiting."
     exit 11
 fi
 
@@ -109,7 +112,7 @@ if [ "${devicefile}" = "/dev/root" ]; then
 fi
 
 if [ "${devicefile}" = "/dev/root" ] || [ -z "${devicefile}" ]; then
-    _log_error "Could not determine root device file. Please specify in the root device textbox. Exiting..."
+    _log_error "Could not determine root device file. Please specify in the root device textbox. Exiting."
     exit 12
 fi
 
@@ -123,13 +126,13 @@ fi
 _log "Root drive: ${root}"
 
 if [ -z "${root}" ]; then
-    _log_error "Could not determine root device.  Exiting..."
+    _log_error "Could not determine root device.  Exiting."
     exit 13
 fi
 
 # save helpful information
 _log "Save fdisk output for ${root}"
-fdisk -l ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fdisk"
+fdisk --list ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fdisk"
 if [ $? -eq 0 ]; then
     _log "Successfully saved fdisk output for ${root}"
 else
@@ -143,7 +146,7 @@ else
     _log_warning "Save of blkid output failed!"
 fi
 _log "Save package list"
-dpkg -l | grep openmediavault > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.packages"
+dpkg --list | grep openmediavault > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.packages"
 if [ $? -eq 0 ]; then
     _log "Successfully saved package list"
 else
@@ -164,7 +167,7 @@ if [ -z "${OMV_BACKUP_ZSTD_OPTIONS}" ]; then
 fi
 
 # calculate partition table size to accommodate GPT and MBR.
-part_type=$(blkid -p ${root} | cut -d \" -f4)
+part_type=$(blkid --probe ${root} | cut -d \" -f4)
 _log "Partition type :: ${part_type}"
 if [ "${part_type}" = "gpt" ]; then
     num_parts=$(parted -m ${root} print | tail -n1 | cut -b1)
@@ -220,7 +223,7 @@ fi
 
 # Save partition table using sfdisk
 _log "Save partitions using sfdisk"
-sfdisk -d ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.sfdisk"
+sfdisk --dump ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.sfdisk"
 if [ $? -eq 0 ]; then
     _log "Successfully saved partition table using sfdisk"
 else
@@ -256,8 +259,9 @@ case ${method} in
         if [ ${verbose} -eq 1 ]; then
             vb=" --verbose"
         fi
+        _log "Running fstrim on / ..."
         fstrim /
-        _log "Starting dd backup..."
+        _log "Starting dd backup ..."
         zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -v -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.dd.zst" <"${devicefile}"
         if [[ $? -gt 0 ]]; then
             _log_error "zstd exit code = $?"
@@ -268,8 +272,9 @@ case ${method} in
         fi
         sync
         if [ -n "${bootpart}" ]; then
+            _log "Running fstrim on /boot ..."
             fstrim /boot/
-            _log "Starting dd backup of boot partition..."
+            _log "Starting dd backup of boot partition ..."
             zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_boot.dd.zst" <"${bootpart}"
             if [ $? -eq 0 ]; then
                 _log "dd backup of boot partition complete."
@@ -289,11 +294,12 @@ case ${method} in
         if [ ${verbose} -eq 1 ]; then
             vb=" --verbose"
         fi
-        for i in $(lsblk -n -o MOUNTPOINT ${root}); do
-            fstrim $i
+        for mp in $(lsblk --noheadings --output MOUNTPOINT ${root}); do
+            _log "Running fstrim on ${mp} ..."
+            fstrim "${mp}"
         done
-        _log "Starting dd full disk..."
-        zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.ddfull.zst" <"${root}"
+        _log "Starting dd full disk ..."
+        zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.ddfull.zst" < "${root}"
         if [[ $? -gt 0 ]]; then
             _log_error "zstd exit code = $?"
             _log_error "dd full disk backup failed!"
@@ -313,12 +319,12 @@ case ${method} in
         if [ ${verbose} -eq 1 ]; then
             vb=" -v"
         fi
-        _log "Starting FSArchiver backup..."
+        _log "Starting FSArchiver backup ..."
         extra=$(omv_config_get "/config/system/backup/extraoptions")
         passwd="$(omv_config_get "/config/system/backup/passwd")"
         password=""
         if [ -n "${passwd}" ]; then
-            _log "Encrypting archive..."
+            _log "Encrypting archive ..."
             password="--cryptpass=${passwd} "
         fi
         fsarchiver savefs ${password}-o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart}${vb} -A -Z ${OMV_BACKUP_FSA_COMP_LEVEL} -j ${threads} ${extra}
@@ -334,23 +340,23 @@ case ${method} in
         ;;
 
     borg)
-        _log "Starting borgbackup..."
+        _log "Starting borgbackup ..."
         extra=$(omv_config_get "/config/system/backup/extraoptions")
         passwd="$(omv_config_get "/config/system/backup/passwd")"
         if [ -n "${passwd}" ]; then
-            _log "Encrypting archive..."
+            _log "Encrypting archive ..."
             export BORG_PASSPHRASE="${passwd}"
         fi
         if [ ! -d "${backupDir}/borgbackup" ] ; then
           # First run - init borg directory
-          _log "First run - init borg directory..."
+          _log "First run - init borg directory ..."
           if [ -n "${passwd}" ]; then
             borg init -e repokey "${backupDir}/borgbackup"
           else
             borg init -e none "${backupDir}/borgbackup"
           fi
         fi
-        _log "Starting borgbackup create..."
+        _log "Starting borgbackup create ..."
         borg create --stats "${backupDir}/borgbackup::${OMV_BACKUP_FILE_PREFIX}-${date}" / \
           -x --exclude-caches \
           -e "/dev" -e "/proc" -e "/sys" -e "/tmp" -e "/run" -e "/mnt" \
@@ -364,7 +370,7 @@ case ${method} in
         keep=$(omv_config_get "/config/system/backup/keep")
         if [[ ${keep} -gt 0 ]]; then
           purgeOld
-          _log "Starting borgbackup prune..."
+          _log "Starting borgbackup prune ..."
           borg prune "${backupDir}/borgbackup" --keep-daily "${keep}"
           if [ $? -ne 0 ]; then
               _log_error "borgbackup prune failed!"
@@ -381,7 +387,7 @@ case ${method} in
         if [ ${verbose} -eq 1 ]; then
             vb="v"
         fi
-        _log "Starting rsync..."
+        _log "Starting rsync ..."
         extra=$(omv_config_get "/config/system/backup/extraoptions")
 
         rsync -aAX${vb}xx /* "${backupDir}/" \
