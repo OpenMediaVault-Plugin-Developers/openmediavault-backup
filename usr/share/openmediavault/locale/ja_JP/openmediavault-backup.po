@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-10 10:46-0600\n"
+"POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018,2020,2023\n"
 "Language-Team: Japanese (Japan) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ja_JP/)\n"
@@ -67,6 +67,11 @@ msgstr "パスワードが指定されている場合、バックアップは暗
 msgid "Keep"
 msgstr "保持"
 
+msgid ""
+"Keep X days of backups.  Uses Linux find mtime command to determine if "
+"backup is older than X days."
+msgstr ""
+
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "最後のx日間のバックアップを保持します。 無効にするには、ゼロに設定します。"
 
@@ -100,6 +105,9 @@ msgstr "共有フォルダ"
 msgid "Shared folder"
 msgstr "共有フォルダ"
 
+msgid "Show more output when checked."
+msgstr ""
+
 msgid "Starting backup ..."
 msgstr "バックアップを開始 ..."
 
@@ -126,6 +134,9 @@ msgstr "追加のディレクトリを除外するには、各ディレクトリ
 msgid "Updated backup settings."
 msgstr "バックアップの設定を更新しました。"
 
+msgid "Verbose output"
+msgstr ""
+
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告！！ 間違ったオプションでバックアップが中断されます。"
 
@@ -148,6 +159,14 @@ msgid ""
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
 msgstr "dd - OS パーティションを圧縮イメージファイルにクローンするために dd を使用します。<br />dd full disk - dd を使ってドライブ全体を圧縮イメージファイルにクローンします。<br />fsarchiver - fsarchiver を使ってすべてのパーティションをアーカイブファイルにクローンします。<br />borgbackup - borgbackup を使ってシステムをアーカイブファイルにバックアップします。<br />rsync - rsyncを使ってファイルを目的のディレクトリに同期させます。"
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
+"file<br />borgbackup - use borgbackup to backup system to an archive file<br"
+" />rsync - use rsync to sync files to destination directory"
+msgstr ""
 
 msgid "dd full disk"
 msgstr "dd full disk"

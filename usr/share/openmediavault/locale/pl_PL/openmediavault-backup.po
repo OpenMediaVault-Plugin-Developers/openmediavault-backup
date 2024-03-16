@@ -5,13 +5,14 @@
 # Translators:
 # Cyryl Sochacki <cyrylsochacki@gmail.com>, 2014,2016
 # Daniel, 2021
+# Rysiek Jurczy, 2023
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-06 05:59-0500\n"
+"POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: Daniel, 2021\n"
+"Last-Translator: Rysiek Jurczy, 2023\n"
 "Language-Team: Polish (Poland) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/pl_PL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,26 +21,26 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 msgid "Action"
-msgstr ""
+msgstr "Akcja"
 
 msgid "Add new scheduled backup job"
-msgstr ""
+msgstr "Dodaj nowe  zadanie tworzenia kopii zapasowej"
 
 msgid ""
 "Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr ""
+msgstr "Dodanie nowego zaplanowanego zadania kopii zapasowej powoduje dodanie zadania do karty Zaplanowane zadania."
 
 msgid "Backup"
 msgstr "Kopia zapasowa"
 
 msgid "Create scheduled backup job"
-msgstr ""
+msgstr "Utwórz zaplanowane zadanie tworzenia kopii zapasowej"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "Data i Czas"
 
 msgid "Edit scheduled backup."
-msgstr ""
+msgstr "Edytuj zaplanowaną kopię zapasową."
 
 msgid "Example"
 msgstr "Przykład"
@@ -48,31 +49,36 @@ msgid "Extra Options"
 msgstr "Dodatkowe opcje"
 
 msgid "Extra options"
-msgstr ""
+msgstr "Opcje dodatkowe."
 
 msgid "Fix cron"
-msgstr ""
+msgstr "Napraw crona"
 
 msgid "Fixing cron task if deleted ..."
-msgstr ""
+msgstr "Naprawianie zadanie cron, jeśli zostało usunięte…"
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
-msgstr ""
+msgstr "Tylko dla zaawansowanych użytkowników — nie używaj, jeśli nie wiesz co robisz."
 
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr ""
+msgstr "Jeśli włączyłeś hasło, kopia zapasowa zostanie zaszyfrowana. Musi mieć od 6 do 64 znaków."
 
 msgid "Keep"
 msgstr "Zachowaj"
+
+msgid ""
+"Keep X days of backups.  Uses Linux find mtime command to determine if "
+"backup is older than X days."
+msgstr "Przechowuj N dni kopii zapasowych. Używa polecenia 'find mtime' systemu Linux w celu ustalenia, czy kopia zapasowa jest starsza niż N dni."
 
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Zachowaj ostatnie x dni kopii zapasowych. Wpisz zero by wyłączyć."
 
 msgid "Message"
-msgstr ""
+msgstr "Wiadomość"
 
 msgid "Method"
 msgstr "Metoda"
@@ -84,13 +90,13 @@ msgid "Password"
 msgstr "Hasło"
 
 msgid "Root device"
-msgstr ""
+msgstr "Urządzenie systemowe"
 
 msgid "Schedule"
-msgstr ""
+msgstr "Harmonogram"
 
 msgid "Scheduled Backup"
-msgstr ""
+msgstr "Harmonogram kopii"
 
 msgid "Settings"
 msgstr "Ustawienia"
@@ -99,48 +105,54 @@ msgid "Shared Folder"
 msgstr "Folder współdzielony"
 
 msgid "Shared folder"
-msgstr ""
+msgstr "Katalog współdzielony"
+
+msgid "Show more output when checked."
+msgstr "Pokaż więcej wyników, gdy jest zaznaczone."
 
 msgid "Starting backup ..."
-msgstr ""
+msgstr "Rozpoczynam tworzenie kopii zapasowej..."
 
 msgid "System Backup"
 msgstr "Kopia systemu"
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr ""
+msgstr "Pole powinno zawierać wyłącznie * lub listę wartości oddzielonych przecinkami."
 
 msgid "The location of the backup files."
-msgstr ""
+msgstr "Lokalizacja plików kopii zapasowych."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
-msgstr ""
+msgstr "o wyklucz dodatkowe katalogi, dodaj '--exclude=' przed każdym katalogiem i oddziel dodatkowe wpisy spacją."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space. Example<br />--exclude=/pool "
 "--exclude=/test<br />Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "Aby wykluczyć dodatkowe katalogi, dodaj --exclude= przed każdym katalogiem i oddziel dodatkowe wpisy spacją. Przykład: <br />--exclude=/pool --exclude=/test<br />Ostrzeżenie!! Możesz przerwać kopię zapasową, używając niewłaściwych opcji."
 
 msgid "Updated backup settings."
-msgstr ""
+msgstr "Zaktualizowane ustawienia kopii zapasowej."
+
+msgid "Verbose output"
+msgstr "Tryb szczegółowy"
 
 msgid "Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "Ostrzeżenie!! Możesz przerwać kopię zapasową, używając niewłaściwych opcji."
 
 msgid "borgbackup"
 msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "BorgBackup - użyj BorgBackup do wykonania kopii zapasowej systemu do pliku archiwum"
 
 msgid "dd"
 msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
+msgstr "dd — użyj 'dd' aby sklonować partycję systemu operacyjnego do skompresowanego pliku obrazu."
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -148,23 +160,31 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd — użyj 'dd' aby sklonować partycję systemu operacyjnego do skompresowanego pliku obrazu.<br />dd pełny dysk — użyj 'dd' aby sklonować cały dysk do skompresowanego pliku obrazu.<br />FSArchiver — użyj 'fsarchiver' do sklonowania wszystkich partycji do pliku archiwum<br />borgbackup - użyj 'borgbackup' do wykonania kopii zapasowej systemu do pliku archiwum<br />rsync - użyj 'rsync' do synchronizacji plików z katalogiem docelowym"
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
+"file<br />borgbackup - use borgbackup to backup system to an archive file<br"
+" />rsync - use rsync to sync files to destination directory"
+msgstr "dd — użyj dd, aby sklonować partycję systemu operacyjnego do skompresowanego pliku obrazu.<br />dd pełny dysk — użyj dd, aby sklonować cały dysk do skompresowanego pliku obrazu.<br />FSArchiver — użyj FSArchiver, aby sklonować partycję systemu operacyjnego do pliku archiwum<br />borgbackup - use borgbackup to backup system to an archive file<br />rsync - użyj rsync do synchronizacji plików z katalogiem docelowym"
 
 msgid "dd full disk"
 msgstr "dd cały dysk"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd pełny dysk — użyj 'dd' aby sklonować cały dysk do skompresowanego pliku obrazu."
 
 msgid "fsarchiver"
 msgstr "fsarchiver"
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr ""
+msgstr "FSArchiver — użyj 'FSArchiver' do sklonowania wszystkich partycji do pliku archiwum"
 
 msgid "rsync"
 msgstr "rsync"
 
 msgid "rsync - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "rsync - użyj 'rsync' do synchronizacji plików z katalogiem docelowym"

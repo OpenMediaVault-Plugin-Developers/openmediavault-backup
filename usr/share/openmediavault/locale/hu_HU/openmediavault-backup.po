@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-06 05:59-0500\n"
+"POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2018\n"
 "Language-Team: Hungarian (Hungary) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/hu_HU/)\n"
@@ -69,6 +69,11 @@ msgstr ""
 msgid "Keep"
 msgstr "Megőrzés"
 
+msgid ""
+"Keep X days of backups.  Uses Linux find mtime command to determine if "
+"backup is older than X days."
+msgstr ""
+
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Az utolsó x nap biztonsági mentéseinek megőrzése. Nullát beállítva kikapcsolja a funkciót."
 
@@ -102,6 +107,9 @@ msgstr "Hálózati megosztás"
 msgid "Shared folder"
 msgstr ""
 
+msgid "Show more output when checked."
+msgstr ""
+
 msgid "Starting backup ..."
 msgstr ""
 
@@ -128,6 +136,9 @@ msgstr ""
 msgid "Updated backup settings."
 msgstr ""
 
+msgid "Verbose output"
+msgstr ""
+
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Figyelem! Helytelen beállítással tönkretehető a biztonsági mentés."
 
@@ -149,6 +160,14 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
+msgstr ""
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
+"file<br />borgbackup - use borgbackup to backup system to an archive file<br"
+" />rsync - use rsync to sync files to destination directory"
 msgstr ""
 
 msgid "dd full disk"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-10 10:46-0600\n"
+"POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: songming <by@songming.me>, 2014-2016,2018,2020-2023\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_CN/)\n"
@@ -67,6 +67,11 @@ msgstr "如果设置密码，备份将被加密，密码必须介于6到64个字
 msgid "Keep"
 msgstr "保留备份"
 
+msgid ""
+"Keep X days of backups.  Uses Linux find mtime command to determine if "
+"backup is older than X days."
+msgstr "保持 X 天的备份，使用 linux 的 find mtime 命令来决定是否超过 X 天。"
+
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "保留最近 X 天的备份文件，0 表示不启用该功能。"
 
@@ -100,6 +105,9 @@ msgstr "共享文件夹"
 msgid "Shared folder"
 msgstr "共享文件夹"
 
+msgid "Show more output when checked."
+msgstr "选中时会显示更多输出。"
+
 msgid "Starting backup ..."
 msgstr "开始备份 ..."
 
@@ -126,6 +134,9 @@ msgstr "若要排除文件夹，在排除文件夹路径前添加  --exclude=，
 msgid "Updated backup settings."
 msgstr "更新备份设置。"
 
+msgid "Verbose output"
+msgstr "详细输出"
+
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告!!使用错误的参数会中断备份。"
 
@@ -147,7 +158,15 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
-msgstr "dd - 使用 dd 克隆系统分区到压缩镜像。<br />dd full disk - 使用 dd 克隆选中磁盘到压缩镜像。<br />fsarchiver - 使用 fsarchiver 克隆所有分区到归档文件。<br />borgbackup - 使用 borgbackup 备份系统到归档文件。<br />rsync - 使用 rsync 同步文件到目标目录。"
+msgstr "dd - 使用 dd 克隆系统分区并压缩为镜像文件。<br />dd full disk - 使用 dd 克隆选中磁盘到压缩镜像文件。<br />fsarchiver - 使用 fsarchiver 克隆所有分区到归档文件。<br />borgbackup - 使用 borgbackup 备份系统到归档文件。<br />rsync - 使用 rsync 同步文件到目标目录。"
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
+"file<br />borgbackup - use borgbackup to backup system to an archive file<br"
+" />rsync - use rsync to sync files to destination directory"
+msgstr "dd - 使用 dd 克隆系统分区并压缩为镜像文件。<br />dd full disk - 使用 dd 克隆选中磁盘到压缩镜像文件。<br />fsarchiver - 使用 fsarchiver 克隆系统分区到归档文件。<br />borgbackup - 使用 borgbackup 备份系统到归档文件。<br />rsync - 使用 rsync 同步文件到目标路径。"
 
 msgid "dd full disk"
 msgstr "dd 全盘"

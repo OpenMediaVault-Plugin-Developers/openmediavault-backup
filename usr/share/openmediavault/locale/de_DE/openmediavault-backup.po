@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-06 05:59-0500\n"
+"POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Dampflok_HD, 2022\n"
 "Language-Team: German (Germany) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/de_DE/)\n"
@@ -69,6 +69,11 @@ msgstr "Wenn ein Passwort angegeben wird, wird die Sicherung verschlüsselt. Es 
 msgid "Keep"
 msgstr "Behalten"
 
+msgid ""
+"Keep X days of backups.  Uses Linux find mtime command to determine if "
+"backup is older than X days."
+msgstr ""
+
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Die letzten x Tage der Sicherungen aufbewahren. Zum Deaktivieren auf Null setzen."
 
@@ -102,6 +107,9 @@ msgstr "Gemeinsamer Ordner"
 msgid "Shared folder"
 msgstr "Freigegebener Ordner"
 
+msgid "Show more output when checked."
+msgstr ""
+
 msgid "Starting backup ..."
 msgstr "Sicherung wird gestartet..."
 
@@ -128,6 +136,9 @@ msgstr "Um Verzeichnisse auszuschließen, füge --exclude= vor jedem Verzeichnis
 msgid "Updated backup settings."
 msgstr "Aktualisierte Steuerungseinstellungen"
 
+msgid "Verbose output"
+msgstr ""
+
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Warnung!! Sie können die Sicherung mit falschen Optionen kaputtmachen."
 
@@ -150,6 +161,14 @@ msgid ""
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
 msgstr "dd - benutze dd um eine Betriebssystem-Partition in eine komprimierte .img Datei zu klonen <br />dd full disk - benutze dd um die gesamte Festplatte in ein komprimierte. img Datei zu klonen <br />fsarchiver - benutze fsarchiver um alle Partitionen einer Festplatte in eine Archive-Datei zu klonen<br />borgbackup - benutze borgbackup um ein System in eine Archiv-Datei zu klonen<br />rsync - benutze rsynt um Dateien zum Ziel-Verzeichnis zu synchronisieren"
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
+"file<br />borgbackup - use borgbackup to backup system to an archive file<br"
+" />rsync - use rsync to sync files to destination directory"
+msgstr ""
 
 msgid "dd full disk"
 msgstr "dd full disk"

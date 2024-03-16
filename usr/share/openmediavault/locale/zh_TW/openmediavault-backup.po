@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-10 10:46-0600\n"
+"POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: kochin <kochinc@outlook.com>, 2014-2015,2017-2018,2020,2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_TW/)\n"
@@ -67,6 +67,11 @@ msgstr "若是有指定密碼，則備份將會被加密。必須含 6 到 64 �
 msgid "Keep"
 msgstr "保留"
 
+msgid ""
+"Keep X days of backups.  Uses Linux find mtime command to determine if "
+"backup is older than X days."
+msgstr "保留 X 日之備份。它使用 Linux 的 find mtime 指令來決定備份是否超過 X 日。"
+
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "保留最近 x 天的備份。若設成零則停用。"
 
@@ -100,6 +105,9 @@ msgstr "共享檔案夾"
 msgid "Shared folder"
 msgstr "共享檔案夾"
 
+msgid "Show more output when checked."
+msgstr "當此項被勾選，會顯示較多的輸出。"
+
 msgid "Starting backup ..."
 msgstr "開始備份 ..."
 
@@ -126,6 +134,9 @@ msgstr "若要摒除額外的檔案目錄，則在每個檔案目錄前加上 --
 msgid "Updated backup settings."
 msgstr "已儲存備份設定。"
 
+msgid "Verbose output"
+msgstr "詳細輸出"
+
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告!! 錯誤的選項可能讓您將備份損壞。"
 
@@ -148,6 +159,14 @@ msgid ""
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
 msgstr "dd - 使用 dd 來複製 OS 磁區到一個壓縮過之映像檔案。<br />dd full disk - 使用 dd 來複製整個驅動機到一個壓縮過之映像檔案。<br />fsarchiver - 使用 fsarchiver 來複製全部的磁區到一個存檔檔案。<br />borgbackup - 使用 borgbackup 來備份系統到一個存檔檔案。<br />rsync - 使用 rsync 來將檔案同步至目標檔案目錄。"
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
+"file<br />borgbackup - use borgbackup to backup system to an archive file<br"
+" />rsync - use rsync to sync files to destination directory"
+msgstr "dd - 使用 dd 來複製 OS 分割區到一個壓縮過之映像檔案。<br />dd full disk - 使用 dd 來複製整個驅動碟到一個壓縮過之映像檔案。<br />fsarchiver - 使用 fsarchiver 來複製 OS 分割區到一個存檔檔案。<br />borgbackup - 使用 borgbackup 來備份系統到一個存檔檔案。<br />rsync - 使用 rsync 來將檔案同步至目標檔案目錄。"
 
 msgid "dd full disk"
 msgstr "dd 完整磁碟"
