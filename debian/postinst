@@ -10,6 +10,14 @@ case "$1" in
         # Activate package triggers.
         dpkg-trigger update-workbench
 
+        # Variables
+        omv_set_default "OMV_BACKUP_DIR_NAME" "omvbackup" false
+        omv_set_default "OMV_BACKUP_FILE_PREFIX" "backup-omv" false
+        omv_set_default "OMV_BACKUP_MAX_DEPTH" "1" false
+        omv_set_default "OMV_BACKUP_FSA_COMP_LEVEL" "2" false
+        omv_set_default "OMV_BACKUP_ZSTD_OPTIONS" "" false
+        omv_set_default "OMV_BACKUP_ZSTD_ADAPT" "0" false
+
         # Initialize and migrate configuration database.
         echo "Updating configuration database ..."
         omv-confdbadm create "conf.system.backup"

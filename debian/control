@@ -13,7 +13,8 @@ Depends: fsarchiver,
          openmediavault (>=7),
          borgbackup,
          rsync,
-         fdisk
+         fdisk,
+         zstd
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault
  system minus data drives or system drive for
