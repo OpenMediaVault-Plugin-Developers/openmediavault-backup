@@ -1,46 +1,61 @@
 {
-	"type": "config",
-	"id": "conf.system.backup",
-	"title": "Backup",
-	"queryinfo": {
-		"xpath": "//system/backup",
-		"iterable": false
-	},
-	"properties": {
-		"sharedfolderref": {
-			"type": "string",
-			"oneOf": [{
-				"type": "string",
-				"format": "uuidv4"
-			},{
-				"type": "string",
-				"maxLength": 0
-			}]
-		},
-		"method": {
-			"type": "string",
-			"enum": ["rsync","fsarchiver","borg","dd","ddfull"],
-			"default": "dd"
-		},
-		"root": {
-			"type": "string"
-		},
-		"extraoptions": {
-			"type": "string"
-		},
-		"keep": {
-			"type": "integer"
-		},
-		"passwd": {
-			"type": "string",
-			"oneOf": [{
-				"type": "string",
-				"minLength": 6,
-				"maxLength": 64
-			},{
-				"type": "string",
-				"maxLength": 0
-			}]
-		}
-	}
+  "type": "config",
+  "id": "conf.system.backup",
+  "title": "Backup",
+  "queryinfo": {
+    "xpath": "//system/backup",
+    "iterable": false
+  },
+  "properties": {
+    "sharedfolderref": {
+      "type": "string",
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuidv4"
+        },
+        {
+          "type": "string",
+          "maxLength": 0
+        }
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "rsync",
+        "fsarchiver",
+        "borg",
+        "dd",
+        "ddfull"
+      ],
+      "default": "dd"
+    },
+    "root": {
+      "type": "string"
+    },
+    "extraoptions": {
+      "type": "string"
+    },
+    "keep": {
+      "type": "integer"
+    },
+    "passwd": {
+      "type": "string",
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 6,
+          "maxLength": 64
+        },
+        {
+          "type": "string",
+          "maxLength": 0
+        }
+      ]
+    },
+    "verbose": {
+      "type": "boolean"
+    }
+  }
 }

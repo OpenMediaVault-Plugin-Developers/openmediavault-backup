@@ -2,13 +2,13 @@
 #
 # shellcheck disable=SC1091,SC2086,SC2181
 #
-# Copyright (c) 2013-2023 OpenMediaVault Plugin Developers
+# Copyright (c) 2013-2024 OpenMediaVault Plugin Developers
 #
 # This file is licensed under the terms of the GNU General Public
 # License version 3. This program is licensed "as is" without any
 # warranty of any kind, whether express or implied.
 #
-# version: 1.1.2
+# version: 1.1.3
 #
 
 . /etc/default/openmediavault
@@ -86,6 +86,9 @@ if [ ! -d "${sfpath}" ]; then
     _log_error "Shared folder directory does not exist.  Exiting..."
     exit 11
 fi
+
+# get verbose setting
+verbose=$(omv_config_get "/config/system/backup/verbose")
 
 # set backup directory and create it if it doesn't exist
 backupDir="${sfpath}/${OMV_BACKUP_DIR_NAME}"
@@ -177,9 +180,14 @@ if [ "${part_type}" = "gpt" ]; then
         esppart="${root}${partletter}${esp}"
         _log "ESP partition :: ${esppart}"
         if [ -e "${esppart}" ]; then
+            # add verbose flag if verbose is enabled
+            vb=""
+            if [ ${verbose} -eq 1 ]; then
+                vb=" --verbose"
+            fi
             fstrim /boot/efi
             _log "Backup ESP partition"
-            zstd ${OMV_BACKUP_ZSTD_OPTIONS} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.espdd.zst" <"${esppart}"
+            zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.espdd.zst" < "${esppart}"
             if [ $? -eq 0 ]; then
                 _log "Successfully backuped ESP partition"
             else
@@ -244,9 +252,13 @@ fi
 # perform backup based on method selected
 case ${method} in
     dd)
+        vb=""
+        if [ ${verbose} -eq 1 ]; then
+            vb=" --verbose"
+        fi
         fstrim /
         _log "Starting dd backup..."
-        zstd ${OMV_BACKUP_ZSTD_OPTIONS} -v -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.dd.zst" <"${devicefile}"
+        zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -v -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.dd.zst" <"${devicefile}"
         if [[ $? -gt 0 ]]; then
             _log_error "zstd exit code = $?"
             _log_error "dd backup failed!"
@@ -258,7 +270,7 @@ case ${method} in
         if [ -n "${bootpart}" ]; then
             fstrim /boot/
             _log "Starting dd backup of boot partition..."
-            zstd ${OMV_BACKUP_ZSTD_OPTIONS} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_boot.dd.zst" <"${bootpart}"
+            zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_boot.dd.zst" <"${bootpart}"
             if [ $? -eq 0 ]; then
                 _log "dd backup of boot partition complete."
             else
@@ -273,11 +285,15 @@ case ${method} in
         ;;
 
     ddfull)
+        vb=""
+        if [ ${verbose} -eq 1 ]; then
+            vb=" --verbose"
+        fi
         for i in $(lsblk -n -o MOUNTPOINT ${root}); do
             fstrim $i
         done
         _log "Starting dd full disk..."
-        zstd ${OMV_BACKUP_ZSTD_OPTIONS} -v -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.ddfull.zst" <"${root}"
+        zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.ddfull.zst" <"${root}"
         if [[ $? -gt 0 ]]; then
             _log_error "zstd exit code = $?"
             _log_error "dd full disk backup failed!"
@@ -292,6 +308,11 @@ case ${method} in
         ;;
 
     fsarchiver)
+        # add progress flag if verbose is enabled
+        vb=""
+        if [ ${verbose} -eq 1 ]; then
+            vb=" -v"
+        fi
         _log "Starting FSArchiver backup..."
         extra=$(omv_config_get "/config/system/backup/extraoptions")
         passwd="$(omv_config_get "/config/system/backup/passwd")"
@@ -300,7 +321,7 @@ case ${method} in
             _log "Encrypting archive..."
             password="--cryptpass=${passwd} "
         fi
-        fsarchiver savefs ${password}-o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} -v -A -Z ${OMV_BACKUP_FSA_COMP_LEVEL} -j ${threads} ${extra}
+        fsarchiver savefs ${password}-o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart}${vb} -A -Z ${OMV_BACKUP_FSA_COMP_LEVEL} -j ${threads} ${extra}
         if [ $? -ne 0 ]; then
             _log_error "FSArchiver backup failed!"
             exit 17
@@ -355,10 +376,15 @@ case ${method} in
         ;;
 
     rsync)
+        # add progress flag if verbose is enabled
+        vb=""
+        if [ ${verbose} -eq 1 ]; then
+            vb="v"
+        fi
         _log "Starting rsync..."
         extra=$(omv_config_get "/config/system/backup/extraoptions")
 
-        rsync -aAXvxx /* "${backupDir}/" \
+        rsync -aAX${vb}xx /* "${backupDir}/" \
             --delete \
             --exclude=/dev \
             --exclude=/proc \

@@ -4,7 +4,7 @@
 # @author    Volker Theile <volker.theile@openmediavault.org>
 # @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 # @copyright Copyright (c) 2009-2013 Volker Theile
-# @copyright Copyright (c) 2013-2023 OpenMediaVault Plugin Developers
+# @copyright Copyright (c) 2013-2024 OpenMediaVault Plugin Developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ if ! omv_config_exists "${SERVICE_XPATH}"; then
     omv_config_add_key "${SERVICE_XPATH}" "extraoptions" ""
     omv_config_add_key "${SERVICE_XPATH}" "keep" "7"
     omv_config_add_key "${SERVICE_XPATH}" "passwd" ""
+    omv_config_add_key "${SERVICE_XPATH}" "verbose" ""
 fi
 
 # add or re-add cron job

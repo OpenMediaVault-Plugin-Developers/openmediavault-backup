@@ -3,14 +3,14 @@ Section: misc
 XB-Plugin-Section: backup
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-Build-Depends: debhelper (>= 12)
-Standards-Version: 3.9.6
+Build-Depends: debhelper (>= 13)
+Standards-Version: 4.3.0
 Homepage: http://omv-extras.org/
 
 Package: openmediavault-backup
 Architecture: all
 Depends: fsarchiver,
-         openmediavault (>=6),
+         openmediavault (>=7),
          borgbackup,
          rsync,
          fdisk,

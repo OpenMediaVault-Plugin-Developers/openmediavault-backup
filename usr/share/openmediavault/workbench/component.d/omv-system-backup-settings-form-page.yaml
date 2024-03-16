@@ -21,7 +21,7 @@ data:
         name: method
         label: _("Method")
         value: "dd"
-        hint: _("dd - use dd to clone the OS partition to a compressed image file.<br />dd full disk - use dd to clone the entire drive to a compressed image file.<br />fsarchiver - use fsarchiver to clone all partitions to an archive file<br />borgbackup - use borgbackup to backup system to an archive file<br />rsync - use rsync to sync files to destination directory")
+        hint: _("dd - use dd to clone the OS partition to a compressed image file.<br />dd full disk - use dd to clone the entire drive to a compressed image file.<br />fsarchiver - use fsarchiver to clone the OS partition to an archive file<br />borgbackup - use borgbackup to backup system to an archive file<br />rsync - use rsync to sync files to destination directory")
         store:
           data:
             - ["dd", _("dd")]
@@ -57,6 +57,7 @@ data:
         name: keep
         label: _("Keep")
         value: 7
+        hint: _("Keep X days of backups.  Uses Linux find mtime command to determine if backup is older than X days.")
         validators:
           min: 0
           max: 9999
@@ -92,6 +93,17 @@ data:
                 arg0:
                   prop: method
                 arg1: "fsarchiver"
+      - type: checkbox
+        name: verbose
+        label: _("Verbose output")
+        hint: _("Show more output when checked.")
+        modifiers:
+          - type: visible
+            constraint:
+              operator: ne
+              arg0:
+                prop: method
+              arg1: "borg"
     buttons:
       - template: submit
       - template: cancel

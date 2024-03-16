@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018,2020
+# Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018,2020,2023
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-10 10:46-0600\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018,2020\n"
-"Language-Team: Japanese (Japan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ja_JP/)\n"
+"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018,2020,2023\n"
+"Language-Team: Japanese (Japan) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Action"
-msgstr ""
+msgstr "アクション"
 
 msgid "Add new scheduled backup job"
 msgstr "新しいバックアップジョブのスケジュールを追加"
@@ -35,10 +35,10 @@ msgid "Create scheduled backup job"
 msgstr "バックアップジョブのスケジュールを作成"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "日付と時刻"
 
 msgid "Edit scheduled backup."
-msgstr ""
+msgstr "スケジュールされたバックアップを編集。"
 
 msgid "Example"
 msgstr "例"
@@ -47,13 +47,13 @@ msgid "Extra Options"
 msgstr "追加オプション"
 
 msgid "Extra options"
-msgstr ""
+msgstr "追加オプション"
 
 msgid "Fix cron"
-msgstr ""
+msgstr "cronの修正"
 
 msgid "Fixing cron task if deleted ..."
-msgstr ""
+msgstr "cronタスクが削除された場合の修正 ..."
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -71,7 +71,7 @@ msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "最後のx日間のバックアップを保持します。 無効にするには、ゼロに設定します。"
 
 msgid "Message"
-msgstr ""
+msgstr "メッセージ"
 
 msgid "Method"
 msgstr "メソッド"
@@ -86,10 +86,10 @@ msgid "Root device"
 msgstr "ルートデバイス"
 
 msgid "Schedule"
-msgstr ""
+msgstr "スケジュール"
 
 msgid "Scheduled Backup"
-msgstr ""
+msgstr "スケジュールされたバックアップ"
 
 msgid "Settings"
 msgstr "設定"
@@ -98,19 +98,19 @@ msgid "Shared Folder"
 msgstr "共有フォルダ"
 
 msgid "Shared folder"
-msgstr ""
+msgstr "共有フォルダ"
 
 msgid "Starting backup ..."
-msgstr ""
+msgstr "バックアップを開始 ..."
 
 msgid "System Backup"
 msgstr "システムバックアップ"
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr ""
+msgstr "このフィールドには、* またはカンマで区切られた値のリストのみを含める必要があります。"
 
 msgid "The location of the backup files."
-msgstr ""
+msgstr "バックアップファイルの保存場所です。"
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -121,10 +121,10 @@ msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space. Example<br />--exclude=/pool "
 "--exclude=/test<br />Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "追加のディレクトリを除外するには、各ディレクトリの前に--exclude=を追加し、追加のエントリをスペースで区切ります。例<br />--exclude=/pool --exclude=/test<br />警告！間違ったオプションでバックアップが破壊されます。"
 
 msgid "Updated backup settings."
-msgstr ""
+msgstr "バックアップの設定を更新しました。"
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "警告！！ 間違ったオプションでバックアップが中断されます。"
@@ -147,7 +147,7 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd - OS パーティションを圧縮イメージファイルにクローンするために dd を使用します。<br />dd full disk - dd を使ってドライブ全体を圧縮イメージファイルにクローンします。<br />fsarchiver - fsarchiver を使ってすべてのパーティションをアーカイブファイルにクローンします。<br />borgbackup - borgbackup を使ってシステムをアーカイブファイルにバックアップします。<br />rsync - rsyncを使ってファイルを目的のディレクトリに同期させます。"
 
 msgid "dd full disk"
 msgstr "dd full disk"

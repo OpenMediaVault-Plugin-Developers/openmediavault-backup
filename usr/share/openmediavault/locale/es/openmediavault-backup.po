@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020-2022
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-10 10:46-0600\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020-2022\n"
-"Language-Team: Spanish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/es/)\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020-2023\n"
+"Language-Team: Spanish (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Action"
-msgstr ""
+msgstr "Acción"
 
 msgid "Add new scheduled backup job"
 msgstr "Añadir un nuevo trabajo de backup programado"
@@ -35,7 +35,7 @@ msgid "Create scheduled backup job"
 msgstr "Crear un trabajo de Backup programado"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "Fecha & Hora"
 
 msgid "Edit scheduled backup."
 msgstr "Editar trabajo programado"
@@ -71,7 +71,7 @@ msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Mantener los ultimos x dias de Backup. poner a cero para deshabilitar."
 
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 msgid "Method"
 msgstr "Metodo"

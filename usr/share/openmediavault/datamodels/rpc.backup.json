@@ -1,49 +1,67 @@
-[{
-	"type": "rpc",
-	"id": "rpc.backup.set",
-	"params": {
-		"type": "object",
-		"properties": {
-			"sharedfolderref": {
-				"type": "string",
-				"oneOf": [{
-					"type": "string",
-					"format": "uuidv4"
-				},{
-					"type": "string",
-					"maxLength": 0
-				}],
-				"required": true
-			},
-			"method": {
-				"type": "string",
-				"enum": ["rsync","fsarchiver","borg","dd","ddfull"],
-				"required": true
-			},
-			"root": {
-				"type": "string",
-				"required": false
-			},
-			"extraoptions": {
-				"type": "string",
-				"required": false
-			},
-			"keep": {
-				"type": "integer",
-				"required": false
-			},
-			"passwd": {
-				"type": "string",
-				"oneOf": [{
-					"type": "string",
-					"minLength": 6,
-					"maxLength": 64
-				},{
-					"type": "string",
-					"maxLength": 0
-				}],
-				"required": false
-			}
-		}
-	}
-}]
+[
+  {
+    "type": "rpc",
+    "id": "rpc.backup.set",
+    "params": {
+      "type": "object",
+      "properties": {
+        "sharedfolderref": {
+          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "uuidv4"
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            }
+          ],
+          "required": true
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "rsync",
+            "fsarchiver",
+            "borg",
+            "dd",
+            "ddfull"
+          ],
+          "required": true
+        },
+        "root": {
+          "type": "string",
+          "required": false
+        },
+        "extraoptions": {
+          "type": "string",
+          "required": false
+        },
+        "keep": {
+          "type": "integer",
+          "required": false
+        },
+        "passwd": {
+          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 6,
+              "maxLength": 64
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            }
+          ],
+          "required": false
+        },
+        "verbose": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    }
+  }
+]
