@@ -8,7 +8,7 @@
 # License version 3. This program is licensed "as is" without any
 # warranty of any kind, whether express or implied.
 #
-# version: 1.2.1
+# version: 1.2.2
 #
 
 . /etc/default/openmediavault
@@ -245,7 +245,7 @@ if [ -f "/usr/lib/u-boot/platform_install.sh" ]; then
   . /usr/lib/u-boot/platform_install.sh
   if [ -d "${DIR}" ]; then
     _log "Backup u-boot"
-    tar cf --zstd "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_u-boot.tar.zst" ${DIR}/*
+    tar --create --zstd --file "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_u-boot.tar.zst" ${DIR}/*
     if [ $? -eq 0 ]; then
       _log "Successfully backuped u-boot"
     else
