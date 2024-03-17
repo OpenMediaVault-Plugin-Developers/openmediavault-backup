@@ -1,3 +1,9 @@
+openmediavault-backup (7.1.1) stable; urgency=low
+
+  * Fix wrong flag set for fsarchiver when verbose is disabled
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 17 Mar 2024 09:52:42 -0500
+
 openmediavault-backup (7.1) stable; urgency=low
 
   * Replace gzip with zstd
