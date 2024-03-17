@@ -8,7 +8,7 @@
 # License version 3. This program is licensed "as is" without any
 # warranty of any kind, whether express or implied.
 #
-# version: 1.2.0
+# version: 1.2.1
 #
 
 . /etc/default/openmediavault
@@ -324,8 +324,6 @@ case ${method} in
     vb=""
     if [ ${verbose} -eq 1 ]; then
       vb=" -v"
-    else
-      vb=" --quiet"
     fi
     _log "Starting FSArchiver backup ..."
     extra=$(omv_config_get "/config/system/backup/extraoptions")
