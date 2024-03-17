@@ -1,3 +1,9 @@
+openmediavault-backup (7.1.2) stable; urgency=low
+
+  * Fix tar arguments for u-boot compression
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 17 Mar 2024 16:19:53 -0500
+
 openmediavault-backup (7.1.1) stable; urgency=low
 
   * Fix wrong flag set for fsarchiver when verbose is disabled
