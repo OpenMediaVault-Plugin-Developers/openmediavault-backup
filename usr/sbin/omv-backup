@@ -8,15 +8,17 @@
 # License version 3. This program is licensed "as is" without any
 # warranty of any kind, whether express or implied.
 #
-# version: 1.2.2
+# version: 1.2.3
 #
 
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
 declare -i esp=0
-threads=$(nproc --all)
+declare -i threads=1
+
 arch=$(uname --machine)
+threads=$(nproc --all | awk '{print ($1 > 32) ? 32 : $1}')
 
 # logging location
 logDir="/var/log/"
