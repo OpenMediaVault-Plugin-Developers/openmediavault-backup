@@ -7,13 +7,13 @@
 # BRUNET David, 2016
 # Axel Cantenys, 2020
 # Etienne V, 2020
-# Julien ROCH <jroch74@live.fr>, 2017
+# 16656aeb055cb4e08f295d808875eb1a_b46dfc2 <2f6d0e52c28329f5e3c8bb65d09c52f6_466277>, 2017
 # Zacharie ARNAISE <spacebrain.damage@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-10 10:46-0600\n"
+"POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Axel Cantenys, 2017-2018,2023\n"
 "Language-Team: French (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/fr/)\n"
@@ -72,6 +72,11 @@ msgstr "Si un mot de passe est spécifié, la sauvegarde sera cryptée. Il doit 
 msgid "Keep"
 msgstr "Garder"
 
+msgid ""
+"Keep X days of backups.  Uses Linux find mtime command to determine if "
+"backup is older than X days."
+msgstr ""
+
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Garder les x derniers jours de sauvegardes. Mettre à zéro pour désactiver."
 
@@ -105,6 +110,9 @@ msgstr "Dossier partagé"
 msgid "Shared folder"
 msgstr "Dossier partagé"
 
+msgid "Show more output when checked."
+msgstr ""
+
 msgid "Starting backup ..."
 msgstr "Démarrage de la sauvegarde..."
 
@@ -131,6 +139,9 @@ msgstr "Pour exclure des répertoires supplémentaires, ajoutez --exclude= devan
 msgid "Updated backup settings."
 msgstr "Paramètres de sauvegarde mis à jour."
 
+msgid "Verbose output"
+msgstr ""
+
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Attention !! De mauvaises options peuvent corrompre votre sauvegarde."
 
@@ -153,6 +164,14 @@ msgid ""
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
 msgstr "dd - Utiliser dd pour cloner la partition du système d'exploitation vers un fichier image compressé. <br />dd disque entier - Utiliser dd pour cloner le disque entier vers un fichier image compressé. <br />fsarchiver - Utiliser fsarchiver pour cloner toutes les partitions vers un fichier d'archive. <br />borgbackup - Utiliser borgbackup pour sauvegarder le système vers une archive. <br />rsync - Utiliser rsync pour synchroniser les fichiers vers le répertoire de destination."
+
+msgid ""
+"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
+"full disk - use dd to clone the entire drive to a compressed image file.<br "
+"/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
+"file<br />borgbackup - use borgbackup to backup system to an archive file<br"
+" />rsync - use rsync to sync files to destination directory"
+msgstr ""
 
 msgid "dd full disk"
 msgstr "dd disque entier"
