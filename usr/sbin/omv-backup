@@ -128,7 +128,7 @@ if [ -z "${root}" ]; then
   root="/dev/$(lsblk -no pkname ${devicefile})"
 else
   _log "Using actual device for ${root}"
-  root="$(readlink -f ${root})"
+  root="$(readlink -f "${root}")"
 fi
 _log "Root drive: ${root}"
 
