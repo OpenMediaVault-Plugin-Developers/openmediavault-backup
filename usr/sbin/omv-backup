@@ -8,7 +8,7 @@
 # License version 3. This program is licensed "as is" without any
 # warranty of any kind, whether express or implied.
 #
-# version: 1.2.3
+# version: 1.2.4
 #
 
 . /etc/default/openmediavault
@@ -126,6 +126,9 @@ root=$(omv_config_get "/config/system/backup/root")
 # if root is empty, try to determine root device
 if [ -z "${root}" ]; then
   root="/dev/$(lsblk -no pkname ${devicefile})"
+else
+  _log "Using actual device for ${root}"
+  root="$(readlink -f ${root})"
 fi
 _log "Root drive: ${root}"
 
