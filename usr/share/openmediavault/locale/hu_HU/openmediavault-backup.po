@@ -6,13 +6,14 @@
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2018
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2017
 # Gyuris Gellért <jobel@ujevangelizacio.hu>, 2017
+# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2018\n"
+"Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2024\n"
 "Language-Team: Hungarian (Hungary) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,26 +22,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Action"
-msgstr ""
+msgstr "Művelet"
 
 msgid "Add new scheduled backup job"
-msgstr ""
+msgstr "Új ütemezett biztonsági mentés feladat hozzáadása"
 
 msgid ""
 "Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr ""
+msgstr "Új ütemezett biztonsági mentési feladat hozzáadásával a feladat az Ütemezett feladatok lapra kerül fel."
 
 msgid "Backup"
 msgstr "Biztonsági mentés"
 
 msgid "Create scheduled backup job"
-msgstr ""
+msgstr "Ütemezett biztonsági mentés feladat létrehozása"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "Dátum és idő"
 
 msgid "Edit scheduled backup."
-msgstr ""
+msgstr "Ütemezett biztonsági mentés szerkesztése."
 
 msgid "Example"
 msgstr "Példa"
@@ -49,13 +50,13 @@ msgid "Extra Options"
 msgstr "További beállítások"
 
 msgid "Extra options"
-msgstr ""
+msgstr "További beállítások"
 
 msgid "Fix cron"
-msgstr ""
+msgstr "Cron javítása"
 
 msgid "Fixing cron task if deleted ..."
-msgstr ""
+msgstr "Cron feladat javítása, amennyiben törölték…"
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -64,7 +65,7 @@ msgstr "Csak haladó felhasználóknak ‒ Pontosan ismert gyökéreszköz hián
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr ""
+msgstr "Ha van jelszó megadva, az biztonsági mentés titkosítva lesz. A karakterek száma 6 és 64 között kell legyen."
 
 msgid "Keep"
 msgstr "Megőrzés"
@@ -72,19 +73,19 @@ msgstr "Megőrzés"
 msgid ""
 "Keep X days of backups.  Uses Linux find mtime command to determine if "
 "backup is older than X days."
-msgstr ""
+msgstr "X napra elegendő biztonsági mentést tartson meg. A Linux find mtime parancsot használja annak megállapítására, hogy a biztonsági másolat régebbi-e X napnál."
 
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Az utolsó x nap biztonsági mentéseinek megőrzése. Nullát beállítva kikapcsolja a funkciót."
 
 msgid "Message"
-msgstr ""
+msgstr "Üzenet"
 
 msgid "Method"
 msgstr "Módszer"
 
 msgid "Notes"
-msgstr ""
+msgstr "Jegyzetek"
 
 msgid "Password"
 msgstr "Jelszó"
@@ -93,34 +94,34 @@ msgid "Root device"
 msgstr "Gyökéreszköz"
 
 msgid "Schedule"
-msgstr ""
+msgstr "Ütemezés"
 
 msgid "Scheduled Backup"
-msgstr ""
+msgstr "Ütemezett biztonsági mentés"
 
 msgid "Settings"
 msgstr "Beállítások"
 
 msgid "Shared Folder"
-msgstr "Hálózati megosztás"
+msgstr "Megosztott mappa"
 
 msgid "Shared folder"
-msgstr ""
+msgstr "Megosztott mappa"
 
 msgid "Show more output when checked."
-msgstr ""
+msgstr "Bejelölve több kimenetet jelenít meg."
 
 msgid "Starting backup ..."
-msgstr ""
+msgstr "Biztonsági mentés kezdése…"
 
 msgid "System Backup"
 msgstr "Biztonsági mentés a rendszerről"
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr ""
+msgstr "A mező csak * vagy vesszővel elválasztott értékek listáját tartalmazhatja."
 
 msgid "The location of the backup files."
-msgstr ""
+msgstr "A biztonsági mentési fájlok helye."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -131,28 +132,28 @@ msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space. Example<br />--exclude=/pool "
 "--exclude=/test<br />Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "További könyvtárak kizárásához adja hozzá a --exclude= szót az egyes könyvtárak előtt, és a további bejegyzéseket válassza el szóközzel. Példa<br />--exclude=/pool --exclude=/testWarning!!! Rossz beállításokkal tönkreteheti a biztonsági mentést."
 
 msgid "Updated backup settings."
-msgstr ""
+msgstr "Biztonsági mentések beállításai frissítve."
 
 msgid "Verbose output"
-msgstr ""
+msgstr "Bővebb kimenet"
 
 msgid "Warning!!  You can break the backup with wrong options."
 msgstr "Figyelem! Helytelen beállítással tönkretehető a biztonsági mentés."
 
 msgid "borgbackup"
-msgstr ""
+msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "borgbackup – A borgbackup a rendszert egy archív fájlba menti"
 
 msgid "dd"
 msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
+msgstr "dd – A dd az operációs rendszer partíciójáról klónoz egy tömörített lemezképet."
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -160,7 +161,7 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd – A dd az operációs rendszer partíciójáról klónoz egy tömörített lemezképet.<br />dd full disk – A dd az egész meghajtóról klónoz egy tömörített lemezképet.<br />fsarchiver – Az fsarchiver klónoz minden partíciót egy archív fájlba.<br />borgbackup – A borgbackup a rendszert egy archív fájlba menti.<br />rsync – Az rsync szinkronizálja a fájlokat egy célmappába."
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -168,14 +169,14 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
 "file<br />borgbackup - use borgbackup to backup system to an archive file<br"
 " />rsync - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd – A dd az operációs rendszer partíciójáról klónoz egy tömörített lemezképet.<br />dd full disk – A dd az egész meghajtóról klónoz egy tömörített lemezképet.<br />fsarchiver – Az fsarchiver az operációs rendszer partícióját klónozza egy archív fájlba.<br />borgbackup – A borgbackup a rendszert egy archív fájlba menti.<br />rsync – Az rsync szinkronizálja a fájlokat egy célmappába."
 
 msgid "dd full disk"
-msgstr ""
+msgstr "dd full disk"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd full disk – A dd az egész meghajtóról klónoz egy tömörített lemezképet."
 
 msgid "fsarchiver"
 msgstr "fsarchiver"
