@@ -237,6 +237,15 @@ else
   _log_warning "Save of sfdisk partition table failed"
 fi
 
+# Save partition table using sgdisk
+_log "Save partitions using sgdisk"
+sgdisk --backup="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.sgdisk" ${root}
+if [ $? -eq 0 ]; then
+  _log "Successfully saved partition table using sgdisk"
+else
+  _log_warning "Save of sgdisk partition table failed"
+fi
+
 # check for /boot partition
 bootpart=$(awk '$2 == "/boot" { print $1 }' /proc/mounts)
 if [ ! -b "${bootpart}" ]; then
