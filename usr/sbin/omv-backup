@@ -184,7 +184,7 @@ if [ "${part_type}" = "gpt" ]; then
     _log "ESP partition not found."
   else
     partletter=""
-    if [[ ${root} =~ nvme ]]; then
+    if [[ ${root} =~ nvme ]] || [[ ${root} =~ mmcblk ]]; then
       partletter="p"
     fi
     esppart="${root}${partletter}${esp}"
