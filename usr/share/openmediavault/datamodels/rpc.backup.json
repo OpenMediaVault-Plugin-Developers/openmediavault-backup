@@ -47,6 +47,7 @@
           "oneOf": [
             {
               "type": "string",
+              "format": "no-multi-line",
               "minLength": 6,
               "maxLength": 64
             },

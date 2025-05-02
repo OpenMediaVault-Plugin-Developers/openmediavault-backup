@@ -10,7 +10,7 @@ Homepage: http://omv-extras.org/
 Package: openmediavault-backup
 Architecture: all
 Depends: fsarchiver,
-         openmediavault (>=7),
+         openmediavault (>=7.7.6),
          borgbackup,
          rsync,
          fdisk,
