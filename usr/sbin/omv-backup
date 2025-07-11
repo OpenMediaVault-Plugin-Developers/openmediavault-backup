@@ -16,6 +16,8 @@
 
 declare -i esp=0
 declare -i threads=1
+declare -a extra
+declare -a zstd_opts
 
 arch=$(uname --machine)
 threads=$(nproc --all | awk '{print ($1 > 32) ? 32 : $1}')
@@ -66,6 +68,13 @@ purgeOld()
   else
     _log "Purging disabled."
   fi
+}
+
+gen_opts_array() {
+  local -n opts_array="$1"
+  local input="$2"
+  eval set -- $input
+  opts_array=("$@")
 }
 
 _log "Starting backup ..."
@@ -173,6 +182,8 @@ if [ -z "${OMV_BACKUP_ZSTD_OPTIONS}" ]; then
   fi
 fi
 
+gen_opts_array zstd_opts "${OMV_BACKUP_ZSTD_OPTIONS}"
+
 # calculate partition table size to accommodate GPT and MBR.
 part_type=$(blkid --probe ${root} | cut -d \" -f4)
 _log "Partition type :: ${part_type}"
@@ -193,11 +204,11 @@ if [ "${part_type}" = "gpt" ]; then
       # add verbose flag if verbose is enabled
       vb=""
       if [ ${verbose} -eq 1 ]; then
-        vb=" --verbose"
+        vb="--verbose"
       fi
       fstrim /boot/efi
       _log "Backup ESP partition"
-      zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.espdd.zst" < "${esppart}"
+      zstd "${zstd_opts[@]}" ${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.espdd.zst" < "${esppart}"
       if [ $? -eq 0 ]; then
         _log "Successfully backuped ESP partition"
       else
@@ -273,14 +284,14 @@ case ${method} in
   dd)
     vb=""
     if [ ${verbose} -eq 1 ]; then
-      vb=" --verbose"
+      vb="--verbose"
     else
-      vb=" --quiet"
+      vb="--quiet"
     fi
     _log "Running fstrim on / ..."
     fstrim /
     _log "Starting dd backup ..."
-    zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -v -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.dd.zst" <"${devicefile}"
+    zstd "${zstd_opts[@]}" ${vb} -v -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.dd.zst" <"${devicefile}"
     if [[ $? -gt 0 ]]; then
       _log_error "zstd exit code = $?"
       _log_error "dd backup failed!"
@@ -293,7 +304,7 @@ case ${method} in
       _log "Running fstrim on /boot ..."
       fstrim /boot/
       _log "Starting dd backup of boot partition ..."
-      zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_boot.dd.zst" <"${bootpart}"
+      zstd "${zstd_opts[@]}" ${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}_boot.dd.zst" <"${bootpart}"
       if [ $? -eq 0 ]; then
         _log "dd backup of boot partition complete."
       else
@@ -310,16 +321,16 @@ case ${method} in
   ddfull)
     vb=""
     if [ ${verbose} -eq 1 ]; then
-      vb=" --verbose"
+      vb="--verbose"
     else
-      vb=" --quiet"
+      vb="--quiet"
     fi
     for mp in $(lsblk --noheadings --output MOUNTPOINT ${root}); do
       _log "Running fstrim on ${mp} ..."
       fstrim "${mp}"
     done
     _log "Starting dd full disk ..."
-    zstd ${OMV_BACKUP_ZSTD_OPTIONS}${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.ddfull.zst" < "${root}"
+    zstd "${zstd_opts[@]}" ${vb} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.ddfull.zst" < "${root}"
     if [[ $? -gt 0 ]]; then
       _log_error "zstd exit code = $?"
       _log_error "dd full disk backup failed!"
@@ -337,17 +348,17 @@ case ${method} in
     # add progress flag if verbose is enabled
     vb=""
     if [ ${verbose} -eq 1 ]; then
-      vb=" -v"
+      vb="-v"
     fi
     _log "Starting FSArchiver backup ..."
-    extra=$(omv_config_get "/config/system/backup/extraoptions")
+    gen_opts_array extra "$(omv_config_get "/config/system/backup/extraoptions")"
     passwd="$(omv_config_get "/config/system/backup/passwd")"
     password=""
     if [ -n "${passwd}" ]; then
       _log "Encrypting archive ..."
-      password="--cryptpass=${passwd} "
+      password="--cryptpass=${passwd}"
     fi
-    fsarchiver savefs ${password}-o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart}${vb} -A -Z ${OMV_BACKUP_FSA_COMP_LEVEL} -j ${threads} ${extra}
+    fsarchiver savefs ${password} -o "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.fsa" ${devicefile} ${bootpart} ${vb} -A -Z ${OMV_BACKUP_FSA_COMP_LEVEL} -j ${threads} "${extra[@]}"
     if [ $? -ne 0 ]; then
       _log_error "FSArchiver backup failed!"
       exit 17
@@ -361,7 +372,7 @@ case ${method} in
 
   borg)
     _log "Starting borgbackup ..."
-    extra=$(omv_config_get "/config/system/backup/extraoptions")
+    gen_opts_array extra "$(omv_config_get "/config/system/backup/extraoptions")"
     passwd="$(omv_config_get "/config/system/backup/passwd")"
     if [ -n "${passwd}" ]; then
       _log "Encrypting archive ..."
@@ -380,7 +391,7 @@ case ${method} in
     borg create --stats "${backupDir}/borgbackup::${OMV_BACKUP_FILE_PREFIX}-${date}" / \
       -x --exclude-caches \
       -e "/dev" -e "/proc" -e "/sys" -e "/tmp" -e "/run" -e "/mnt" \
-      -e "/media" -e "/lost+found" -e "/export" -e "/home/ftp" -e "/srv" ${extra}
+      -e "/media" -e "/lost+found" -e "/export" -e "/home/ftp" -e "/srv" "${extra[@]}"
     if [ $? -ne 0 ]; then
       _log_error "borgbackup create failed!"
       exit 18
@@ -408,7 +419,7 @@ case ${method} in
       vb="v"
     fi
     _log "Starting rsync ..."
-    extra=$(omv_config_get "/config/system/backup/extraoptions")
+    gen_opts_array extra "$(omv_config_get "/config/system/backup/extraoptions")"
 
     rsync -aAX${vb}xx /* "${backupDir}/" \
       --delete \
@@ -422,7 +433,7 @@ case ${method} in
       --exclude=/lost+found \
       --exclude=/export \
       --exclude=/home/ftp \
-      --exclude=/srv ${extra}
+      --exclude=/srv "${extra[@]}"
     if [ $? -ne 0 ]; then
       _log_error "rsync backup failed!"
       exit 20
