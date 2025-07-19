@@ -1,3 +1,11 @@
+openmediavault-backup (7.1.5) stable; urgency=low
+
+  * Trim and skip empty archive includes and excludes
+  * Quoting of variables 'extra'  and 'OMV_BACKUP_ZSTD_OPTIONS'
+    when options include paths with spaces or have more than one opt
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 18 Jul 2025 19:19:26 -0500
+
 openmediavault-backup (7.1.4) stable; urgency=low
 
   * Use actual device for root when an override specifies a link
