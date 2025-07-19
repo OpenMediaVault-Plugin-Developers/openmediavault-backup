@@ -6,7 +6,7 @@
 # Axel Cantenys, 2017-2018,2023
 # BRUNET David, 2016
 # Axel Cantenys, 2020
-# Etienne V, 2020
+# ba445a6451a8788fc2cde279bf16c086_ad8d9e9, 2020
 # 16656aeb055cb4e08f295d808875eb1a_b46dfc2 <2f6d0e52c28329f5e3c8bb65d09c52f6_466277>, 2017
 # Zacharie ARNAISE <spacebrain.damage@gmail.com>, 2015
 msgid ""
