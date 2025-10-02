@@ -1,3 +1,9 @@
+openmediavault-backup (8.0) stable; urgency=low
+
+  * Update for omv 8.x
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 02 Oct 2025 16:09:23 -0500
+
 openmediavault-backup (7.1.5) stable; urgency=low
 
   * Trim and skip empty archive includes and excludes
