@@ -3,71 +3,68 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Daniel, 2022-2023
-# efef6ec5b435a041fce803c7f8af77d2_2341d43, 2018,2020
-# efef6ec5b435a041fce803c7f8af77d2_2341d43, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: Daniel, 2022-2023\n"
-"Language-Team: Swedish (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/sv/)\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Lao (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/lo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sv\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: lo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Action"
-msgstr "Åtgärd"
+msgstr ""
 
 msgid "Add new scheduled backup job"
-msgstr "Lägg till ett nytt schemalagt säkerhetskopieringsjobb"
+msgstr ""
 
 msgid ""
 "Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr "Lägga till ett nytt schemalagt säkerhetskopieringsjobb kommer att lägga till ett jobb på fliken Schemalagda jobb."
+msgstr ""
 
 msgid "Backup"
-msgstr "Säkerhetskopiering"
+msgstr ""
 
 msgid "Create scheduled backup job"
-msgstr "Skapa schemalagt säkerhetskopieringsjobb"
+msgstr ""
 
 msgid "Date & Time"
-msgstr "Datum & tid"
+msgstr ""
 
 msgid "Edit scheduled backup."
-msgstr "Redigera schemalagd säkerhetskopiering."
+msgstr ""
 
 msgid "Example"
-msgstr "Exempel"
+msgstr ""
 
 msgid "Extra Options"
-msgstr "Extra alternativ"
+msgstr ""
 
 msgid "Extra options"
-msgstr "Extra alternativ"
+msgstr ""
 
 msgid "Fix cron"
-msgstr "Åtgärda cron"
+msgstr ""
 
 msgid "Fixing cron task if deleted ..."
-msgstr "Åtgärdar cron-uppgift om den tas bort ..."
+msgstr ""
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
-msgstr "Endast för avancerade användare - Använd inte om inte exakt root-enhet är känd."
+msgstr ""
 
 msgid ""
 "If a password is specified, backup will be encrypted. Must be between 6 and "
 "64 characters."
-msgstr "Om ett lösenord anges, kommer säkerhetskopian att krypteras. Måste vara mellan 6 och 64 tecken."
+msgstr ""
 
 msgid "Keep"
-msgstr "Behåll"
+msgstr ""
 
 msgid ""
 "Keep X days of backups.  Uses Linux find mtime command to determine if "
@@ -75,84 +72,84 @@ msgid ""
 msgstr ""
 
 msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr "Behåll de sista x dagarna av säkerhetskopior. Ställ in noll för att inaktivera."
+msgstr ""
 
 msgid "Message"
-msgstr "Meddelande"
+msgstr ""
 
 msgid "Method"
-msgstr "Metod"
+msgstr ""
 
 msgid "Notes"
-msgstr "Anteckningar"
+msgstr ""
 
 msgid "Password"
-msgstr "Lösenord"
+msgstr ""
 
 msgid "Root device"
-msgstr "Root-enhet"
+msgstr ""
 
 msgid "Schedule"
-msgstr "Schemalägg"
+msgstr ""
 
 msgid "Scheduled Backup"
-msgstr "Schemalagd säkerhetskopiering"
+msgstr ""
 
 msgid "Settings"
-msgstr "Inställningar"
+msgstr ""
 
 msgid "Shared Folder"
-msgstr "Delad mapp"
+msgstr ""
 
 msgid "Shared folder"
-msgstr "Delad mapp"
+msgstr ""
 
 msgid "Show more output when checked."
 msgstr ""
 
 msgid "Starting backup ..."
-msgstr "Startar säkerhetskopiering ..."
+msgstr ""
 
 msgid "System Backup"
-msgstr "Systemsäkerhetskopiering"
+msgstr ""
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr "Fältet ska bara innehålla * eller en kommaseparerad lista med värden."
+msgstr ""
 
 msgid "The location of the backup files."
-msgstr "Platsen för säkerhetskopieringsfilerna."
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
-msgstr "För att utesluta additionskataloger lägg till --exclude= före varje katalog och separera ytterligare poster med ett mellanslag."
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space. Example<br />--exclude=/pool "
 "--exclude=/test<br />Warning!!  You can break the backup with wrong options."
-msgstr "För att utesluta tilläggskataloger, lägg till --exclude= före varje katalog och separera ytterligare poster med ett mellanslag. Exempel<br />--exclude=/pool --exclude=/test<br />Varning!! Du kan bryta säkerhetskopian med fel alternativ."
+msgstr ""
 
 msgid "Updated backup settings."
-msgstr "Uppdaterade säkerhetskopieringsinställningarna."
+msgstr ""
 
 msgid "Verbose output"
 msgstr ""
 
 msgid "Warning!!  You can break the backup with wrong options."
-msgstr "Varning!! Du kan bryta säkerheskopieringen med felaktiga alternativ."
+msgstr ""
 
 msgid "borgbackup"
-msgstr "borgbackup"
+msgstr ""
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr "borgbackup - använd borgbackup för att säkerhetskopiera systemet till en arkivfil"
+msgstr ""
 
 msgid "dd"
-msgstr "dd"
+msgstr ""
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr "dd - använd dd för att klona OS-partitionen till en komprimerad bildfil."
+msgstr ""
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -160,7 +157,7 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
-msgstr "dd - använd dd för att klona OS-partitionen till en komprimerad bildfil.<br />dd full disk - använd dd för att klona hela enheten till en komprimerad bildfil.<br />fsarchiver - använd fsarchiver för att klona alla partitioner till en arkivfil<br />borgbackup - använd borgbackup till säkerhetskopieringssystem till ett arkivfil<br />rsync - använd rsync för att synkronisera filer till destinationskatalogen"
+msgstr ""
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -171,20 +168,20 @@ msgid ""
 msgstr ""
 
 msgid "dd full disk"
-msgstr "dd full disk"
+msgstr ""
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr "dd full disk - använd dd för att klona hela enheten till en komprimerad bildfil."
+msgstr ""
 
 msgid "fsarchiver"
-msgstr "fsarchiver"
+msgstr ""
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr "fsarchiver - använd fsarchiver för att klona alla partitioner till en arkivfil"
+msgstr ""
 
 msgid "rsync"
-msgstr "rsync"
+msgstr ""
 
 msgid "rsync - use rsync to sync files to destination directory"
-msgstr "rsync - använd rsync för att synkronisera filer till destinationskatalogen"
+msgstr ""

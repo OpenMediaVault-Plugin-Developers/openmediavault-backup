@@ -5,13 +5,14 @@
 # Translators:
 # okpail <okpail@gmail.com>, 2014
 # Varkentjes, 2020
+# Stephan Paternotte <stephan@paternottes.net>, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-16 11:24-0500\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: Varkentjes, 2020\n"
+"Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2025\n"
 "Language-Team: Dutch (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,10 +21,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Action"
-msgstr ""
+msgstr "Actie"
 
 msgid "Add new scheduled backup job"
-msgstr "Voeg een nieuwe geplande back-uptaak toe"
+msgstr "Nieuwe geplande back-uptaak toevoegen"
 
 msgid ""
 "Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
@@ -33,13 +34,13 @@ msgid "Backup"
 msgstr "Back-up"
 
 msgid "Create scheduled backup job"
-msgstr "Maak een geplande back-uptaak"
+msgstr "Geplande back-uptaak aanmaken"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "Datum & Tijd"
 
 msgid "Edit scheduled backup."
-msgstr ""
+msgstr "Geplande back-up bewerken."
 
 msgid "Example"
 msgstr "Voorbeeld"
@@ -48,13 +49,13 @@ msgid "Extra Options"
 msgstr "Extra opties"
 
 msgid "Extra options"
-msgstr ""
+msgstr "Extra opties"
 
 msgid "Fix cron"
-msgstr ""
+msgstr "Cron repareren"
 
 msgid "Fixing cron task if deleted ..."
-msgstr ""
+msgstr "Cron-taak repareren als deze is verwijderd…"
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
@@ -66,36 +67,36 @@ msgid ""
 msgstr "Als er een wachtwoord is opgegeven, wordt de back-up versleuteld. Moet tussen de 6 en 64 tekens lang zijn."
 
 msgid "Keep"
-msgstr "Bewaar"
+msgstr "Bewaren"
 
 msgid ""
 "Keep X days of backups.  Uses Linux find mtime command to determine if "
 "backup is older than X days."
-msgstr ""
+msgstr "X dagen aan back-ups bewaren. Gebruikt de opdracht Linux find mtime om te bepalen of de back-up ouder is dan X dagen."
 
 msgid "Keep the last x days of backups. Set to zero to disable."
 msgstr "Bewaar de laatste x dagen van de back-ups. Op nul zetten om uit te schakelen."
 
 msgid "Message"
-msgstr ""
+msgstr "Bericht"
 
 msgid "Method"
-msgstr ""
+msgstr "Methode"
 
 msgid "Notes"
-msgstr ""
+msgstr "Notites"
 
 msgid "Password"
-msgstr ""
+msgstr "Wachtwoord"
 
 msgid "Root device"
-msgstr ""
+msgstr "Root-apparaat"
 
 msgid "Schedule"
-msgstr ""
+msgstr "Planning"
 
 msgid "Scheduled Backup"
-msgstr ""
+msgstr "Geplande back-up"
 
 msgid "Settings"
 msgstr "Instellingen"
@@ -104,54 +105,54 @@ msgid "Shared Folder"
 msgstr "Gedeelde Map"
 
 msgid "Shared folder"
-msgstr ""
+msgstr "Gedeelde map"
 
 msgid "Show more output when checked."
-msgstr ""
+msgstr "Meer uitvoer weergeven indien aangevinkt."
 
 msgid "Starting backup ..."
-msgstr ""
+msgstr "Back-up starten…"
 
 msgid "System Backup"
 msgstr "Systeemback-up"
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr ""
+msgstr "Het veld mag alleen * bevatten of een door komma's gescheiden lijst met waarden."
 
 msgid "The location of the backup files."
-msgstr ""
+msgstr "De locatie van de back-upbestanden."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space."
-msgstr ""
+msgstr "Voeg om extra mappen uit te sluiten, vóór elke map --exclude= toe en scheidt extra vermeldingen met een spatie."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space. Example<br />--exclude=/pool "
 "--exclude=/test<br />Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "Voeg om extra mappen uit te sluiten, vóór elke map --exclude= toe en scheidt extra vermeldingen met een spatie.<br/>Waarschuwing!! Met incorrecte opties kan de back-up corrupt raken."
 
 msgid "Updated backup settings."
-msgstr ""
+msgstr "Back-upinstellingen bijgewerkt."
 
 msgid "Verbose output"
-msgstr ""
+msgstr "Uitgebreide uitvoer"
 
 msgid "Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "Waarschuwing!! Met incorrecte opties kan de back-up corrupt raken."
 
 msgid "borgbackup"
-msgstr ""
+msgstr "borgbackup"
 
 msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "borgbackup - gebruik borgbackup om een back-up van het systeem naar een archiefbestand te maken"
 
 msgid "dd"
-msgstr ""
+msgstr "dd"
 
 msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
+msgstr "dd - gebruik dd om de OS-partitie naar een gecomprimeerd afbeeldingsbestand te klonen."
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -159,7 +160,7 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
 "/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
 " - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd - gebruik dd om de OS-partitie naar een gecomprimeerd imagebestand te klonen.<br />dd full disk - gebruik dd om de hele schijf naar een gecomprimeerd imagebestand te klonen.<br />fsarchiver - gebruik fsarchiver om alle partities naar een archiefbestand te klonen<br />borgbackup - gebruik borgbackup om een back-up van het systeem te maken<br />rsync - gebruik rsync om bestanden naar de doelmap te synchroniseren"
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -167,23 +168,23 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
 "file<br />borgbackup - use borgbackup to backup system to an archive file<br"
 " />rsync - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd - gebruik dd om de OS-partitie naar een gecomprimeerd imagebestand te klonen.<br />dd full disk - gebruik dd om de hele schijf naar een gecomprimeerd imagebestand te klonen.<br />fsarchiver - gebruik fsarchiver om alle partities naar een archiefbestand te klonen<br />borgbackup - gebruik borgbackup om een back-up van het systeem te maken<br />rsync - gebruik rsync om bestanden naar de doelmap te synchroniseren"
 
 msgid "dd full disk"
-msgstr ""
+msgstr "dd full disk"
 
 msgid ""
 "dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd full disk - gebruik dd om het hele station naar een gecomprimeerd imagebestand te klonen."
 
 msgid "fsarchiver"
-msgstr ""
+msgstr "fsarchiver"
 
 msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr ""
+msgstr "fsarchiver - gebruik fsarchiver om alle partities naar een archiefbestand te klonen"
 
 msgid "rsync"
-msgstr ""
+msgstr "rsync"
 
 msgid "rsync - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "rsync - gebruik rsync om bestanden naar de doelmap te synchroniseren"
