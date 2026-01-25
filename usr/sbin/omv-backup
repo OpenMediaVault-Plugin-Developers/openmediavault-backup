@@ -444,6 +444,9 @@ case ${method} in
     ;;
 esac
 
+_log "Copy restore helper script to backup"
+cp -fv /usr/sbin/omv-restore-helper "${backupDir}/"
+
 _log "Backup complete."
 
 exit 0
