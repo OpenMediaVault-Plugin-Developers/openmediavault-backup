@@ -239,22 +239,23 @@ else
   _log_warning "Save of MBR and partition table failed!"
 fi
 
-# Save partition table using sfdisk
-_log "Save partitions using sfdisk"
-sfdisk --dump ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.sfdisk"
-if [ $? -eq 0 ]; then
-  _log "Successfully saved partition table using sfdisk"
+# Save partition table using sfdisk (MBR) or sgdisk (GPT)
+if [ "${part_type}" = "gpt" ]; then
+  _log "Save partitions using sgdisk"
+  sgdisk --backup="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.sgdisk" ${root}
+  if [ $? -eq 0 ]; then
+    _log "Successfully saved partition table using sgdisk"
+  else
+    _log_warning "Save of sgdisk partition table failed"
+  fi
 else
-  _log_warning "Save of sfdisk partition table failed"
-fi
-
-# Save partition table using sgdisk
-_log "Save partitions using sgdisk"
-sgdisk --backup="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.sgdisk" ${root}
-if [ $? -eq 0 ]; then
-  _log "Successfully saved partition table using sgdisk"
-else
-  _log_warning "Save of sgdisk partition table failed"
+  _log "Save partitions using sfdisk"
+  sfdisk --dump ${root} > "${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.sfdisk"
+  if [ $? -eq 0 ]; then
+    _log "Successfully saved partition table using sfdisk"
+  else
+    _log_warning "Save of sfdisk partition table failed"
+  fi
 fi
 
 # check for /boot partition
