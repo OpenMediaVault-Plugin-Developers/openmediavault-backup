@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 11:24-0500\n"
+"POT-Creation-Date: 2026-05-31 00:55+0000\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: songming <by@songming.me>, 2014-2016,2018,2020-2023\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/zh_CN/)\n"
@@ -21,30 +21,14 @@ msgstr ""
 msgid "Action"
 msgstr "激活"
 
-msgid "Add new scheduled backup job"
-msgstr "添加新的备份计划任务"
-
-msgid ""
-"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr "添加新的备份计划任务将会在计划任务 tab 页添加一项记录。"
-
 msgid "Backup"
 msgstr "备份"
-
-msgid "Create scheduled backup job"
-msgstr "创建计划备份任务"
 
 msgid "Date & Time"
 msgstr "日期 & 时间"
 
 msgid "Edit scheduled backup."
 msgstr "编辑计划任务。"
-
-msgid "Example"
-msgstr "例如"
-
-msgid "Extra Options"
-msgstr "扩展选项"
 
 msgid "Extra options"
 msgstr "扩展选项"
@@ -59,11 +43,6 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "高级用户设置 - 如果启动设备没确定不要使用高级设置。"
 
-msgid ""
-"If a password is specified, backup will be encrypted. Must be between 6 and "
-"64 characters."
-msgstr "如果设置密码，备份将被加密，密码必须介于6到64个字符。"
-
 msgid "Keep"
 msgstr "保留备份"
 
@@ -72,17 +51,11 @@ msgid ""
 "backup is older than X days."
 msgstr "保持 X 天的备份，使用 linux 的 find mtime 命令来决定是否超过 X 天。"
 
-msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr "保留最近 X 天的备份文件，0 表示不启用该功能。"
-
 msgid "Message"
 msgstr "消息"
 
 msgid "Method"
 msgstr "方法"
-
-msgid "Notes"
-msgstr "注意"
 
 msgid "Password"
 msgstr "密码"
@@ -99,9 +72,6 @@ msgstr "计划备份任务"
 msgid "Settings"
 msgstr "设置"
 
-msgid "Shared Folder"
-msgstr "共享文件夹"
-
 msgid "Shared folder"
 msgstr "共享文件夹"
 
@@ -111,19 +81,11 @@ msgstr "选中时会显示更多输出。"
 msgid "Starting backup ..."
 msgstr "开始备份 ..."
 
-msgid "System Backup"
-msgstr "系统备份"
-
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "此处应仅包含“*”或逗号分隔的值列表。"
 
 msgid "The location of the backup files."
 msgstr "备份文件位置。"
-
-msgid ""
-"To exclude addition directories, add --exclude= before each directory and "
-"separate additional entries with a space."
-msgstr "添加要排除的目录，给每个要排除的目录加前缀 --exclude=，多个目录间用空格隔开。"
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -137,28 +99,11 @@ msgstr "更新备份设置。"
 msgid "Verbose output"
 msgstr "详细输出"
 
-msgid "Warning!!  You can break the backup with wrong options."
-msgstr "警告!!使用错误的参数会中断备份。"
-
 msgid "borgbackup"
 msgstr "borgbackup"
 
-msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr "borgbackup - 使用 borgbackup 备份系统至归档文件。"
-
 msgid "dd"
 msgstr "dd"
-
-msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr "dd - 使用 dd 克隆系统分区到压缩镜像文件。"
-
-msgid ""
-"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
-"full disk - use dd to clone the entire drive to a compressed image file.<br "
-"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
-"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
-" - use rsync to sync files to destination directory"
-msgstr "dd - 使用 dd 克隆系统分区并压缩为镜像文件。<br />dd full disk - 使用 dd 克隆选中磁盘到压缩镜像文件。<br />fsarchiver - 使用 fsarchiver 克隆所有分区到归档文件。<br />borgbackup - 使用 borgbackup 备份系统到归档文件。<br />rsync - 使用 rsync 同步文件到目标目录。"
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -171,18 +116,8 @@ msgstr "dd - 使用 dd 克隆系统分区并压缩为镜像文件。<br />dd ful
 msgid "dd full disk"
 msgstr "dd 全盘"
 
-msgid ""
-"dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr "dd 全盘 - 使用 dd 克隆选中磁盘到压缩镜像文件。"
-
 msgid "fsarchiver"
 msgstr "fsarchiver"
 
-msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr "fsarchiver - 使用 fsarchiver 克隆整个分区至归档文件"
-
 msgid "rsync"
 msgstr "rsync"
-
-msgid "rsync - use rsync to sync files to destination directory"
-msgstr "rsync - 使用 rsync 同步文件到设置路径"

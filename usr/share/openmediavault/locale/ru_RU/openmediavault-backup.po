@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 11:24-0500\n"
+"POT-Creation-Date: 2026-05-31 00:55+0000\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Дмитрий <bardimnik@rambler.ru>, 2018\n"
 "Language-Team: Russian (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ru/)\n"
@@ -23,30 +23,14 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-msgid "Add new scheduled backup job"
-msgstr ""
-
-msgid ""
-"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr ""
-
 msgid "Backup"
 msgstr "Резервное копирование"
-
-msgid "Create scheduled backup job"
-msgstr ""
 
 msgid "Date & Time"
 msgstr ""
 
 msgid "Edit scheduled backup."
 msgstr ""
-
-msgid "Example"
-msgstr "Пример"
-
-msgid "Extra Options"
-msgstr "Дополнительные опции"
 
 msgid "Extra options"
 msgstr ""
@@ -61,11 +45,6 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "Только для опытных пользователей. Не используйте, если не известно точное корневое устройство."
 
-msgid ""
-"If a password is specified, backup will be encrypted. Must be between 6 and "
-"64 characters."
-msgstr ""
-
 msgid "Keep"
 msgstr "Хранение"
 
@@ -74,17 +53,11 @@ msgid ""
 "backup is older than X days."
 msgstr ""
 
-msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr "Хранить резервные копии последние х дней. Установите значение \"0\" для отключения."
-
 msgid "Message"
 msgstr ""
 
 msgid "Method"
 msgstr "Метод"
-
-msgid "Notes"
-msgstr ""
 
 msgid "Password"
 msgstr "Пароль"
@@ -101,9 +74,6 @@ msgstr ""
 msgid "Settings"
 msgstr "Настройки"
 
-msgid "Shared Folder"
-msgstr "Общая папка"
-
 msgid "Shared folder"
 msgstr ""
 
@@ -113,19 +83,11 @@ msgstr ""
 msgid "Starting backup ..."
 msgstr ""
 
-msgid "System Backup"
-msgstr "Резервное копирование системы"
-
 msgid "The field should only contain * or a comma separated list of values."
 msgstr ""
 
 msgid "The location of the backup files."
 msgstr ""
-
-msgid ""
-"To exclude addition directories, add --exclude= before each directory and "
-"separate additional entries with a space."
-msgstr "Чтобы исключить дополнительные каталоги, добавьте --exclude = перед каждым каталогом и отделите дополнительные записи пробелом."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -139,28 +101,11 @@ msgstr ""
 msgid "Verbose output"
 msgstr ""
 
-msgid "Warning!!  You can break the backup with wrong options."
-msgstr "Предупреждение!!! Вы можете сломать резервную копию с неправильными настройками."
-
 msgid "borgbackup"
-msgstr ""
-
-msgid "borgbackup - use borgbackup to backup system to an archive file"
 msgstr ""
 
 msgid "dd"
 msgstr "dd - dataset definition"
-
-msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
-
-msgid ""
-"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
-"full disk - use dd to clone the entire drive to a compressed image file.<br "
-"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
-"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
-" - use rsync to sync files to destination directory"
-msgstr ""
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -173,18 +118,8 @@ msgstr ""
 msgid "dd full disk"
 msgstr ""
 
-msgid ""
-"dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
-
 msgid "fsarchiver"
 msgstr "fsarchiver - File System Archiver"
 
-msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr "fsarchiver - используйте \"fsarchiver\", чтобы клонировать все разделы в архив."
-
 msgid "rsync"
 msgstr "rsync - Remote Synchronization"
-
-msgid "rsync - use rsync to sync files to destination directory"
-msgstr "rsync - используйте \"rsync\" для синхронизации файлов в каталог назначения."

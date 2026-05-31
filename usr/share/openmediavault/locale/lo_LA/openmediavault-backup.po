@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 11:24-0500\n"
+"POT-Creation-Date: 2026-05-31 00:55+0000\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Lao (Laos) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/lo_LA/)\n"
@@ -18,146 +18,91 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Action"
-msgstr ""
-
-msgid "Add new scheduled backup job"
-msgstr ""
-
-msgid ""
-"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr ""
+msgstr "ການດຳເນີນການ"
 
 msgid "Backup"
-msgstr ""
-
-msgid "Create scheduled backup job"
-msgstr ""
+msgstr "ສຳຮອງຂໍ້ມູນ"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "ວັນທີ ແລະ ເວລາ"
 
 msgid "Edit scheduled backup."
-msgstr ""
-
-msgid "Example"
-msgstr ""
-
-msgid "Extra Options"
-msgstr ""
+msgstr "ແກ້ໄຂການສຳຮອງຂໍ້ມູນແບບກຳນົດເວລາ."
 
 msgid "Extra options"
-msgstr ""
+msgstr "ຕົວເລືອກເພີ່ມເຕີມ"
 
 msgid "Fix cron"
-msgstr ""
+msgstr "ແກ້ໄຂ cron"
 
 msgid "Fixing cron task if deleted ..."
-msgstr ""
+msgstr "ກຳລັງແກ້ໄຂງານ cron ຖ້າຫາກຖືກລຶບ..."
 
 msgid ""
 "For advanced users only - Do not use unless exact root device is known."
-msgstr ""
-
-msgid ""
-"If a password is specified, backup will be encrypted. Must be between 6 and "
-"64 characters."
-msgstr ""
+msgstr "ສຳລັບຜູ້ໃຊ້ລະດັບສູງເທົ່ານັ້ນ - ຫ້າມໃຊ້ ຍົກເວັ້ນແຕ່ຈະຮູ້ຈັກອຸປະກອນຮາກ (root device) ທີ່ແນ່ນອນ."
 
 msgid "Keep"
-msgstr ""
+msgstr "ເກັບຮັກສາ"
 
 msgid ""
 "Keep X days of backups.  Uses Linux find mtime command to determine if "
 "backup is older than X days."
-msgstr ""
-
-msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr ""
+msgstr "ເກັບຮັກສາການສຳຮອງຂໍ້ມູນໄວ້ X ມື້. ໃຊ້ຄຳສັ່ງ find mtime ຂອງ Linux ເພື່ອກວດສອບວ່າການສຳຮອງຂໍ້ມູນນັ້ນເກົ່າກວ່າ X ມື້ ຫຼື ບໍ່."
 
 msgid "Message"
-msgstr ""
+msgstr "ຂໍ້ຄວາມ"
 
 msgid "Method"
-msgstr ""
-
-msgid "Notes"
-msgstr ""
+msgstr "ວິທີການ"
 
 msgid "Password"
-msgstr ""
+msgstr "ລະຫັດຜ່ານ"
 
 msgid "Root device"
-msgstr ""
+msgstr "ອຸປະກອນຮາກ (Root device)"
 
 msgid "Schedule"
-msgstr ""
+msgstr "ກຳນົດເວລາ"
 
 msgid "Scheduled Backup"
-msgstr ""
+msgstr "ການສຳຮອງຂໍ້ມູນແບບກຳນົດເວລາ"
 
 msgid "Settings"
-msgstr ""
-
-msgid "Shared Folder"
-msgstr ""
+msgstr "ການຕັ້ງຄ່າ"
 
 msgid "Shared folder"
-msgstr ""
+msgstr "ໂຟນເດີທີ່ໃຊ້ຮ່ວມກັນ"
 
 msgid "Show more output when checked."
-msgstr ""
+msgstr "ສະແດງລາຍລະອຽດການເຮັດວຽກເພີ່ມເຕີມເມື່ອເລືອກ."
 
 msgid "Starting backup ..."
-msgstr ""
-
-msgid "System Backup"
-msgstr ""
+msgstr "ກຳລັງເລີ່ມການສຳຮອງຂໍ້ມູນ..."
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr ""
+msgstr "ຊ່ອງນີ້ຄວນມີພຽງເຄື່ອງໝາຍ * ຫຼື ລາຍການຄ່າທີ່ຂັ້ນດ້ວຍຈຸດ."
 
 msgid "The location of the backup files."
-msgstr ""
-
-msgid ""
-"To exclude addition directories, add --exclude= before each directory and "
-"separate additional entries with a space."
-msgstr ""
+msgstr "ສະຖານທີ່ເກັບໄຟລ໌ສຳຮອງຂໍ້ມູນ."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
 "separate additional entries with a space. Example<br />--exclude=/pool "
 "--exclude=/test<br />Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "ເພື່ອຍົກເວັ້ນໄດເຣັກທໍຣີເພີ່ມເຕີມ, ໃຫ້ຕື່ມ --exclude= ໄວ້ທາງໜ້າແຕ່ລະໄດເຣັກທໍຣີ ແລະ ຂັ້ນແຕ່ລະລາຍການດ້ວຍຍະຫວ່າງ. ຕົວຢ່າງ<br />--exclude=/pool --exclude=/test<br />ຄຳເຕືອນ!! ເຈົ້າສາມາດເຮັດໃຫ້ການສຳຮອງຂໍ້ມູນຜິດພາດໄດ້ຫາກເລືອກຕົວເລືອກທີ່ບໍ່ຖືກຕ້ອງ."
 
 msgid "Updated backup settings."
-msgstr ""
+msgstr "ອັບເດດການຕັ້ງຄ່າການສຳຮອງຂໍ້ມູນແລ້ວ."
 
 msgid "Verbose output"
-msgstr ""
-
-msgid "Warning!!  You can break the backup with wrong options."
-msgstr ""
+msgstr "ສະແດງລາຍລະອຽດການເຮັດວຽກ (Verbose)"
 
 msgid "borgbackup"
-msgstr ""
-
-msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr ""
+msgstr "borgbackup"
 
 msgid "dd"
-msgstr ""
-
-msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr ""
-
-msgid ""
-"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
-"full disk - use dd to clone the entire drive to a compressed image file.<br "
-"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
-"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
-" - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd"
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -165,23 +110,13 @@ msgid ""
 "/>fsarchiver - use fsarchiver to clone the OS partition to an archive "
 "file<br />borgbackup - use borgbackup to backup system to an archive file<br"
 " />rsync - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "dd - ໃຊ້ dd ເພື່ອໂຄລນພາທິຊັນ OS ໄວ້ໃນໄຟລ໌ອິເມຈທີ່ຖືກບີບອັດ.<br />dd full disk - ໃຊ້ dd ເພື່ອໂຄລນດິດທັງໝົດໄວ້ໃນໄຟລ໌ອິເມຈທີ່ຖືກບີບອັດ.<br />fsarchiver - ໃຊ້ fsarchiver ເພື່ອໂຄລນພາທິຊັນ OS ໄວ້ໃນໄຟລ໌ຈັດເກັບ<br />borgbackup - ໃຊ້ borgbackup ເພື່ອສຳຮອງຂໍ້ມູນລະບົບໄວ້ໃນໄຟລ໌ຈັດເກັບ<br />rsync - ໃຊ້ rsync ເພື່ອຊິງຄ໌ໄຟລ໌ໄປຍັງໄດເຣັກທໍຣີປາຍທາງ"
 
 msgid "dd full disk"
-msgstr ""
-
-msgid ""
-"dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr ""
+msgstr "dd ທັງໝົດດິດ"
 
 msgid "fsarchiver"
-msgstr ""
-
-msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr ""
+msgstr "fsarchiver"
 
 msgid "rsync"
-msgstr ""
-
-msgid "rsync - use rsync to sync files to destination directory"
-msgstr ""
+msgstr "rsync"

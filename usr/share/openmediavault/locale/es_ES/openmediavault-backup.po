@@ -3,48 +3,32 @@
 # This file is distributed under the same license as the openmediavault-backup package.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020-2023
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014,2016,2018,2022-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 11:24-0500\n"
+"POT-Creation-Date: 2026-05-31 00:55+0000\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
-"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020-2023\n"
-"Language-Team: Spanish (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/es/)\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014,2016,2018,2022-2023\n"
+"Language-Team: Spanish (Spain) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Action"
 msgstr "Acción"
 
-msgid "Add new scheduled backup job"
-msgstr "Añadir un nuevo trabajo de backup programado"
-
-msgid ""
-"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr "Añadir un nuevo trabajo de backup programado, añadirá el trabajo a la lista de trabajos programados"
-
 msgid "Backup"
 msgstr "Backup"
-
-msgid "Create scheduled backup job"
-msgstr "Crear un trabajo de Backup programado"
 
 msgid "Date & Time"
 msgstr "Fecha & Hora"
 
 msgid "Edit scheduled backup."
 msgstr "Editar trabajo programado"
-
-msgid "Example"
-msgstr "Ejemplo"
-
-msgid "Extra Options"
-msgstr "Opciones extra"
 
 msgid "Extra options"
 msgstr "Opciones Extras"
@@ -59,11 +43,6 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "Solo para usuarios avanzados - No usar a menos que se conozca el dispositivo raíz (root)"
 
-msgid ""
-"If a password is specified, backup will be encrypted. Must be between 6 and "
-"64 characters."
-msgstr "Si la contraseña se suministra, el backup será cifrado, Debe tener entre 6 y 64 caracteres."
-
 msgid "Keep"
 msgstr "Mantener"
 
@@ -72,17 +51,11 @@ msgid ""
 "backup is older than X days."
 msgstr "Mantenga X días de copias de seguridad. Utiliza el comando find mtime de Linux para determinar si la copia de seguridad tiene más de X días."
 
-msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr "Mantener los ultimos x dias de Backup. poner a cero para deshabilitar."
-
 msgid "Message"
 msgstr "Mensaje"
 
 msgid "Method"
 msgstr "Metodo"
-
-msgid "Notes"
-msgstr "Notas"
 
 msgid "Password"
 msgstr "Contraseña"
@@ -99,9 +72,6 @@ msgstr "Backup Programado"
 msgid "Settings"
 msgstr "Opciones"
 
-msgid "Shared Folder"
-msgstr "Carpetas compartidas"
-
 msgid "Shared folder"
 msgstr "Carpeta compartida"
 
@@ -111,19 +81,11 @@ msgstr "Mostrar más resultados cuando esté marcado."
 msgid "Starting backup ..."
 msgstr "Iniciando Backup ..."
 
-msgid "System Backup"
-msgstr "Backup del sistema"
-
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "El campo solo debe contener * o una lista de valores separados por comas."
 
 msgid "The location of the backup files."
 msgstr "Ubicación de los archivos de backup."
-
-msgid ""
-"To exclude addition directories, add --exclude= before each directory and "
-"separate additional entries with a space."
-msgstr "Para excluir directotrios, añadir --exclude= antes de cada directorio y separa las entradas con espacios."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -137,28 +99,11 @@ msgstr "Opciones de backup actualizadas."
 msgid "Verbose output"
 msgstr "Salida ampliada"
 
-msgid "Warning!!  You can break the backup with wrong options."
-msgstr "Precaución! Puede dañar el Backup con opciones erroneas."
-
 msgid "borgbackup"
 msgstr "borgbackup"
 
-msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr "borgbackup - Usar borgbackup para hacer un backup en un archivo"
-
 msgid "dd"
 msgstr "dd"
-
-msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr "dd - Usar dd para clonar el SO a una imagen comprimida."
-
-msgid ""
-"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
-"full disk - use dd to clone the entire drive to a compressed image file.<br "
-"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
-"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
-" - use rsync to sync files to destination directory"
-msgstr "dd: use dd para clonar la partición del sistema operativo en un archivo de imagen comprimido. <br /> dd disco completo: use dd para clonar todo el disco en un archivo de imagen comprimido <br /> fsarchiver: use fsarchiver para clonar todas las particiones en un archivo de archivo <br />borgbackup: use borgbackup para hacer una copia de seguridad del sistema a un archivo <br /> rsync: use rsync para sincronizar archivos con el directorio de destino"
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -171,18 +116,8 @@ msgstr "dd: use dd para clonar la partición del sistema operativo en un archivo
 msgid "dd full disk"
 msgstr "dd el disco completo"
 
-msgid ""
-"dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr "dd Disco completo - usar dd para clonar un disco entero a un archivo de imagen comprimido."
-
 msgid "fsarchiver"
 msgstr "fsarchiver"
 
-msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr "fsarchiver - Use fsarchiver para clonar todas las particiones en un archivo comprimido."
-
 msgid "rsync"
 msgstr "rsync"
-
-msgid "rsync - use rsync to sync files to destination directory"
-msgstr "rsync - Use rsync para sincronizar los archivos con los del directorio de destino."

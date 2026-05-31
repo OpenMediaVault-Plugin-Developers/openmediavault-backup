@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 11:24-0500\n"
+"POT-Creation-Date: 2026-05-31 00:55+0000\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>, 2014,2016-2018,2020,2023\n"
 "Language-Team: Japanese (Japan) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/ja_JP/)\n"
@@ -21,30 +21,14 @@ msgstr ""
 msgid "Action"
 msgstr "アクション"
 
-msgid "Add new scheduled backup job"
-msgstr "新しいバックアップジョブのスケジュールを追加"
-
-msgid ""
-"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr "新しいスケジュールバックアップジョブを追加すると、スケジュールジョブのタブにジョブが追加されます。"
-
 msgid "Backup"
 msgstr "バックアップ"
-
-msgid "Create scheduled backup job"
-msgstr "バックアップジョブのスケジュールを作成"
 
 msgid "Date & Time"
 msgstr "日付と時刻"
 
 msgid "Edit scheduled backup."
 msgstr "スケジュールされたバックアップを編集。"
-
-msgid "Example"
-msgstr "例"
-
-msgid "Extra Options"
-msgstr "追加オプション"
 
 msgid "Extra options"
 msgstr "追加オプション"
@@ -59,11 +43,6 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "上級ユーザーのみ - 正確なルートデバイスがわかっていない場合は使用しないでください。"
 
-msgid ""
-"If a password is specified, backup will be encrypted. Must be between 6 and "
-"64 characters."
-msgstr "パスワードが指定されている場合、バックアップは暗号化されます。 長さは6〜64文字でなければなりません。"
-
 msgid "Keep"
 msgstr "保持"
 
@@ -72,17 +51,11 @@ msgid ""
 "backup is older than X days."
 msgstr ""
 
-msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr "最後のx日間のバックアップを保持します。 無効にするには、ゼロに設定します。"
-
 msgid "Message"
 msgstr "メッセージ"
 
 msgid "Method"
 msgstr "メソッド"
-
-msgid "Notes"
-msgstr "注釈"
 
 msgid "Password"
 msgstr "パスワード"
@@ -99,9 +72,6 @@ msgstr "スケジュールされたバックアップ"
 msgid "Settings"
 msgstr "設定"
 
-msgid "Shared Folder"
-msgstr "共有フォルダ"
-
 msgid "Shared folder"
 msgstr "共有フォルダ"
 
@@ -111,19 +81,11 @@ msgstr ""
 msgid "Starting backup ..."
 msgstr "バックアップを開始 ..."
 
-msgid "System Backup"
-msgstr "システムバックアップ"
-
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "このフィールドには、* またはカンマで区切られた値のリストのみを含める必要があります。"
 
 msgid "The location of the backup files."
 msgstr "バックアップファイルの保存場所です。"
-
-msgid ""
-"To exclude addition directories, add --exclude= before each directory and "
-"separate additional entries with a space."
-msgstr "追加ディレクトリを除外するには、各ディレクトリの前に--exclude =を追加し、追加のエントリをスペースで区切ります。"
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -137,28 +99,11 @@ msgstr "バックアップの設定を更新しました。"
 msgid "Verbose output"
 msgstr ""
 
-msgid "Warning!!  You can break the backup with wrong options."
-msgstr "警告！！ 間違ったオプションでバックアップが中断されます。"
-
 msgid "borgbackup"
 msgstr "borgbackup"
 
-msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr "borgbackup - borgbackupを使用してシステムをアーカイブファイルにバックアップします"
-
 msgid "dd"
 msgstr "dd"
-
-msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr "dd - ddを使用して、OSパーティションのクローンを圧縮イメージファイルに作成します。"
-
-msgid ""
-"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
-"full disk - use dd to clone the entire drive to a compressed image file.<br "
-"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
-"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
-" - use rsync to sync files to destination directory"
-msgstr "dd - OS パーティションを圧縮イメージファイルにクローンするために dd を使用します。<br />dd full disk - dd を使ってドライブ全体を圧縮イメージファイルにクローンします。<br />fsarchiver - fsarchiver を使ってすべてのパーティションをアーカイブファイルにクローンします。<br />borgbackup - borgbackup を使ってシステムをアーカイブファイルにバックアップします。<br />rsync - rsyncを使ってファイルを目的のディレクトリに同期させます。"
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -171,18 +116,8 @@ msgstr ""
 msgid "dd full disk"
 msgstr "dd full disk"
 
-msgid ""
-"dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr "dd full disk - ddを使用して、ドライブ全体を圧縮イメージファイルに複製します。"
-
 msgid "fsarchiver"
 msgstr "fsarchiver"
 
-msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr "fsarchiver - fsarchiverを使って、すべてのパーティションをアーカイブファイルに複製します。"
-
 msgid "rsync"
 msgstr "rsync"
-
-msgid "rsync - use rsync to sync files to destination directory"
-msgstr "rsync - ファイルを宛先ディレクトリに同期するためにrsyncを使用します。"

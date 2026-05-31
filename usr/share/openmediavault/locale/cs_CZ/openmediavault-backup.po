@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 11:24-0500\n"
+"POT-Creation-Date: 2026-05-31 00:55+0000\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Marek Pavelka, 2024\n"
 "Language-Team: Czech (Czech Republic) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/cs_CZ/)\n"
@@ -23,30 +23,14 @@ msgstr ""
 msgid "Action"
 msgstr "Akce"
 
-msgid "Add new scheduled backup job"
-msgstr "Přidat novou naplánovanou úlohu zálohování"
-
-msgid ""
-"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr "Přidání nové naplánované úlohy zálohování přidá úlohu na kartu Naplánované úlohy."
-
 msgid "Backup"
 msgstr "Zálohování systému a nastavení"
-
-msgid "Create scheduled backup job"
-msgstr "Vytvořit naplánovanou úlohu zálohování"
 
 msgid "Date & Time"
 msgstr "Datum a čas"
 
 msgid "Edit scheduled backup."
 msgstr "Upravit naplánované zálohování."
-
-msgid "Example"
-msgstr "Příklad"
-
-msgid "Extra Options"
-msgstr "Další předvolby"
 
 msgid "Extra options"
 msgstr "Dodatečné volby"
@@ -61,11 +45,6 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "Pouze pro pokročilé uživatele – Nepoužívejte, pokud neznáte přesné zařízení s kořenovou složkou."
 
-msgid ""
-"If a password is specified, backup will be encrypted. Must be between 6 and "
-"64 characters."
-msgstr "Pokud je zadáno heslo, bude záloha zašifrována. Musí mít 6 až 64 znaků."
-
 msgid "Keep"
 msgstr "Ponechat"
 
@@ -74,17 +53,11 @@ msgid ""
 "backup is older than X days."
 msgstr "Ponechat zálohy za X dní. Používá linuxový příkaz find mtime ke zjištění, zda je záloha starší než X dní."
 
-msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr "Ponechat zálohy za posledních X dní. Nastavte na nulu pro zakázání."
-
 msgid "Message"
 msgstr "Zpráva"
 
 msgid "Method"
 msgstr "Metoda"
-
-msgid "Notes"
-msgstr "Poznámky"
 
 msgid "Password"
 msgstr "Heslo"
@@ -101,9 +74,6 @@ msgstr "Naplánované zálohování"
 msgid "Settings"
 msgstr "Nastavení"
 
-msgid "Shared Folder"
-msgstr "Sdílená složka"
-
 msgid "Shared folder"
 msgstr "Sdílená složka"
 
@@ -113,19 +83,11 @@ msgstr "Zobrazit více výstupů, když je zaškrtnuto."
 msgid "Starting backup ..."
 msgstr "Spouštění zálohování…"
 
-msgid "System Backup"
-msgstr "Záloha systému"
-
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "Pole by mělo obsahovat pouze * nebo seznam hodnot oddělených čárkou."
 
 msgid "The location of the backup files."
 msgstr "Umístění souborů zálohy."
-
-msgid ""
-"To exclude addition directories, add --exclude= before each directory and "
-"separate additional entries with a space."
-msgstr "Složky vyloučíte ze zálohy tím, že před každou z nich přidáte „--exclude=“ – jednotlivé položky oddělujte čárkou."
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -139,28 +101,11 @@ msgstr "Aktualizované nastavení zálohování."
 msgid "Verbose output"
 msgstr "Podrobnější výstup"
 
-msgid "Warning!!  You can break the backup with wrong options."
-msgstr "Varování! Chybné předvolby mohou znefunkčnit zálohování."
-
 msgid "borgbackup"
 msgstr "borgbackup"
 
-msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr "borgbackup – použijte borgbackup pro zálohování systému do souboru s archivem"
-
 msgid "dd"
 msgstr "dd"
-
-msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr "dd – použijte dd pro naklonování oddílu s operačním systémem do komprimovaného souboru s obrazem."
-
-msgid ""
-"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
-"full disk - use dd to clone the entire drive to a compressed image file.<br "
-"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
-"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
-" - use rsync to sync files to destination directory"
-msgstr "dd – použijte dd pro naklonování oddílu s operačním systémem do komprimovaného souboru s obrazem.<br />dd (celý disk) – použijte dd pro naklonování celého disku do komprimovaného souboru s obrazem.<br />fsarchiver – použijte fsarchiver pro naklonování všech oddílů do souboru s archivem.<br />borgbackup – použijte borgbackup pro zálohování systému do souboru s archivem.<br />rsync – použijte rsync pro synchronizaci souborů do cílového adresáře"
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -173,18 +118,8 @@ msgstr "dd – použijte dd pro naklonování oddílu s operačním systémem do
 msgid "dd full disk"
 msgstr "dd (celý disk)"
 
-msgid ""
-"dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr "dd (celý disk) – použijte dd pro naklonování celého disku do komprimovaného souboru s obrazem."
-
 msgid "fsarchiver"
 msgstr "fsarchiver"
 
-msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr "fsarchiver – použijte fsarchiver pro naklonování všech oddílů do souboru s archivem"
-
 msgid "rsync"
 msgstr "rsync"
-
-msgid "rsync - use rsync to sync files to destination directory"
-msgstr "rsync – použijte rsync pro synchronizaci souborů do cílového adresáře"
