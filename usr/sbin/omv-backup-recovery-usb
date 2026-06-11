@@ -1,0 +1,374 @@
+#!/bin/bash
+#
+# shellcheck disable=SC1091,SC2086
+#
+# Build a self-contained "recovery USB" bundle: a chosen backup set plus the
+# restore helper, manifest and README, written onto a removable device. The
+# restore itself is still run later from a live/rescue environment - a restore
+# cannot run from the live OpenMediaVault system because it overwrites the disk
+# the OS is booted from.
+#
+# Copyright (c) 2026 openmediavault plugin developers
+# Licensed under the GNU General Public License version 3.
+#
+# version: 1.0.0
+#
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+logFile="/var/log/omv-backup.log"
+
+_log()
+{
+  echo "[$(date +'%Y-%m-%d %H:%M:%S%z')] [recovery-usb] $1" | tee -a "${logFile}" >&2
+}
+
+_err()
+{
+  echo "[$(date +'%Y-%m-%d %H:%M:%S%z')] [recovery-usb] ERROR: $1" | tee -a "${logFile}" >&2
+}
+
+# Defaults / option holders.
+device=""
+date_token=""
+backupDir=""
+filesystem="ext4"
+label="OMVRECOVERY"
+assumeyes=0
+force=0
+action="prepare"
+
+usage()
+{
+  cat <<EOF
+Usage: $0 [options]
+
+  --device <dev>       Target whole-disk removable device (e.g. /dev/sdb)
+  --date <token>       Backup set date (default: latest available)
+  --backup-dir <path>  Source backup directory (default: from OMV config)
+  --filesystem <fs>    ext4 (default) or exfat
+  --label <label>      Filesystem label (default: OMVRECOVERY)
+  --yes                Do not prompt for confirmation (used by the GUI)
+  --force              Allow a non-removable target (dangerous)
+  --list-devices       Print candidate removable devices as JSON and exit
+  --list-backups       Print available backup sets as JSON and exit
+  -h, --help           Show this help
+EOF
+}
+
+# Escape a string for inclusion in a JSON double-quoted value.
+json_escape()
+{
+  printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'
+}
+
+# Resolve the backup directory from the OMV config unless one was given.
+resolve_backup_dir()
+{
+  if [ -n "${backupDir}" ]; then
+    return 0
+  fi
+  local sfref sfpath
+  sfref=$(omv_config_get "/config/system/backup/sharedfolderref" 2>/dev/null)
+  if ! omv_isuuid "${sfref}"; then
+    return 1
+  fi
+  sfpath="$(omv_get_sharedfolder_path "${sfref}" 2>/dev/null)"
+  [ -n "${sfpath}" ] || return 1
+  backupDir="${sfpath}/${OMV_BACKUP_DIR_NAME}"
+  return 0
+}
+
+# Echo the whole disk (/dev/xxx) that backs a given path or device, or nothing.
+disk_of()
+{
+  local src
+  src=$(findmnt -no SOURCE "$1" 2>/dev/null)
+  [ -z "${src}" ] && src=$(findmnt -no SOURCE --target "$1" 2>/dev/null)
+  [ -z "${src}" ] && return 0
+  local pk
+  pk=$(lsblk -no pkname "${src}" 2>/dev/null | head -1)
+  if [ -n "${pk}" ]; then
+    echo "/dev/${pk}"
+  fi
+}
+
+# Print candidate target devices (removable / USB whole disks, excluding the
+# system and backup disks) as a JSON array.
+list_devices_json()
+{
+  resolve_backup_dir || true
+  local rootdisk bkdisk
+  rootdisk=$(disk_of /)
+  if [ -n "${backupDir}" ] && [ -d "${backupDir}" ]; then
+    bkdisk=$(disk_of "${backupDir}")
+  fi
+
+  local first=1 NAME SIZE MODEL TRAN RM HOTPLUG TYPE dev model desc
+  printf '['
+  while read -r line; do
+    NAME=""; SIZE=""; MODEL=""; TRAN=""; RM=""; HOTPLUG=""; TYPE=""
+    eval "${line}"
+    dev="/dev/${NAME}"
+    [ "${dev}" = "${rootdisk}" ] && continue
+    [ "${dev}" = "${bkdisk}" ] && continue
+    # Skip optical drives and anything that is not a plain disk.
+    [ "${TYPE}" != "disk" ] && continue
+    # Only offer removable / USB / hotplug devices.
+    if [ "${RM}" != "1" ] && [ "${TRAN}" != "usb" ] && [ "${HOTPLUG}" != "1" ]; then
+      continue
+    fi
+    model=$(printf '%s' "${MODEL}" | sed 's/[[:space:]]*$//')
+    desc="${dev}"
+    [ -n "${model}" ] && desc="${desc} - ${model}"
+    desc="${desc} (${SIZE})"
+    [ ${first} -eq 0 ] && printf ','
+    printf '{"devicefile":"%s","description":"%s"}' "${dev}" "$(json_escape "${desc}")"
+    first=0
+  done < <(lsblk -dPo NAME,SIZE,MODEL,TRAN,RM,HOTPLUG,TYPE 2>/dev/null)
+  printf ']'
+}
+
+# Print available backup sets (newest first) as a JSON array.
+list_backups_json()
+{
+  if ! resolve_backup_dir || [ ! -d "${backupDir}" ]; then
+    printf '[]'
+    return 0
+  fi
+  local prefix="${OMV_BACKUP_FILE_PREFIX}"
+  local dates d method desc first=1
+  dates=$(find "${backupDir}" -maxdepth 1 -type f -name "${prefix}-*" | \
+          sed -n 's/.*'"${prefix}"'-\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}_[0-9]\{2\}-[0-9]\{2\}-[0-9]\{2\}\).*/\1/p' | \
+          sort -r | uniq)
+  printf '['
+  for d in ${dates}; do
+    method=$(grep -m1 '^method=' "${backupDir}/${prefix}-${d}.manifest" 2>/dev/null | cut -d'"' -f2)
+    desc="${d}"
+    [ -n "${method}" ] && desc="${d}  (${method})"
+    [ ${first} -eq 0 ] && printf ','
+    printf '{"date":"%s","description":"%s"}' "${d}" "$(json_escape "${desc}")"
+    first=0
+  done
+  printf ']'
+}
+
+# Parse options.
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --device) device="$2"; shift 2 ;;
+    --date) date_token="$2"; shift 2 ;;
+    --backup-dir) backupDir="$2"; shift 2 ;;
+    --filesystem) filesystem="$2"; shift 2 ;;
+    --label) label="$2"; shift 2 ;;
+    --yes) assumeyes=1; shift ;;
+    --force) force=1; shift ;;
+    --list-devices) action="list-devices"; shift ;;
+    --list-backups) action="list-backups"; shift ;;
+    -h|--help) usage; exit 0 ;;
+    *) _err "Unknown argument: $1"; usage; exit 1 ;;
+  esac
+done
+
+case "${action}" in
+  list-devices) list_devices_json; exit 0 ;;
+  list-backups) list_backups_json; exit 0 ;;
+esac
+
+# ---- prepare flow ----------------------------------------------------------
+
+if ! resolve_backup_dir; then
+  _err "No backup volume configured. Set a shared folder in Backup settings first."
+  exit 2
+fi
+if [ ! -d "${backupDir}" ]; then
+  _err "Backup directory not found: ${backupDir}"
+  exit 3
+fi
+
+prefix="${OMV_BACKUP_FILE_PREFIX}"
+
+# Resolve the backup set (default: latest).
+if [ -z "${date_token}" ]; then
+  date_token=$(find "${backupDir}" -maxdepth 1 -type f -name "${prefix}-*" | \
+               sed -n 's/.*'"${prefix}"'-\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}_[0-9]\{2\}-[0-9]\{2\}-[0-9]\{2\}\).*/\1/p' | \
+               sort -r | uniq | head -1)
+fi
+if [ -z "${date_token}" ]; then
+  _err "No backups found in ${backupDir}"
+  exit 4
+fi
+
+# Validate the target device.
+if [ -z "${device}" ] || [ ! -b "${device}" ]; then
+  _err "Target is not a block device: ${device}"
+  exit 5
+fi
+if [ -n "$(lsblk -ndo PKNAME "${device}" 2>/dev/null)" ]; then
+  _err "${device} appears to be a partition; specify the whole disk."
+  exit 5
+fi
+diskname=$(basename "${device}")
+removable=$(cat "/sys/block/${diskname}/removable" 2>/dev/null)
+tran=$(lsblk -dno TRAN "${device}" 2>/dev/null | tr -d '[:space:]')
+if [ "${removable}" != "1" ] && [ "${tran}" != "usb" ] && [ ${force} -ne 1 ]; then
+  _err "${device} is not a removable/USB device. Refusing (override with --force)."
+  exit 6
+fi
+
+# Never touch the system or backup disk.
+rootdisk=$(disk_of /)
+bkdisk=$(disk_of "${backupDir}")
+for d in "${rootdisk}" "${bkdisk}"; do
+  if [ -n "${d}" ] && [ "${device}" = "${d}" ]; then
+    _err "Refusing: ${device} is the system or backup disk."
+    exit 7
+  fi
+done
+
+# Validate the requested filesystem and that its tooling is present.
+case "${filesystem}" in
+  ext4)
+    command -v mkfs.ext4 >/dev/null 2>&1 || { _err "mkfs.ext4 not available."; exit 10; }
+    ;;
+  exfat)
+    command -v mkfs.exfat >/dev/null 2>&1 || { _err "mkfs.exfat not available (install exfatprogs)."; exit 10; }
+    ;;
+  *)
+    _err "Unsupported filesystem: ${filesystem} (use ext4 or exfat)."
+    exit 10
+    ;;
+esac
+
+# Build the list of files that make up the bundle.
+declare -a bundle_files
+declare -a bundle_dirs
+copy_whole=0
+method=$(grep -m1 '^method=' "${backupDir}/${prefix}-${date_token}.manifest" 2>/dev/null | cut -d'"' -f2)
+
+mapfile -t bundle_files < <(find "${backupDir}" -maxdepth 1 -type f -name "${prefix}-${date_token}*")
+[ -f "${backupDir}/omv-restore-helper" ] && bundle_files+=("${backupDir}/omv-restore-helper")
+[ -f "${backupDir}/RESTORE-README.txt" ] && bundle_files+=("${backupDir}/RESTORE-README.txt")
+if [ "${method}" = "borg" ] && [ -d "${backupDir}/borgbackup" ]; then
+  bundle_dirs+=("${backupDir}/borgbackup")
+fi
+# rsync backups store the tree directly in the backup dir; copy all of it.
+if [ "${method}" = "rsync" ] || { [ ${#bundle_files[@]} -eq 0 ] && [ -d "${backupDir}/bin" ]; }; then
+  copy_whole=1
+fi
+
+# Size check (need + ~5% + 64 MiB headroom).
+need=0
+if [ ${copy_whole} -eq 1 ]; then
+  need=$(du -sb "${backupDir}" 2>/dev/null | cut -f1)
+else
+  for f in "${bundle_files[@]}"; do
+    need=$((need + $(stat -c%s "${f}" 2>/dev/null || echo 0)))
+  done
+  for d in "${bundle_dirs[@]}"; do
+    need=$((need + $(du -sb "${d}" 2>/dev/null | cut -f1)))
+  done
+fi
+need_total=$((need + need / 20 + 64 * 1024 * 1024))
+devsize=$(blockdev --getsize64 "${device}" 2>/dev/null)
+if [ -n "${devsize}" ] && [ "${devsize}" -lt "${need_total}" ]; then
+  _err "Device too small: bundle needs ~$((need_total / 1024 / 1024)) MiB, ${device} has $((devsize / 1024 / 1024)) MiB."
+  exit 8
+fi
+
+# Final confirmation (skipped with --yes / from the GUI).
+if [ ${assumeyes} -ne 1 ]; then
+  echo "This will ERASE ${device} and write a recovery bundle for ${date_token}."
+  read -rp "Type YES to continue: " ans
+  if [ "${ans}" != "YES" ]; then
+    _err "Aborted by user."
+    exit 9
+  fi
+fi
+
+_log "Preparing recovery USB on ${device} (fs=${filesystem}, label=${label}, backup=${date_token})"
+
+# Unmount anything currently mounted from the target.
+while read -r mp; do
+  [ -n "${mp}" ] && umount "${mp}" 2>/dev/null
+done < <(lsblk -nro MOUNTPOINT "${device}" 2>/dev/null)
+
+# Wipe and create a single GPT data partition.
+wipefs -a "${device}" >/dev/null 2>&1
+if command -v sgdisk >/dev/null 2>&1; then
+  sgdisk --zap-all "${device}" >/dev/null 2>&1
+  sgdisk --new=1:0:0 --typecode=1:8300 "${device}" >/dev/null 2>&1
+else
+  parted -s "${device}" mklabel gpt mkpart primary 0% 100% >/dev/null 2>&1
+fi
+partprobe "${device}" >/dev/null 2>&1
+udevadm settle 2>/dev/null
+sleep 1
+
+# Determine the partition node (nvme/mmcblk style targets need a "p").
+case "${device}" in
+  *[0-9]) part="${device}p1" ;;
+  *) part="${device}1" ;;
+esac
+if [ ! -b "${part}" ]; then
+  sleep 2
+  partprobe "${device}" >/dev/null 2>&1
+fi
+if [ ! -b "${part}" ]; then
+  _err "Partition ${part} did not appear after partitioning ${device}."
+  exit 11
+fi
+
+# Create the filesystem.
+_log "Creating ${filesystem} filesystem on ${part}"
+if [ "${filesystem}" = "ext4" ]; then
+  mkfs.ext4 -F -L "${label}" "${part}" >/dev/null 2>&1
+else
+  mkfs.exfat -n "${label}" "${part}" >/dev/null 2>&1
+fi
+if [ $? -ne 0 ]; then
+  _err "Failed to create filesystem on ${part}."
+  exit 12
+fi
+
+# Mount and copy the bundle.
+mnt=$(mktemp -d)
+cleanup() {
+  sync
+  umount "${mnt}" 2>/dev/null
+  rmdir "${mnt}" 2>/dev/null
+}
+trap cleanup EXIT
+
+if ! mount "${part}" "${mnt}"; then
+  _err "Failed to mount ${part}."
+  exit 13
+fi
+
+_log "Copying recovery bundle to ${device} ..."
+if [ ${copy_whole} -eq 1 ]; then
+  rsync -aH "${backupDir}/" "${mnt}/" 2>>"${logFile}"
+else
+  rsync -aH "${bundle_files[@]}" "${mnt}/" 2>>"${logFile}"
+  for d in "${bundle_dirs[@]}"; do
+    rsync -aH "${d}" "${mnt}/" 2>>"${logFile}"
+  done
+fi
+rc=$?
+if [ ${rc} -ne 0 ]; then
+  _err "Copy failed (rsync exit ${rc})."
+  exit 14
+fi
+
+# Make the helper executable and (re)generate a README targeting this set.
+if [ -f "${mnt}/omv-restore-helper" ]; then
+  chmod +x "${mnt}/omv-restore-helper"
+  "${mnt}/omv-restore-helper" readme "${mnt}" "${date_token}" "${mnt}/RESTORE-README.txt" >/dev/null 2>&1
+fi
+
+sync
+_log "Recovery USB ready on ${device} (backup ${date_token})."
+_log "Boot a live/rescue system, open this device, and run: sudo ./omv-restore-helper auto"
+
+exit 0

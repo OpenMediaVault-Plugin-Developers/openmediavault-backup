@@ -1,0 +1,84 @@
+version: "1.0"
+type: component
+data:
+  name: omv-system-backup-recovery-form-page
+  type: formPage
+  config:
+    request:
+      service: Backup
+      get:
+        method: getRecoveryUsb
+    fields:
+      - type: paragraph
+        text: _("Write a recovery bundle (the selected backup, the restore helper, its manifest and a README) to a removable USB device. A restore cannot run from within OpenMediaVault because it overwrites the disk the system boots from - just as you cannot replace a car's engine while driving it. Boot a live/rescue environment, open this device and run 'sudo ./omv-restore-helper auto'.")
+      - type: select
+        name: device
+        label: _("Target device")
+        placeholder: _("Select a removable device ...")
+        textField: description
+        valueField: devicefile
+        store:
+          proxy:
+            service: Backup
+            get:
+              method: enumerateRecoveryDevices
+        validators:
+          required: true
+        hint: _("Only removable/USB disks are listed. ALL DATA on the selected device will be erased.")
+      - type: select
+        name: date
+        label: _("Backup set")
+        placeholder: _("Select a backup ...")
+        textField: description
+        valueField: date
+        store:
+          proxy:
+            service: Backup
+            get:
+              method: enumerateBackups
+        validators:
+          required: true
+        hint: _("For Raspberry Pi / SBC systems choose a full-disk (ddfull) backup - it can be written to a fresh card from any computer and boots as-is.")
+      - type: select
+        name: filesystem
+        label: _("Filesystem")
+        value: "ext4"
+        store:
+          data:
+            - ["ext4", _("ext4 (Linux)")]
+            - ["exfat", _("exFAT (cross-platform, large files)")]
+        hint: _("exFAT is also readable on Windows/macOS - useful for writing an SBC image from another computer.")
+      - type: textInput
+        name: label
+        label: _("Volume label")
+        value: "OMVRECOVERY"
+        validators:
+          required: true
+          maxLength: 16
+    buttons:
+      - text: _("Prepare recovery USB")
+        confirmationDialogConfig:
+          template: confirmation-danger
+          message: _("This will ERASE the selected device and write the recovery bundle to it. Continue?")
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Preparing recovery USB ...")
+              startOnInit: true
+              request:
+                service: Backup
+                method: prepareRecoveryUsb
+                params:
+                  device: "{{ device }}"
+                  date: "{{ date }}"
+                  filesystem: "{{ filesystem }}"
+                  label: "{{ label }}"
+              buttons:
+                stop:
+                  hidden: true
+            successUrl: /system/backup
+      - template: cancel
+        execute:
+          type: url
+          url: "/system/backup"

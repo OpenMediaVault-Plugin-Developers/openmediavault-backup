@@ -14,6 +14,9 @@ Depends: fsarchiver,
          borgbackup,
          rsync,
          fdisk,
+         gdisk,
+         parted,
+         exfatprogs,
          zstd
 Description: backup plugin for OpenMediaVault.
  This plugin will backup the entire OpenMediaVault

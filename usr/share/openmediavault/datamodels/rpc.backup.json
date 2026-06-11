@@ -64,5 +64,34 @@
         }
       }
     }
+  },
+  {
+    "type": "rpc",
+    "id": "rpc.backup.prepareRecoveryUsb",
+    "params": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "type": "string",
+          "required": true
+        },
+        "date": {
+          "type": "string",
+          "required": true
+        },
+        "filesystem": {
+          "type": "string",
+          "enum": [
+            "ext4",
+            "exfat"
+          ],
+          "required": true
+        },
+        "label": {
+          "type": "string",
+          "required": true
+        }
+      }
+    }
   }
 ]

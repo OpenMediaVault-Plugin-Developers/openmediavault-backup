@@ -8,7 +8,7 @@
 # License version 3. This program is licensed "as is" without any
 # warranty of any kind, whether express or implied.
 #
-# version: 1.2.5
+# version: 1.3.0
 #
 
 . /etc/default/openmediavault
@@ -445,8 +445,116 @@ case ${method} in
     ;;
 esac
 
+# Save a machine-readable manifest describing this backup so that
+# omv-restore-helper can perform a guided/automated restore without having to
+# guess the disk layout.  Values are shell-quoted; consumers should parse with
+# grep and must NOT source the file.
+_log "Save restore manifest"
+manifestFile="${backupDir}/${OMV_BACKUP_FILE_PREFIX}-${date}.manifest"
+pfx="${OMV_BACKUP_FILE_PREFIX}-${date}"
+
+# partition name infix ("p" for nvme/mmcblk devices, e.g. mmcblk0p1, nvme0n1p1)
+partletter=""
+if [[ ${root} =~ nvme ]] || [[ ${root} =~ mmcblk ]]; then
+  partletter="p"
+fi
+
+# board model (arm/SBC) if exposed by the device tree
+board_model=""
+if [ -f /proc/device-tree/model ]; then
+  board_model=$(tr -d '\0' < /proc/device-tree/model)
+fi
+
+# u-boot present? (relevant for SBC restore - no grub/chroot needed)
+uboot_present=0
+[ -f "/usr/lib/u-boot/platform_install.sh" ] && uboot_present=1
+
+# archive encrypted? (fsarchiver/borg with a passphrase set)
+encrypted=0
+[ -n "$(omv_config_get "/config/system/backup/passwd")" ] && encrypted=1
+
+# UUIDs (best effort - aids fstab fixups after a file-level restore)
+root_fs_uuid=$(blkid -s UUID -o value "${devicefile}" 2>/dev/null)
+boot_uuid=""
+[ -n "${bootpart}" ] && boot_uuid=$(blkid -s UUID -o value "${bootpart}" 2>/dev/null)
+esp_uuid=""
+[ -n "${esppart}" ] && esp_uuid=$(blkid -s UUID -o value "${esppart}" 2>/dev/null)
+
+# append an escaped key="value" line to the manifest
+_mf() { printf '%s="%s"\n' "${1}" "${2//\"/}" >> "${manifestFile}"; }
+
+{
+  echo "# OpenMediaVault Backup Manifest"
+  echo "# Machine-readable metadata for omv-restore-helper."
+  echo "# Values are shell-quoted; parse with grep (do not source)."
+} > "${manifestFile}"
+
+_mf "manifest_version" "1"
+_mf "backup_prefix"    "${OMV_BACKUP_FILE_PREFIX}"
+_mf "backup_date"      "${date}"
+_mf "created"          "$(date +'%Y-%m-%dT%H:%M:%S%z')"
+_mf "hostname"         "$(hostname 2>/dev/null)"
+_mf "omv_version"      "$(dpkg-query -W -f='${Version}' openmediavault 2>/dev/null)"
+_mf "method"           "${method}"
+_mf "arch"             "${arch}"
+_mf "board_model"      "${board_model}"
+_mf "uboot_present"    "${uboot_present}"
+_mf "encrypted"        "${encrypted}"
+_mf "root_disk"        "${root}"
+_mf "root_fs_device"   "${devicefile}"
+_mf "root_fs_uuid"     "${root_fs_uuid}"
+_mf "part_type"        "${part_type}"
+_mf "part_letter"      "${partletter}"
+_mf "esp_part_number"  "${esp}"
+_mf "esp_device"       "${esppart}"
+_mf "esp_uuid"         "${esp_uuid}"
+_mf "boot_device"      "${bootpart}"
+_mf "boot_uuid"        "${boot_uuid}"
+
+# record which artifact files were actually produced for this backup set
+declare -A artifacts=(
+  [file_dd]="${pfx}.dd.zst"
+  [file_boot]="${pfx}_boot.dd.zst"
+  [file_ddfull]="${pfx}.ddfull.zst"
+  [file_espdd]="${pfx}.espdd.zst"
+  [file_fsa]="${pfx}.fsa"
+  [file_sfdisk]="${pfx}.sfdisk"
+  [file_sgdisk]="${pfx}.sgdisk"
+  [file_grub]="${pfx}.grub"
+  [file_grubparts]="${pfx}.grubparts"
+  [file_uboot]="${pfx}_u-boot.tar.zst"
+  [file_fdisk]="${pfx}.fdisk"
+  [file_blkid]="${pfx}.blkid"
+  [file_packages]="${pfx}.packages"
+)
+for key in "${!artifacts[@]}"; do
+  [ -f "${backupDir}/${artifacts[${key}]}" ] && _mf "${key}" "${artifacts[${key}]}"
+done
+
+if [ "${method}" = "borg" ] && [ -d "${backupDir}/borgbackup" ]; then
+  _mf "borg_repo"    "borgbackup"
+  _mf "borg_archive" "${pfx}"
+fi
+if [ "${method}" = "rsync" ]; then
+  _mf "rsync_root" "."
+fi
+
+if [ -s "${manifestFile}" ]; then
+  _log "Successfully saved restore manifest"
+else
+  _log_warning "Save of restore manifest failed!"
+fi
+
 _log "Copy restore helper script to backup"
 cp -fv /usr/sbin/omv-restore-helper "${backupDir}/"
+
+_log "Generate restore README"
+/usr/sbin/omv-restore-helper readme "${backupDir}" "${date}" "${backupDir}/RESTORE-README.txt" >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+  _log "Successfully generated restore README"
+else
+  _log_warning "Generation of restore README failed!"
+fi
 
 _log "Backup complete."
 

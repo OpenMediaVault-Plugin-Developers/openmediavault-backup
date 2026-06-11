@@ -1,0 +1,8 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "system.backup.recovery"
+  text: _("Recovery USB")
+  position: 30
+  icon: "mdi:usb-flash-drive"
+  url: "/system/backup/recovery"

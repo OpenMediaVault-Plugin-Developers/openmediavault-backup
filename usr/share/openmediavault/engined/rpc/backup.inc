@@ -31,6 +31,10 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('set');
         $this->registerMethod('doBackup');
         $this->registerMethod('doFix');
+        $this->registerMethod('getRecoveryUsb');
+        $this->registerMethod('enumerateRecoveryDevices');
+        $this->registerMethod('enumerateBackups');
+        $this->registerMethod('prepareRecoveryUsb');
     }
 
     public function get($params, $context)
@@ -85,6 +89,68 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
         return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
             use ($params) {
                 $cmd = new \OMV\System\Process('/usr/sbin/omv-backup-fix-cron');
+                $cmd->setRedirect2to1(true);
+                $cmdLine = $cmd->getCommandLine();
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                    throw new \OMV\ExecException($cmdLine, $output);
+                return $output;
+            }
+        );
+    }
+
+    public function getRecoveryUsb($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        return [
+            "device" => "",
+            "date" => "",
+            "filesystem" => "ext4",
+            "label" => "OMVRECOVERY"
+        ];
+    }
+
+    public function enumerateRecoveryDevices($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Ask the helper script for the candidate devices as JSON.
+        $cmd = new \OMV\System\Process('/usr/sbin/omv-backup-recovery-usb',
+            '--list-devices');
+        $cmd->setQuiet(true);
+        $cmd->execute($output);
+        $data = json_decode(implode("", $output), true);
+        return is_array($data) ? $data : [];
+    }
+
+    public function enumerateBackups($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        $cmd = new \OMV\System\Process('/usr/sbin/omv-backup-recovery-usb',
+            '--list-backups');
+        $cmd->setQuiet(true);
+        $cmd->execute($output);
+        $data = json_decode(implode("", $output), true);
+        return is_array($data) ? $data : [];
+    }
+
+    public function prepareRecoveryUsb($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.backup.prepareRecoveryUsb');
+
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+                $cmd = new \OMV\System\Process('/usr/sbin/omv-backup-recovery-usb',
+                    '--yes',
+                    '--device', $params['device'],
+                    '--date', $params['date'],
+                    '--filesystem', $params['filesystem'],
+                    '--label', $params['label']);
                 $cmd->setRedirect2to1(true);
                 $cmdLine = $cmd->getCommandLine();
                 if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))

@@ -6,7 +6,7 @@
 # Copyright (c) 2026 OpenMediaVault Plugin Developers
 # Licensed under GNU General Public License v3
 #
-# Version: 1.0.0
+# Version: 1.2.0
 #
 
 set -e
@@ -22,6 +22,13 @@ BOLD='\033[1m'
 
 # Default backup prefix
 BACKUP_PREFIX="backup-omv"
+
+# When 1, guided restore prints the commands it would run but does not execute
+# them (set via the --dry-run flag).
+DRY_RUN=0
+
+# Set to 1 once a manifest has been parsed into MF_* globals.
+MANIFEST_LOADED=0
 
 # Script directory (should be in backup directory)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -79,6 +86,97 @@ check_dependencies() {
     fi
 }
 
+# Clear any previously loaded manifest values (MF_* globals).
+unset_manifest() {
+    local v
+    for v in ${!MF_@}; do
+        unset "$v"
+    done
+    MANIFEST_LOADED=0
+}
+
+# Parse a backup manifest into MF_<key> globals.  The file is NOT sourced;
+# only well-formed key="value" lines with sane keys are accepted.
+# Returns 0 if a manifest was found and loaded, 1 otherwise.
+load_manifest() {
+    local backup_dir="${1:-.}"
+    local date="$2"
+    local manifest="$backup_dir/${BACKUP_PREFIX}-${date}.manifest"
+    local line key value
+
+    unset_manifest
+
+    [ -f "$manifest" ] || return 1
+
+    while IFS= read -r line; do
+        case "$line" in
+            ''|\#*) continue ;;
+        esac
+        key="${line%%=*}"
+        value="${line#*=}"
+        # strip one layer of surrounding double quotes
+        value="${value#\"}"
+        value="${value%\"}"
+        # only accept valid shell identifier keys
+        [[ "$key" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]] || continue
+        printf -v "MF_${key}" '%s' "$value"
+    done < "$manifest"
+
+    MANIFEST_LOADED=1
+    return 0
+}
+
+# Echo a manifest value by key (empty string if unset / no manifest).
+mf() {
+    local var="MF_$1"
+    printf '%s' "${!var}"
+}
+
+# Partition-name suffix for a whole-disk device: devices whose name ends in a
+# digit (nvme0n1, mmcblk0, loop0) need a "p" before the partition number
+# (nvme0n1p1); others (sda, vdb) do not (sda1).
+part_suffix() {
+    case "$1" in
+        *[0-9]) echo "p" ;;
+        *) echo "" ;;
+    esac
+}
+
+# Extract the trailing partition number from a partition device path,
+# e.g. /dev/sda1 -> 1, /dev/nvme0n1p2 -> 2.
+part_num() {
+    echo "$1" | grep -oE '[0-9]+$'
+}
+
+# Print a command, then run it unless in dry-run mode.  Used for the destructive
+# steps of guided restore so they can be previewed safely.
+run_shell() {
+    echo -e "${CYAN}\$ $1${NC}"
+    [ "$DRY_RUN" -eq 1 ] && return 0
+    bash -c "$1"
+}
+
+# Require the operator to type the target device path exactly before any
+# destructive operation (skipped in dry-run).
+confirm_destroy() {
+    local dev="$1"
+    local ans
+    echo ""
+    print_warning "ALL DATA ON ${dev} WILL BE PERMANENTLY DESTROYED"
+    lsblk "$dev" 2>/dev/null
+    echo ""
+    if [ "$DRY_RUN" -eq 1 ]; then
+        print_info "(dry-run) skipping confirmation prompt"
+        return 0
+    fi
+    read -rp "Type the target device path exactly (${dev}) to proceed: " ans
+    if [ "$ans" != "$dev" ]; then
+        print_error "Confirmation did not match. Aborting."
+        return 1
+    fi
+    return 0
+}
+
 # Function to list available backups
 list_backups() {
     print_header "AVAILABLE BACKUPS"
@@ -124,6 +222,7 @@ list_backups() {
                 *.sfdisk) type="[Partition Table - sfdisk]" ;;
                 *.sgdisk) type="[Partition Table - sgdisk]" ;;
                 *_u-boot.tar.zst) type="[U-Boot Backup]" ;;
+                *.manifest) type="[Restore Manifest]" ;;
                 *) type="[Other]" ;;
             esac
 
@@ -250,6 +349,10 @@ generate_restore_commands() {
 
     print_header "RESTORATION COMMANDS FOR $date"
 
+    # Load layout details from the manifest if present (newer backups); the
+    # commands fall back to sensible defaults when no manifest exists.
+    load_manifest "$backup_dir" "$date" >/dev/null 2>&1 || true
+
     # Detect backup type
     local dd_file=$(find "$backup_dir" -maxdepth 1 -name "${BACKUP_PREFIX}-${date}.dd.zst" -type f | head -1)
     local ddfull_file=$(find "$backup_dir" -maxdepth 1 -name "${BACKUP_PREFIX}-${date}.ddfull.zst" -type f | head -1)
@@ -303,20 +406,34 @@ generate_restore_commands() {
             echo ""
         fi
 
+        # Derive partition naming from the target device and the manifest so
+        # the commands are correct for nvme/mmcblk (p1) and use the real ESP
+        # partition number instead of a placeholder.
+        local sfx rnum bnum enum
+        sfx="$(part_suffix "$target_device")"
+        rnum="1"
+        [ -n "$(mf root_fs_device)" ] && rnum="$(part_num "$(mf root_fs_device)")"
+
         echo -e "${CYAN}# 2. Restore root partition${NC}"
-        echo "zstd -d -c \"$dd_file\" | dd of=${target_device}1 bs=4M status=progress"
+        echo "zstd -d -c \"$dd_file\" | dd of=${target_device}${sfx}${rnum} bs=4M status=progress"
         echo ""
 
         if [ -n "$boot_file" ]; then
+            bnum="2"
+            [ -n "$(mf boot_device)" ] && bnum="$(part_num "$(mf boot_device)")"
             echo -e "${CYAN}# 3. Restore boot partition${NC}"
-            echo "zstd -d -c \"$boot_file\" | dd of=${target_device}2 bs=4M status=progress"
+            echo "zstd -d -c \"$boot_file\" | dd of=${target_device}${sfx}${bnum} bs=4M status=progress"
             echo ""
         fi
 
         if [ -n "$esp_file" ]; then
+            enum="<ESP_NUM>"
+            if [ -n "$(mf esp_part_number)" ] && [ "$(mf esp_part_number)" != "0" ]; then
+                enum="$(mf esp_part_number)"
+            fi
             echo -e "${CYAN}# 4. Restore ESP partition${NC}"
-            echo "# First determine the ESP partition number from your backup metadata"
-            echo "zstd -d -c \"$esp_file\" | dd of=${target_device}<ESP_NUM> bs=4M status=progress"
+            [ "$enum" = "<ESP_NUM>" ] && echo "# First determine the ESP partition number from your backup metadata"
+            echo "zstd -d -c \"$esp_file\" | dd of=${target_device}${sfx}${enum} bs=4M status=progress"
             echo ""
         fi
 
@@ -335,12 +452,19 @@ generate_restore_commands() {
             echo ""
         fi
 
+        local sfx rnum bnum
+        sfx="$(part_suffix "$target_device")"
+        rnum="1"
+        [ -n "$(mf root_fs_device)" ] && rnum="$(part_num "$(mf root_fs_device)")"
+        bnum="2"
+        [ -n "$(mf boot_device)" ] && bnum="$(part_num "$(mf boot_device)")"
+
         echo -e "${CYAN}# 2. Restore filesystem(s)${NC}"
         echo "# If encrypted, you'll be prompted for password"
-        echo "fsarchiver restfs \"$fsa_file\" id=0,dest=${target_device}1"
+        echo "fsarchiver restfs \"$fsa_file\" id=0,dest=${target_device}${sfx}${rnum}"
         echo ""
         echo -e "${CYAN}# If backup includes boot partition:${NC}"
-        echo "fsarchiver restfs \"$fsa_file\" id=1,dest=${target_device}2"
+        echo "fsarchiver restfs \"$fsa_file\" id=1,dest=${target_device}${sfx}${bnum}"
         echo ""
 
     elif [ -d "$backup_dir/borgbackup" ]; then
@@ -364,7 +488,7 @@ generate_restore_commands() {
         echo "# (Create partitions matching your original layout)"
         echo ""
         echo -e "${CYAN}# 2. Mount target partition${NC}"
-        echo "mount ${target_device}1 /mnt/target"
+        echo "mount ${target_device}$(part_suffix "$target_device")1 /mnt/target"
         echo ""
         echo -e "${CYAN}# 3. Restore files${NC}"
         echo "rsync -aAXv \"$backup_dir/\" /mnt/target/ --exclude='/lost+found'"
@@ -490,6 +614,374 @@ extract_for_browse() {
     echo "  rm -rf $extract_dir"
 }
 
+# Restore the partition table to the target using the manifest's part_type,
+# preferring sgdisk for GPT and sfdisk for MBR.
+restore_parttable() {
+    local backup_dir="$1"
+    local target="$2"
+    local ptype sg sf
+    ptype="$(mf part_type)"
+    sg="$(mf file_sgdisk)"
+    sf="$(mf file_sfdisk)"
+
+    if [ "$ptype" = "gpt" ] && [ -n "$sg" ] && [ -f "$backup_dir/$sg" ]; then
+        print_step "Restoring GPT partition table (sgdisk)"
+        run_shell "sgdisk --load-backup='$backup_dir/$sg' '$target'" || return 1
+    elif [ -n "$sf" ] && [ -f "$backup_dir/$sf" ]; then
+        print_step "Restoring MBR partition table (sfdisk)"
+        run_shell "sfdisk '$target' < '$backup_dir/$sf'" || return 1
+    else
+        print_error "No usable partition table backup (sgdisk/sfdisk) found; cannot auto-restore partitions."
+        return 1
+    fi
+    run_shell "partprobe '$target' || true"
+    return 0
+}
+
+# Guided, manifest-driven restore that actually executes the restore steps.
+# Supports image-based methods (ddfull, dd, fsarchiver). File-level methods
+# (borg/rsync) fall back to printed commands. ddfull works without a manifest;
+# dd/fsa require one for the partition layout.
+guided_restore() {
+    local backup_dir="${1:-.}"
+    local date="$2"
+    local target="$3"
+    local mode sfx ddfull_file dd_file fsa_file boot_file esp_file
+
+    print_header "GUIDED RESTORE"
+    if [ "$DRY_RUN" -eq 1 ]; then
+        print_info "DRY-RUN: commands will be shown but NOT executed."
+    fi
+
+    # 1. Select the backup set.
+    if [ -z "$date" ]; then
+        list_backups "$backup_dir" || return 1
+        echo ""
+        read -rp "Enter backup date to restore: " date
+    fi
+    [ -z "$date" ] && { print_error "No backup date specified."; return 1; }
+
+    # 2. Load the manifest (if any).
+    if load_manifest "$backup_dir" "$date"; then
+        print_success "Loaded restore manifest for $date"
+        print_info "Source: method=$(mf method) arch=$(mf arch) board=$(mf board_model) root=$(mf root_disk)"
+    else
+        print_warning "No manifest found for this backup (older backup created before manifests existed)."
+    fi
+
+    # 3. Determine which artifacts exist and pick a mode.
+    ddfull_file=$(find "$backup_dir" -maxdepth 1 -name "${BACKUP_PREFIX}-${date}.ddfull.zst" -type f | head -1)
+    dd_file=$(find "$backup_dir" -maxdepth 1 -name "${BACKUP_PREFIX}-${date}.dd.zst" -type f | head -1)
+    fsa_file=$(find "$backup_dir" -maxdepth 1 -name "${BACKUP_PREFIX}-${date}.fsa" -type f | head -1)
+    boot_file=$(find "$backup_dir" -maxdepth 1 -name "${BACKUP_PREFIX}-${date}_boot.dd.zst" -type f | head -1)
+    esp_file=$(find "$backup_dir" -maxdepth 1 -name "${BACKUP_PREFIX}-${date}.espdd.zst" -type f | head -1)
+
+    if [ -n "$ddfull_file" ]; then
+        mode="ddfull"
+    elif [ -n "$dd_file" ]; then
+        mode="dd"
+    elif [ -n "$fsa_file" ]; then
+        mode="fsa"
+    else
+        print_warning "This backup uses a file-level method (borg/rsync) that cannot be auto-restored."
+        print_info "Falling back to printed restore commands:"
+        echo ""
+        generate_restore_commands "$backup_dir" "$date" "$target"
+        return 0
+    fi
+
+    # dd and fsa need the manifest to know the partition layout.
+    if [ "$mode" != "ddfull" ] && [ "$MANIFEST_LOADED" -ne 1 ]; then
+        print_error "Auto-restore of a $mode backup requires a manifest, which this backup does not have."
+        print_info "Use 'restore' to generate commands you can run manually instead."
+        return 1
+    fi
+
+    # 4. Select the target disk.
+    if [ -z "$target" ]; then
+        echo ""
+        print_step "Available disks:"
+        lsblk -dpo NAME,SIZE,MODEL,TRAN 2>/dev/null
+        echo ""
+        read -rp "Enter TARGET device (whole disk, e.g. /dev/sdb): " target
+    fi
+    if [ ! -b "$target" ]; then
+        print_error "'$target' is not a block device."
+        return 1
+    fi
+
+    # 5. Safety: never overwrite the disk this live system is running from.
+    local live_src live_disk
+    live_src=$(findmnt -no SOURCE / 2>/dev/null)
+    live_disk="/dev/$(lsblk -no pkname "$live_src" 2>/dev/null | head -1)"
+    if [ "$target" = "$live_disk" ]; then
+        print_error "Refusing: $target is the disk this live/rescue system is running from."
+        return 1
+    fi
+    if lsblk -no MOUNTPOINT "$target" 2>/dev/null | grep -q .; then
+        print_warning "Target $target has mounted partitions. Unmount them before continuing:"
+        lsblk "$target"
+        return 1
+    fi
+
+    # 6. Final confirmation.
+    confirm_destroy "$target" || return 1
+    sfx="$(part_suffix "$target")"
+
+    # 7. Execute the restore.
+    case "$mode" in
+        ddfull)
+            print_step "Restoring full disk image to $target"
+            run_shell "zstd -d -c '$ddfull_file' | dd of='$target' bs=4M status=progress conv=fsync" || { print_error "Restore failed."; return 1; }
+            run_shell "sync"
+            run_shell "partprobe '$target' || true"
+            print_success "Full disk restored (partition table + bootloader included)."
+            ;;
+        dd)
+            restore_parttable "$backup_dir" "$target" || return 1
+            local rnum bnum enum
+            rnum="$(part_num "$(mf root_fs_device)")"
+            print_step "Restoring root partition to ${target}${sfx}${rnum}"
+            run_shell "zstd -d -c '$dd_file' | dd of='${target}${sfx}${rnum}' bs=4M status=progress conv=fsync" || { print_error "Root restore failed."; return 1; }
+            if [ -n "$boot_file" ] && [ -n "$(mf boot_device)" ]; then
+                bnum="$(part_num "$(mf boot_device)")"
+                print_step "Restoring boot partition to ${target}${sfx}${bnum}"
+                run_shell "zstd -d -c '$boot_file' | dd of='${target}${sfx}${bnum}' bs=4M status=progress conv=fsync" || { print_error "Boot restore failed."; return 1; }
+            fi
+            if [ -n "$esp_file" ] && [ -n "$(mf esp_part_number)" ] && [ "$(mf esp_part_number)" != "0" ]; then
+                enum="$(mf esp_part_number)"
+                print_step "Restoring ESP partition to ${target}${sfx}${enum}"
+                run_shell "zstd -d -c '$esp_file' | dd of='${target}${sfx}${enum}' bs=4M status=progress conv=fsync" || { print_error "ESP restore failed."; return 1; }
+            fi
+            run_shell "sync"
+            run_shell "partprobe '$target' || true"
+            print_success "Partition images restored. UUIDs are preserved (block-level copy)."
+            ;;
+        fsa)
+            restore_parttable "$backup_dir" "$target" || return 1
+            local rnum bnum
+            rnum="$(part_num "$(mf root_fs_device)")"
+            print_step "Restoring root filesystem (fsarchiver id=0) to ${target}${sfx}${rnum}"
+            print_info "If the archive is encrypted you will be prompted for the password."
+            run_shell "fsarchiver restfs '$fsa_file' id=0,dest='${target}${sfx}${rnum}'" || { print_error "Root restore failed."; return 1; }
+            if [ -n "$(mf boot_device)" ]; then
+                bnum="$(part_num "$(mf boot_device)")"
+                print_step "Restoring boot filesystem (fsarchiver id=1) to ${target}${sfx}${bnum}"
+                run_shell "fsarchiver restfs '$fsa_file' id=1,dest='${target}${sfx}${bnum}'" || { print_error "Boot restore failed."; return 1; }
+            fi
+            print_success "Filesystem(s) restored."
+            ;;
+    esac
+
+    # 8. Post-restore guidance.
+    echo ""
+    print_header "POST-RESTORE"
+    if [ "$(mf uboot_present)" = "1" ]; then
+        print_info "u-boot system: the bootloader travels with the image/partitions; no GRUB step needed."
+    elif [ "$mode" = "ddfull" ]; then
+        print_info "Full-disk image includes the bootloader; the system should boot as-is."
+    else
+        print_info "If the system does not boot, reinstall GRUB from a chroot:"
+        echo "    mount ${target}${sfx}$(part_num "$(mf root_fs_device)") /mnt/target"
+        echo "    for d in dev proc sys; do mount --bind /\$d /mnt/target/\$d; done"
+        echo "    chroot /mnt/target grub-install $target && chroot /mnt/target update-grub"
+        echo "    umount -R /mnt/target"
+    fi
+    echo ""
+    print_success "Restore finished. Remove the rescue medium and reboot."
+    return 0
+}
+
+# Echo the most recent backup date found in a directory (empty if none).
+latest_backup_date() {
+    local backup_dir="${1:-.}"
+    find "$backup_dir" -maxdepth 1 -type f -name "${BACKUP_PREFIX}-*" | \
+        sed -n 's/.*'"${BACKUP_PREFIX}"'-\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}_[0-9]\{2\}-[0-9]\{2\}-[0-9]\{2\}\).*/\1/p' | \
+        sort -r | uniq | head -1
+}
+
+# Generate a plain-text RESTORE-README.txt that explains why a restore must run
+# from outside OMV and gives concrete, machine-specific restore steps (filled in
+# from the manifest when present). Intended to live next to the backups.
+generate_readme() {
+    local backup_dir="${1:-.}"
+    local date="$2"
+    local outfile="$3"
+
+    [ -z "$date" ] && date="$(latest_backup_date "$backup_dir")"
+    if [ -z "$date" ]; then
+        print_error "No backups found in $backup_dir; cannot generate README."
+        return 1
+    fi
+    [ -z "$outfile" ] && outfile="$backup_dir/RESTORE-README.txt"
+
+    load_manifest "$backup_dir" "$date" || true
+
+    local pfx="${BACKUP_PREFIX}-${date}"
+    local method created host arch board root_disk ptype root_dev boot_dev esp_num uboot
+    method="$(mf method)"
+    created="$(mf created)"; [ -z "$created" ] && created="$(date '+%Y-%m-%d %H:%M:%S' 2>/dev/null)"
+    host="$(mf hostname)";   [ -z "$host" ] && host="n/a"
+    arch="$(mf arch)";       [ -z "$arch" ] && arch="n/a"
+    board="$(mf board_model)"; [ -z "$board" ] && board="n/a"
+    root_disk="$(mf root_disk)"; [ -z "$root_disk" ] && root_disk="<unknown>"
+    ptype="$(mf part_type)"
+    root_dev="$(mf root_fs_device)"
+    boot_dev="$(mf boot_device)"
+    esp_num="$(mf esp_part_number)"
+    uboot="$(mf uboot_present)"
+
+    # infer method when there is no manifest (older backups)
+    if [ -z "$method" ]; then
+        if   [ -f "$backup_dir/$pfx.ddfull.zst" ]; then method="ddfull"
+        elif [ -f "$backup_dir/$pfx.dd.zst" ];     then method="dd"
+        elif [ -f "$backup_dir/$pfx.fsa" ];        then method="fsarchiver"
+        elif [ -d "$backup_dir/borgbackup" ];      then method="borg"
+        elif [ -d "$backup_dir/bin" ];             then method="rsync"
+        else method="unknown"; fi
+    fi
+
+    local rnum bnum enum
+    rnum="1"; [ -n "$root_dev" ] && rnum="$(part_num "$root_dev")"
+    bnum="2"; [ -n "$boot_dev" ] && bnum="$(part_num "$boot_dev")"
+    enum="<ESP_NUM>"; if [ -n "$esp_num" ] && [ "$esp_num" != "0" ]; then enum="$esp_num"; fi
+
+    # append a line to the README
+    rl() { printf '%s\n' "$*" >> "$outfile"; }
+
+    : > "$outfile"
+    rl "====================================================================="
+    rl " OpenMediaVault - System Backup - HOW TO RESTORE"
+    rl "====================================================================="
+    rl ""
+    rl "Generated: $created"
+    rl "This folder holds openmediavault-backup system backups and the restore"
+    rl "tool (omv-restore-helper)."
+    rl ""
+    rl "---------------------------------------------------------------------"
+    rl "WHY YOU CANNOT RESTORE FROM WITHIN OPENMEDIAVAULT"
+    rl "---------------------------------------------------------------------"
+    rl "A restore overwrites, byte for byte, the disk OpenMediaVault boots from."
+    rl "You cannot do that while the system is running and that disk is mounted -"
+    rl "for the same reason you cannot replace a car's engine while driving it."
+    rl "The restore must run from OUTSIDE the installed system: boot a live USB /"
+    rl "rescue environment, then restore from there."
+    rl ""
+    rl "---------------------------------------------------------------------"
+    rl "WHAT YOU NEED"
+    rl "---------------------------------------------------------------------"
+    rl "  * A live/rescue Linux USB (e.g. SystemRescue on x86; see SBC note below)"
+    rl "  * Access to this backup folder from that environment"
+    rl "  * Tools: zstd, fdisk, blkid, lsblk, parted (+ fsarchiver/borg if used)"
+    rl ""
+    rl "This machine, as captured in the backup:"
+    rl "  Hostname     : $host"
+    rl "  Backup date  : $date"
+    rl "  Method       : $method"
+    rl "  Architecture : $arch"
+    rl "  Board        : $board"
+    rl "  Root disk    : $root_disk"
+    rl "  Layout       : ${ptype:-?}, root=${root_dev:-?}, boot=${boot_dev:-none}, esp=#${esp_num:-none}"
+    rl ""
+    rl "---------------------------------------------------------------------"
+    rl "EASIEST WAY - GUIDED AUTOMATIC RESTORE"
+    rl "---------------------------------------------------------------------"
+    rl "From the rescue environment, in this folder, run:"
+    rl ""
+    rl "    sudo ./omv-restore-helper auto"
+    rl ""
+    rl "It lists your backups, lets you pick the target disk, asks you to confirm,"
+    rl "and runs every step. Preview it first without changing anything:"
+    rl ""
+    rl "    sudo ./omv-restore-helper --dry-run auto"
+    rl ""
+    rl "---------------------------------------------------------------------"
+    rl "MANUAL RESTORE (reference) - method: $method"
+    rl "---------------------------------------------------------------------"
+    case "$method" in
+        ddfull)
+            rl "Single full-disk image - includes the partition table AND bootloader,"
+            rl "so the target is bootable as soon as the copy finishes:"
+            rl ""
+            rl "    zstd -d -c $pfx.ddfull.zst | dd of=<TARGET_DISK> bs=4M status=progress"
+            rl "    sync"
+            ;;
+        dd)
+            rl "1) Restore the partition table:"
+            if [ "$ptype" = "gpt" ] || [ -f "$backup_dir/$pfx.sgdisk" ]; then
+                rl "     sgdisk --load-backup=$pfx.sgdisk <TARGET_DISK>     # GPT"
+            fi
+            if [ -f "$backup_dir/$pfx.sfdisk" ]; then
+                rl "     sfdisk <TARGET_DISK> < $pfx.sfdisk                 # MBR"
+            fi
+            rl ""
+            rl "2) Restore the root partition (partition $rnum):"
+            rl "     zstd -d -c $pfx.dd.zst | dd of=<TARGET_DISK>$rnum bs=4M status=progress"
+            if [ -f "$backup_dir/${pfx}_boot.dd.zst" ]; then
+                rl ""
+                rl "3) Restore the boot partition (partition $bnum):"
+                rl "     zstd -d -c ${pfx}_boot.dd.zst | dd of=<TARGET_DISK>$bnum bs=4M status=progress"
+            fi
+            if [ -f "$backup_dir/$pfx.espdd.zst" ]; then
+                rl ""
+                rl "4) Restore the ESP partition (partition $enum):"
+                rl "     zstd -d -c $pfx.espdd.zst | dd of=<TARGET_DISK>$enum bs=4M status=progress"
+            fi
+            rl ""
+            rl "   sync"
+            ;;
+        fsarchiver)
+            rl "1) Restore the partition table (sgdisk for GPT / sfdisk for MBR)."
+            rl "2) Restore the filesystem(s) - you are prompted if it is encrypted:"
+            rl "     fsarchiver restfs $pfx.fsa id=0,dest=<TARGET_DISK>$rnum"
+            if [ -n "$boot_dev" ]; then
+                rl "     fsarchiver restfs $pfx.fsa id=1,dest=<TARGET_DISK>$bnum"
+            fi
+            ;;
+        borg)
+            rl "File-level (borg) backup - partition & format the target yourself, then:"
+            rl "     borg list ./borgbackup"
+            rl "     borg extract ./borgbackup::$pfx --target /mnt/target"
+            rl "Afterwards fix /etc/fstab UUIDs and reinstall the bootloader."
+            ;;
+        rsync)
+            rl "File-level (rsync) backup - partition, format and mount the target, then:"
+            rl "     rsync -aAXv ./ /mnt/target/ --exclude='/lost+found'"
+            rl "Afterwards fix /etc/fstab UUIDs and reinstall the bootloader."
+            ;;
+        *)
+            rl "Unrecognized backup type; use the guided restore:"
+            rl "     sudo ./omv-restore-helper auto"
+            ;;
+    esac
+    rl ""
+    rl "Partition naming: SATA/USB disks use sdb1, sdb2, ...; NVMe/SD/eMMC need a"
+    rl "'p', e.g. nvme0n1p1, mmcblk0p1. The guided 'auto' mode handles this for you."
+    rl ""
+    if [ "$uboot" = "1" ]; then
+        rl "This is a U-Boot/SBC system: the bootloader travels with the image, so"
+        rl "no GRUB reinstall is needed."
+    elif [ "$method" != "ddfull" ]; then
+        rl "After a partition/file-level restore you may need to reinstall GRUB from"
+        rl "a chroot - see the Quick Reference in ./omv-restore-helper."
+    fi
+    rl ""
+    rl "---------------------------------------------------------------------"
+    rl "RASPBERRY PI / SBC (ARM) NOTE"
+    rl "---------------------------------------------------------------------"
+    rl "There is no universal ARM rescue USB (each board boots differently). The"
+    rl "simplest recovery is to write a full-disk (ddfull) image onto a fresh"
+    rl "SD card / USB from ANY computer (the copy is architecture-independent):"
+    rl ""
+    rl "    zstd -d -c $pfx.ddfull.zst | sudo dd of=<TARGET_DISK> bs=4M status=progress"
+    rl ""
+    rl "u-boot is contained in that image, so the card boots with no extra steps."
+    rl "====================================================================="
+
+    print_success "Wrote $outfile"
+    return 0
+}
+
 # Interactive menu
 show_menu() {
     clear
@@ -499,13 +991,14 @@ show_menu() {
     echo "1) List available backups"
     echo "2) Verify backup integrity"
     echo "3) Show backup metadata"
-    echo "4) Generate restore commands"
-    echo "5) Compare with current system"
-    echo "6) Extract backup for browsing"
-    echo "7) Quick reference guide"
-    echo "8) Exit"
+    echo "4) Guided restore (automatic)"
+    echo "5) Generate restore commands (manual)"
+    echo "6) Compare with current system"
+    echo "7) Extract backup for browsing"
+    echo "8) Quick reference guide"
+    echo "9) Exit"
     echo ""
-    read -p "Select an option [1-8]: " choice
+    read -p "Select an option [1-9]: " choice
 
     case $choice in
         1)
@@ -521,22 +1014,27 @@ show_menu() {
             show_metadata "$SCRIPT_DIR" "$date"
             ;;
         4)
+            read -p "Enter backup date (blank to list): " date
+            read -p "Enter target device (blank to choose interactively): " device
+            guided_restore "$SCRIPT_DIR" "$date" "$device"
+            ;;
+        5)
             read -p "Enter backup date: " date
             read -p "Enter target device (or leave blank for placeholders): " device
             generate_restore_commands "$SCRIPT_DIR" "$date" "$device"
             ;;
-        5)
+        6)
             read -p "Enter backup date: " date
             compare_system "$SCRIPT_DIR" "$date"
             ;;
-        6)
+        7)
             read -p "Enter backup date: " date
             extract_for_browse "$SCRIPT_DIR" "$date"
             ;;
-        7)
+        8)
             show_quick_reference
             ;;
-        8)
+        9)
             echo "Exiting..."
             exit 0
             ;;
@@ -642,6 +1140,14 @@ EOF
 
 # Main script logic
 main() {
+    # Parse leading global flags.
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            --dry-run) DRY_RUN=1; shift ;;
+            *) break ;;
+        esac
+    done
+
     # Check if running in interactive mode
     if [ $# -eq 0 ]; then
         check_root
@@ -667,6 +1173,14 @@ main() {
                 check_root
                 generate_restore_commands "${1:-.}" "$2" "$3"
                 ;;
+            auto|guided|auto-restore)
+                check_root
+                check_dependencies
+                guided_restore "${1:-.}" "$2" "$3"
+                ;;
+            readme)
+                generate_readme "${1:-.}" "$2" "$3"
+                ;;
             compare|diff)
                 check_root
                 compare_system "${1:-.}" "$2"
@@ -682,10 +1196,13 @@ OMV Backup Restore Helper
 
 USAGE:
   $0                                    # Interactive menu
+  $0 [--dry-run] <command> ...          # --dry-run previews destructive steps
   $0 list [backup_dir]                 # List available backups
   $0 verify [backup_dir] <date>        # Verify backup integrity
   $0 metadata [backup_dir] <date>      # Show backup metadata
-  $0 restore [backup_dir] <date> [dev] # Generate restore commands
+  $0 auto [backup_dir] <date> [dev]    # Guided automatic restore (executes)
+  $0 restore [backup_dir] <date> [dev] # Generate restore commands (manual)
+  $0 readme [backup_dir] [date] [out]  # Write RESTORE-README.txt
   $0 compare [backup_dir] <date>       # Compare with current system
   $0 extract [backup_dir] <date>       # Extract for browsing
   $0 help                               # Show this help
@@ -693,6 +1210,8 @@ USAGE:
 EXAMPLES:
   $0 list
   $0 verify . 2024-01-15_10-30-00
+  $0 auto . 2024-01-15_10-30-00 /dev/sdb
+  $0 --dry-run auto . 2024-01-15_10-30-00 /dev/sdb
   $0 restore . 2024-01-15_10-30-00 /dev/sdb
 
 EOF
