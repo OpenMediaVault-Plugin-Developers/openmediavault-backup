@@ -30,8 +30,10 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('get');
         $this->registerMethod('set');
         $this->registerMethod('doBackup');
+        $this->registerMethod('doPurge');
+        $this->registerMethod('doDeleteBackup');
+        $this->registerMethod('doBackupInfo');
         $this->registerMethod('doFix');
-        $this->registerMethod('getRecoveryUsb');
         $this->registerMethod('enumerateRecoveryDevices');
         $this->registerMethod('enumerateBackups');
         $this->registerMethod('prepareRecoveryUsb');
@@ -80,6 +82,69 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
         );
     }
 
+    public function doPurge($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.backup.doPurge');
+
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+                $cmd = new \OMV\System\Process('/usr/sbin/omv-backup-purge',
+                    '--keep', $params['keep']);
+                $cmd->setRedirect2to1(true);
+                $cmdLine = $cmd->getCommandLine();
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                    throw new \OMV\ExecException($cmdLine, $output);
+                return $output;
+            }
+        );
+    }
+
+    public function doDeleteBackup($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.backup.doDeleteBackup');
+
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+                $cmd = new \OMV\System\Process('/usr/sbin/omv-backup-purge',
+                    '--delete', $params['date']);
+                $cmd->setRedirect2to1(true);
+                $cmdLine = $cmd->getCommandLine();
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                    throw new \OMV\ExecException($cmdLine, $output);
+                return $output;
+            }
+        );
+    }
+
+    public function doBackupInfo($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.backup.doBackupInfo');
+
+        // Create the background process.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params) {
+                $cmd = new \OMV\System\Process('/usr/sbin/omv-backup-recovery-usb',
+                    '--info', $params['date']);
+                $cmd->setRedirect2to1(true);
+                $cmdLine = $cmd->getCommandLine();
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename))
+                    throw new \OMV\ExecException($cmdLine, $output);
+                return $output;
+            }
+        );
+    }
+
     public function doFix($params, $context)
     {
         // Validate the RPC caller context.
@@ -96,18 +161,6 @@ class OMVRpcServiceBackup extends \OMV\Rpc\ServiceAbstract
                 return $output;
             }
         );
-    }
-
-    public function getRecoveryUsb($params, $context)
-    {
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
-        return [
-            "device" => "",
-            "date" => "",
-            "filesystem" => "ext4",
-            "label" => "OMVRECOVERY"
-        ];
     }
 
     public function enumerateRecoveryDevices($params, $context)

@@ -53,6 +53,7 @@ Usage: $0 [options]
   --force              Allow a non-removable target (dangerous)
   --list-devices       Print candidate removable devices as JSON and exit
   --list-backups       Print available backup sets as JSON and exit
+  --info <token>       Print details for one backup set (borg info / files)
   -h, --help           Show this help
 EOF
 }
@@ -138,20 +139,107 @@ list_backups_json()
     return 0
   fi
   local prefix="${OMV_BACKUP_FILE_PREFIX}"
-  local dates d method desc first=1
-  dates=$(find "${backupDir}" -maxdepth 1 -type f -name "${prefix}-*" | \
-          sed -n 's/.*'"${prefix}"'-\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}_[0-9]\{2\}-[0-9]\{2\}-[0-9]\{2\}\).*/\1/p' | \
-          sort -r | uniq)
+  local repo="${backupDir}/borgbackup"
+  local d m name passwd bytes size desc first=1
+  local -A methods
+
+  # The real borg backups are the archives inside the repository - the source
+  # of truth for the borg method.  The dated files in the backup directory are
+  # only sidecar metadata and can outlive (or never accompany) an archive.
+  if [ -d "${repo}" ]; then
+    passwd="$(omv_config_get "/config/system/backup/passwd" 2>/dev/null)"
+    [ -n "${passwd}" ] && export BORG_PASSPHRASE="${passwd}"
+    while read -r name; do
+      [ -z "${name}" ] && continue
+      d="${name#"${prefix}"-}"
+      [ "${d}" = "${name}" ] && continue
+      methods["${d}"]="borg"
+    done < <(borg list --short "${repo}" 2>/dev/null)
+  fi
+
+  # Add dates that exist as top-level dated files.  Determine the method from
+  # the manifest if present, otherwise infer it from the artifacts.  Sets that
+  # are only sidecar files (no archive) are reported as "metadata" so the user
+  # can still delete the leftover clutter.
+  for d in $(find "${backupDir}" -maxdepth 1 -type f -name "${prefix}-*" | \
+             sed -n 's/.*'"${prefix}"'-\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}_[0-9]\{2\}-[0-9]\{2\}-[0-9]\{2\}\).*/\1/p' | \
+             sort -u); do
+    [ -n "${methods[${d}]}" ] && continue
+    m=$(grep -m1 '^method=' "${backupDir}/${prefix}-${d}.manifest" 2>/dev/null | cut -d'"' -f2)
+    if [ -z "${m}" ]; then
+      if ls "${backupDir}/${prefix}-${d}".ddfull.* >/dev/null 2>&1; then
+        m="ddfull"
+      elif ls "${backupDir}/${prefix}-${d}".dd.* >/dev/null 2>&1; then
+        m="dd"
+      elif ls "${backupDir}/${prefix}-${d}".fsa >/dev/null 2>&1; then
+        m="fsarchiver"
+      else
+        m="metadata"
+      fi
+    fi
+    methods["${d}"]="${m}"
+  done
+
   printf '['
-  for d in ${dates}; do
-    method=$(grep -m1 '^method=' "${backupDir}/${prefix}-${d}.manifest" 2>/dev/null | cut -d'"' -f2)
-    desc="${d}"
-    [ -n "${method}" ] && desc="${d}  (${method})"
+  for d in $(printf '%s\n' "${!methods[@]}" | sort -r); do
+    # Hide sets that are only leftover sidecar metadata (no actual archive).
+    [ "${methods[${d}]}" = "metadata" ] && continue
+    if [ "${methods[${d}]}" = "borg" ]; then
+      # Per-archive size needs an expensive 'borg info'; show a dash instead.
+      size="-"
+    else
+      bytes=$(find "${backupDir}" -maxdepth 1 -type f -name "${prefix}-${d}*" -printf '%s\n' 2>/dev/null | \
+              awk '{s+=$1} END{print s+0}')
+      size=$(numfmt --to=iec --suffix=B "${bytes}" 2>/dev/null)
+      [ -n "${size}" ] || size="${bytes}B"
+    fi
+    desc="${d}  (${methods[${d}]})"
     [ ${first} -eq 0 ] && printf ','
-    printf '{"date":"%s","description":"%s"}' "${d}" "$(json_escape "${desc}")"
+    printf '{"date":"%s","method":"%s","size":"%s","description":"%s"}' \
+      "${d}" "$(json_escape "${methods[${d}]}")" "$(json_escape "${size}")" "$(json_escape "${desc}")"
     first=0
   done
   printf ']'
+}
+
+# Print human-readable details for a single backup set.  For borg this is the
+# 'borg info' output for the archive; otherwise the manifest and the on-disk
+# files of the set.
+backup_info()
+{
+  local d="$1"
+  if ! [[ "${d}" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]]; then
+    echo "Invalid backup date: ${d}"
+    return 1
+  fi
+  if ! resolve_backup_dir || [ ! -d "${backupDir}" ]; then
+    echo "Backup directory not available."
+    return 1
+  fi
+  local prefix="${OMV_BACKUP_FILE_PREFIX}"
+  local repo="${backupDir}/borgbackup"
+  local method passwd
+  method=$(omv_config_get "/config/system/backup/method" 2>/dev/null)
+
+  if [ -d "${repo}" ]; then
+    passwd="$(omv_config_get "/config/system/backup/passwd" 2>/dev/null)"
+    [ -n "${passwd}" ] && export BORG_PASSPHRASE="${passwd}"
+    if borg list --short "${repo}" 2>/dev/null | grep -qx "${prefix}-${d}"; then
+      echo "=== borg archive ${prefix}-${d} ==="
+      borg info "${repo}::${prefix}-${d}"
+      return 0
+    fi
+  fi
+
+  echo "=== backup set ${d} (${method}) ==="
+  if [ -f "${backupDir}/${prefix}-${d}.manifest" ]; then
+    echo
+    echo "--- manifest ---"
+    grep -v '^#' "${backupDir}/${prefix}-${d}.manifest"
+  fi
+  echo
+  echo "--- files ---"
+  ls -lh "${backupDir}/${prefix}-${d}"* 2>/dev/null || echo "No files found for this set."
 }
 
 # Parse options.
@@ -166,6 +254,7 @@ while [ $# -gt 0 ]; do
     --force) force=1; shift ;;
     --list-devices) action="list-devices"; shift ;;
     --list-backups) action="list-backups"; shift ;;
+    --info) action="info"; date_token="$2"; shift 2 ;;
     -h|--help) usage; exit 0 ;;
     *) _err "Unknown argument: $1"; usage; exit 1 ;;
   esac
@@ -174,6 +263,7 @@ done
 case "${action}" in
   list-devices) list_devices_json; exit 0 ;;
   list-backups) list_backups_json; exit 0 ;;
+  info) backup_info "${date_token}"; exit $? ;;
 esac
 
 # ---- prepare flow ----------------------------------------------------------

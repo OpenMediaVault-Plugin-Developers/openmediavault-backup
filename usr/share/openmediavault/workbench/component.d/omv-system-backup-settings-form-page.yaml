@@ -109,32 +109,4 @@ data:
       - template: cancel
         execute:
           type: url
-          url: "/system"
-      - text: _("Backup")
-        execute:
-          type: taskDialog
-          taskDialog:
-            config:
-              title: _("Starting backup ...")
-              startOnInit: true
-              request:
-                service: Backup
-                method: doBackup
-              buttons:
-                stop:
-                  hidden: true
-            successUrl: /system/backup
-      - text: _("Fix cron")
-        execute:
-          type: taskDialog
-          taskDialog:
-            config:
-              title: _("Fixing cron task if deleted ...")
-              startOnInit: true
-              request:
-                service: Backup
-                method: doFix
-              buttons:
-                stop:
-                  hidden: true
-            successUrl: /system/backup
+          url: "/system/backup"

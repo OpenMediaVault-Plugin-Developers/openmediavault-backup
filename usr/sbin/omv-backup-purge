@@ -1,0 +1,242 @@
+#!/bin/bash
+#
+# shellcheck disable=SC1091,SC2086,SC2181
+#
+# Copyright (c) 2013-2026 openmediavault plugin developers
+#
+# This file is licensed under the terms of the GNU General Public
+# License version 3. This program is licensed "as is" without any
+# warranty of any kind, whether express or implied.
+#
+# version: 1.0.0
+#
+# Manually purge old backups, keeping only the most recent N backup sets.
+#
+# The scheduled backup already prunes old backups when it finishes, but if the
+# destination filesystem fills up the backup (and therefore its prune step)
+# never completes.  This helper lets an administrator reclaim space on demand
+# without having to create another backup first.
+#
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+declare -i keep=0
+
+# logging location (shared with omv-backup)
+logDir="/var/log/"
+logFile="${logDir}/omv-backup.log"
+
+# Shim to write messages to stdout and to the logfile.
+_log_export()
+{
+  echo "[$(date +'%Y-%m-%d %H:%M:%S%z')] [purge] ${msg}" | tee -a ${logFile} >&2
+}
+
+_log()
+{
+  msg=${1}
+  _log_export "$(omv_log "${msg}")"
+}
+
+_log_warning()
+{
+  msg=${1}
+  _log_export "$(omv_warning "${msg}")"
+}
+
+_log_error()
+{
+  msg=${1}
+  echo "[$(date +'%Y-%m-%d %H:%M:%S%z')] [purge] $(omv_error "${msg}" 2>&1)" > >(tee -a ${logFile} >&2)
+}
+
+usage()
+{
+  cat <<EOF
+Usage: ${0##*/} --keep N
+       ${0##*/} --delete DATE
+
+  --keep N      Number of most recent backup sets (or borg archives) to keep.
+                Everything older is deleted.  Must be 1 or greater.
+  --delete DATE Delete the single backup set identified by its date stamp
+                (e.g. 2026-06-12_01-00-00).
+EOF
+}
+
+# Delete dated files (${prefix}-<date>*) whose date stamp is older than the
+# given cutoff date.  Used after a borg prune to remove the sidecar metadata
+# belonging to archives that no longer exist, along with any orphaned sidecars.
+# The YYYY-MM-DD_HH-MM-SS stamp sorts chronologically as a plain string.
+sweep_old_sidecars()
+{
+  local cutoff="$1" f fdate removed=0
+  [ -n "${cutoff}" ] || return 0
+  while IFS= read -r f; do
+    fdate=$(printf '%s' "${f}" | \
+      sed -n 's/.*'"${prefix}"'-\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}_[0-9]\{2\}-[0-9]\{2\}-[0-9]\{2\}\).*/\1/p')
+    [ -n "${fdate}" ] || continue
+    if [[ "${fdate}" < "${cutoff}" ]]; then
+      rm -f -- "${f}" && removed=$((removed + 1))
+    fi
+  done < <(find "${backupDir}" -maxdepth ${OMV_BACKUP_MAX_DEPTH} -type f -name "${prefix}-*")
+  _log "Removed ${removed} sidecar file(s) older than ${cutoff}."
+}
+
+# Parse options.
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --keep) keep="$2"; shift 2 ;;
+    --delete) delete_date="$2"; shift 2 ;;
+    -h|--help) usage; exit 0 ;;
+    *) _log_error "Unknown argument: $1"; usage; exit 1 ;;
+  esac
+done
+
+# Resolve the backup directory from the OMV config.
+sfref=$(omv_config_get "/config/system/backup/sharedfolderref")
+if ! omv_isuuid "${sfref}"; then
+  _log_error "No backup volume set.  Please choose a backup volume."
+  exit 2
+fi
+sfpath="$(omv_get_sharedfolder_path "${sfref}")"
+if [ ! -d "${sfpath}" ]; then
+  _log_error "Shared folder directory does not exist.  Exiting."
+  exit 3
+fi
+backupDir="${sfpath}/${OMV_BACKUP_DIR_NAME}"
+if [ ! -d "${backupDir}" ]; then
+  _log_error "Backup directory not found: ${backupDir}"
+  exit 4
+fi
+
+method=$(omv_config_get "/config/system/backup/method")
+_log "Method: ${method}"
+
+prefix="${OMV_BACKUP_FILE_PREFIX}"
+
+# ---- delete a single backup set --------------------------------------------
+if [ -n "${delete_date}" ]; then
+  # Guard against anything that is not a backup date stamp.
+  if ! [[ ${delete_date} =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]]; then
+    _log_error "Invalid backup date: ${delete_date}"
+    exit 7
+  fi
+  _log "Deleting backup set ${delete_date} ..."
+  if [ "${method}" = "borg" ] && [ -d "${backupDir}/borgbackup" ]; then
+    passwd="$(omv_config_get "/config/system/backup/passwd")"
+    [ -n "${passwd}" ] && export BORG_PASSPHRASE="${passwd}"
+    if borg list --short "${backupDir}/borgbackup" 2>/dev/null | grep -qx "${prefix}-${delete_date}"; then
+      borg delete "${backupDir}/borgbackup::${prefix}-${delete_date}"
+      if [ $? -eq 0 ]; then
+        _log "Deleted borg archive ${prefix}-${delete_date}."
+        if borg compact --help >/dev/null 2>&1; then
+          borg compact "${backupDir}/borgbackup"
+        fi
+      else
+        _log_error "Failed to delete borg archive ${prefix}-${delete_date}!"
+        exit 8
+      fi
+    fi
+  fi
+  # Remove the dated sidecar files (manifest, partition table, etc.) that every
+  # method writes, plus dd/fsarchiver/ddfull archive files.
+  find "${backupDir}" -maxdepth ${OMV_BACKUP_MAX_DEPTH} -type f -name "${prefix}-${delete_date}*" -delete
+  if [ $? -eq 0 ]; then
+    _log "Deleted backup set ${delete_date}."
+  else
+    _log_warning "Some files of backup set ${delete_date} could not be deleted!"
+  fi
+  sync
+  exit 0
+fi
+
+# ---- keep the most recent N sets -------------------------------------------
+if [[ ${keep} -lt 1 ]]; then
+  _log_error "Number of backups to keep must be 1 or greater."
+  exit 1
+fi
+
+_log "Starting manual purge, keeping the ${keep} most recent backup set(s) ..."
+
+case ${method} in
+  borg)
+    if [ ! -d "${backupDir}/borgbackup" ]; then
+      _log_warning "No borg repository found at ${backupDir}/borgbackup.  Nothing to purge."
+      exit 0
+    fi
+    passwd="$(omv_config_get "/config/system/backup/passwd")"
+    if [ -n "${passwd}" ]; then
+      export BORG_PASSPHRASE="${passwd}"
+    fi
+    _log "Pruning borg repository to the ${keep} most recent archive(s) ..."
+    borg prune --list --stats --keep-last "${keep}" "${backupDir}/borgbackup"
+    if [ $? -ne 0 ]; then
+      _log_error "borgbackup prune failed!"
+      exit 5
+    fi
+    _log "borgbackup prune complete."
+    # borg >= 1.2 needs an explicit compact to actually free repository space.
+    if borg compact --help >/dev/null 2>&1; then
+      _log "Compacting borg repository to reclaim space ..."
+      borg compact "${backupDir}/borgbackup"
+      if [ $? -eq 0 ]; then
+        _log "borgbackup compact complete."
+      else
+        _log_warning "borgbackup compact failed!"
+      fi
+    fi
+    # Remove sidecar metadata (and orphaned sidecars) older than the oldest
+    # archive we kept.  borg prune only manages archives, not these files.
+    oldest=$(borg list --short "${backupDir}/borgbackup" 2>/dev/null | \
+             sed -n 's/^'"${prefix}"'-\(.*\)$/\1/p' | sort | head -1)
+    if [ -n "${oldest}" ]; then
+      _log "Cleaning sidecar metadata older than oldest kept archive (${oldest}) ..."
+      sweep_old_sidecars "${oldest}"
+    fi
+    ;;
+
+  rsync)
+    _log "Method rsync keeps a single mirror - there is nothing to purge."
+    exit 0
+    ;;
+
+  dd|ddfull|fsarchiver)
+    # A backup "set" is all the files that share the same date stamp.  List the
+    # distinct dates newest first, skip the newest ${keep}, and delete the rest.
+    dates=$(find "${backupDir}" -maxdepth ${OMV_BACKUP_MAX_DEPTH} -type f -name "${prefix}-*" | \
+            sed -n 's/.*'"${prefix}"'-\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}_[0-9]\{2\}-[0-9]\{2\}-[0-9]\{2\}\).*/\1/p' | \
+            sort -r | uniq)
+    total=$(echo "${dates}" | grep -c .)
+    _log "Found ${total} backup set(s)."
+    if [[ ${total} -le ${keep} ]]; then
+      _log "Nothing to purge - ${total} set(s) present, keeping ${keep}."
+      exit 0
+    fi
+    deleted=0
+    index=0
+    for d in ${dates}; do
+      index=$((index + 1))
+      if [[ ${index} -le ${keep} ]]; then
+        continue
+      fi
+      _log "Deleting backup set ${d} ..."
+      find "${backupDir}" -maxdepth ${OMV_BACKUP_MAX_DEPTH} -type f -name "${prefix}-${d}*" -delete
+      if [ $? -eq 0 ]; then
+        deleted=$((deleted + 1))
+      else
+        _log_warning "Failed to delete backup set ${d}!"
+      fi
+    done
+    _log "Deleted ${deleted} backup set(s)."
+    ;;
+
+  *)
+    _log_error "Unknown backup method '${method}'.  Nothing to purge."
+    exit 6
+    ;;
+esac
+
+sync
+_log "Purge complete."
+exit 0

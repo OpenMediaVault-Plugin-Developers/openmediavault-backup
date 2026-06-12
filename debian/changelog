@@ -1,3 +1,20 @@
+openmediavault-backup (8.1) stable; urgency=low
+
+  * Add Backups datatable as the Backup landing page, listing existing
+    backups (borg archives are the source of truth; method is inferred
+    when no manifest is present and orphaned sidecar metadata is hidden)
+  * Add Purge action to keep only the most recent X backups on demand
+    (borg prune + compact; also removes sidecar metadata older than the
+    oldest kept archive) for when a full filesystem skips the auto-purge
+  * Add Delete action to remove individual backups (borg archive and
+    sidecars, or the dated archive files)
+  * Add Info action showing borg info / manifest and files for a backup
+  * Move Recovery USB to a dialog launched from the Backups datatable
+  * Move the Backup, Fix cron, Settings and Schedule buttons onto the
+    Backups datatable toolbar
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 12 Jun 2026 14:38:37 +0000
+
 openmediavault-backup (8.0.1) stable; urgency=low
 
   * Backup /boot/firmware if found

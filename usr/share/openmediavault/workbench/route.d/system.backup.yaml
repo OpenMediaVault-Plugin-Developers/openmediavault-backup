@@ -3,4 +3,4 @@ type: route
 data:
   url: "/system/backup"
   title: _("Backup")
-  component: omv-system-backup-navigation-page
+  component: omv-system-backup-backups-datatable-page

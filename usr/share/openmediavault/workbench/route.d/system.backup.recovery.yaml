@@ -1,6 +1,0 @@
-version: "1.0"
-type: route
-data:
-  url: "/system/backup/recovery"
-  title: _("Recovery USB")
-  component: omv-system-backup-recovery-form-page

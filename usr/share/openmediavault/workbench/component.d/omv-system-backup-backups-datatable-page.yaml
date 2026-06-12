@@ -1,0 +1,226 @@
+version: "1.0"
+type: component
+data:
+  name: omv-system-backup-backups-datatable-page
+  type: datatablePage
+  config:
+    autoReload: false
+    hasSearchField: true
+    stateId: 959663dd-879b-45f7-b471-1b334c1269de
+    rowId: date
+    rowEnumFmt: "{{ date }}"
+    store:
+      proxy:
+        service: Backup
+        get:
+          method: enumerateBackups
+    sorters:
+      - dir: desc
+        prop: date
+    columns:
+      - name: _("Date")
+        prop: date
+        flexGrow: 2
+        sortable: true
+      - name: _("Method")
+        prop: method
+        flexGrow: 1
+        sortable: true
+      - name: _("Size")
+        prop: size
+        flexGrow: 1
+        sortable: true
+    actions:
+      - type: iconButton
+        text: _("Backup")
+        tooltip: _("Run a backup now.")
+        icon: mdi:database-plus
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Starting backup ...")
+              startOnInit: true
+              request:
+                service: Backup
+                method: doBackup
+              buttons:
+                stop:
+                  hidden: true
+      - type: iconButton
+        text: _("Info")
+        tooltip: _("Show details for the selected backup (borg info / files).")
+        icon: mdi:information-outline
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Backup details")
+              startOnInit: true
+              request:
+                service: Backup
+                method: doBackupInfo
+                params:
+                  date: "{{ _selected[0].date }}"
+              buttons:
+                stop:
+                  hidden: true
+      - type: iconButton
+        text: _("Recovery USB")
+        tooltip: _("Write the selected backup to a removable recovery USB device.")
+        icon: mdi:usb-flash-drive
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+        execute:
+          type: formDialog
+          formDialog:
+            title: _("Prepare recovery USB")
+            fields:
+              - type: paragraph
+                text: _("Write a recovery bundle (the selected backup, the restore helper, its manifest and a README) to a removable USB device. A restore cannot run from within OpenMediaVault because it overwrites the disk the system boots from. Boot a live/rescue environment, open this device and run 'sudo ./omv-restore-helper auto'.")
+              - type: textInput
+                name: date
+                label: _("Backup set")
+                value: "{{ _selected[0].date }}"
+                readonly: true
+              - type: select
+                name: device
+                label: _("Target device")
+                placeholder: _("Select a removable device ...")
+                textField: description
+                valueField: devicefile
+                store:
+                  proxy:
+                    service: Backup
+                    get:
+                      method: enumerateRecoveryDevices
+                validators:
+                  required: true
+                hint: _("Only removable/USB disks are listed. ALL DATA on the selected device will be erased.")
+              - type: select
+                name: filesystem
+                label: _("Filesystem")
+                value: "ext4"
+                store:
+                  data:
+                    - ["ext4", _("ext4 (Linux)")]
+                    - ["exfat", _("exFAT (cross-platform)")]
+                hint: _("exFAT is also readable on Windows/macOS - useful for writing an SBC image from another computer.")
+              - type: textInput
+                name: label
+                label: _("Volume label")
+                value: "OMVRECOVERY"
+                validators:
+                  required: true
+                  maxLength: 16
+            buttons:
+              submit:
+                text: _("Prepare recovery USB")
+                confirmationDialogConfig:
+                  template: confirmation-danger
+                  message: _("This will ERASE the selected device and write the recovery bundle to it. Continue?")
+                execute:
+                  type: taskDialog
+                  taskDialog:
+                    config:
+                      title: _("Preparing recovery USB ...")
+                      startOnInit: true
+                      request:
+                        service: Backup
+                        method: prepareRecoveryUsb
+                        params:
+                          device: "{{ device }}"
+                          date: "{{ date }}"
+                          filesystem: "{{ filesystem }}"
+                          label: "{{ label }}"
+                      buttons:
+                        stop:
+                          hidden: true
+              cancel:
+                text: _("Cancel")
+      - template: delete
+        execute:
+          type: request
+          request:
+            service: Backup
+            method: doDeleteBackup
+            task: true
+            params:
+              date: "{{ date }}"
+      - type: iconButton
+        text: _("Purge")
+        tooltip: _("Delete old backups, keeping only the most recent ones.")
+        icon: mdi:broom
+        execute:
+          type: formDialog
+          formDialog:
+            title: _("Purge old backups")
+            fields:
+              - type: paragraph
+                text: _("Delete old backups now, keeping only the most recent ones. Old backups are normally purged automatically when a backup finishes, but if the destination filesystem fills up that step never runs - use this to reclaim space on demand. For borg the repository is pruned and compacted; for dd/ddfull/fsarchiver the oldest dated backup files are deleted. The rsync method keeps a single mirror, so there is nothing to purge.")
+              - type: numberInput
+                name: keep
+                label: _("Keep")
+                value: 3
+                hint: _("Number of most recent backup sets (borg archives) to keep. Everything older is deleted.")
+                validators:
+                  min: 1
+                  max: 9999
+                  patternType: integer
+                  required: true
+            buttons:
+              submit:
+                text: _("Purge")
+                confirmationDialogConfig:
+                  template: confirmation-danger
+                  message: _("This will permanently delete all but the {{ keep }} most recent backups. Continue?")
+                execute:
+                  type: taskDialog
+                  taskDialog:
+                    config:
+                      title: _("Purging old backups ...")
+                      startOnInit: true
+                      request:
+                        service: Backup
+                        method: doPurge
+                        params:
+                          keep: "{{ keep }}"
+                      buttons:
+                        stop:
+                          hidden: true
+              cancel:
+                text: _("Cancel")
+      - type: iconButton
+        text: _("Settings")
+        tooltip: _("Backup settings (shared folder, method, retention).")
+        icon: mdi:cog
+        execute:
+          type: url
+          url: "/system/backup/settings"
+      - type: iconButton
+        text: _("Schedule")
+        tooltip: _("Schedule automatic backups.")
+        icon: mdi:clock-outline
+        execute:
+          type: url
+          url: "/system/backup/schedule"
+      - type: iconButton
+        text: _("Fix cron")
+        tooltip: _("Recreate the scheduled backup cron task if it was deleted.")
+        icon: mdi:wrench
+        execute:
+          type: taskDialog
+          taskDialog:
+            config:
+              title: _("Fixing cron task if deleted ...")
+              startOnInit: true
+              request:
+                service: Backup
+                method: doFix
+              buttons:
+                stop:
+                  hidden: true
