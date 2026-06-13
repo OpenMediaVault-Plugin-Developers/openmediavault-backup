@@ -25,7 +25,28 @@ a system, including the helper tooling and the *Recovery USB* feature.
 
 ---
 
-## 2. Configuration (Web UI → System → Backup → Settings)
+## 2. The Backups page (Web UI → System → Backup)
+
+**System → Backup** opens the **Backups** page: a table of the backups currently
+stored (newest first) with their method and size. For `borg` the rows are the
+archives in the repository (orphaned sidecar metadata is not listed); for the
+other methods they are the dated backup sets. Its toolbar provides:
+
+- **Backup** — run a backup now (in a task dialog).
+- **Info** — details for the selected backup (`borg info`, or its manifest and files).
+- **Recovery USB** — write the selected backup to a removable stick ([section 7](#7-recovery-usb)).
+- **Delete** — remove the selected backup(s) (the `borg` archive and its sidecar
+  files, or the dated archive files).
+- **Purge** — keep only the most recent *X* backups and delete the rest. The
+  scheduled backup already prunes old backups when it finishes, but if the
+  destination fills up that step never runs — Purge reclaims space on demand.
+  (`borg` is pruned and compacted, and sidecar metadata older than the oldest
+  kept archive is removed; `rsync` keeps a single mirror, so there is nothing
+  to purge.)
+- **Settings** / **Schedule** — open the configuration forms.
+- **Fix cron** — rebuild the scheduled job if it was lost.
+
+### Settings (Web UI → System → Backup → Settings)
 
 | Field | Notes |
 |-------|-------|
@@ -33,12 +54,9 @@ a system, including the helper tooling and the *Recovery USB* feature.
 | **Method** | See [section 3](#3-backup-methods). |
 | **Root device** | *Advanced.* Leave blank to auto-detect. Only set if auto-detection fails. |
 | **Extra options** | Passed to the backup tool (e.g. extra `--exclude=` paths for rsync/borg/fsarchiver). |
-| **Keep** | Days of backups to retain (purged with `find -mtime`). `0` disables purging. |
+| **Keep** | Days of backups to retain (auto-purged with `find -mtime` after each run). `0` disables purging. |
 | **Password** | If set, encrypts `fsarchiver`/`borg` archives (6–64 chars). |
 | **Verbose output** | More detail in the log / progress. |
-
-Other buttons: **Backup** (run now, in a task dialog), **Fix cron** (rebuild the
-scheduled job if it was lost). Scheduling lives under **Backup → Schedule**.
 
 The backup log is at `/var/log/omv-backup.log`.
 
@@ -178,15 +196,16 @@ sudo ./omv-restore-helper readme . <date>
 
 ---
 
-## 7. Recovery USB (Web UI → System → Backup → Recovery USB)
+## 7. Recovery USB
 
-This builds a **recovery bundle** on a removable stick: the chosen backup set +
-the helper + the manifest + the README. It can run **while OMV is live** because
-it writes to a *USB stick*, not the system disk.
+Reached from the **Backups** page: select a backup row, then click **Recovery
+USB**. This builds a **recovery bundle** on a removable stick: the chosen backup
+set + the helper + the manifest + the README. It can run **while OMV is live**
+because it writes to a *USB stick*, not the system disk.
 
-**Fields:** target device (only removable/USB disks are listed), backup set,
-filesystem (`ext4` or `exfat`), volume label. **Pressing "Prepare recovery USB"
-ERASES the selected device.**
+**Fields:** target device (only removable/USB disks are listed), filesystem
+(`ext4` or `exfat`), volume label. The backup set is the row you selected.
+**Pressing "Prepare recovery USB" ERASES the selected device.**
 
 **Safety:** the backend (`omv-backup-recovery-usb`) only accepts removable/USB
 whole disks, refuses the system and backup disks, checks the device is large
