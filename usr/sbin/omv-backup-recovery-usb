@@ -29,6 +29,20 @@ _err()
   echo "[$(date +'%Y-%m-%d %H:%M:%S%z')] [recovery-usb] ERROR: $1" | tee -a "${logFile}" >&2
 }
 
+# rsync the given arguments while emitting overall progress to stdout, which the
+# GUI task dialog streams live. --info=progress2 redraws a single line using
+# carriage returns, so translate them to newlines and print a line only when the
+# percentage changes - otherwise the dialog is flooded. --no-inc-recursive forces
+# a full scan up front so the percentage is meaningful from the start. Returns
+# rsync's exit status (not the filter's). Errors still go to the log file.
+rsync_progress()
+{
+  rsync -aH --info=progress2 --no-inc-recursive "$@" 2>>"${logFile}" \
+    | stdbuf -oL tr '\r' '\n' \
+    | stdbuf -oL awk '{for(i=1;i<=NF;i++) if($i ~ /%$/ && $i!=p){p=$i; print}}'
+  return "${PIPESTATUS[0]}"
+}
+
 # Defaults / option holders.
 device=""
 date_token=""
@@ -437,15 +451,19 @@ if ! mount "${part}" "${mnt}"; then
 fi
 
 _log "Copying recovery bundle to ${device} ..."
+rc=0
 if [ ${copy_whole} -eq 1 ]; then
-  rsync -aH "${backupDir}/" "${mnt}/" 2>>"${logFile}"
+  rsync_progress "${backupDir}/" "${mnt}/"
+  rc=$?
 else
-  rsync -aH "${bundle_files[@]}" "${mnt}/" 2>>"${logFile}"
+  rsync_progress "${bundle_files[@]}" "${mnt}/"
+  rc=$?
   for d in "${bundle_dirs[@]}"; do
-    rsync -aH "${d}" "${mnt}/" 2>>"${logFile}"
+    [ ${rc} -eq 0 ] || break
+    rsync_progress "${d}" "${mnt}/"
+    rc=$?
   done
 fi
-rc=$?
 if [ ${rc} -ne 0 ]; then
   _err "Copy failed (rsync exit ${rc})."
   exit 14

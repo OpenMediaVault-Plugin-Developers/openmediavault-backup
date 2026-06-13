@@ -145,7 +145,10 @@ part_suffix() {
 # Extract the trailing partition number from a partition device path,
 # e.g. /dev/sda1 -> 1, /dev/nvme0n1p2 -> 2.
 part_num() {
-    echo "$1" | grep -oE '[0-9]+$'
+    # Trailing digits of a partition path (/dev/sda1 -> 1). Whole-disk devices
+    # (/dev/sda) have none; echo nothing and still succeed so that, under
+    # `set -e`, a no-match grep cannot abort the caller mid-function.
+    echo "$1" | grep -oE '[0-9]+$' || true
 }
 
 # Print a command, then run it unless in dry-run mode.  Used for the destructive

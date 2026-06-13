@@ -40,6 +40,14 @@
     "keep": {
       "type": "integer"
     },
+    "keepmode": {
+      "type": "string",
+      "enum": [
+        "days",
+        "count"
+      ],
+      "default": "days"
+    },
     "passwd": {
       "type": "string",
       "oneOf": [

@@ -40,13 +40,9 @@ data:
           taskDialog:
             config:
               title: _("Starting backup ...")
-              startOnInit: true
               request:
                 service: Backup
                 method: doBackup
-              buttons:
-                stop:
-                  hidden: true
       - type: iconButton
         text: _("Info")
         tooltip: _("Show details for the selected backup (borg info / files).")

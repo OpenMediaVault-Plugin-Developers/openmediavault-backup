@@ -8,7 +8,7 @@
 # License version 3. This program is licensed "as is" without any
 # warranty of any kind, whether express or implied.
 #
-# version: 1.3.0
+# version: 1.4.0
 #
 
 . /etc/default/openmediavault
@@ -54,19 +54,33 @@ _log_error()
 
 purgeOld()
 {
-  # get number of days to keep
   keep=$(omv_config_get "/config/system/backup/keep")
-  _log "keep days :: ${keep}"
-  if [[ ${keep} -gt 0 ]]; then
-    _log "Purging old files ..."
+  keepmode=$(omv_config_get "/config/system/backup/keepmode")
+  [ -n "${keepmode}" ] || keepmode="days"
+  _log "keep :: ${keep} (mode: ${keepmode})"
+  if [[ ${keep} -le 0 ]]; then
+    _log "Purging disabled."
+    return
+  fi
+  if [ "${keepmode}" = "count" ]; then
+    # Keep the N most recent backup sets. Delegate to the purge helper, which
+    # already implements per-method count retention (borg --keep-last + compact,
+    # dd/ddfull/fsarchiver set-counting, rsync no-op) and sidecar cleanup.
+    _log "Purging old backups, keeping the ${keep} most recent set(s) ..."
+    /usr/sbin/omv-backup-purge --keep "${keep}" 2>&1 | tee -a "${logFile}" >&2
+    if [ ${PIPESTATUS[0]} -eq 0 ]; then
+      _log "Purging done."
+    else
+      _log_warning "Purge failed!"
+    fi
+  else
+    _log "Purging backup files older than ${keep} day(s) ..."
     find "${backupDir}" -maxdepth ${OMV_BACKUP_MAX_DEPTH} -type f -mtime +${keep} -name "${OMV_BACKUP_FILE_PREFIX}*" -delete
     if [ $? -eq 0 ]; then
       _log "Purging done."
     else
       _log_warning "Purge failed!"
     fi
-  else
-    _log "Purging disabled."
   fi
 }
 
@@ -389,26 +403,43 @@ case ${method} in
       fi
     fi
     _log "Starting borgbackup create ..."
+    # Capture borg's own output into the log so a failure shows the real reason
+    # (e.g. "No space left on device", a repository/integrity error) instead of
+    # just "create failed".  PIPESTATUS holds borg's exit code through the tee.
     borg create --stats "${backupDir}/borgbackup::${OMV_BACKUP_FILE_PREFIX}-${date}" / \
       -x --exclude-caches \
       -e "/dev" -e "/proc" -e "/sys" -e "/tmp" -e "/run" -e "/mnt" \
-      -e "/media" -e "/lost+found" -e "/export" -e "/home/ftp" -e "/srv" "${extra[@]}"
-    if [ $? -ne 0 ]; then
-      _log_error "borgbackup create failed!"
+      -e "/media" -e "/lost+found" -e "/export" -e "/home/ftp" -e "/srv" "${extra[@]}" \
+      2>&1 | tee -a "${logFile}" >&2
+    rc=${PIPESTATUS[0]}
+    # borg exit codes: 0 = success, 1 = warning (the archive is still created,
+    # e.g. a file changed or could not be read during the run), >= 2 = error.
+    if [ ${rc} -ge 2 ]; then
+      _log_error "borgbackup create failed (borg exit code ${rc}). See the borg output above / in ${logFile}."
       exit 18
+    elif [ ${rc} -eq 1 ]; then
+      _log_warning "borgbackup create completed with warnings (borg exit code 1); some files may have changed or been unreadable during the backup."
     else
       _log "borgbackup create complete."
     fi
     keep=$(omv_config_get "/config/system/backup/keep")
+    keepmode=$(omv_config_get "/config/system/backup/keepmode")
+    [ -n "${keepmode}" ] || keepmode="days"
     if [[ ${keep} -gt 0 ]]; then
       purgeOld
-      _log "Starting borgbackup prune ..."
-      borg prune "${backupDir}/borgbackup" --keep-daily "${keep}"
-      if [ $? -ne 0 ]; then
-        _log_error "borgbackup prune failed!"
-        exit 19
-      else
-        _log "borgbackup prune complete."
+      # In count mode purgeOld already pruned the repo (--keep-last), compacted
+      # and swept sidecars via omv-backup-purge; only the age-based prune is done
+      # inline here.
+      if [ "${keepmode}" != "count" ]; then
+        _log "Starting borgbackup prune ..."
+        borg prune "${backupDir}/borgbackup" --keep-daily "${keep}" 2>&1 | tee -a "${logFile}" >&2
+        rc=${PIPESTATUS[0]}
+        if [ ${rc} -ge 2 ]; then
+          _log_error "borgbackup prune failed (borg exit code ${rc}). See the borg output above / in ${logFile}."
+          exit 19
+        else
+          _log "borgbackup prune complete."
+        fi
       fi
     fi
     ;;

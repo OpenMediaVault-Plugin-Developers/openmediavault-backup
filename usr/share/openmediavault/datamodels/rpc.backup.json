@@ -42,6 +42,14 @@
           "type": "integer",
           "required": false
         },
+        "keepmode": {
+          "type": "string",
+          "enum": [
+            "days",
+            "count"
+          ],
+          "required": false
+        },
         "passwd": {
           "type": "string",
           "oneOf": [

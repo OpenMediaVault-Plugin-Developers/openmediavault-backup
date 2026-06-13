@@ -53,11 +53,27 @@ data:
                 arg0:
                   prop: method
                 arg1: "ddfull"
+      - type: select
+        name: keepmode
+        label: _("Retention")
+        value: "days"
+        hint: _("How the Keep value is interpreted when old backups are purged. 'By age' deletes backups older than X days; 'By count' keeps only the X most recent backup sets.")
+        store:
+          data:
+            - ["days", _("Keep by age (days)")]
+            - ["count", _("Keep by count (number of backups)")]
+        modifiers:
+          - type: visible
+            constraint:
+              operator: ne
+              arg0:
+                prop: method
+              arg1: "rsync"
       - type: numberInput
         name: keep
         label: _("Keep")
         value: 7
-        hint: _("Keep X days of backups.  Uses Linux find mtime command to determine if backup is older than X days.")
+        hint: _("In 'by age' mode this keeps X days of backups (uses find -mtime). In 'by count' mode this keeps the X most recent backup sets (borg uses --keep-last) and deletes everything older.")
         validators:
           min: 0
           max: 9999
@@ -106,6 +122,9 @@ data:
               arg1: "borg"
     buttons:
       - template: submit
+        execute:
+          type: url
+          url: "/system/backup"
       - template: cancel
         execute:
           type: url
