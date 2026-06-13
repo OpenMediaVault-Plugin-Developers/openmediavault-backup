@@ -9,11 +9,12 @@ openmediavault-backup (8.1) stable; urgency=low
   * Add Delete action to remove individual backups (borg archive and
     sidecars, or the dated archive files)
   * Add Info action showing borg info / manifest and files for a backup
-  * Move Recovery USB to a dialog launched from the Backups datatable
-  * Move the Backup, Fix cron, Settings and Schedule buttons onto the
-    Backups datatable toolbar
+  * Add a Retention setting to choose whether Keep means days of backups
+    (by age) or the number of most recent backup sets to keep (by count);
+    count mode reuses the per-method purge logic (borg --keep-last +
+    compact, dd/ddfull/fsarchiver set-counting)
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 12 Jun 2026 14:38:37 +0000
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 13 Jun 2026 15:28:13 +0000
 
 openmediavault-backup (8.0.1) stable; urgency=low
 
