@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-16 11:24-0500\n"
+"POT-Creation-Date: 2026-06-13 15:29+0000\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2018,2020-2023\n"
 "Language-Team: Spanish (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/es/)\n"
@@ -21,33 +21,47 @@ msgstr ""
 msgid "Action"
 msgstr "Acción"
 
-msgid "Add new scheduled backup job"
-msgstr "Añadir un nuevo trabajo de backup programado"
-
-msgid ""
-"Adding a new scheduled backup job will add a job to the Scheduled Jobs tab."
-msgstr "Añadir un nuevo trabajo de backup programado, añadirá el trabajo a la lista de trabajos programados"
-
 msgid "Backup"
 msgstr "Backup"
 
-msgid "Create scheduled backup job"
-msgstr "Crear un trabajo de Backup programado"
+msgid "Backup details"
+msgstr ""
+
+msgid "Backup set"
+msgstr ""
+
+msgid "Backup settings (shared folder, method, retention)."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Date"
+msgstr ""
 
 msgid "Date & Time"
 msgstr "Fecha & Hora"
 
+msgid ""
+"Delete old backups now, keeping only the most recent ones. Old backups are "
+"normally purged automatically when a backup finishes, but if the destination"
+" filesystem fills up that step never runs - use this to reclaim space on "
+"demand. For borg the repository is pruned and compacted; for "
+"dd/ddfull/fsarchiver the oldest dated backup files are deleted. The rsync "
+"method keeps a single mirror, so there is nothing to purge."
+msgstr ""
+
+msgid "Delete old backups, keeping only the most recent ones."
+msgstr ""
+
 msgid "Edit scheduled backup."
 msgstr "Editar trabajo programado"
 
-msgid "Example"
-msgstr "Ejemplo"
-
-msgid "Extra Options"
-msgstr "Opciones extra"
-
 msgid "Extra options"
 msgstr "Opciones Extras"
+
+msgid "Filesystem"
+msgstr ""
 
 msgid "Fix cron"
 msgstr "Arreglar cron"
@@ -60,20 +74,28 @@ msgid ""
 msgstr "Solo para usuarios avanzados - No usar a menos que se conozca el dispositivo raíz (root)"
 
 msgid ""
-"If a password is specified, backup will be encrypted. Must be between 6 and "
-"64 characters."
-msgstr "Si la contraseña se suministra, el backup será cifrado, Debe tener entre 6 y 64 caracteres."
+"How the Keep value is interpreted when old backups are purged. 'By age' "
+"deletes backups older than X days; 'By count' keeps only the X most recent "
+"backup sets."
+msgstr ""
+
+msgid ""
+"In 'by age' mode this keeps X days of backups (uses find -mtime). In 'by "
+"count' mode this keeps the X most recent backup sets (borg uses --keep-last)"
+" and deletes everything older."
+msgstr ""
+
+msgid "Info"
+msgstr ""
 
 msgid "Keep"
 msgstr "Mantener"
 
-msgid ""
-"Keep X days of backups.  Uses Linux find mtime command to determine if "
-"backup is older than X days."
-msgstr "Mantenga X días de copias de seguridad. Utiliza el comando find mtime de Linux para determinar si la copia de seguridad tiene más de X días."
+msgid "Keep by age (days)"
+msgstr ""
 
-msgid "Keep the last x days of backups. Set to zero to disable."
-msgstr "Mantener los ultimos x dias de Backup. poner a cero para deshabilitar."
+msgid "Keep by count (number of backups)"
+msgstr ""
 
 msgid "Message"
 msgstr "Mensaje"
@@ -81,38 +103,81 @@ msgstr "Mensaje"
 msgid "Method"
 msgstr "Metodo"
 
-msgid "Notes"
-msgstr "Notas"
+msgid ""
+"Number of most recent backup sets (borg archives) to keep. Everything older "
+"is deleted."
+msgstr ""
+
+msgid ""
+"Only removable/USB disks are listed. ALL DATA on the selected device will be"
+" erased."
+msgstr ""
 
 msgid "Password"
 msgstr "Contraseña"
 
+msgid "Prepare recovery USB"
+msgstr ""
+
+msgid "Preparing recovery USB ..."
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge old backups"
+msgstr ""
+
+msgid "Purging old backups ..."
+msgstr ""
+
+msgid "Recovery USB"
+msgstr ""
+
+msgid "Recreate the scheduled backup cron task if it was deleted."
+msgstr ""
+
+msgid "Retention"
+msgstr ""
+
 msgid "Root device"
 msgstr "Dispositivo root"
+
+msgid "Run a backup now."
+msgstr ""
 
 msgid "Schedule"
 msgstr "Programador"
 
+msgid "Schedule automatic backups."
+msgstr ""
+
 msgid "Scheduled Backup"
 msgstr "Backup Programado"
+
+msgid "Select a removable device ..."
+msgstr ""
 
 msgid "Settings"
 msgstr "Opciones"
 
-msgid "Shared Folder"
-msgstr "Carpetas compartidas"
-
 msgid "Shared folder"
 msgstr "Carpeta compartida"
+
+msgid "Show details for the selected backup (borg info / files)."
+msgstr ""
 
 msgid "Show more output when checked."
 msgstr "Mostrar más resultados cuando esté marcado."
 
+msgid "Size"
+msgstr ""
+
 msgid "Starting backup ..."
 msgstr "Iniciando Backup ..."
 
-msgid "System Backup"
-msgstr "Backup del sistema"
+msgid "Target device"
+msgstr ""
 
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "El campo solo debe contener * o una lista de valores separados por comas."
@@ -121,9 +186,14 @@ msgid "The location of the backup files."
 msgstr "Ubicación de los archivos de backup."
 
 msgid ""
-"To exclude addition directories, add --exclude= before each directory and "
-"separate additional entries with a space."
-msgstr "Para excluir directotrios, añadir --exclude= antes de cada directorio y separa las entradas con espacios."
+"This will ERASE the selected device and write the recovery bundle to it. "
+"Continue?"
+msgstr ""
+
+msgid ""
+"This will permanently delete all but the {{ keep }} most recent backups. "
+"Continue?"
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -137,28 +207,25 @@ msgstr "Opciones de backup actualizadas."
 msgid "Verbose output"
 msgstr "Salida ampliada"
 
-msgid "Warning!!  You can break the backup with wrong options."
-msgstr "Precaución! Puede dañar el Backup con opciones erroneas."
+msgid "Volume label"
+msgstr ""
+
+msgid ""
+"Write a recovery bundle (the selected backup, the restore helper, its "
+"manifest and a README) to a removable USB device. A restore cannot run from "
+"within OpenMediaVault because it overwrites the disk the system boots from. "
+"Boot a live/rescue environment, open this device and run 'sudo ./omv-"
+"restore-helper auto'."
+msgstr ""
+
+msgid "Write the selected backup to a removable recovery USB device."
+msgstr ""
 
 msgid "borgbackup"
 msgstr "borgbackup"
 
-msgid "borgbackup - use borgbackup to backup system to an archive file"
-msgstr "borgbackup - Usar borgbackup para hacer un backup en un archivo"
-
 msgid "dd"
 msgstr "dd"
-
-msgid "dd - use dd to clone the OS partition to a compressed image file."
-msgstr "dd - Usar dd para clonar el SO a una imagen comprimida."
-
-msgid ""
-"dd - use dd to clone the OS partition to a compressed image file.<br />dd "
-"full disk - use dd to clone the entire drive to a compressed image file.<br "
-"/>fsarchiver - use fsarchiver to clone all partitions to an archive file<br "
-"/>borgbackup - use borgbackup to backup system to an archive file<br />rsync"
-" - use rsync to sync files to destination directory"
-msgstr "dd: use dd para clonar la partición del sistema operativo en un archivo de imagen comprimido. <br /> dd disco completo: use dd para clonar todo el disco en un archivo de imagen comprimido <br /> fsarchiver: use fsarchiver para clonar todas las particiones en un archivo de archivo <br />borgbackup: use borgbackup para hacer una copia de seguridad del sistema a un archivo <br /> rsync: use rsync para sincronizar archivos con el directorio de destino"
 
 msgid ""
 "dd - use dd to clone the OS partition to a compressed image file.<br />dd "
@@ -171,18 +238,19 @@ msgstr "dd: use dd para clonar la partición del sistema operativo en un archivo
 msgid "dd full disk"
 msgstr "dd el disco completo"
 
+msgid "exFAT (cross-platform)"
+msgstr ""
+
 msgid ""
-"dd full disk - use dd to clone the entire drive to a compressed image file."
-msgstr "dd Disco completo - usar dd para clonar un disco entero a un archivo de imagen comprimido."
+"exFAT is also readable on Windows/macOS - useful for writing an SBC image "
+"from another computer."
+msgstr ""
+
+msgid "ext4 (Linux)"
+msgstr ""
 
 msgid "fsarchiver"
 msgstr "fsarchiver"
 
-msgid "fsarchiver - use fsarchiver to clone all partitions to an archive file"
-msgstr "fsarchiver - Use fsarchiver para clonar todas las particiones en un archivo comprimido."
-
 msgid "rsync"
 msgstr "rsync"
-
-msgid "rsync - use rsync to sync files to destination directory"
-msgstr "rsync - Use rsync para sincronizar los archivos con los del directorio de destino."

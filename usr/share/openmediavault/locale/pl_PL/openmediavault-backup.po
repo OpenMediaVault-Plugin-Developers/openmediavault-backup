@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-31 00:55+0000\n"
+"POT-Creation-Date: 2026-06-13 15:29+0000\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Rysiek Jurczy, 2023\n"
 "Language-Team: Polish (Poland) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/pl_PL/)\n"
@@ -26,14 +26,44 @@ msgstr "Akcja"
 msgid "Backup"
 msgstr "Kopia zapasowa"
 
+msgid "Backup details"
+msgstr ""
+
+msgid "Backup set"
+msgstr ""
+
+msgid "Backup settings (shared folder, method, retention)."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
 msgid "Date & Time"
 msgstr "Data i Czas"
+
+msgid ""
+"Delete old backups now, keeping only the most recent ones. Old backups are "
+"normally purged automatically when a backup finishes, but if the destination"
+" filesystem fills up that step never runs - use this to reclaim space on "
+"demand. For borg the repository is pruned and compacted; for "
+"dd/ddfull/fsarchiver the oldest dated backup files are deleted. The rsync "
+"method keeps a single mirror, so there is nothing to purge."
+msgstr ""
+
+msgid "Delete old backups, keeping only the most recent ones."
+msgstr ""
 
 msgid "Edit scheduled backup."
 msgstr "Edytuj zaplanowaną kopię zapasową."
 
 msgid "Extra options"
 msgstr "Opcje dodatkowe."
+
+msgid "Filesystem"
+msgstr ""
 
 msgid "Fix cron"
 msgstr "Napraw crona"
@@ -45,13 +75,29 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "Tylko dla zaawansowanych użytkowników — nie używaj, jeśli nie wiesz co robisz."
 
+msgid ""
+"How the Keep value is interpreted when old backups are purged. 'By age' "
+"deletes backups older than X days; 'By count' keeps only the X most recent "
+"backup sets."
+msgstr ""
+
+msgid ""
+"In 'by age' mode this keeps X days of backups (uses find -mtime). In 'by "
+"count' mode this keeps the X most recent backup sets (borg uses --keep-last)"
+" and deletes everything older."
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
 msgid "Keep"
 msgstr "Zachowaj"
 
-msgid ""
-"Keep X days of backups.  Uses Linux find mtime command to determine if "
-"backup is older than X days."
-msgstr "Przechowuj N dni kopii zapasowych. Używa polecenia 'find mtime' systemu Linux w celu ustalenia, czy kopia zapasowa jest starsza niż N dni."
+msgid "Keep by age (days)"
+msgstr ""
+
+msgid "Keep by count (number of backups)"
+msgstr ""
 
 msgid "Message"
 msgstr "Wiadomość"
@@ -59,17 +105,60 @@ msgstr "Wiadomość"
 msgid "Method"
 msgstr "Metoda"
 
+msgid ""
+"Number of most recent backup sets (borg archives) to keep. Everything older "
+"is deleted."
+msgstr ""
+
+msgid ""
+"Only removable/USB disks are listed. ALL DATA on the selected device will be"
+" erased."
+msgstr ""
+
 msgid "Password"
 msgstr "Hasło"
+
+msgid "Prepare recovery USB"
+msgstr ""
+
+msgid "Preparing recovery USB ..."
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge old backups"
+msgstr ""
+
+msgid "Purging old backups ..."
+msgstr ""
+
+msgid "Recovery USB"
+msgstr ""
+
+msgid "Recreate the scheduled backup cron task if it was deleted."
+msgstr ""
+
+msgid "Retention"
+msgstr ""
 
 msgid "Root device"
 msgstr "Urządzenie systemowe"
 
+msgid "Run a backup now."
+msgstr ""
+
 msgid "Schedule"
 msgstr "Harmonogram"
 
+msgid "Schedule automatic backups."
+msgstr ""
+
 msgid "Scheduled Backup"
 msgstr "Harmonogram kopii"
+
+msgid "Select a removable device ..."
+msgstr ""
 
 msgid "Settings"
 msgstr "Ustawienia"
@@ -77,17 +166,36 @@ msgstr "Ustawienia"
 msgid "Shared folder"
 msgstr "Katalog współdzielony"
 
+msgid "Show details for the selected backup (borg info / files)."
+msgstr ""
+
 msgid "Show more output when checked."
 msgstr "Pokaż więcej wyników, gdy jest zaznaczone."
 
+msgid "Size"
+msgstr ""
+
 msgid "Starting backup ..."
 msgstr "Rozpoczynam tworzenie kopii zapasowej..."
+
+msgid "Target device"
+msgstr ""
 
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "Pole powinno zawierać wyłącznie * lub listę wartości oddzielonych przecinkami."
 
 msgid "The location of the backup files."
 msgstr "Lokalizacja plików kopii zapasowych."
+
+msgid ""
+"This will ERASE the selected device and write the recovery bundle to it. "
+"Continue?"
+msgstr ""
+
+msgid ""
+"This will permanently delete all but the {{ keep }} most recent backups. "
+"Continue?"
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -100,6 +208,20 @@ msgstr "Zaktualizowane ustawienia kopii zapasowej."
 
 msgid "Verbose output"
 msgstr "Tryb szczegółowy"
+
+msgid "Volume label"
+msgstr ""
+
+msgid ""
+"Write a recovery bundle (the selected backup, the restore helper, its "
+"manifest and a README) to a removable USB device. A restore cannot run from "
+"within OpenMediaVault because it overwrites the disk the system boots from. "
+"Boot a live/rescue environment, open this device and run 'sudo ./omv-"
+"restore-helper auto'."
+msgstr ""
+
+msgid "Write the selected backup to a removable recovery USB device."
+msgstr ""
 
 msgid "borgbackup"
 msgstr "borgbackup"
@@ -117,6 +239,17 @@ msgstr "dd — użyj dd, aby sklonować partycję systemu operacyjnego do skompr
 
 msgid "dd full disk"
 msgstr "dd cały dysk"
+
+msgid "exFAT (cross-platform)"
+msgstr ""
+
+msgid ""
+"exFAT is also readable on Windows/macOS - useful for writing an SBC image "
+"from another computer."
+msgstr ""
+
+msgid "ext4 (Linux)"
+msgstr ""
 
 msgid "fsarchiver"
 msgstr "fsarchiver"

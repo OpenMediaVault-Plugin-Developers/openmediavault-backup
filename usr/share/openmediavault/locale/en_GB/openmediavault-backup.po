@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-backup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-31 00:55+0000\n"
+"POT-Creation-Date: 2026-06-13 15:29+0000\n"
 "PO-Revision-Date: 2014-07-19 17:36+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2015,2017,2019-2023\n"
 "Language-Team: English (United Kingdom) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-backup/language/en_GB/)\n"
@@ -24,14 +24,44 @@ msgstr "Action"
 msgid "Backup"
 msgstr "Backup"
 
+msgid "Backup details"
+msgstr ""
+
+msgid "Backup set"
+msgstr ""
+
+msgid "Backup settings (shared folder, method, retention)."
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
 msgid "Date & Time"
 msgstr "Date & Time"
+
+msgid ""
+"Delete old backups now, keeping only the most recent ones. Old backups are "
+"normally purged automatically when a backup finishes, but if the destination"
+" filesystem fills up that step never runs - use this to reclaim space on "
+"demand. For borg the repository is pruned and compacted; for "
+"dd/ddfull/fsarchiver the oldest dated backup files are deleted. The rsync "
+"method keeps a single mirror, so there is nothing to purge."
+msgstr ""
+
+msgid "Delete old backups, keeping only the most recent ones."
+msgstr ""
 
 msgid "Edit scheduled backup."
 msgstr "Edit scheduled backup."
 
 msgid "Extra options"
 msgstr "Extra options"
+
+msgid "Filesystem"
+msgstr ""
 
 msgid "Fix cron"
 msgstr "Fix cron"
@@ -43,13 +73,29 @@ msgid ""
 "For advanced users only - Do not use unless exact root device is known."
 msgstr "For advanced users only - Do not use unless exact root device is known."
 
+msgid ""
+"How the Keep value is interpreted when old backups are purged. 'By age' "
+"deletes backups older than X days; 'By count' keeps only the X most recent "
+"backup sets."
+msgstr ""
+
+msgid ""
+"In 'by age' mode this keeps X days of backups (uses find -mtime). In 'by "
+"count' mode this keeps the X most recent backup sets (borg uses --keep-last)"
+" and deletes everything older."
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
 msgid "Keep"
 msgstr "Keep"
 
-msgid ""
-"Keep X days of backups.  Uses Linux find mtime command to determine if "
-"backup is older than X days."
-msgstr "Keep X days of backups.  Uses Linux find mtime command to determine if backup is older than X days."
+msgid "Keep by age (days)"
+msgstr ""
+
+msgid "Keep by count (number of backups)"
+msgstr ""
 
 msgid "Message"
 msgstr "Message"
@@ -57,17 +103,60 @@ msgstr "Message"
 msgid "Method"
 msgstr "Method"
 
+msgid ""
+"Number of most recent backup sets (borg archives) to keep. Everything older "
+"is deleted."
+msgstr ""
+
+msgid ""
+"Only removable/USB disks are listed. ALL DATA on the selected device will be"
+" erased."
+msgstr ""
+
 msgid "Password"
 msgstr "Password"
+
+msgid "Prepare recovery USB"
+msgstr ""
+
+msgid "Preparing recovery USB ..."
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge old backups"
+msgstr ""
+
+msgid "Purging old backups ..."
+msgstr ""
+
+msgid "Recovery USB"
+msgstr ""
+
+msgid "Recreate the scheduled backup cron task if it was deleted."
+msgstr ""
+
+msgid "Retention"
+msgstr ""
 
 msgid "Root device"
 msgstr "Root device"
 
+msgid "Run a backup now."
+msgstr ""
+
 msgid "Schedule"
 msgstr "Schedule"
 
+msgid "Schedule automatic backups."
+msgstr ""
+
 msgid "Scheduled Backup"
 msgstr "Scheduled Backup"
+
+msgid "Select a removable device ..."
+msgstr ""
 
 msgid "Settings"
 msgstr "Settings"
@@ -75,17 +164,36 @@ msgstr "Settings"
 msgid "Shared folder"
 msgstr "Shared folder"
 
+msgid "Show details for the selected backup (borg info / files)."
+msgstr ""
+
 msgid "Show more output when checked."
 msgstr "Show more output when checked."
 
+msgid "Size"
+msgstr ""
+
 msgid "Starting backup ..."
 msgstr "Starting backup ..."
+
+msgid "Target device"
+msgstr ""
 
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "The field should only contain * or a comma separated list of values."
 
 msgid "The location of the backup files."
 msgstr "The location of the backup files."
+
+msgid ""
+"This will ERASE the selected device and write the recovery bundle to it. "
+"Continue?"
+msgstr ""
+
+msgid ""
+"This will permanently delete all but the {{ keep }} most recent backups. "
+"Continue?"
+msgstr ""
 
 msgid ""
 "To exclude addition directories, add --exclude= before each directory and "
@@ -98,6 +206,20 @@ msgstr "Updated backup settings."
 
 msgid "Verbose output"
 msgstr "Verbose output"
+
+msgid "Volume label"
+msgstr ""
+
+msgid ""
+"Write a recovery bundle (the selected backup, the restore helper, its "
+"manifest and a README) to a removable USB device. A restore cannot run from "
+"within OpenMediaVault because it overwrites the disk the system boots from. "
+"Boot a live/rescue environment, open this device and run 'sudo ./omv-"
+"restore-helper auto'."
+msgstr ""
+
+msgid "Write the selected backup to a removable recovery USB device."
+msgstr ""
 
 msgid "borgbackup"
 msgstr "borgbackup"
@@ -115,6 +237,17 @@ msgstr "dd - use dd to clone the OS partition to a compressed image file.<br />d
 
 msgid "dd full disk"
 msgstr "dd full disk"
+
+msgid "exFAT (cross-platform)"
+msgstr ""
+
+msgid ""
+"exFAT is also readable on Windows/macOS - useful for writing an SBC image "
+"from another computer."
+msgstr ""
+
+msgid "ext4 (Linux)"
+msgstr ""
 
 msgid "fsarchiver"
 msgstr "fsarchiver"
